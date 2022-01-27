@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url:
-    username:
-    password:
+    url: jdbc:mysql://149.248.1.131:3306/cookie
+    username: root
+    password: cookiecookie
     driver-class-name: com.mysql.jdbc.Driver
