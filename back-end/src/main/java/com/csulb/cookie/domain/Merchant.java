@@ -1,25 +1,24 @@
-/*
-Contributed by Sydney
- */
-
 package com.csulb.cookie.domain;
 
-import lombok.AllArgsConstructor;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
-@Component
+@TableName(value ="merchant")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Merchant {
-    private int id;
+public class Merchant implements Serializable {
+
+    @TableId(type = IdType.AUTO)
+    private Integer id;
     private String username;
     private String shopName;
     private String password;
     private String email;
     private String phone;
     private String description;
-    private String business_hour;
+    private String businessHour;
+
 }
