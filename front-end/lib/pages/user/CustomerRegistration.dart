@@ -32,11 +32,13 @@ class CreateAccountBody extends StatelessWidget {
     'Email',
     'Phone Number'
   ];
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         //a column with children[<widget> , text button]
         //<widget> contains padding with a child column with children[label and textfield]
+
         child: Column(children: <Widget>[
       for (int i = 0; i < 5; i++)
         Padding(
@@ -70,14 +72,14 @@ class CreateAccountBody extends StatelessWidget {
               ],
             )),
       TextButton(
-        style: TextButton.styleFrom(backgroundColor: Colors.brown[700]),
-        onPressed: () {
-          //TODO CUSTOMER HOME
-        },
         child: Text(
           'Register',
           style: TextStyle(color: Colors.white, fontSize: 15),
         ),
+        style: TextButton.styleFrom(backgroundColor: Colors.brown[700]),
+        onPressed: () {
+          //TODO: CUSTOMER HOME
+        },
       ),
     ]));
   }
