@@ -6,10 +6,12 @@ import com.csulb.cookie.bean.ControllerResult;
 import com.csulb.cookie.domain.Customer;
 import com.csulb.cookie.service.CustomerService;
 import com.csulb.cookie.mapper.CustomerMapper;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+@Log4j2
 @Service
 public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> implements CustomerService {
 
@@ -31,6 +33,25 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
         }
 
         return new ControllerResult(ControllerResult.NOT_FOUND, null, "not found").toJsonMap();
+    }
+
+    @Override
+    public Map<String, Object> customerRegister(Customer customer) {
+        // make sure all attributes are not null
+        if (customer.getUsername() == null ||
+            customer.getPassword() == null ||
+            customer.getEmail() == null ||
+            customer.getPhone() == null
+        ) {
+            return new ControllerResult(ControllerResult.BAD_REQUEST, null, "bad request").toJsonMap();
+        }
+
+        customer.setNickName(customer.getUsername());
+        boolean res = save(customer);
+
+        return res ?
+                new ControllerResult(ControllerResult.SUCCESS, customer, "success").toJsonMap() :
+                new ControllerResult(ControllerResult.ERROR, null, "error").toJsonMap();
     }
 }
 

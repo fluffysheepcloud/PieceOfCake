@@ -15,6 +15,8 @@ public class ControllerResult {
     public static final int FORBIDDEN = 403;
     public static final int NOT_FOUND = 404;
     public static final int TIMEOUT = 408;
+    public static final int ERROR = 500;
+
 
     private Integer code;
     private String msg;
