@@ -1,38 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/user/MerchantRegistrationPage2.dart';
 
-void main() {
-  runApp(const MaterialApp(
-    title: 'Navigation Basics',
-    home: CreateMerchantAccount(),
-  ));
-}
-
-class CreateMerchantAccount extends StatelessWidget {
-  const CreateMerchantAccount({Key? key}) : super(key: key);
+class ContinueAccount extends StatelessWidget {
+  const ContinueAccount({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.orange[50],
-        appBar: AppBar(
-          title: const Text('Merchant Registration'),
-          titleTextStyle:
-          const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          backgroundColor: Colors.brown[700],
-        ),
-        body: CreateMerchantAccountBody1(),);
+      backgroundColor: Colors.orange[50],
+      appBar: AppBar(
+        title: const Text('Merchant Registration'),
+        titleTextStyle:
+        const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        backgroundColor: Colors.brown[700],
+      ),
+      body: CreateMerchantAccountBody2(),);
   }
 }
 
-class CreateMerchantAccountBody1 extends StatelessWidget {
+class CreateMerchantAccountBody2 extends StatelessWidget {
   List<String> fields = [
-    // page 1
-    'Username',
-    'Password',
-    'Re-enter Password',
-    'Email',
-    'Phone Number'
+    // page 2
+    'Shop Name',
+    'Shop Description'
+
+    // address will be done in a nested for loop
   ];
 
   @override
@@ -41,9 +32,9 @@ class CreateMerchantAccountBody1 extends StatelessWidget {
       //a column with children[<widget> , text button]
       //<widget> contains padding with a child column with children[field and text]
 
-        // page 1
+      // page 1
         child: Column(children: <Widget>[
-          for (int i = 0; i < 5; i++)
+          for (int i = 0; i < 2; i++)
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                 child: Column(
@@ -76,15 +67,12 @@ class CreateMerchantAccountBody1 extends StatelessWidget {
                 )),
           TextButton(
             child: Text(
-              'Next',
+              'Register',
               style: TextStyle(color: Colors.white, fontSize: 15),
             ),
             style: TextButton.styleFrom(backgroundColor: Colors.brown[700]),
             onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ContinueAccount()),
-                );
+              //TODO: MERCHANT HOME
             },
           ),
         ]));
