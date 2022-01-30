@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/pages/user/MerchantRegistrationPage2.dart';
 
-void main() {
-  runApp(const MaterialApp(
-    title: 'Navigation Basics',
-    home: CreateMerchantAccount(),
-  ));
-}
-
 class CreateMerchantAccount extends StatelessWidget {
   const CreateMerchantAccount({Key? key}) : super(key: key);
 
