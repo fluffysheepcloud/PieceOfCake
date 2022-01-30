@@ -2,8 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:frontend/customerRegistration.dart';
-
+import 'package:pleasework/customerRegistration.dart';
 
 void main() {
   runApp(new MaterialApp(
