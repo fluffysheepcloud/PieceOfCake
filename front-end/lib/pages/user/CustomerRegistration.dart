@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MaterialApp(
     title: 'Navigation Basics',
-    home: CreateAccount(),
+    home: CreateCustomerAccount(),
   ));
 }
 
-class CreateAccount extends StatelessWidget {
-  const CreateAccount({Key? key}) : super(key: key);
+class CreateCustomerAccount extends StatelessWidget {
+  const CreateCustomerAccount({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
