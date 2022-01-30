@@ -68,7 +68,7 @@ class CreateMerchantAccountBody1 extends StatelessWidget {
                   ],
                 )),
           TextButton(
-            child: Text(
+            child: const Text(
               'Next',
               style: TextStyle(color: Colors.white, fontSize: 15),
             ),
@@ -76,7 +76,7 @@ class CreateMerchantAccountBody1 extends StatelessWidget {
             onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ContinueAccount()),
+                  MaterialPageRoute(builder: (context) => const ContinueAccount()),
                 );
             },
           ),

@@ -66,7 +66,7 @@ class CreateMerchantAccountBody2 extends StatelessWidget {
                   ],
                 )),
           TextButton(
-            child: Text(
+            child: const Text(
               'Register',
               style: TextStyle(color: Colors.white, fontSize: 15),
             ),
