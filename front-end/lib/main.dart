@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/user/AccountRegistration.dart';
 
 import 'pages/user/CustomerLogin.dart';
-import 'pages/user/CustomerRegistration.dart';
 import 'pages/user/MerchantLogin.dart';
 
 void main() {
@@ -52,7 +52,7 @@ class FirstScreen extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CreateAccount()),
+                MaterialPageRoute(builder: (context) => AccountRegistrationScreen()),
               );
             },
             style: ElevatedButton.styleFrom(
