@@ -9,6 +9,7 @@ void main() {
     home: new CreateAccount(),
   ));
 }
+
 Widget _textStyles(String labelName){
   return
     Padding (
@@ -21,7 +22,6 @@ Widget _textStyles(String labelName){
             textAlign: TextAlign.end,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.brown),
-
           )
       )
     );
@@ -45,13 +45,10 @@ Widget _textBoxStyles(String hintTextInput){
           ),
           ),
           hintText: 'Enter ' +  hintTextInput,
-
           focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.deepOrange))
           ),
           ),
-
-
   );
 }
 
@@ -137,7 +134,6 @@ class CreateAccountBody extends StatelessWidget{
                 child: Text(
                   'Register',
                   style: TextStyle( color: Colors.white, fontSize: 15),
-
                 ),
               ),
             ]
