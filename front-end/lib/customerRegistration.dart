@@ -9,6 +9,52 @@ void main() {
     home: new CreateAccount(),
   ));
 }
+Widget _textStyles(String labelName){
+  return
+    Padding (
+      padding: const EdgeInsets.symmetric( horizontal:15, vertical: 10),
+      child:
+      Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            labelName,
+            textAlign: TextAlign.end,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.brown),
+
+          )
+      )
+    );
+
+
+}
+
+Widget _textBoxStyles(String hintTextInput){
+  //List <String> labels = ['Username', 'Password', 'Re-enter Password', 'Email', 'Phone Number'];
+  return Padding (
+
+      padding: const EdgeInsets.symmetric( horizontal:15, vertical: 5),
+
+      child:
+          TextField(
+          decoration: InputDecoration(
+          border: const OutlineInputBorder(
+          borderSide: BorderSide(
+          width: 7,
+          color: Colors.deepOrange,
+          ),
+          ),
+          hintText: 'Enter ' +  hintTextInput,
+
+          focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.deepOrange))
+          ),
+          ),
+
+
+  );
+}
+
 class CreateAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -26,7 +72,7 @@ class CreateAccount extends StatelessWidget {
 
 class CreateAccountBody extends StatelessWidget{
 
-  List <String> labels = ['Username', 'Password', 'Re-enter Password', 'Email', 'Phone Number'];
+  // List <String> labels = ['Username', 'Password', 'Re-enter Password', 'Email', 'Phone Number'];
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -35,42 +81,53 @@ class CreateAccountBody extends StatelessWidget{
         child: Column(
 
             children: <Widget>[
-              for (int i = 0; i <5; i++) Padding (
 
-                  padding: const EdgeInsets.symmetric( horizontal:15, vertical: 5),
-
-                  child: Column(
-                    children: [
-                      Padding(padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                          child:
-                          Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                labels[i].toString(),
-                                textAlign: TextAlign.end,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.brown),
-
-                              )
-                          )
-                      ),
-                      TextField(
-                        decoration: InputDecoration(
-                            border: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                width: 7,
-                                color: Colors.deepOrange,
-                              ),
-                            ),
-                            hintText: 'Enter ' +  labels[i],
-
-                            focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.deepOrange))
-                        ),
-                      ),
-                    ],
-                  )
-              ),
+              _textStyles('Username'),
+              _textBoxStyles('Username'),
+              _textStyles('Username'),
+              _textBoxStyles('Username'),
+              _textStyles('Re-enter Password'),
+              _textBoxStyles('Re-enter Password'),
+              _textStyles('Email'),
+              _textBoxStyles('Email'),
+              _textStyles('Phone Number'),
+              _textBoxStyles('Phone Number'),
+              // for (int i = 0; i <5; i++) Padding (
+              //
+              //     padding: const EdgeInsets.symmetric( horizontal:15, vertical: 5),
+              //
+              //     child: Column(
+              //       children: [
+              //         Padding(padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+              //             child:
+              //             Align(
+              //                 alignment: Alignment.centerLeft,
+              //                 child: Text(
+              //                   labels[i].toString(),
+              //                   textAlign: TextAlign.end,
+              //                   overflow: TextOverflow.ellipsis,
+              //                   style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.brown),
+              //
+              //                 )
+              //             )
+              //         ),
+              //         TextField(
+              //           decoration: InputDecoration(
+              //               border: const OutlineInputBorder(
+              //                 borderSide: BorderSide(
+              //                   width: 7,
+              //                   color: Colors.deepOrange,
+              //                 ),
+              //               ),
+              //               hintText: 'Enter ' +  labels[i],
+              //
+              //               focusedBorder: const OutlineInputBorder(
+              //                   borderSide: BorderSide(color: Colors.deepOrange))
+              //           ),
+              //         ),
+              //       ],
+              //     )
+              // ),
               TextButton(
                 style: TextButton.styleFrom
                   (backgroundColor: Colors.brown[700]),
