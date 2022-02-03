@@ -1,0 +1,4 @@
+#Sat Jan 29 15:05:14 PST 2022
+base.0=C\:\\Users\\Me\\Documents\\GitHub\\PieceOfCake\\pleaseWork\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

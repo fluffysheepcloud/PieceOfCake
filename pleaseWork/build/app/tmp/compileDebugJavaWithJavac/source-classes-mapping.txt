@@ -1,0 +1,6 @@
+com/example/pleasework/MainActivity.java
+ com.example.pleasework.MainActivity
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/example/pleasework/BuildConfig.java
+ com.example.pleasework.BuildConfig
