@@ -32,7 +32,7 @@ class InfoCard extends StatelessWidget {
           margin: const EdgeInsets.all(10),
           color: Colors.brown[200],
           child: InkWell(
-            splashColor: Colors.orange.withAlpha(70),
+            splashColor: Colors.brown.withAlpha(70),
             onTap: () {
               debugPrint('Card tapped.');
             },
@@ -45,6 +45,7 @@ class InfoCard extends StatelessWidget {
                         topLeft: Radius.circular(10.0),
                         bottomLeft: Radius.circular(10.0)),
                     image: DecorationImage(
+                      //cardbackend.image
                       image: AssetImage('assets/images/cake.jpg'),
                       fit: BoxFit.fill,
                     ),
@@ -57,8 +58,8 @@ class InfoCard extends StatelessWidget {
                   children: [
                     Container(
                       padding: const EdgeInsets.all(8.0),
-                      //color: Colors.pinkAccent ,
-                      child:  const Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud '),
+                        //child: cardbackend.text or something like that
+                        child:  const Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud '),
                     ),
                     TextButton(
                       style: TextButton.styleFrom
