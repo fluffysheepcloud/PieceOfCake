@@ -22,44 +22,32 @@ class FirstScreen extends StatelessWidget {
       ),
       body: Center(
           child: Column(
-        children: <Widget>[
-          ElevatedButton(
-            child: Text('Customer Login'),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CustomerLogin()),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              primary: Colors.deepOrange[900],
-            ),
-          ),
-          ElevatedButton(
-            child: Text('Merchant Login'),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MerchantLogin()),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              primary: Colors.deepOrange[900],
-            ),
-          ),
-          ElevatedButton(
-            child: Text('Create an Account'),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AccountRegistrationScreen()),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-                primary: Colors.deepOrange[300], onPrimary: Colors.brown[900]),
-          ),
-        ],
-      )),
+            children: <Widget>[
+              ElevatedButton(
+                child: Text('User Login'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Login()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.deepOrange[900],
+                ),
+              ),
+              ElevatedButton(
+                child: Text('Create an Account'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AccountRegistrationScreen()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.deepOrange[300], onPrimary: Colors.brown[900]),
+              ),
+            ],
+          )),
     );
   }
 }
