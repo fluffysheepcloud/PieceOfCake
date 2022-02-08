@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
       routes: routes.routes,
       theme: ThemeData.from(colorScheme: ColorScheme.light()),
       onGenerateRoute: routes.onGeneratedRoute,
+
     );
   }
-
 }
 
 

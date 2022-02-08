@@ -7,7 +7,6 @@ import 'MerchantRegistrationPage1.dart';
 
 class AccountRegistrationScreen extends StatelessWidget {
 
-
   var arguments;
 
   AccountRegistrationScreen({Key? key, this.arguments}) : super(key: key);
