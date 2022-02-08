@@ -1,9 +1,17 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'CustomerRegistration.dart';
 import 'MerchantRegistrationPage1.dart';
 
 
 class AccountRegistrationScreen extends StatelessWidget {
+
+
+  var arguments;
+
+  AccountRegistrationScreen({Key? key, this.arguments}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
