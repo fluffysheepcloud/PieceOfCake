@@ -12,7 +12,7 @@ customerLogin(String username, String password) async {
         'username': username,
         'password': password
       });
-  json.decode(res.body)
+  json.decode(res.body);
   print(res.body);
 
 }
