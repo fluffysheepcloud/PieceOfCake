@@ -9,7 +9,7 @@ import 'package:frontend/pages/profile/account_registration.dart';
  */
 final routes = {
   "/": (context, {arguments}) => Index(arguments: arguments),
-  "/profile/registration_select": (context, {arguments}) => AccountRegistrationScreen(arguments: arguments)
+  "/profile/registration_select": (context, {arguments}) => AccountRegistrationScreen(arguments: arguments),
 };
 
 /* This function is similar to a callback function.
