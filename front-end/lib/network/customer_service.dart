@@ -12,7 +12,6 @@ customerLogin(String username, String password) async {
         'username': username,
         'password': password
       });
-  json.decode(res.body);
-  print(res.body);
 
+  return json.decode(res.body);
 }

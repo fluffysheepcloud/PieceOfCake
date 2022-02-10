@@ -16,20 +16,12 @@ class _HomeState extends State<Home> {
       child: Column(
         children: [
           SizedBox(height: 100,),
-          // Test
-          ElevatedButton(
-              onPressed: () {
-                customerLogin("cspeechley0", "qdAVscm");
-              },
-              child: Text("Test Login")
-          ),
-
 
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, "/registration_select");
+              Navigator.pushNamed(context, "/profile/login_success");
             },
-            child: Text("Registration Selection")
+            child: Text("Success")
           )
         ],
       ),
