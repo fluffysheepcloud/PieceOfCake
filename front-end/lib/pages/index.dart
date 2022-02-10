@@ -33,12 +33,12 @@ class _IndexState extends State<Index> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
-            label: "Demo",
-            activeIcon: Icon(Icons.home)
+            label: "Home",
+            activeIcon: Icon(Icons.home),
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart_outlined),
-              label: "Demo",
+              label: "Shopping Cart",
               activeIcon: Icon(Icons.shopping_cart)
           ),
           BottomNavigationBarItem(
