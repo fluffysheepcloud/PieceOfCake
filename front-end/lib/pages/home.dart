@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/network/customer_service.dart';
+
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,16 +12,18 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Home")),
-      body: Center(
-        child: Column(
-          children: const [
-            Expanded(child: Text("Test"), flex: 2),
-            Expanded(child: Text("Test"), flex: 4),
-            Expanded(child: Text("Test"), flex: 6),
-          ],
-        ),
+    return Center(
+      child: Column(
+        children: [
+          SizedBox(height: 100,),
+
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, "/profile/login_success");
+            },
+            child: Text("Success")
+          )
+        ],
       ),
     );
   }

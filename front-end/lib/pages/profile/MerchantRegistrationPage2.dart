@@ -21,9 +21,12 @@ class CreateMerchantAccountBody2 extends StatelessWidget {
   List<String> fields = [
     // page 2
     'Shop Name',
-    'Shop Description'
-
-    // address will be done in a nested for loop
+    'Shop Description',
+    'Address Line 1',
+    'Address Line 2',
+    'City',
+    'State',
+    'Zip Code'
   ];
 
   @override
@@ -34,7 +37,7 @@ class CreateMerchantAccountBody2 extends StatelessWidget {
 
       // page 1
         child: Column(children: <Widget>[
-          for (int i = 0; i < 2; i++)
+          for (int i = 0; i < 7; i++)
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                 child: Column(
@@ -51,6 +54,7 @@ class CreateMerchantAccountBody2 extends StatelessWidget {
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, color: Colors.brown),
                             ))),
+
                     TextField(
                       decoration: InputDecoration(
                           border: const OutlineInputBorder(
@@ -63,6 +67,9 @@ class CreateMerchantAccountBody2 extends StatelessWidget {
                           focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.deepOrange))),
                     ),
+
+                    const Padding(padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0)),
+
                   ],
                 )),
           TextButton(
