@@ -15,3 +15,5 @@ customerLogin(String username, String password) async {
 
   return json.decode(res.body);
 }
+
+// customerRegister()

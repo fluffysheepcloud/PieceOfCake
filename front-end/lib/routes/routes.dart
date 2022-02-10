@@ -27,7 +27,6 @@ var onGeneratedRoute = (RouteSettings settings) {
       final Route route = MaterialPageRoute(
           builder: (context) => pageContentBuilder(context, arguments: settings.arguments)
       );
-
       return route;
     }
     else {
@@ -37,5 +36,4 @@ var onGeneratedRoute = (RouteSettings settings) {
       return route;
     }
   }
-
 };
