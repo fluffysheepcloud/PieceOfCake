@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(InfoCard());
+void main() => runApp(const MyApp());
 
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: const InfoCard(),
+      ),
+    );
+  }
+}
 
 class InfoCard extends StatelessWidget {
-
-  const InfoCard({Key? key, @required this.index}) : super(key: key);
+  //const InfoCard({Key? key}) : super(key: key);
+  const InfoCard({@required this.index});
   final index;
-//use constructor to recieve arguments
-  //make homepage stateful use init()
-  //url for image
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -51,7 +60,7 @@ class InfoCard extends StatelessWidget {
                                 Container(
                                   padding: const EdgeInsets.all(8.0),
                                   //child: cardbackend.text or something like that
-                                  child:  Text('Card $index' ),
+                                  child:  Text('Card $index'),
                                 ),
                                 TextButton(
                                   style: TextButton.styleFrom

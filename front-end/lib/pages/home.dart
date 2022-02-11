@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
 
 
   Future<void> readJson() async {
-    final String response = await rootBundle.loadString('assets/data.json');
+    final String response = await rootBundle.loadString('assets/sample.json');
     final data = await json.decode(response);
     setState(() {
       _items = data["items"];
