@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:frontend/components/card.dart';
 import 'package:frontend/network/customer_service.dart';
 
 
@@ -17,11 +21,26 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Icon customIcon = const Icon(Icons.search);
   Widget customSearchBar = const Text('Search');
+  List _items = [];
+
+
+  Future<void> readJson() async {
+    final String response = await rootBundle.loadString('assets/data.json');
+    final data = await json.decode(response);
+    setState(() {
+      _items = data["items"];
+    });
+    debugPrint(_items.length.toString());
+
+  }
+
   @override
   Widget build (BuildContext context){
 
   return Scaffold(
+      extendBodyBehindAppBar: true,
     appBar: AppBar(
+
       title: customSearchBar,
       automaticallyImplyLeading:  false,
       actions: [
@@ -60,18 +79,23 @@ class _HomeState extends State<Home> {
             });
             },
       icon: customIcon
-
                 ) ,
-
       ],
       centerTitle: true,
     ),
     body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Center(
-          child: Text ('Hi'),
+        Expanded(
+            child: ListView.builder(
+            itemCount: _items.length,
+
+            itemBuilder: (context, index){
+              return InfoCard(index: index);
+  }
         )
+        )
+
       ],
     )
   );
