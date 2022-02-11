@@ -17,7 +17,9 @@ class MyApp extends StatelessWidget {
 
 class InfoCard extends StatelessWidget {
   const InfoCard({Key? key}) : super(key: key);
-
+//use constructor to recieve arguments
+  //make homepage stateful use init()
+  //url for image
   @override
   Widget build(BuildContext context) {
     return Center(
