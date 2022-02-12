@@ -23,6 +23,7 @@ class _HomeState extends State<Home> {
   //card would take in string, and img url, 3 arguments
 
   Future<void> readJson() async {
+    //import merchant_service.dart and get response
     final String response = await rootBundle.loadString('assets/sample.json');
     debugPrint(response);
     final data = await json.decode(response);
@@ -41,53 +42,103 @@ class _HomeState extends State<Home> {
   Widget build (BuildContext context){
 
   return Scaffold(
-      extendBodyBehindAppBar: true,
-    appBar: AppBar(
-
-      title: customSearchBar,
-      automaticallyImplyLeading:  false,
-      actions: [
-        IconButton(
-            onPressed: () {
-          setState((){
-            if (customIcon.icon == Icons.search){
-            customIcon = const Icon(Icons.cancel);
-            customSearchBar = const ListTile(
-              leading: Icon (
-                Icons.search,
-                color: Colors.white,
-                size: 28,
-              ),
-                title: TextField (
-                  decoration:  InputDecoration(
-                    hintText: 'type in cake ...',
-                    hintStyle: TextStyle(
-                      color:  Colors.white,
-                      fontSize: 18,
-                      fontStyle:  FontStyle.italic,
-                    ),
-                    border: InputBorder.none,
-                  ),
-                  style:  TextStyle(
-                    color: Colors.white
-                  ),
-                )
-            );
-
-            }
-            else{
-              customIcon = const Icon(Icons.search);
-              customSearchBar = const Text ('Search');
-            }
-          });
-        },
-      icon: customIcon) ,
-      ],
-      centerTitle: true,
-    ),
+    // extendBodyBehindAppBar: true,
+    // appBar: AppBar(
+    //
+    //   title: customSearchBar,
+    //   automaticallyImplyLeading:  false,
+    //   actions: [
+    //     IconButton(
+    //         onPressed: () {
+    //       setState((){
+    //         if (customIcon.icon == Icons.search){
+    //         customIcon = const Icon(Icons.cancel);
+    //         customSearchBar = const ListTile(
+    //           leading: Icon (
+    //             Icons.search,
+    //             color: Colors.white,
+    //             size: 28,
+    //           ),
+    //             title: TextField (
+    //               decoration:  InputDecoration(
+    //                 hintText: 'type in cake ...',
+    //                 hintStyle: TextStyle(
+    //                   color:  Colors.white,
+    //                   fontSize: 18,
+    //                   fontStyle:  FontStyle.italic,
+    //                 ),
+    //                 border: InputBorder.none,
+    //               ),
+    //               style:  TextStyle(
+    //                 color: Colors.white
+    //               ),
+    //             )
+    //         );
+    //
+    //         }
+    //         else{
+    //           customIcon = const Icon(Icons.search);
+    //           customSearchBar = const Text ('Search');
+    //         }
+    //       });
+    //     },
+    //   icon: customIcon) ,
+    //   ],
+    //   centerTitle: true,
+    // ),
     body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        //instead of appbar make a textfield with icon button
+        TextField(
+          onTap: (){
+            setState((){
+              if (customIcon.icon == Icons.search){
+                customIcon = const Icon(Icons.cancel);
+                customSearchBar = const ListTile(
+                    leading: Icon (
+                      Icons.search,
+                      color: Colors.white,
+                      size: 28,
+                    ),
+                    title: TextField (
+                      decoration:  InputDecoration(
+                        hintText: 'type in cake ...',
+                        hintStyle: TextStyle(
+                          color:  Colors.white,
+                          fontSize: 18,
+                          fontStyle:  FontStyle.italic,
+                        ),
+                        border: InputBorder.none,
+                      ),
+                      style:  TextStyle(
+                          color: Colors.white
+                      ),
+                    )
+                );
+
+              }
+              else{
+                customIcon = const Icon(Icons.search);
+                customSearchBar = const Text ('Search');
+              }
+            });
+          },
+         decoration: InputDecoration(
+         labelText: 'Search',
+
+         suffixIcon: IconButton(
+             onPressed: () {
+
+             },
+             icon: customIcon
+
+         )
+         ),
+          //can textfield have icon button
+
+          //onTap makes
+        ),
         Expanded(
             child: ListView.builder(
             itemCount: _items.length,
