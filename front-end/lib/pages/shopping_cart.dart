@@ -129,7 +129,6 @@ class _ShoppingCartState extends State<ShoppingCart> {
                         Row(
                           children: [
                             Container(
-
                               height: 100,
                               width: 100,
                               decoration: BoxDecoration(
