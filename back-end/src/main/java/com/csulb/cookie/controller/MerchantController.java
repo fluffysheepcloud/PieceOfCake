@@ -1,6 +1,6 @@
 package com.csulb.cookie.controller;
 
-import com.csulb.cookie.domain.Customer;
+import com.csulb.cookie.domain.Merchant;
 import com.csulb.cookie.service.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,8 +26,8 @@ public class MerchantController {
 
     @ResponseBody
     @RequestMapping(value = "/api/merchant/register", method = RequestMethod.POST)
-    public Map<String, Object> customerRegister(Customer customer) {
-        return service.merchantRegister(customer);
+    public Map<String, Object> customerRegister(Merchant merchant) {
+        return service.merchantRegister(merchant);
     }
 
     @ResponseBody

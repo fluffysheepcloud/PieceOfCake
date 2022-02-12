@@ -3,16 +3,21 @@ package com.csulb.cookie.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.csulb.cookie.bean.ControllerResult;
+import com.csulb.cookie.domain.Address;
 import com.csulb.cookie.domain.Customer;
 import com.csulb.cookie.domain.Merchant;
+import com.csulb.cookie.service.AddressService;
 import com.csulb.cookie.service.MerchantService;
 import com.csulb.cookie.mapper.MerchantMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
 @Service
 public class MerchantServiceImpl extends ServiceImpl<MerchantMapper, Merchant>  implements MerchantService {
+
+    AddressService addressService;
 
     @Override
     public Map<String, Object> merchantLogin(String username, String password) {
@@ -35,9 +40,38 @@ public class MerchantServiceImpl extends ServiceImpl<MerchantMapper, Merchant>  
     }
 
     @Override
-    public Map<String, Object> merchantRegister(Customer customer) {
-        // TODO: Once front-end decide the format of input, then verify here
-        return null;
+    public Map<String, Object> merchantRegister(Merchant merchant) {
+// make sure all attributes are not null
+        if (merchant.getUsername() == null ||
+                merchant.getPassword() == null ||
+                merchant.getEmail() == null ||
+                merchant.getPhone() == null ||
+                merchant.getShopName() == null ||
+                merchant.getDescription() == null ||
+                merchant.getBusinessHour() == null ||
+                merchant.getStreet() == null ||
+                merchant.getCity() == null ||
+                merchant.getState() == null ||
+                merchant.getZip() == null
+        ) {
+            return new ControllerResult(ControllerResult.BAD_REQUEST, null, "bad request").toJsonMap();
+        }
+
+        // Save merchant into database
+        boolean res = save(merchant);
+        // Get the address info of the merchant
+        Address address = new Address();
+        address.setMerchantId(merchant.getId());
+        address.setStreet(merchant.getStreet());
+        address.setCity(merchant.getCity());
+        address.setState(merchant.getState());
+        address.setZip(merchant.getZip());
+        // Save the address info into database
+        boolean addressRes = addressService.save(address);
+
+        return (res && addressRes) ?
+                new ControllerResult(ControllerResult.SUCCESS, merchant, "success").toJsonMap() :
+                new ControllerResult(ControllerResult.ERROR, null, "error").toJsonMap();
     }
 
     @Override
@@ -50,6 +84,12 @@ public class MerchantServiceImpl extends ServiceImpl<MerchantMapper, Merchant>  
             return new ControllerResult(ControllerResult.SUCCESS, getById(id), "success").toJsonMap();
         }
     }
+
+    @Autowired
+    public void setAddressService(AddressService addressService) {
+        this.addressService = addressService;
+    }
+
 }
 
 

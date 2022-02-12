@@ -18,12 +18,6 @@ class CustomerProfile extends StatelessWidget {
 }
 
 class CustomerProfileBody extends StatelessWidget {
-  List<String> blocks = [
-    'My Orders',
-    'My Favorites',
-    'Personal Information',
-  ];
-
 
   List<String> orderLinks = [
     'Bookmarks',
@@ -158,7 +152,8 @@ class CustomerProfileBody extends StatelessWidget {
                                 title: Row(
                                   children: <Widget>[
                                     for (int i = 0; i < personalInfo.length; i++)
-                                      Expanded(child: RaisedButton(onPressed: () {},child: Text(personalInfo[i], textAlign: TextAlign.center), color: Colors.red[300],textColor: Colors.white,)),
+                                      Expanded(child: RaisedButton(onPressed: () {},child: Text(personalInfo[i], textAlign: TextAlign.center),
+                                        color: Colors.red[300],textColor: Colors.white,)),
                                   ],
                                 ),
                               )
