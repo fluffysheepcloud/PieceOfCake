@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/domain/customer.dart';
 
 class CreateCustomerAccount extends StatefulWidget {
   const CreateCustomerAccount({Key? key}) : super(key: key);
@@ -85,6 +86,11 @@ class _CreateCustomerAccountState extends State<CreateCustomerAccount> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Processing Data')),
                       );
+
+                      Customer c = Customer(_username.text, _password.text,
+                          _email.text, _phone.text);
+
+
                     }
                   },
                   child: Text(

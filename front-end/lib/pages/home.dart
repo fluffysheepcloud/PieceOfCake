@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/network/customer_service.dart';
-
+import 'package:frontend/network/merchant_service.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -15,14 +14,7 @@ class _HomeState extends State<Home> {
     return Center(
       child: Column(
         children: [
-          SizedBox(height: 100,),
-
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, "/profile/login_success");
-            },
-            child: Text("Success")
-          )
+          SizedBox(height: 100,)
         ],
       ),
     );
