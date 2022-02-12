@@ -39,6 +39,17 @@ public class MerchantServiceImpl extends ServiceImpl<MerchantMapper, Merchant>  
         // TODO: Once front-end decide the format of input, then verify here
         return null;
     }
+
+    @Override
+    public Map<String, Object> getMerchantById(int id) {
+        Merchant m = getById(id);
+        if (m == null) {
+            return new ControllerResult(ControllerResult.NOT_FOUND, null, "not found").toJsonMap();
+        }
+        else {
+            return new ControllerResult(ControllerResult.SUCCESS, getById(id), "success").toJsonMap();
+        }
+    }
 }
 
 
