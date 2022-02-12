@@ -212,4 +212,8 @@ class _paymentState extends State<payment> {
     );
   }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6ae6a147b7d6ed19cf1b6b36b47c57a4d3729b3c

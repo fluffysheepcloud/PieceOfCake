@@ -4,6 +4,7 @@ import com.csulb.cookie.domain.Customer;
 import com.csulb.cookie.service.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +30,11 @@ public class MerchantController {
         return service.merchantRegister(customer);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/api/merchant/{id}", method = RequestMethod.GET)
+    public Map<String, Object> getMerchantById(@PathVariable(value = "id") int id) {
+        return service.getMerchantById(id);
+    }
 
     @Autowired
     public void setService(MerchantService service) {

@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url:
+    url: jdbc:mysql://149.248.1.131:3306/cookie?useSSL=false
     username: root
-    password:
+    password: cookiecookie
     driver-class-name: com.mysql.jdbc.Driver
 
 mybatis-plus:
