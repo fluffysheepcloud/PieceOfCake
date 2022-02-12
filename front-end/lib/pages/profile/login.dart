@@ -42,7 +42,8 @@ class _LoginState extends State<Login> {
                     SizedBox(height: 50.0),
                     // Input username
                     TextField(
-                      decoration: _generateInputDecoration("Username", "Enter Username", Icon(Icons.person)),
+                      decoration: _generateInputDecoration("Username", "Enter Username",
+                          Icon(Icons.person)),
                       onChanged: (value) {
                         _username.text = value;
                       },
@@ -51,7 +52,8 @@ class _LoginState extends State<Login> {
                     // Input password
                     TextField(
                       obscureText: true,
-                      decoration: _generateInputDecoration("Password", "Enter Password", Icon(Icons.password)),
+                      decoration: _generateInputDecoration("Password", "Enter Password",
+                          Icon(Icons.password)),
                       onChanged: (value) {
                         _password.text = value;
                       },
@@ -69,7 +71,8 @@ class _LoginState extends State<Login> {
                           _showToast("Please Enter Password!");
                         } else {
                           _customerLogin(context, _username.text, _password.text);
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const CustomerProfile()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                          const CustomerProfile()));
                         }
                       },
                     ),

@@ -28,6 +28,7 @@ class _paymentState extends State<payment> {
             children: [
               _headSection(),
               _listItems(),
+              _payButton(),
 
             ],
           ),
@@ -42,36 +43,31 @@ class _paymentState extends State<payment> {
       child: Stack(
         children: [
           _topBackground(),
-          _buttonContainer(),
+          //
         ],
       ),
     );
   }
-  _buttonContainer(){
+  _payButton(){
     return Positioned(
-      right: 50,
-        bottom: 0,
+      bottom: 0,
+        right: 120,
         child: Container(
-
           height: 50,
-          width: 50,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(
-                      "images/paymentButton.png"
-                  )
-              ),
-
-              boxShadow: [
-                BoxShadow(
-                    blurRadius: 10,
-                    offset: Offset(0,1)
-
-                )
-              ]
+          width: 150,
+          child: ElevatedButton(
+            child: Text("PAY"),
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.deepOrange[900]),
+                textStyle: MaterialStateProperty.all(TextStyle(fontSize: 25)),
+                shape: MaterialStateProperty.all(BeveledRectangleBorder(borderRadius: BorderRadius.circular(2)))
+            ),
+            onPressed: (){},
           ),
-        )
-    );
+
+          ),
+        );
+
   }
   _topBackground() {
     return Positioned(
@@ -91,129 +87,144 @@ class _paymentState extends State<payment> {
   _listItems(){
     return Positioned(
         top: 190,
-        child: Container(
-          height: 150,
-          width: MediaQuery.of(context).size.width-15,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(10),
-              topRight: Radius.circular(10)
-            ),
+        left: 0,
+        right: 0,
+        bottom: 0,
+        child: ListView.builder(
+          //can get how many items in here
+          itemCount: 3,
+          itemBuilder: (_, index){
+            return Container(
+              margin: const EdgeInsets.only(top:20),
+              height: 150,
+              width: MediaQuery.of(context).size.width-15,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(10),
+                      topRight: Radius.circular(10)
+                  ),
 
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                offset: Offset(1,1),
-                blurRadius: 20.0,
-              )
-            ]
-          ),
-          child: Container(
-            margin: const EdgeInsets.only(top:10, left:18),
-            child: Row(
-              //"remove" button location
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      offset: Offset(1,1),
+                      blurRadius: 20.0,
+                    )
+                  ]
+              ),
+              child: Container(
+                margin: const EdgeInsets.only(top:10, left:18),
+                child: Row(
+                  //"remove" button location
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
+                    //Item pic, Item name, and Item Detail
+                    Column(
                       children: [
-                        Container(
-
-                          height: 100,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              width: 2,
-                              color: Colors.grey,
-                            ),
-                              image: DecorationImage(
-                                //put Item image in here
-                                  image: AssetImage(
-                                      "images/paymentButton.png"
-                                  )
-                              ),
-                          ),
-                        ),
-                        SizedBox(width: 10,),
-                        Column(
+                        Row(
                           children: [
-                            Text("Item Name:",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.deepOrange[900],
-                              fontWeight: FontWeight.w700
-                            ),
-                            ),
-                            Text("Item Detail: ",
-                              style: TextStyle(
-                                  fontSize: 16,
+                            Container(
+
+                              height: 100,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  width: 2,
                                   color: Colors.grey,
-                                  fontWeight: FontWeight.w300
+                                ),
+                                image: DecorationImage(
+                                  //put Item image in here
+                                    image: AssetImage(
+                                        ""
+                                    )
+                                ),
                               ),
+                            ),
+                            SizedBox(width: 10,),
+                            Column(
+                              children: [
+                                Text("Item Name:",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.deepOrange[900],
+                                      fontWeight: FontWeight.w700
+                                  ),
+                                ),
+                                Text("Item Detail: ",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w300
+                                  ),
+                                )
+                              ],
                             )
                           ],
                         )
                       ],
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Column(
+                    ),
+                    //Remove button, Subtotal and price
+                    Row(
                       children: [
-                        Container(
-                          width: 80,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: Colors.blue,
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Remove",
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 85,
+                              height: 30,
+                              child: ElevatedButton(
+                                  child: Text("Remove"),
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(Colors.deepOrange[900]),
+                                    shape: MaterialStateProperty.all(BeveledRectangleBorder(borderRadius: BorderRadius.circular(2)))
+                                  ),
+                                  onPressed: (){},
                               ),
                             ),
-                          ),
-                        ),
-                        Text(
-                          "Subtotal:",
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black38
-                          ),
-                        ),
-                        Text(
-                          "\$price here",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.black
-                          ),
-                        ),
+                            Expanded(child: Container(
 
+                            )),
+                            Text(
+                              "Subtotal:",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black38
+                              ),
+                            ),
+                            Text(
+                              "\$price here",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.black
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15
+                              ,
+                            )
 
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,),
                       ],
-                    )
+
+                    ),
                   ],
-
                 ),
-              ],
-            ),
 
-          ),
+              ),
 
-    )
+            );
+          },
+        ),
+
     );
   }
 
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> 6ae6a147b7d6ed19cf1b6b36b47c57a4d3729b3c
+
