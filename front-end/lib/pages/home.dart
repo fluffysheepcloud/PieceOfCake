@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:frontend/components/card.dart';
-import 'package:frontend/network/customer_service.dart';
-
+import 'package:frontend/network/merchant_service.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -22,8 +21,9 @@ class _HomeState extends State<Home> {
   //read in json list, split list, take single element, pass its attributes(3) into card
   //card would take in string, and img url, 3 arguments
 
-  Future<void> readJson() async {
-    //import merchant_service.dart and get response
+
+  readJson() async {
+
     final String response = await rootBundle.loadString('assets/sample.json');
     debugPrint(response);
     final data = await json.decode(response);
@@ -42,6 +42,7 @@ class _HomeState extends State<Home> {
   Widget build (BuildContext context){
 
   return Scaffold(
+
     // extendBodyBehindAppBar: true,
     // appBar: AppBar(
     //
@@ -86,6 +87,7 @@ class _HomeState extends State<Home> {
     //   ],
     //   centerTitle: true,
     // ),
+
     body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -140,15 +142,13 @@ class _HomeState extends State<Home> {
           //onTap makes
         ),
         Expanded(
-            child: ListView.builder(
+          child: ListView.builder(
             itemCount: _items.length,
-
             itemBuilder: (context, index){
               return InfoCard(_items[index]["title"], _items[index]["description"]);//new Text("hello");//InfoCard(_items[index number]);
-  }
+            }
+          )
         )
-        )
-
       ],
     )
   );

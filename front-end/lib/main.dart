@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/index.dart';
 import 'package:frontend/routes/routes.dart' as routes;
 
 void main() => runApp(MyApp());
