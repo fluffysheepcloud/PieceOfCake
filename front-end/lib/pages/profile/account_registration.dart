@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'customer_registration.dart';
-import 'MerchantRegistrationPage1.dart';
+import 'merchant_registration_1.dart';
 
 class AccountRegistrationScreen extends StatelessWidget {
 
