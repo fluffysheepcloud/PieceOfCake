@@ -24,4 +24,5 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/cake.jpg
+    - assets/sample.json
   uses-material-design: true

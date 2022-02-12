@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: const InfoCard(),
-      ),
-    );
-  }
-}
-
+//this is like an object class
 class InfoCard extends StatelessWidget {
-  const InfoCard({Key? key}) : super(key: key);
+  //var arguments;
+  //infocard constructor of class
+  //description, title, img url
+  InfoCard(this.title, this.description, /*{Key? key,  required this.arguments}) : super(key: key*/);
+  //these are its attributes, this.imgurl
+  String description;
+  String title;
+  var arguments ; //var can be all types
+  //{Key ? key, this.arguments} indicates that the arguments can be option/can be null
+  //Scaffold is a whole page, Center is a container for elements
 
   @override
+  //this is a method for the specific class (build the object)
   Widget build(BuildContext context) {
-    return Center(
-        child: SizedBox(
+    //remove scaffold later
+        return SizedBox(
             width: 400,
             height: 250,
             child: Card(
@@ -58,19 +54,11 @@ class InfoCard extends StatelessWidget {
                               children: [
                                 Container(
                                   padding: const EdgeInsets.all(8.0),
-                                  //child: cardbackend.text or something like that
-                                  child:  const Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud '),
+                                  child:  Text(title),
                                 ),
-                                TextButton(
-                                  style: TextButton.styleFrom
-                                    (backgroundColor: Colors.brown[700]),
-                                  onPressed: (){
-                                    //TODO CUSTOMER HOME
-                                  },
-                                  child: const Text(
-                                    'Learn More',
-                                    style: TextStyle( color: Colors.white, fontSize: 15),
-                                  ),
+                                Container(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child:  Text(description), //arguments["description"]
                                 ),
                               ],
                             )
@@ -79,8 +67,6 @@ class InfoCard extends StatelessWidget {
                     )
                 )
             )
-        )
-    );
-
+        );
   }
 }

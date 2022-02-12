@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/pages/profile/login.dart';
 
-
-
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
 

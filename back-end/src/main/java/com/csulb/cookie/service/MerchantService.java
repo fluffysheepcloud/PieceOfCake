@@ -18,4 +18,6 @@ public interface MerchantService extends IService<Merchant> {
     Map<String, Object> merchantLogin(String username, String password);
 
     Map<String, Object> merchantRegister(Customer customer);
+
+    Map<String, Object> getMerchantById(int id);
 }
