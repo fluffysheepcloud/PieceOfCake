@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'customer_registration.dart';
 import 'MerchantRegistrationPage1.dart';
 
-
 class AccountRegistrationScreen extends StatelessWidget {
 
   var arguments;
