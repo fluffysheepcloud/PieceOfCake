@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/network/customer_service.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:frontend/pages/profile/customer_profile.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -68,6 +69,7 @@ class _LoginState extends State<Login> {
                           _showToast("Please Enter Password!");
                         } else {
                           _customerLogin(context, _username.text, _password.text);
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const CustomerProfile()));
                         }
                       },
                     ),
