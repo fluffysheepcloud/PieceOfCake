@@ -21,4 +21,17 @@ public class Merchant implements Serializable {
     private String description;
     private String businessHour;
 
+    @TableField(exist = false)
+    private String street;
+
+    @TableField(exist = false)
+    private String city;
+
+    @TableField(exist = false)
+    private String state;
+
+    @TableField(exist = false)
+    private Integer zip;
+
+
 }
