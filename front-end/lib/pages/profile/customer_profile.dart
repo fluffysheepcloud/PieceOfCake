@@ -6,7 +6,7 @@ class CustomerProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber[50],
+      backgroundColor: Colors.amber[100],
       appBar: AppBar(
         centerTitle: true,
         title: const Text('[USERNAME]\'s Profile'),
@@ -24,10 +24,29 @@ class CustomerProfileBody extends StatelessWidget {
     'Personal Information',
   ];
 
+
+  List<String> orderLinks = [
+    'Bookmarks',
+    'Past Orders',
+    'Reviews'
+  ];
+
+  List<String> favoriteLinks = [
+    'Cakes',
+    'Merchants'
+  ];
+
+  List<String> personalInfo = [
+    'Change Nickname',
+    'Change Password',
+    'Payment Methods'
+  ];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
+        body: SingleChildScrollView(
             child: Column(
                 children: [
                   // for box background
@@ -39,7 +58,7 @@ class CustomerProfileBody extends StatelessWidget {
                       )
                     ),
 
-                    child: Container(
+                    child: SizedBox(
                         width: double.infinity,
                         height: 200,
                       // for circle avatar
@@ -53,24 +72,102 @@ class CustomerProfileBody extends StatelessWidget {
                   ),
                 ),
 
-                const Padding(padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 35.0, bottom: 15.0)),
+                //for spacing under the avatar
+                const Padding(padding: EdgeInsets.only(top: 55.0)),
+                Center(child:Container(
+                    padding: EdgeInsets.only(top: 20),
+                    child: Text('My Orders',
+                        style: TextStyle(fontSize: 22)))),
 
-                for (int i = 0; i < 3; i++)
-
+                //for (int i = 0; i < blocks.length; i++)
                 Container(
-                    margin: EdgeInsets.only(top: 15),
-                    //elevation: 2.0,
-                    color: Colors.grey[400],
-                    child: Container(
-                        padding: EdgeInsets.only(left: 5, right: 275, top: 5.0, bottom: 70.0),
-                        child: Text(blocks[i],
-                          style: TextStyle(
-                            letterSpacing: 2.0,
-                            fontWeight: FontWeight.w300
+                  //margin: EdgeInsets.only(top: 15),
+                  height: 100,
+                  width: MediaQuery.of(context).size.width - 30,
+                  color: Colors.grey[400],
+                  // for spacing of the words
+                  padding: EdgeInsets.only(top: 20.0),
+                  child: SizedBox(
+                    child: ButtonTheme(
+                      minWidth: 50,
+                      height: 50,
+                      child: ListTile(
+                        //contentPadding: EdgeInsets.all(<some value here>),//change for side padding
+
+                        title: Row(
+                          children: <Widget>[
+                            for (int i = 0; i < orderLinks.length; i++)
+                            Expanded(child: RaisedButton(onPressed: () {},child: Text(orderLinks[i]), color: Colors.red[300],textColor: Colors.white,)),
+                          ],
                         ),
-                        ),
+                      )
                     )
+                  )
                 ),
+
+                  Center(child:Container(
+                      padding: EdgeInsets.only(top: 20),
+                      child: Text('Favorites',
+                          style: TextStyle(fontSize: 22)))),
+
+                  //for (int i = 0; i < blocks.length; i++)
+                  Container(
+                    //margin: EdgeInsets.only(top: 15),
+                      height: 100,
+                      width: MediaQuery.of(context).size.width - 30,
+                      color: Colors.grey[400],
+                      // for spacing of the words
+                      padding: EdgeInsets.only(top: 20.0),
+                      child: SizedBox(
+                          child: ButtonTheme(
+                              minWidth: 50,
+                              height: 50,
+                              child: ListTile(
+                                //contentPadding: EdgeInsets.all(<some value here>),//change for side padding
+
+                                title: Row(
+                                  children: <Widget>[
+                                    for (int i = 0; i < favoriteLinks.length; i++)
+                                      Expanded(child: RaisedButton(onPressed: () {},child: Text(favoriteLinks[i]), color: Colors.red[300],textColor: Colors.white,)),
+                                  ],
+                                ),
+                              )
+                          )
+                      )
+                  ),
+
+                  Center(child:Container(
+                      padding: EdgeInsets.only(top: 20),
+                      child: Text('Personal Information',
+                          style: TextStyle(fontSize: 22)))),
+
+                  //for (int i = 0; i < blocks.length; i++)
+                  Container(
+                    //margin: EdgeInsets.only(top: 15),
+                      height: 100,
+                      width: MediaQuery.of(context).size.width - 30,
+                      color: Colors.grey[400],
+                      // for spacing of the words
+                      padding: EdgeInsets.only(top: 20.0),
+                      child: SizedBox(
+                          child: ButtonTheme(
+                              minWidth: 30,
+                              height: 50,
+                              child: ListTile(
+                                //contentPadding: EdgeInsets.all(<some value here>),//change for side padding
+                                title: Row(
+                                  children: <Widget>[
+                                    for (int i = 0; i < personalInfo.length; i++)
+                                      Expanded(child: RaisedButton(onPressed: () {},child: Text(personalInfo[i], textAlign: TextAlign.center), color: Colors.red[300],textColor: Colors.white,)),
+                                  ],
+                                ),
+                              )
+                          )
+                      )
+                  ),
+
+                  const Padding(padding: EdgeInsets.only(top: 20.0))
+
             ],
         ),
       ),
