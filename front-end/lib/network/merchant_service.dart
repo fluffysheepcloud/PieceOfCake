@@ -4,9 +4,9 @@ import 'dart:convert';
 const String baseURL = "http://10.0.2.2:8080/api/merchant";
 
 getMerchantInfoById(int id) async {
-  // String path = "/" + id.toString();
+  String path = "/" + id.toString();
 
-  var uri = Uri.parse(baseURL + "/" + "1");
+  var uri = Uri.parse(baseURL + path);
   var res = await http.get(uri);
 
   return json.decode(res.body);
