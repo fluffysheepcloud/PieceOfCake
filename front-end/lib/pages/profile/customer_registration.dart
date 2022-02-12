@@ -10,7 +10,6 @@ class CreateCustomerAccount extends StatefulWidget {
 
 class _CreateCustomerAccountState extends State<CreateCustomerAccount> {
 
-
   TextEditingController _username = TextEditingController();
   TextEditingController _password = TextEditingController();
   TextEditingController _rePassword = TextEditingController();
