@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/profile/MerchantRegistrationPage2.dart';
+import 'package:frontend/pages/profile/merchant_registration_2.dart';
 
 class CreateMerchantAccount extends StatelessWidget {
   const CreateMerchantAccount({Key? key}) : super(key: key);

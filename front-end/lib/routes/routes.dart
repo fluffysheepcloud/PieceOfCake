@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_function_declarations_over_variables
 import 'package:flutter/material.dart';
-import 'package:frontend/components/card.dart';
 import 'package:frontend/pages/index.dart';
 import 'package:frontend/pages/profile/account_registration.dart';
 import 'package:frontend/pages/profile/success.dart';

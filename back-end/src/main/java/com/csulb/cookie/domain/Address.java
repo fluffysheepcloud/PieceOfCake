@@ -7,31 +7,16 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import lombok.Data;
 
-@TableName(value ="merchant")
+@TableName(value ="address")
 @Data
-public class Merchant implements Serializable {
+public class Address implements Serializable {
 
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private String username;
-    private String shopName;
-    private String password;
-    private String email;
-    private String phone;
-    private String description;
-    private String businessHour;
-
-    @TableField(exist = false)
+    private Integer merchantId;
     private String street;
-
-    @TableField(exist = false)
     private String city;
-
-    @TableField(exist = false)
     private String state;
-
-    @TableField(exist = false)
     private Integer zip;
-
 
 }

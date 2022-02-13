@@ -17,13 +17,11 @@ class _HomeState extends State<Home> {
   Widget customSearchBar = const Text('Search');
   List _items = [];
 
-
   //read in json list, split list, take single element, pass its attributes(3) into card
   //card would take in string, and img url, 3 arguments
 
-
   readJson() async {
-
+    getMerchantInfoById(1);
     final String response = await rootBundle.loadString('assets/sample.json');
     debugPrint(response);
     final data = await json.decode(response);
@@ -40,7 +38,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build (BuildContext context){
-
+    //var _controller = TextEditingController();
   return Scaffold(
 
     // extendBodyBehindAppBar: true,
@@ -91,56 +89,47 @@ class _HomeState extends State<Home> {
     body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        //instead of appbar make a textfield with icon button
-        TextField(
-          onTap: (){
-            setState((){
-              if (customIcon.icon == Icons.search){
-                customIcon = const Icon(Icons.cancel);
-                customSearchBar = const ListTile(
-                    leading: Icon (
-                      Icons.search,
-                      color: Colors.white,
-                      size: 28,
-                    ),
-                    title: TextField (
-                      decoration:  InputDecoration(
-                        hintText: 'type in cake ...',
-                        hintStyle: TextStyle(
-                          color:  Colors.white,
-                          fontSize: 18,
-                          fontStyle:  FontStyle.italic,
-                        ),
-                        border: InputBorder.none,
-                      ),
-                      style:  TextStyle(
-                          color: Colors.white
-                      ),
+        //searchbar
+        Container(
+            padding: const EdgeInsets.all(4.0),
+            //instead of appbar make a textfield with icon button
+            child: TextFormField(
+              //controller: _controller,
+                decoration: InputDecoration(
+                    labelText: 'Search',
+                    //just make regular icon
+                    suffixIcon: IconButton(
+
+                        icon: customIcon, onPressed: () {  },
+
                     )
-                );
-
-              }
-              else{
-                customIcon = const Icon(Icons.search);
-                customSearchBar = const Text ('Search');
-              }
-            });
-          },
-         decoration: InputDecoration(
-         labelText: 'Search',
-
-         suffixIcon: IconButton(
-             onPressed: () {
-
-             },
-             icon: customIcon
-
-         )
-         ),
-          //can textfield have icon button
-
-          //onTap makes
+                ),
+              //if textfield tapped then turn icon into cancel, if icon button tapped and it is a cancel, then cancel transaction
+                onTap: () {
+                  setState(() {
+                    if (customIcon.icon == Icons.search) {
+                      customIcon = const Icon(Icons.cancel);
+                      customSearchBar = const ListTile(
+                          leading: Icon(
+                            Icons.search,
+                            color: Colors.white,
+                            size: 28,
+                          ),
+                      );
+                    }
+                    else {
+                      customIcon = const Icon(Icons.search);
+                      //close keyboard
+                      FocusScope.of(context).unfocus();
+                    }
+                  }
+                  );
+                }
+            )
         ),
+        //banner for welcome
+
+        //Cards
         Expanded(
           child: ListView.builder(
             itemCount: _items.length,
@@ -153,5 +142,4 @@ class _HomeState extends State<Home> {
     )
   );
 }
-
 }
