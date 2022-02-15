@@ -50,7 +50,7 @@ class _HomeState extends State<Home> {
       children: [
         //searchbar
         Container(
-            padding: const EdgeInsets.all(100.0),
+            padding: const EdgeInsets.all(50.0),
             //instead of appbar make a textfield with icon button
             child: TextFormField(
               //controller: _controller,
@@ -92,36 +92,44 @@ class _HomeState extends State<Home> {
             color: Colors.brown[200],
             height: 100,
             width: 1000 ,
-            child: Text("welcome" + customerName.toString())
+            child: Align(
+              alignment: Alignment.center,
+              child: Text("welcome, " + customerName.toString(),
+              style: TextStyle(fontSize: 25),)
+
+            )
         ),
 
         //banner
-        SizedBox(
-            child: Text("Picks for you")
+        Container(
+            padding: const EdgeInsets.all(20.0),
+            child: Align(
+                alignment: Alignment.topLeft,
+                child: Text("Recommendation for you",
+                  style: TextStyle(fontSize: 25),)
+            )
         ),
+        //Just one card for the pick
+        InfoCard("cake name","description"),
+        //banner
+        Container(
+          padding: const EdgeInsets.all(20.0),
+            child: Align(
+                alignment: Alignment.topLeft,
+                child: Text("Bakers Near you",
+                  style: TextStyle(fontSize: 25),)
 
+            )
+        ),
         //Cards
         Expanded(
-          child: ListView.builder(
-            itemCount: _items.length,
-            itemBuilder: (context, index){
-              return InfoCard(_items[index]["shopName"], _items[index]["description"]);//new Text("hello");//InfoCard(_items[index number]);
-            }
-          )
+            child: ListView.builder(
+                itemCount: _items.length,
+                itemBuilder: (context, index){
+                  return InfoCard(_items[index]["shopName"], _items[index]["description"]);//new Text("hello");//InfoCard(_items[index number]);
+                }
+            )
         ),
-        //banner
-        SizedBox(
-            child: Text("Bakers near you")
-        ),
-        //this will be about bakers calling a different function
-        // Expanded(
-        //     child: ListView.builder(
-        //         itemCount: _items.length,
-        //         itemBuilder: (context, index){
-        //           return InfoCard(_items[index]["title"], _items[index]["description"]);//new Text("hello");//InfoCard(_items[index number]);
-        //         }
-        //     )
-        // ),
       ],
     )
   );
