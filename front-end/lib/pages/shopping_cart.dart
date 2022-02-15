@@ -93,7 +93,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
         context: context,
         child: ListView.builder(
           //can get how many items in here
-          itemCount: 3,
+          itemCount: 5,
           itemBuilder: (_, index){
             return Container(
               margin: const EdgeInsets.only(top:20),

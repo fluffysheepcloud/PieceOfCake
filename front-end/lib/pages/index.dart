@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/Demo.dart';
 import 'package:frontend/pages/home.dart';
 import 'package:frontend/pages/shopping_cart.dart';
 import 'package:frontend/pages/profile/profile.dart';
@@ -16,7 +17,8 @@ class _IndexState extends State<Index> {
   final List _pageList = <Widget>[
     Home(),
     ShoppingCart(),
-    Profile()
+    Profile(),
+    Demo()
   ];
 
   @override
@@ -24,6 +26,7 @@ class _IndexState extends State<Index> {
     return Scaffold(
       body: _pageList[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         onTap: (int index) {
           setState(() {
@@ -38,7 +41,7 @@ class _IndexState extends State<Index> {
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart_outlined),
-              label: "Shopping Cart",
+              label: "Cart",
               activeIcon: Icon(Icons.shopping_cart)
           ),
           BottomNavigationBarItem(
@@ -46,6 +49,12 @@ class _IndexState extends State<Index> {
               label: "Profile",
               activeIcon: Icon(Icons.home)
           ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined),
+              label: "Demo",
+              activeIcon: Icon(Icons.home)
+          ),
+
         ],
       ),
     );

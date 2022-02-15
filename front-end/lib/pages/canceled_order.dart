@@ -1,15 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(new MaterialApp(
-    title: 'Received Order',
-    home: new CanceledOrder(),
-  ));
-}
-
 class CanceledOrder extends StatelessWidget {
-  const CanceledOrder({Key? key}) : super(key: key);
+
+  var arguments;
+
+  CanceledOrder({Key? key, this.arguments}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

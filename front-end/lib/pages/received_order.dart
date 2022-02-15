@@ -9,7 +9,10 @@ void main() {
 }
 
 class ReceivedOrder extends StatelessWidget {
-  const ReceivedOrder({Key? key}) : super(key: key);
+
+  var arguments;
+
+  ReceivedOrder({Key? key, this.arguments}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +42,7 @@ class ReceivedOrder extends StatelessWidget {
                   ),
                   Container(
                     color: Colors.red[200],
-                    width: 500,
+                    width: 400,
                     height: 100,
                     margin: const EdgeInsets.all(5),
                     child: Column(

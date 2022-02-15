@@ -22,14 +22,16 @@ class _HomeState extends State<Home> {
   //card would take in string, and img url, 3 arguments
 
   readJson() async {
-    getMerchantInfoById(1);
-    getMerchantInfoById(2);
-    getMerchantInfoById(3);
-    final String response = await rootBundle.loadString('assets/sample.json');
-    debugPrint(response);
-    final data = await json.decode(response);
+    var m1 = await getMerchantInfoById(1);
+    var m2 = await getMerchantInfoById(2);
+    var m3 = await getMerchantInfoById(3);
+    // final String response = await rootBundle.loadString('assets/sample.json');
+    // debugPrint(response);
+    // final data = await json.decode(response);
     setState(() {
-      _items = data["items"];
+      _items.add(m1["data"]);
+      _items.add(m2["data"]);
+      _items.add(m3["data"]);
     });
   }
 
@@ -103,7 +105,7 @@ class _HomeState extends State<Home> {
           child: ListView.builder(
             itemCount: _items.length,
             itemBuilder: (context, index){
-              return InfoCard(_items[index]["title"], _items[index]["description"]);//new Text("hello");//InfoCard(_items[index number]);
+              return InfoCard(_items[index]["shopName"], _items[index]["description"]);//new Text("hello");//InfoCard(_items[index number]);
             }
           )
         ),

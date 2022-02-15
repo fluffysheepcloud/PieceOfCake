@@ -15,7 +15,7 @@ class Success extends StatelessWidget {
             Text("Success"),
             SizedBox(height: 100),
             ElevatedButton(
-              onPressed: () { Navigator.pop(context); },
+              onPressed: () { Navigator.popUntil(context, ModalRoute.withName("/")); },
               child: Text("Done"))
           ],
         ),
