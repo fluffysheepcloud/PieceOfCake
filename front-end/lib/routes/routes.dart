@@ -10,7 +10,7 @@ import 'package:frontend/pages/profile/success.dart';
  */
 final routes = {
   "/": (context, {arguments}) => Index(arguments: arguments),
-  "/profile/login_success": (context, {arguments}) => Success(arguments: arguments),
+  "/profile/registration_success": (context, {arguments}) => Success(arguments: arguments),
   "/profile/registration_options": (context, {arguments}) => AccountRegistrationScreen(arguments: arguments),
 };
 

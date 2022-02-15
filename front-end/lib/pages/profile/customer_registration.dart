@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/domain/customer.dart';
+import 'package:frontend/network/customer_service.dart';
+import 'package:frontend/components/input_text_box.dart';
+import 'package:frontend/utils/toast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CreateCustomerAccount extends StatefulWidget {
   const CreateCustomerAccount({Key? key}) : super(key: key);
@@ -40,58 +44,15 @@ class _CreateCustomerAccountState extends State<CreateCustomerAccount> {
         //<widget> contains padding with a child column with children[label and textfield]
           child: Column(
               children: <Widget>[
-                _inputText("Username", "Username", _username),
-                _inputText("Password", "Password", _password, obscure: true),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                  child: SizedBox(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Re-enter Password",
-                          textAlign: TextAlign.left,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.brown),
-                        ),
-                        SizedBox(height: 10),
-                        TextFormField(
-                          controller: _rePassword,
-                          decoration: _generateInputDecoration("Re-enter Password"),
-                          obscureText: true,
-                          validator: (value) {
-                            if (value != null) {
-                              return value.trim().isNotEmpty ?
-                              (value == _password.text ? null : "Password does not match") :
-                                  "Cannot be empty";
-                            }
-                          },
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                _inputText("Email", "Email", _email),
-                _inputText("Phone Number", "Phone Number", _phone),
+                InputTextBox("Username", "Username", _username),
+                InputTextBox("Password", "Password", _password, obscure: true),
+                _reenterPassword(),
+                InputTextBox("Email", "Email", _email),
+                InputTextBox("Phone Number", "Phone Number", _phone),
                 TextButton(
                   style: TextButton.styleFrom
                     (backgroundColor: Colors.brown[700]),
-                  onPressed: () {
-                    // Validate returns true if the form is valid, or false otherwise.
-                    if (_formKey.currentState!.validate()) {
-                      // If the form is valid, display a snackbar. In the real world,
-                      // you'd often call a server or save the information in a database.
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Processing Data')),
-                      );
-
-                      Customer c = Customer(_username.text, _password.text,
-                          _email.text, _phone.text);
-
-
-                    }
-                  },
+                  onPressed: _registration,
                   child: Text(
                     'Register',
                     style: TextStyle(color: Colors.white, fontSize: 15),
@@ -103,21 +64,7 @@ class _CreateCustomerAccountState extends State<CreateCustomerAccount> {
     );
   }
 
-  _generateInputDecoration(String hintText) {
-    return InputDecoration(
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 7,
-            color: Colors.deepOrange,
-          ),
-        ),
-        hintText: 'Enter ' + hintText,
-        focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.deepOrange))
-    );
-  }
-
-  Widget _inputText(String labelName, String hintText, TextEditingController controller, {obscure = false}) {
+  Widget _reenterPassword() {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       child: SizedBox(
@@ -125,7 +72,7 @@ class _CreateCustomerAccountState extends State<CreateCustomerAccount> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              labelName,
+              "Re-enter Password",
               textAlign: TextAlign.left,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
@@ -133,12 +80,24 @@ class _CreateCustomerAccountState extends State<CreateCustomerAccount> {
             ),
             SizedBox(height: 10),
             TextFormField(
-              controller: controller,
-              decoration: _generateInputDecoration(hintText),
-              obscureText: obscure,
+              controller: _rePassword,
+              decoration: InputDecoration(
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 7,
+                      color: Colors.deepOrange,
+                    ),
+                  ),
+                  hintText: "Re-Enter password",
+                  focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepOrange))
+              ),
+              obscureText: true,
               validator: (value) {
                 if (value != null) {
-                  return value.trim().isNotEmpty ? null : "${labelName} can not be empty!";
+                  return value.trim().isNotEmpty ?
+                  (value == _password.text ? null : "Password does not match") :
+                  "Cannot be empty";
                 }
               },
             )
@@ -147,4 +106,37 @@ class _CreateCustomerAccountState extends State<CreateCustomerAccount> {
       ),
     );
   }
+
+  _registration() async {
+    // Validate returns true if the form is valid, or false otherwise.
+    if (_formKey.currentState!.validate()) {
+      // If the form is valid, display a snackbar. In the real world,
+      // you'd often call a server or save the information in a database.
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Processing Data')),
+      );
+
+      Customer c = Customer(_username.text, _password.text,
+          _email.text, _phone.text);
+
+
+
+      var res = await customerRegister(c);
+
+      if (res["code"] == 200) {
+        Navigator.pushNamed(context, "/profile/registration_success");
+      }
+      else {
+        String message = res["message"];
+        if (message.contains("MySQLIntegrityConstraintViolationException")) {
+          ToastUtil.showToast("The username already exist!");
+        }
+        else {
+          ToastUtil.showToast("Unknown Error!");
+        }
+      }
+
+    }
+  }
+
 }

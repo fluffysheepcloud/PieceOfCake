@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
   //card would take in string, and img url, 3 arguments
 
   readJson() async {
-    getMerchantInfoById(1);
+    // getMerchantInfoById(1);
     final String response = await rootBundle.loadString('assets/sample.json');
     debugPrint(response);
     final data = await json.decode(response);
