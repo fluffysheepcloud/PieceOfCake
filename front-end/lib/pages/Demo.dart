@@ -22,6 +22,12 @@ class Demo extends StatelessWidget {
                   Navigator.pushNamed(context, "/received_order");
                 },
                 child: Text("Received Order Page")),
+            SizedBox(height: 20),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "/review");
+                },
+                child: Text("review")),
           ],
         ),
       ),
