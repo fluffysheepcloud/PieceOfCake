@@ -3,6 +3,8 @@ import 'package:frontend/pages/Demo.dart';
 import 'package:frontend/pages/home.dart';
 import 'package:frontend/pages/shopping_cart.dart';
 import 'package:frontend/pages/profile/profile.dart';
+import 'package:frontend/pages/browse.dart';
+
 
 class Index extends StatefulWidget {
   const Index({Key? key, arguments}) : super(key: key);
@@ -18,7 +20,9 @@ class _IndexState extends State<Index> {
     Home(),
     ShoppingCart(),
     Profile(),
-    Demo()
+    Browse(),
+    Demo(),
+
   ];
 
   @override
@@ -48,6 +52,11 @@ class _IndexState extends State<Index> {
               icon: Icon(Icons.home_outlined),
               label: "Profile",
               activeIcon: Icon(Icons.home)
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined),
+              label: "Browse",
+              activeIcon: Icon(Icons.search)
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
