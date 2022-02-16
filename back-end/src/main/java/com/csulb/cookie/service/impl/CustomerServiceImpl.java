@@ -54,6 +54,14 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
                 new ControllerResult(ControllerResult.ERROR, null, "error").toJsonMap();
     }
 
+    @Override
+    public Map<String, Object> updateCustomerById(Customer c) {
+        boolean res = updateById(c);
+
+        return res ?
+            new ControllerResult(ControllerResult.SUCCESS, c, "success").toJsonMap() :
+            new ControllerResult(ControllerResult.ERROR, null, "error").toJsonMap();
+    }
 
 
 }

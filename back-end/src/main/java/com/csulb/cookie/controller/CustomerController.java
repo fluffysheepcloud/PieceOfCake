@@ -29,6 +29,12 @@ public class CustomerController {
         return service.customerRegister(customer);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/api/customer", method = RequestMethod.PUT)
+    public Map<String, Object> updateCustomerById(Customer c) {
+        return service.updateCustomerById(c);
+    }
+
 
     @Autowired
     public void setService(CustomerService service) { this.service = service; }

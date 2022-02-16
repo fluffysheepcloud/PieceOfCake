@@ -85,6 +85,15 @@ public class MerchantServiceImpl extends ServiceImpl<MerchantMapper, Merchant>  
         }
     }
 
+    @Override
+    public Map<String, Object> updateMerchantById(Merchant m) {
+        boolean res = updateById(m);
+
+        return res ?
+                new ControllerResult(ControllerResult.SUCCESS, m, "success").toJsonMap() :
+                new ControllerResult(ControllerResult.ERROR, null, "error").toJsonMap();
+    }
+
     @Autowired
     public void setAddressService(AddressService addressService) {
         this.addressService = addressService;
