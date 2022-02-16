@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/profile/customer/review/reviewed_page.dart';
 
 class Review extends StatefulWidget {
 
@@ -11,24 +12,27 @@ class Review extends StatefulWidget {
 }
 
 class _ReviewState extends State<Review> {
+
+  static const List<Tab> myTabs = <Tab> [
+    Tab(text: "Reviewed"),
+    Tab(text: "Unreviewed")
+  ];
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: myTabs.length,
       child: Scaffold(
         appBar: AppBar(
           bottom: TabBar(
-            tabs: const [
-              Tab(text: "Reviewed"),
-              Tab(text: "Unreviewed"),
-            ],
+            tabs: myTabs
           ),
         ),
         body: TabBarView(
-          children: const [
-            Text("Test 1"),
-            Text("Test 2"),
-          ],
+          children: [
+            ReviewedPage(),
+            ReviewedPage()
+          ]
         ),
       )
     );

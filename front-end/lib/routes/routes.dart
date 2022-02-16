@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/pages/canceled_order.dart';
 import 'package:frontend/pages/index.dart';
-import 'package:frontend/pages/profile/account_registration.dart';
-import 'package:frontend/pages/profile/review/review.dart';
-import 'package:frontend/pages/profile/success.dart';
+import 'package:frontend/pages/profile/registration/account_registration.dart';
+import 'package:frontend/pages/profile/customer/review/review.dart';
+import 'package:frontend/pages/profile/registration/success.dart';
 import 'package:frontend/pages/received_order.dart';
 
 /* We write front-end routes here.

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/profile/customer_profile.dart';
+import 'package:frontend/pages/profile/customer/customer_profile.dart';
 import 'package:frontend/pages/profile/login.dart';
-import 'package:frontend/pages/profile/merchant_profile.dart';
+import 'package:frontend/pages/profile/merchant/merchant_profile.dart';
 import 'package:frontend/utils/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
