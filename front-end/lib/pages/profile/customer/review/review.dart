@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/pages/profile/customer/review/reviewed_page.dart';
+import 'package:frontend/pages/profile/customer/review/unreviewed_page.dart';
 
 class Review extends StatefulWidget {
 
@@ -31,7 +32,7 @@ class _ReviewState extends State<Review> {
         body: TabBarView(
           children: [
             ReviewedPage(),
-            ReviewedPage()
+            UnreviewedPage()
           ]
         ),
       )
