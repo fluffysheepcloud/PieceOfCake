@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 
 class UnreviewedCard extends StatefulWidget {
-  const UnreviewedCard({Key? key}) : super(key: key);
+
+  var onSubmit;
+
+  UnreviewedCard({Key? key, this.onSubmit}) : super(key: key);
 
   @override
   _UnreviewedCardState createState() => _UnreviewedCardState();
@@ -45,7 +48,10 @@ class _UnreviewedCardState extends State<UnreviewedCard> {
                       elevation: 3,
                       minimumSize: Size(150, 30)
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      print(123);
+                      widget.onSubmit();
+                    },
                     child: Text("Submit")
                   )
                 ],
@@ -54,6 +60,8 @@ class _UnreviewedCardState extends State<UnreviewedCard> {
         )
     );
   }
+
+
 
   Widget _orderNumber() {
     return Row(

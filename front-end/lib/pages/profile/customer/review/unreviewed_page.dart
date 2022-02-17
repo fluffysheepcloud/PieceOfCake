@@ -9,6 +9,17 @@ class UnreviewedPage extends StatefulWidget {
 }
 
 class _UnreviewedPageState extends State<UnreviewedPage> {
+
+  @override
+  void initState() {
+    super.initState();
+    for (int i = 0; i < 5; i++) {
+      _cardList.add(UnreviewedCard(onSubmit: _onSubmit(i)));
+    }
+  }
+
+  List<UnreviewedCard> _cardList = <UnreviewedCard>[];
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -19,13 +30,22 @@ class _UnreviewedPageState extends State<UnreviewedPage> {
       child: Center(
         child: ListView.builder(
             padding: EdgeInsets.fromLTRB(25, 5, 25, 0),
-            itemCount: 5,
+            itemCount: _cardList.length,
             itemBuilder: (context, index) {
-              return UnreviewedCard();
+              return UnreviewedCard(onSubmit: _onSubmit(index));
             }
         ),
       )
     );
   }
+
+  _onSubmit(int index) {
+    return (() {
+      _cardList.removeAt(index);
+      setState(() {});
+    });
+  }
+
+
 }
 

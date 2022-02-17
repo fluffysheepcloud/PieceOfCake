@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 
 class ReviewCard extends StatelessWidget {
-  const ReviewCard({Key? key}) : super(key: key);
+
+  String orderNumber;
+  String imageURL;
+  String comment;
+  double rating;
+
+  ReviewCard({required this.orderNumber, required this.imageURL, required this.comment, required this.rating, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +27,10 @@ class ReviewCard extends StatelessWidget {
             },
             child: Column(
               children: [
-                _orderNumber(),
+                _reviewedCardTitle(),
                 Divider(thickness: 2.0, color: Colors.brown[200],),
                 _pictureAndComment(),
-                _rating()
+                _ratingWidget()
               ],
             ),),
         )
@@ -33,11 +39,11 @@ class ReviewCard extends StatelessWidget {
   }
 
   // Display order number and "completed" status
-  Widget _orderNumber() {
+  Widget _reviewedCardTitle() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        Padding(padding: EdgeInsets.only(left: 8, top: 5), child: Text("Order#: 123456")),
+      children: [
+        Padding(padding: EdgeInsets.only(left: 8, top: 5), child: Text("Order#: ${orderNumber}")),
         Padding(padding: EdgeInsets.only(right: 8, top: 5), child: Text("Completed")),
       ],
     );
@@ -55,7 +61,7 @@ class ReviewCard extends StatelessWidget {
               width:120,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset("assets/images/cake.jpg", fit: BoxFit.cover),
+                child: Image.asset(imageURL, fit: BoxFit.cover),
               )
           ),
         ),
@@ -67,7 +73,7 @@ class ReviewCard extends StatelessWidget {
                 height: 80,
                 width: 100,
                 child: Text(
-                    "comment...comment...comment...comment...comment...comment...comment...comment...comment...comment...ccckkkccckkkccckkkccckkk",
+                    comment,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 5
                 ),
@@ -79,11 +85,11 @@ class ReviewCard extends StatelessWidget {
   }
 
   // Display rating stars
-  Widget _rating() {
+  Widget _ratingWidget() {
     return Padding(
       padding: EdgeInsets.only(left: 200, top: 5),
       child: SmoothStarRating(
-        rating: 4.5,
+        rating: rating,
         size: 20,
         color: Colors.yellow[700],
         borderColor: Colors.yellow[700],

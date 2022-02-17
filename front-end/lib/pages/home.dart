@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
     var m3 = await getMerchantInfoById(3);
     //var p1 = await getMerchantInfoById(1);
 
-    final String response = await rootBundle.loadString('assets/sample.json');
+    final String response = await rootBundle.loadString('assets/mock/sample.json');
     debugPrint(response);
 
 
