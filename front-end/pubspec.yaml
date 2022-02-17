@@ -16,9 +16,6 @@ dependencies:
   fluttertoast: ^8.0.8
   http: ^0.13.4
   smooth_star_rating_null_safety: ^1.0.4+2
-  camera:
-  path_provider:
-  path:
 
 dev_dependencies:
   flutter_test:

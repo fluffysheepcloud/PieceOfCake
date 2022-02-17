@@ -3,9 +3,11 @@ import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.da
 
 class UnreviewedCard extends StatefulWidget {
 
-  var onSubmit;
+  final VoidCallback onDeleteClicked;
+  String orderNumber;
+  String imageURL;
 
-  UnreviewedCard({Key? key, this.onSubmit}) : super(key: key);
+  UnreviewedCard({Key? key, required this.onDeleteClicked, required this.orderNumber, required this.imageURL}) : super(key: key);
 
   @override
   _UnreviewedCardState createState() => _UnreviewedCardState();
@@ -50,7 +52,7 @@ class _UnreviewedCardState extends State<UnreviewedCard> {
                     ),
                     onPressed: () {
                       print(123);
-                      widget.onSubmit();
+                      widget.onDeleteClicked();
                     },
                     child: Text("Submit")
                   )
@@ -66,8 +68,8 @@ class _UnreviewedCardState extends State<UnreviewedCard> {
   Widget _orderNumber() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        Padding(padding: EdgeInsets.only(left: 8, top: 5), child: Text("Order#: 123456")),
+      children: [
+        Padding(padding: EdgeInsets.only(left: 8, top: 5), child: Text("Order#: ${widget.orderNumber}")),
         Padding(padding: EdgeInsets.only(right: 8, top: 5), child: Text("Unreviewed")),
       ],
     );
@@ -117,7 +119,10 @@ class _UnreviewedCardState extends State<UnreviewedCard> {
       defaultIconData: Icons.star_border,
       allowHalfRating: true,
       onRatingChanged: (value) {
-        setState(() {_rating = value;});
+        setState(() {
+          _rating = value;
+          print(value);
+        });
       },
     );
   }

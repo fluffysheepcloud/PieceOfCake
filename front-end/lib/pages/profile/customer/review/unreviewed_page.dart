@@ -14,11 +14,14 @@ class _UnreviewedPageState extends State<UnreviewedPage> {
   void initState() {
     super.initState();
     for (int i = 0; i < 5; i++) {
-      _cardList.add(UnreviewedCard(onSubmit: _onSubmit(i)));
+      _data.add({
+        "orderNumber": i.toString(),
+        "imageURL": "assets/images/cake.jpg"
+      });
     }
   }
 
-  List<UnreviewedCard> _cardList = <UnreviewedCard>[];
+  List<Map> _data = <Map>[];
 
   @override
   Widget build(BuildContext context) {
@@ -30,20 +33,23 @@ class _UnreviewedPageState extends State<UnreviewedPage> {
       child: Center(
         child: ListView.builder(
             padding: EdgeInsets.fromLTRB(25, 5, 25, 0),
-            itemCount: _cardList.length,
+            itemCount: _data.length,
             itemBuilder: (context, index) {
-              return UnreviewedCard(onSubmit: _onSubmit(index));
+              return UnreviewedCard(
+                key: ObjectKey(_data[index]),
+                orderNumber: _data[index]["orderNumber"],
+                imageURL: _data[index]["imageURL"],
+                onDeleteClicked: () => _deleteItem(_data[index]),
+              );
             }
         ),
       )
     );
   }
 
-  _onSubmit(int index) {
-    return (() {
-      _cardList.removeAt(index);
-      setState(() {});
-    });
+  _deleteItem(Map m) {
+    _data.remove(m);
+    setState(() {});
   }
 
 
