@@ -78,7 +78,7 @@ class _LoginState extends State<Login> {
                           },
                           child: Text(_loginOption)
                       ),
-                      SizedBox(height: 40),
+                      SizedBox(height: 30),
                       TextButton(
                           onPressed: () {
                             Navigator.pushNamed(context, "/profile/registration_options");
