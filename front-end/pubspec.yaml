@@ -16,6 +16,7 @@ dependencies:
   fluttertoast: ^8.0.8
   http: ^0.13.4
   smooth_star_rating_null_safety: ^1.0.4+2
+  toggle_switch: ^1.4.0
 
 dev_dependencies:
   flutter_test:
@@ -27,4 +28,5 @@ flutter:
     - assets/images/cake.jpg
     - assets/mock/reviewed.json
     - assets/mock/sample.json
+    - assets/mock/mock_ingredients.json
   uses-material-design: true
