@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-
-class Success extends StatefulWidget {
+class Success extends StatelessWidget {
   var arguments;
 
   Success({Key? key, this.arguments}) : super(key: key);
 
-  @override
-  _SuccessState createState() => _SuccessState();
-}
-
-class _SuccessState extends State<Success> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,11 +13,16 @@ class _SuccessState extends State<Success> {
             SizedBox(height: 100),
             Text("Success"),
             SizedBox(height: 100),
-            ElevatedButton(onPressed: () { Navigator.pop(context); }, child: Text("Done"))
+            ElevatedButton(
+              onPressed: () { Navigator.popUntil(context, ModalRoute.withName("/")); },
+              child: Text("Done"))
           ],
         ),
       ),
     );
   }
+
+
 }
+
 

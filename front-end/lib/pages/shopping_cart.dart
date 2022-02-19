@@ -76,10 +76,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
           decoration: BoxDecoration(
               image: DecorationImage(
                   fit: BoxFit.fitHeight,
-                  image: AssetImage(
-                    //put background image in here
-                      ""
-                  )
+                  image: AssetImage('assets/images/cake.jpg')
               )
           ),
         )
@@ -96,7 +93,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
         context: context,
         child: ListView.builder(
           //can get how many items in here
-          itemCount: 3,
+          itemCount: 5,
           itemBuilder: (_, index){
             return Container(
               margin: const EdgeInsets.only(top:20),
@@ -139,9 +136,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                 ),
                                 image: DecorationImage(
                                   //put Item image in here
-                                    image: AssetImage(
-                                        ""
-                                    )
+                                    image: AssetImage('assets/images/cake.jpg')
                                 ),
                               ),
                             ),

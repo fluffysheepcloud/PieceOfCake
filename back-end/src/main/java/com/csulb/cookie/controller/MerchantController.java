@@ -32,9 +32,16 @@ public class MerchantController {
 
     @ResponseBody
     @RequestMapping(value = "/api/merchant/{id}", method = RequestMethod.GET)
-    public Map<String, Object> getMerchantById(@PathVariable(value = "id") int id) {
+    public Map<String, Object> getMerchantById(@PathVariable(value = "id") Integer id) {
         return service.getMerchantById(id);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/api/merchant", method = RequestMethod.PUT)
+    public Map<String, Object> updateMerchantById(Merchant m) {
+        return service.updateMerchantById(m);
+    }
+
 
     @Autowired
     public void setService(MerchantService service) {

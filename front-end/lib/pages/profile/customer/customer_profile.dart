@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/utils/shared_preferences.dart';
 
 class CustomerProfile extends StatelessWidget {
   const CustomerProfile({Key? key}) : super(key: key);
@@ -66,38 +67,38 @@ class CustomerProfileBody extends StatelessWidget {
                   ),
                 ),
 
-                //for spacing under the avatar
-                const Padding(padding: EdgeInsets.only(top: 55.0)),
-                Center(child:Container(
-                    padding: EdgeInsets.only(top: 20),
-                    child: Text('My Orders',
-                        style: TextStyle(fontSize: 22)))),
+                  //for spacing under the avatar
+                  const Padding(padding: EdgeInsets.only(top: 55.0)),
+                  Center(child:Container(
+                      padding: EdgeInsets.only(top: 20),
+                      child: Text('My Orders',
+                          style: TextStyle(fontSize: 22)))),
 
-                //for (int i = 0; i < blocks.length; i++)
-                Container(
-                  //margin: EdgeInsets.only(top: 15),
-                  height: 100,
-                  width: MediaQuery.of(context).size.width - 30,
-                  color: Colors.grey[400],
-                  // for spacing of the words
-                  padding: EdgeInsets.only(top: 20.0),
-                  child: SizedBox(
-                    child: ButtonTheme(
-                      minWidth: 50,
-                      height: 50,
-                      child: ListTile(
-                        //contentPadding: EdgeInsets.all(<some value here>),//change for side padding
+                  //for (int i = 0; i < blocks.length; i++)
+                  Container(
+                    //margin: EdgeInsets.only(top: 15),
+                    height: 100,
+                    width: MediaQuery.of(context).size.width - 30,
+                    color: Colors.grey[400],
+                    // for spacing of the words
+                    padding: EdgeInsets.only(top: 20.0),
+                    child: SizedBox(
+                      child: ButtonTheme(
+                        minWidth: 50,
+                        height: 50,
+                        child: ListTile(
+                          //contentPadding: EdgeInsets.all(<some value here>),//change for side padding
 
-                        title: Row(
-                          children: <Widget>[
-                            for (int i = 0; i < orderLinks.length; i++)
-                            Expanded(child: RaisedButton(onPressed: () {},child: Text(orderLinks[i]), color: Colors.red[300],textColor: Colors.white,)),
-                          ],
-                        ),
+                          title: Row(
+                            children: <Widget>[
+                              for (int i = 0; i < orderLinks.length; i++)
+                              Expanded(child: RaisedButton(onPressed: () {},child: Text(orderLinks[i]), color: Colors.red[300],textColor: Colors.white,)),
+                            ],
+                          ),
+                        )
                       )
                     )
-                  )
-                ),
+                  ),
 
                   Center(child:Container(
                       padding: EdgeInsets.only(top: 20),
@@ -161,11 +162,18 @@ class CustomerProfileBody extends StatelessWidget {
                       )
                   ),
 
-                  const Padding(padding: EdgeInsets.only(top: 20.0))
+                  const Padding(padding: EdgeInsets.only(top: 20.0)),
 
+                  ElevatedButton(
+                      onPressed: () {
+                        SPUtil.remove("customer");
+                        Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+                      },
+                      child: Text("Log Out"))
             ],
         ),
       ),
     );
   }
+
 }

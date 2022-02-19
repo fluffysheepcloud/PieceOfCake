@@ -12,17 +12,21 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  shared_preferences: ^2.0.13
+  fluttertoast: ^8.0.8
+  http: ^0.13.4
+  smooth_star_rating_null_safety: ^1.0.4+2
+  toggle_switch: ^1.4.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
-  dio: ^4.0.4
-  http: ^0.13.4
-  fluttertoast: ^8.0.8
 
 flutter:
   assets:
     - assets/images/cake.jpg
-    - assets/sample.json
+    - assets/mock/reviewed.json
+    - assets/mock/sample.json
+    - assets/mock/mock_ingredients.json
   uses-material-design: true

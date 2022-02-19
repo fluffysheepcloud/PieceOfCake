@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
-import 'customer_registration.dart';
+import 'package:frontend/pages/profile/registration/customer_registration.dart';
 import 'merchant_registration_1.dart';
 
 class AccountRegistrationScreen extends StatelessWidget {

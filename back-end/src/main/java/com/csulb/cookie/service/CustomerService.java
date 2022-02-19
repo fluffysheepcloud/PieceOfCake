@@ -16,4 +16,6 @@ public interface CustomerService extends IService<Customer> {
 
     Map<String, Object> customerLogin(String username, String password);
     Map<String, Object> customerRegister(Customer customer);
+
+    Map<String, Object> updateCustomerById(Customer c);
 }
