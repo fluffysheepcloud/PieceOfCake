@@ -9,10 +9,13 @@ class ShoppingCartCard extends StatelessWidget {
   String frostingColor;
   String frostingFlavor;
   double price;
+  int dataIndex;
+
 
   ShoppingCartCard({required this.orderCakeID, required this.imageURL,
     required this.cakeSize, required this.baseColor, required this.baseFlavor,
-    required this.frostingColor, required this.frostingFlavor, required this.price, Key? key})
+    required this.frostingColor, required this.frostingFlavor, required this.price,
+    required this.dataIndex, Key? key})
       : super(key: key);
 
   @override
@@ -35,6 +38,7 @@ class ShoppingCartCard extends StatelessWidget {
                 _shoppingCartCardTitle(),
                 _pictureAndInfo(),
                 Divider(thickness: 2.0, color: Colors.brown[200],),
+                _price(),
               ],
             ),),
         )
@@ -44,7 +48,12 @@ class ShoppingCartCard extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Padding(padding: EdgeInsets.only(left: 8, top: 5), child: Text("Cake ID: ${orderCakeID}")),
+        Padding(
+            padding: EdgeInsets.only(
+                left: 8, top: 5),
+            child: Text(
+                "Cake ID: ${orderCakeID}")
+        ),
       ],
     );
   }
@@ -86,19 +95,20 @@ class ShoppingCartCard extends StatelessWidget {
     );
   }
 
-  //Widget _quantity() {
-    //return Row(
-      //padding: EdgeInsets.only(left: 200, top: 5),
-      //child:
-    //);
-  //}
-
-  //Widget _remove() {
-    //return Row(
-        //padding: EdgeInsets.only(left: 200, top: 5),
-        //child:
-    //);
-  //}
+  Widget _price() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+            padding: EdgeInsets.only(
+                left: 8, top: 5),
+            child: Text(
+                "Unit Price: ${price},"
+            )
+        ),
+      ],
+    );
+  }
 
 }
 

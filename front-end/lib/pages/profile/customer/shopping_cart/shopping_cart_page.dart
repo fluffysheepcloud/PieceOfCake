@@ -46,14 +46,15 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
           return Dismissible(key: UniqueKey(),
               direction: DismissDirection.endToStart,
               child: ShoppingCartCard(
-            orderCakeID: snapshot.data[index]['orderCakeID'],
-            imageURL: snapshot.data[index]['imageURL'],
-            cakeSize: snapshot.data[index]['cakeSize'],
-            baseColor: snapshot.data[index]['baseColor'],
-            baseFlavor: snapshot.data[index]['baseFlavor'],
-            frostingColor: snapshot.data[index]['frostingColor'],
-            frostingFlavor: snapshot.data[index]['frostingFlavor'],
-            price: snapshot.data[index]['price'],
+                orderCakeID: snapshot.data[index]['orderCakeID'],
+                imageURL: snapshot.data[index]['imageURL'],
+                cakeSize: snapshot.data[index]['cakeSize'],
+                baseColor: snapshot.data[index]['baseColor'],
+                baseFlavor: snapshot.data[index]['baseFlavor'],
+                frostingColor: snapshot.data[index]['frostingColor'],
+                frostingFlavor: snapshot.data[index]['frostingFlavor'],
+                price: snapshot.data[index]['price'],
+                dataIndex:index.toInt(),
           ),
           );
         }
