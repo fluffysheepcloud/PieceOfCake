@@ -29,4 +29,5 @@ flutter:
     - assets/mock/reviewed.json
     - assets/mock/sample.json
     - assets/mock/mock_ingredients.json
+    - assets/mock/shopping_cart_mock.json
   uses-material-design: true

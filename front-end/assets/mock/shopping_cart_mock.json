@@ -1,0 +1,44 @@
+{
+    "cart": [
+        {
+            "orderCakeID": "01112223331",
+            "imageURL": "assets/images/cake.jpg",
+            "cakeSize": 6.0,
+            "baseColor": "blue",
+            "baseFlavor": "mint",
+            "frostingColor": "white",
+            "frostingFlavor": "milk",
+            "price": 35.0
+        },
+        {
+            "orderCakeID": "01112223332",
+            "imageURL": "assets/images/cake.jpg",
+            "cakeSize": 6.0,
+            "baseColor": "yellow",
+            "baseFlavor": "banana",
+            "frostingColor": "red",
+            "frostingFlavor": "apple",
+            "price": 38.0
+        },
+        {
+            "orderCakeID": "01112223333",
+            "imageURL": "assets/images/cake.jpg",
+            "cakeSize": 8.0,
+            "baseColor": "pink",
+            "baseFlavor": "strawberry",
+            "frostingColor": "chocolate",
+            "frostingFlavor": "chocolate",
+            "price": 45.0
+        },
+        {
+            "orderCakeID": "01112223334",
+            "imageURL": "assets/images/cake.jpg",
+            "cakeSize": 12.0,
+            "baseColor": "original",
+            "baseFlavor": "vanilla",
+            "frostingColor": "purple",
+            "frostingFlavor": "blueberry",
+            "price": 78.99
+        }
+    ]
+}
