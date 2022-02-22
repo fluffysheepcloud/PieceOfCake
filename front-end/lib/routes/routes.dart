@@ -7,6 +7,7 @@ import 'package:frontend/pages/profile/registration/account_registration.dart';
 import 'package:frontend/pages/profile/customer/review/review.dart';
 import 'package:frontend/pages/profile/registration/success.dart';
 import 'package:frontend/pages/received_order.dart';
+import 'package:frontend/pages/profile/customer/shopping_cart/shopping_cart.dart';
 
 /* We write front-end routes here.
  * It is key-value pattern.
@@ -20,6 +21,7 @@ final routes = {
   "/received_order": (context, {arguments}) => ReceivedOrder(arguments: arguments),
   "/review": (context, {arguments}) => Review(arguments: arguments),
   "/build_cake": (context, {arguments}) => CustomCakePage(arguments: arguments),
+  "/shopping_cart": (context, {arguments}) => ShoppingCart(arguments: arguments),
 };
 
 /* This function is similar to a callback function.
