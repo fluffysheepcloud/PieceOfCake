@@ -73,9 +73,13 @@ class CustomCakeBuilderBody extends State<CustomCakePage> {
     // build a list of block components
     var blockList = _blockListBuilder(ingredientMap, controllers);
     // add a button at the end of the list
-    blockList.add(ElevatedButton(
-        onPressed: _getSelectedItems,
-        child: Text("Add to Cart")
+    blockList.add(
+      Padding(
+        padding: EdgeInsets.only(bottom: 25, top: 10),
+        child: ElevatedButton(
+          onPressed: _getSelectedItems,
+          child: Text("Add to Cart")
+        ),
       )
     );
 
