@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/profile/customer/shopping_cart/shopping_cart_page.dart';
+import 'package:frontend/pages/shopping_cart/shopping_cart_page.dart';
 
 class ShoppingCart extends StatefulWidget {
   var arguments;

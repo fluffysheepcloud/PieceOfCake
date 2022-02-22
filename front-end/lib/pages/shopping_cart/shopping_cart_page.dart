@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:frontend/pages/profile/customer/shopping_cart/shopping_cart_card.dart';
+import 'package:frontend/pages/shopping_cart/shopping_cart_card.dart';
 
 class ShoppingCartPage extends StatefulWidget {
   const ShoppingCartPage({Key? key}) : super(key: key);
