@@ -52,7 +52,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                 _quantity(widget.dataIndex),
               ],
             ),),
-        )
+        ),
     );
   }
   Widget _shoppingCartCardTitle() {
@@ -166,7 +166,4 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
         child: new Icon(Icons.remove, color: Colors.black87),
         backgroundColor: Colors.white);
   }
-
-
-
 }

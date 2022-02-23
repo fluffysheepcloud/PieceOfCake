@@ -38,28 +38,50 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
     );
   }
 
-  Widget _cardBuilder(AsyncSnapshot snapshot) {
-    return ListView.builder(
-        padding: EdgeInsets.fromLTRB(25, 5, 25, 0),
-        itemCount: snapshot.data.length,
-        itemBuilder: (context, index) {
-          return Dismissible(key: UniqueKey(),
-              direction: DismissDirection.endToStart,
-              child: ShoppingCartCard(
-                orderCakeID: snapshot.data[index]['orderCakeID'],
-                imageURL: snapshot.data[index]['imageURL'],
-                cakeSize: snapshot.data[index]['cakeSize'],
-                baseColor: snapshot.data[index]['baseColor'],
-                baseFlavor: snapshot.data[index]['baseFlavor'],
-                frostingColor: snapshot.data[index]['frostingColor'],
-                frostingFlavor: snapshot.data[index]['frostingFlavor'],
-                price: snapshot.data[index]['price'],
-                dataIndex:index.toInt(),
+  List<Widget> _itemCarBuilder(AsyncSnapshot snapshot){
+    List itemInfo = snapshot.data;
+    List<Widget> list = List.generate(
+        itemInfo.length,
+            (index) => Dismissible(key: UniqueKey(),
+                direction: DismissDirection.endToStart,
+                child: ShoppingCartCard(
+                  orderCakeID: snapshot.data[index]['orderCakeID'],
+                  imageURL: snapshot.data[index]['imageURL'],
+                  cakeSize: snapshot.data[index]['cakeSize'],
+                  baseColor: snapshot.data[index]['baseColor'],
+                  baseFlavor: snapshot.data[index]['baseFlavor'],
+                  frostingColor: snapshot.data[index]['frostingColor'],
+                  frostingFlavor: snapshot.data[index]['frostingFlavor'],
+                  price: snapshot.data[index]['price'],
+                  dataIndex:index.toInt(),
+                ),
+            ),
+    );
+
+    list.add(
+        Padding(
+          padding: EdgeInsets.only(bottom: 25, top: 10),
+          child: ElevatedButton(
+              onPressed: (){},
+              child: Text("Pay")
           ),
-          );
-        }
+        )
+    );
+    return list;
+  }
+
+  Widget _cardBuilder(AsyncSnapshot snapshot) {
+
+    var itemList = _itemCarBuilder(snapshot);
+    return Container(
+        color: Color.fromARGB(255, 249, 243, 235),
+        child: ListView(
+          padding: EdgeInsets.fromLTRB(25, 5, 25, 0),
+          children: itemList,
+        )
     );
   }
+
 
 }
 
