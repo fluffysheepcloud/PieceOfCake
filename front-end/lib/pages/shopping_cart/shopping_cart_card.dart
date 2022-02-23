@@ -63,7 +63,8 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
             padding: EdgeInsets.only(
                 left: 8, top: 5),
             child: Text(
-                "Cake ID: ${widget.orderCakeID}")
+                "Cake ID: ${widget.orderCakeID}"
+            "Item index: ${widget.dataIndex}")
         ),
       ],
     );

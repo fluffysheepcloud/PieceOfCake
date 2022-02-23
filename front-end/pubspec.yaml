@@ -18,6 +18,7 @@ dependencies:
   smooth_star_rating_null_safety: ^1.0.4+2
   toggle_switch: ^1.4.0
   flutter_multi_select_items: ^0.2.1
+  carousel_slider: ^4.0.0
 
 dev_dependencies:
   flutter_test:
