@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_multi_select_items/flutter_multi_select_items.dart';
 import 'package:frontend/pages/cake_building/ingredient_block.dart';
+import 'cake_builder_confirmation.dart';
 
 class CustomCakePage extends StatefulWidget {
 
@@ -57,12 +58,21 @@ class CustomCakeBuilderBody extends State<CustomCakePage> {
     );
   }
 
-  // TODO: This will be change to add this cake into shopping cart
+  // pass selected items to the confirmation page
   _getSelectedItems() {
-    controllers.forEach((element) {
-      var items = List<String>.from(element.getSelectedItems());
-      print(items);
-    });
+    // controllers.forEach((element) {
+    //   var items = List<String>.from(element.getSelectedItems());
+    //   print(items);
+    // });
+    var route = MaterialPageRoute(builder: (BuildContext context) =>
+        CakeBuilderConfirmation(baseFlavor: List<String>.from(controllers[0].getSelectedItems()),
+              baseColor: List<String>.from(controllers[1].getSelectedItems()),
+              frostingType: List<String>.from(controllers[2].getSelectedItems()),
+              frostingColor: List<String>.from(controllers[3].getSelectedItems()),
+              toppings: List<String>.from(controllers[4].getSelectedItems())));
+
+    Navigator.of(context).push(route);
+
   }
 
   Widget _pageBuilder(AsyncSnapshot snapshot) {
@@ -75,17 +85,33 @@ class CustomCakeBuilderBody extends State<CustomCakePage> {
     // add a button at the end of the list
     blockList.add(
       Padding(
-        padding: EdgeInsets.only(bottom: 25, top: 10),
+        padding: EdgeInsets.only(bottom: 25, top: 10, left: MediaQuery.of(context).size.width * 0.3, right: MediaQuery.of(context).size.width * 0.3),
         child: ElevatedButton(
+          style: ButtonStyle (
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.red.shade400),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                  side: BorderSide(color: Colors.red)
+              )
+            )
+          ),
           onPressed: _getSelectedItems,
-          child: Text("Add to Cart")
+          child: Text("Next"),
         ),
       )
     );
 
     // return the page
     return Scaffold(
-      appBar: AppBar(title: Text("Build Cake")),
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('Build Your Cake'),
+          foregroundColor: Colors.red[900],
+          backgroundColor: Colors.red[100],
+          toolbarHeight: 50,
+        ),
       body: Container(
         color: Color.fromARGB(255, 249, 243, 235),
         child: ListView(
