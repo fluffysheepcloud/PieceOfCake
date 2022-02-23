@@ -1,10 +1,10 @@
 {
   "data":
   {
-    "flavor": ["lemon", "chocolate", "vanilla", "red velvet", "strawberry", "confetti"],
-    "color": ["white", "light brown", "light blue", "red", "yellow", "sea foam", "black"],
-    "frostingType": ["butter cream", "royal", "cream cheese", "glaze", "ganache", "meringue"],
-    "frostingColor": ["white", "light brown", "light blue", "red", "yellow", "sea foam", "black"],
-    "toppings": ["oreo", "chocolate", "berries", "skittles", "m&m", "cookie", "nuts"]
+    "BASE FLAVOR": ["lemon", "chocolate", "vanilla", "red velvet", "strawberry", "confetti"],
+    "BASE COLOR": ["white", "light brown", "light blue", "red", "yellow", "sea foam", "black"],
+    "FROSTING TYPE": ["butter cream", "royal", "cream cheese", "glaze", "ganache", "meringue"],
+    "FROSTING COLOR": ["white", "light brown", "light blue", "red", "yellow", "sea foam", "black"],
+    "TOPPINGS": ["oreo", "chocolate", "berries", "skittles", "m&m", "cookie", "nuts"]
   }
 }

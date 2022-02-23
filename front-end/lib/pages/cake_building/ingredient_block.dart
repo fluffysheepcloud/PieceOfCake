@@ -36,19 +36,22 @@ class _IngredientBlockState extends State<IngredientBlock> {
       // this padding is used to control the distance between each blocks
       padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
       child: Container(
-        color: Color.fromARGB(255, 239, 226, 208),
+        decoration: BoxDecoration(
+          color: Colors.red.shade200.withOpacity(0.7),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+        ),
         // this padding is used to control the distance between items and
         // the border of the card
         padding: EdgeInsets.fromLTRB(10, 10, 10, 15),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // text widget to show the label(title) of the block
             Text(
               widget.blockLabel,
               style: _labelTextStyle(),
             ),
-            Divider(color: Colors.black,),
+            Divider(color: Colors.red.shade900),
             // the widget to show items
             MultiSelectContainer(
               // bind controller
@@ -72,7 +75,7 @@ class _IngredientBlockState extends State<IngredientBlock> {
       (item) => MultiSelectCard(
         margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
         value: item,
-        label: item
+        label: item,
       )
     ).toList();
   }
@@ -81,10 +84,11 @@ class _IngredientBlockState extends State<IngredientBlock> {
     // test decoration for label of the block
     return TextStyle(
       fontWeight: FontWeight.w600,
+      color: Colors.red.shade900,
       letterSpacing: 3.5,
       shadows: [
         Shadow(
-          color: Colors.grey.withOpacity(0.4),
+          color: Colors.red.shade500.withOpacity(0.4),
           offset: Offset(0, 3),
         )
       ]
@@ -108,12 +112,12 @@ class _IngredientBlockState extends State<IngredientBlock> {
       ),
       selectedDecoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        gradient: LinearGradient(
-          colors: const [
-            Colors.brown,
-            Color(0xFFBCAAA4)
-          ]
-        ),
+        color: Colors.red
+        // gradient: RadialGradient(
+        //   colors: const [
+        //     Colors.red
+        //   ]
+        // ),
       )
     );
   }
