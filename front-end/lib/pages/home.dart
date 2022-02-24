@@ -15,9 +15,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Icon customIcon = const Icon(Icons.search);
   Widget customSearchBar = const Text('Search');
-  List _items = [];
+  final List _items = [];
   var customerName; //retrieve customer name then put it in here then display
-  var pickCard;
+  final List _pickCard = [];
 
   //read in json list, split list, take single element, pass its attributes(3) into card
   //card would take in string, and img url, 3 arguments
@@ -26,19 +26,23 @@ class _HomeState extends State<Home> {
     var m1 = await getMerchantInfoById(1);
     var m2 = await getMerchantInfoById(2);
     var m3 = await getMerchantInfoById(3);
-    //var p1 = await getMerchantInfoById(1);
+    var p1 = await getMerchantInfoById(1);
 
-    final String response = await rootBundle.loadString('assets/mock/sample.json');
-    debugPrint(response);
+    // final String response = await rootBundle.loadString('assets/mock/sample.json');
+    // debugPrint(response);
 
+    Future <dynamic> _getPick() async{
+      var p1 = await getMerchantInfoById(1);
+    }
 
     //probably make a var for a singular value (data object) varname["data"], access it through the info card
     setState(() {
       _items.add(m1["data"]);
       _items.add(m2["data"]);
       _items.add(m3["data"]);
-
+      _pickCard.add(p1["data"]);
     });
+    //debugPrint(pickcard["shopName"]);
   }
 
   @override
@@ -50,12 +54,13 @@ class _HomeState extends State<Home> {
   //move search bar to browse page
   @override
   Widget build (BuildContext context){
-    //var _controller = TextEditingController();
+
   return Scaffold(
     backgroundColor: Colors.orange[50],
-    body: Column(
+    body: SingleChildScrollView(
+      child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
+      children: <Widget>[
         //searchbar
         Container(
             padding: const EdgeInsets.all(50.0),
@@ -119,7 +124,20 @@ class _HomeState extends State<Home> {
         ),
         //Just one card for the pick
         //InfoCard("cake name","description"),
-        //InfoCard(["shopName"], ["description"]),
+
+            Container(
+              child:
+                ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: _pickCard.length,
+                  itemBuilder: (context, index){
+                    return InfoCard(_pickCard[index]["shopName"], _pickCard[index]["description"]);
+                  },
+
+            ),
+            ),
         //banner
         Container(
           padding: const EdgeInsets.all(20.0),
@@ -131,15 +149,19 @@ class _HomeState extends State<Home> {
             )
         ),
         //Cards
-        Expanded(
-            child: ListView.builder(
+
+           ListView.builder(
+               scrollDirection: Axis.vertical,
+               shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: _items.length,
                 itemBuilder: (context, index){
                   return InfoCard(_items[index]["shopName"], _items[index]["description"]);//new Text("hello");//InfoCard(_items[index number]);
                 }
             )
-        ),
+        ,
       ],
+    )
     )
   );
 }
