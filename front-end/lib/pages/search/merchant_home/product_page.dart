@@ -55,8 +55,8 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Carousel Demo"),),
-      body: Container(
-        color: Color(0xFFFAF3EA),
+      backgroundColor: Color(0xFFFAF3EA),
+      body: SingleChildScrollView(
         child: Center(
           child: Column(
             children: [
