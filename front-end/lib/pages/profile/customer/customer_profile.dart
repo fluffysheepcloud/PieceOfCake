@@ -11,7 +11,7 @@ class CustomerProfile extends StatelessWidget {
       backgroundColor: Colors.amber[100],
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('[USERNAME]\'s Profile'),
+        title: const Text('[CUSTOMER]\'s Profile'),
         backgroundColor: Colors.red[100],
         toolbarHeight: 50,
       ),
