@@ -10,7 +10,7 @@ class CustomerProfile extends StatelessWidget {
       backgroundColor: Colors.amber[100],
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('[USERNAME]\'s Profile'),
+        title: const Text('[CUSTOMER]\'s Profile'),
         backgroundColor: Colors.red[100],
         toolbarHeight: 50,
       ),
@@ -165,11 +165,22 @@ class CustomerProfileBody extends StatelessWidget {
                   const Padding(padding: EdgeInsets.only(top: 20.0)),
 
                   ElevatedButton(
-                      onPressed: () {
-                        SPUtil.remove("customer");
-                        Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
-                      },
-                      child: Text("Log Out"))
+                    style: ButtonStyle (
+                        foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.red.shade400),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: BorderSide(color: Colors.red)
+                            )
+                        )
+                    ),
+                    onPressed: () {
+                      SPUtil.remove("customer");
+                      Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+                    },
+                    child: Text("LOG OUT"),
+                  )
             ],
         ),
       ),
