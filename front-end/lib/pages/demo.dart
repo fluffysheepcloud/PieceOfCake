@@ -3,17 +3,27 @@ import 'package:flutter/material.dart';
 class Demo extends StatelessWidget {
   const Demo({Key? key}) : super(key: key);
 
+  final Map<String, Object> mockData = const {
+    "merchantName": "Chubby Cookie",
+    "avatarURL": "assets/images/merchant_avatar.jpg",
+    "cakeURLs": [
+      "assets/images/cake.jpg",
+      "assets/images/cake_2.jpg",
+      "assets/images/cake_3.jpg",
+      "assets/images/cake_4.jpg",
+      "assets/images/cake_5.jpg"
+    ],
+    "description": "description...description...description...description..."
+                   "description...description...description...description..."
+                   "description...description...description...description...",
+    "price": 200
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Project Demo Use")),
       body: Center(
-        // child: Container(
-        //   color: Colors.blue[100],
-        //   width: 200,
-        //   height: 400,
-        //   child: Text("testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"),
-        // ),
         child: Column(
           children: [
             SizedBox(height: 20),
@@ -40,6 +50,12 @@ class Demo extends StatelessWidget {
                   Navigator.pushNamed(context, "/build_cake");
                 },
                 child: Text("Build Cake")),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/product_page", arguments: mockData);
+              },
+              child: Text("Product Page")),
           ],
         ),
       ),

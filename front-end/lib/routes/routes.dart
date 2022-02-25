@@ -7,6 +7,7 @@ import 'package:frontend/pages/profile/registration/account_registration.dart';
 import 'package:frontend/pages/profile/customer/review/review.dart';
 import 'package:frontend/pages/profile/registration/success.dart';
 import 'package:frontend/pages/received_order.dart';
+import 'package:frontend/pages/search/merchant_home/product_page.dart';
 import 'package:frontend/pages/shopping_cart/shopping_cart.dart';
 
 /* We write front-end routes here.
@@ -22,6 +23,7 @@ final routes = {
   "/review": (context, {arguments}) => Review(arguments: arguments),
   "/build_cake": (context, {arguments}) => CustomCakePage(arguments: arguments),
   "/shopping_cart": (context, {arguments}) => ShoppingCart(arguments: arguments),
+  "/product_page": (context, {arguments}) => ProductPage(arguments: arguments),
 };
 
 /* This function is similar to a callback function.
@@ -32,10 +34,12 @@ var onGeneratedRoute = (RouteSettings settings) {
   final String? name = settings.name;
   final Function? pageContentBuilder = routes[name] as Function;
 
+
   if (pageContentBuilder != null) {
     if (settings.arguments != null) {
+
       final Route route = MaterialPageRoute(
-          builder: (context) => pageContentBuilder(context, arguments: settings.arguments)
+        builder: (context) => pageContentBuilder(context, arguments: settings.arguments)
       );
       return route;
     }
