@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/profile/customer/customer_profile_block.dart';
+import 'package:frontend/components/profile_block.dart';
 import 'package:frontend/utils/shared_preferences.dart';
 
 class CustomerProfile extends StatelessWidget {
@@ -65,7 +65,7 @@ class CustomerProfileBody extends StatelessWidget {
             //for spacing under the avatar
             SizedBox(height: 55),
             for (int i = 0; i < profileDataMap.length; i++)
-              CustomerProfileBlock(profileDataMap[i]["title"], profileDataMap[i]["items"]),
+              ProfileBlock(profileDataMap[i]["title"], profileDataMap[i]["items"]),
             SizedBox(height: 10),
 
             ElevatedButton(

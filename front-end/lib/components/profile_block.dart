@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class CustomerProfileBlock extends StatelessWidget {
+class ProfileBlock extends StatelessWidget {
 
-  String _blockTitle;
-  List<String> _blockItems;
+  final String _blockTitle;
+  final List<String> _blockItems;
 
-  CustomerProfileBlock(this._blockTitle, this._blockItems, {Key? key}) : super(key: key);
+  const ProfileBlock(this._blockTitle, this._blockItems, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
