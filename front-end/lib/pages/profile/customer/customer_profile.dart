@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/components/profile_block.dart';
 import 'package:frontend/utils/shared_preferences.dart';
 
 class CustomerProfile extends StatelessWidget {
@@ -20,171 +21,62 @@ class CustomerProfile extends StatelessWidget {
 
 class CustomerProfileBody extends StatelessWidget {
 
-  List<String> orderLinks = [
-    'Bookmarks',
-    'Past Orders',
-    'Reviews'
+  List<Map> profileDataMap = [
+    {
+      "title": "My Orders",
+      "items": ["All Orders", "Reviews"]
+    },
+    {
+      "title": "Favorite",
+      "items": ["Cakes", "Merchants"]
+    },
+    {
+      "title": "Personal Info",
+      "items": ["Settings"]
+    }
   ];
-
-  List<String> favoriteLinks = [
-    'Cakes',
-    'Merchants'
-  ];
-
-  List<String> personalInfo = [
-    'Change Nickname',
-    'Change Password',
-    'Payment Methods'
-  ];
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-            child: Column(
-                children: [
-                  // for box background
-                  Container(
-                    decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage('https://i.ibb.co/yR6jPj5/FETH-official-art.jpg'),
-                      fit: BoxFit.cover
-                      )
-                    ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // for box background
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 200,
+              decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage('https://i.ibb.co/yR6jPj5/FETH-official-art.jpg'),
+                fit: BoxFit.cover
+                )
+              ),
 
-                    child: SizedBox(
-                        width: double.infinity,
-                        height: 200,
-                      // for circle avatar
-                      child: Container(
-                        alignment: Alignment(0.0,2.5),
-                        child: CircleAvatar(
-                        backgroundImage: NetworkImage('https://googleflutter.com/sample_image.jpg'),
-                        radius: 60.0,
-                        ),
-                      ),
-                  ),
+              child: Container(
+                alignment: Alignment(0, 2.5),
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage('https://googleflutter.com/sample_image.jpg'),
+                  radius: 60.0,
                 ),
+              )
+          ),
 
-                  //for spacing under the avatar
-                  const Padding(padding: EdgeInsets.only(top: 55.0)),
-                  Center(child:Container(
-                      padding: EdgeInsets.only(top: 20),
-                      child: Text('My Orders',
-                          style: TextStyle(fontSize: 22)))),
+            //for spacing under the avatar
+            SizedBox(height: 55),
+            for (int i = 0; i < profileDataMap.length; i++)
+              ProfileBlock(profileDataMap[i]["title"], profileDataMap[i]["items"]),
+            SizedBox(height: 10),
 
-                  //for (int i = 0; i < blocks.length; i++)
-                  Container(
-                    //margin: EdgeInsets.only(top: 15),
-                    height: 100,
-                    width: MediaQuery.of(context).size.width - 30,
-                    color: Colors.grey[400],
-                    // for spacing of the words
-                    padding: EdgeInsets.only(top: 20.0),
-                    child: SizedBox(
-                      child: ButtonTheme(
-                        minWidth: 50,
-                        height: 50,
-                        child: ListTile(
-                          //contentPadding: EdgeInsets.all(<some value here>),//change for side padding
-
-                          title: Row(
-                            children: <Widget>[
-                              for (int i = 0; i < orderLinks.length; i++)
-                              Expanded(child: RaisedButton(onPressed: () {},child: Text(orderLinks[i]), color: Colors.red[300],textColor: Colors.white,)),
-                            ],
-                          ),
-                        )
-                      )
-                    )
-                  ),
-
-                  Center(child:Container(
-                      padding: EdgeInsets.only(top: 20),
-                      child: Text('Favorites',
-                          style: TextStyle(fontSize: 22)))),
-
-                  //for (int i = 0; i < blocks.length; i++)
-                  Container(
-                    //margin: EdgeInsets.only(top: 15),
-                      height: 100,
-                      width: MediaQuery.of(context).size.width - 30,
-                      color: Colors.grey[400],
-                      // for spacing of the words
-                      padding: EdgeInsets.only(top: 20.0),
-                      child: SizedBox(
-                          child: ButtonTheme(
-                              minWidth: 50,
-                              height: 50,
-                              child: ListTile(
-                                //contentPadding: EdgeInsets.all(<some value here>),//change for side padding
-
-                                title: Row(
-                                  children: <Widget>[
-                                    for (int i = 0; i < favoriteLinks.length; i++)
-                                      Expanded(child: RaisedButton(onPressed: () {},child: Text(favoriteLinks[i]), color: Colors.red[300],textColor: Colors.white,)),
-                                  ],
-                                ),
-                              )
-                          )
-                      )
-                  ),
-
-                  Center(child:Container(
-                      padding: EdgeInsets.only(top: 20),
-                      child: Text('Personal Information',
-                          style: TextStyle(fontSize: 22)))),
-
-                  //for (int i = 0; i < blocks.length; i++)
-                  Container(
-                    //margin: EdgeInsets.only(top: 15),
-                      height: 100,
-                      width: MediaQuery.of(context).size.width - 30,
-                      color: Colors.grey[400],
-                      // for spacing of the words
-                      padding: EdgeInsets.only(top: 20.0),
-                      child: SizedBox(
-                          child: ButtonTheme(
-                              minWidth: 30,
-                              height: 50,
-                              child: ListTile(
-                                //contentPadding: EdgeInsets.all(<some value here>),//change for side padding
-                                title: Row(
-                                  children: <Widget>[
-                                    for (int i = 0; i < personalInfo.length; i++)
-                                      Expanded(child: RaisedButton(onPressed: () {},child: Text(personalInfo[i], textAlign: TextAlign.center),
-                                        color: Colors.red[300],textColor: Colors.white,)),
-                                  ],
-                                ),
-                              )
-                          )
-                      )
-                  ),
-
-                  const Padding(padding: EdgeInsets.only(top: 20.0)),
-
-                  ElevatedButton(
-                    style: ButtonStyle (
-                        foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.red.shade400),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                                side: BorderSide(color: Colors.red)
-                            )
-                        )
-                    ),
-                    onPressed: () {
-                      SPUtil.remove("customer");
-                      Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
-                    },
-                    child: Text("LOG OUT"),
-                  )
-            ],
+            ElevatedButton(
+                onPressed: () {
+                  SPUtil.remove("customer");
+                  Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+                },
+                child: Text("Log Out"))
+          ],
         ),
       ),
     );
   }
-
 }

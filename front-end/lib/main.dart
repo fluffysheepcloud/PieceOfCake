@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Chubby Cookie",
       initialRoute: "/",
-      routes: routes.routes,
+      // routes: routes.routes,
       theme: ThemeData.from(colorScheme: ColorScheme.light()),
       onGenerateRoute: routes.onGeneratedRoute,
 

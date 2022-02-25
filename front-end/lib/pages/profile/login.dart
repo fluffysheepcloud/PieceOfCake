@@ -123,9 +123,11 @@ class _LoginState extends State<Login> {
   _userLogin(BuildContext context, String username, String password) async {
     var res;
 
+    // customer login
     if (_role == 0) {
       res = await customerLogin(username, password);
     }
+    // merchant login
     else {
       res = await merchantLogin(username, password);
     }

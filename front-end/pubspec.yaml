@@ -27,9 +27,6 @@ dev_dependencies:
 
 flutter:
   assets:
-    - assets/images/cake.jpg
-    - assets/mock/reviewed.json
-    - assets/mock/sample.json
-    - assets/mock/mock_ingredients.json
-    - assets/mock/shopping_cart_mock.json
+    - assets/images/
+    - assets/mock/
   uses-material-design: true
