@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:frontend/pages/cake_building/custom_cake_page.dart';
 import 'package:frontend/pages/canceled_order.dart';
 import 'package:frontend/pages/index.dart';
+import 'package:frontend/pages/profile/customer/fav_cakes/fav_cakes.dart';
+import 'package:frontend/pages/profile/customer/fav_merchants/fav_merchants.dart';
+import 'package:frontend/pages/profile/customer/orders/orders.dart';
+import 'package:frontend/pages/profile/customer/settings/customer_settings.dart';
 import 'package:frontend/pages/profile/registration/account_registration.dart';
 import 'package:frontend/pages/profile/customer/review/review.dart';
 import 'package:frontend/pages/profile/registration/success.dart';
@@ -18,6 +22,13 @@ final routes = {
   "/": (context, {arguments}) => Index(arguments: arguments),
   "/profile/registration_success": (context, {arguments}) => Success(arguments: arguments),
   "/profile/registration_options": (context, {arguments}) => AccountRegistrationScreen(arguments: arguments),
+  // -------- Customer Profile Routes --------
+  "/profile/customer/customer_all_orders": (context, {arguments}) => CustomerAllOrdersPage(arguments: arguments),
+  "/profile/customer/customer_reviews": (context, {arguments}) => Review(arguments: arguments),
+  "/profile/customer/fav_cakes": (context, {arguments}) => FavCakesPage(arguments: arguments),
+  "/profile/customer/fav_merchants": (context, {arguments}) => FavMerchantsPage(arguments: arguments),
+  "/profile/customer/customer_settings": (context, {arguments}) => CustomerSettingsPage(arguments: arguments),
+
   "/cancel_order": (context, {arguments}) => CanceledOrder(arguments: arguments),
   "/received_order": (context, {arguments}) => ReceivedOrder(arguments: arguments),
   "/review": (context, {arguments}) => Review(arguments: arguments),
