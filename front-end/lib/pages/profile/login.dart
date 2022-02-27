@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:frontend/components/input_text_box.dart';
 import 'package:frontend/network/customer_service.dart';
@@ -135,12 +137,13 @@ class _LoginState extends State<Login> {
     if (res["code"] == 200) {
       if (_role == 0) {
         setState(() {
-          SPUtil.setString("customer", res["data"]["username"]);
+          print(json.encode(res["data"]));
+          SPUtil.setString("customer", json.encode(res["data"]));
         });
       }
       else {
         setState(() {
-          SPUtil.setString("merchant", res["data"]["username"]);
+          SPUtil.setString("merchant", json.encode(res["data"]));
         });
       }
 
