@@ -122,7 +122,7 @@ class CakeBuilderConfirmationBody extends State<CakeBuilderConfirmation> {
                   ),
                   // TODO: add to shopping cart
                   onPressed: () {},
-                  child: Text("CONFIRM", style: TextStyle(fontSize: 22)),
+                  child: Text("ADD TO CART", style: TextStyle(fontSize: 22)),
                 )
             ],
           ),

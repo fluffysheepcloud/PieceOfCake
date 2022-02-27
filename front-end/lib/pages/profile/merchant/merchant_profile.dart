@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/utils/shared_preferences.dart';
 
+void main() {
+  runApp(new MaterialApp(
+    title: 'MerchantProfile',
+    home: new MerchantProfile(),
+  ));
+}
+
 class MerchantProfile extends StatelessWidget {
   const MerchantProfile({Key? key}) : super(key: key);
 

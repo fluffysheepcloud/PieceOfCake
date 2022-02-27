@@ -85,7 +85,9 @@ class CustomCakeBuilderBody extends State<CustomCakePage> {
     // add a button at the end of the list
     blockList.add(
       Padding(
-        padding: EdgeInsets.only(bottom: 25, top: 10, left: MediaQuery.of(context).size.width * 0.3, right: MediaQuery.of(context).size.width * 0.3),
+        padding: EdgeInsets.only(bottom: 25, top: 10,
+            left: MediaQuery.of(context).size.width * 0.3,
+            right: MediaQuery.of(context).size.width * 0.3),
         child: ElevatedButton(
           style: ButtonStyle (
             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
