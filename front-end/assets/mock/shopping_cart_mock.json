@@ -2,43 +2,51 @@
     "cart": [
         {
             "orderCakeID": "01112223331",
+            "cakeName": "Customer Build Cake",
             "imageURL": "assets/images/cake.jpg",
             "cakeSize": 6.0,
             "baseColor": "blue",
             "baseFlavor": "mint",
             "frostingColor": "white",
             "frostingFlavor": "milk",
-            "price": 35.0
+            "price": 35.0,
+            "quantity": 1
         },
         {
             "orderCakeID": "01112223332",
+            "cakeName": "Banana Cake",
             "imageURL": "assets/images/cake.jpg",
             "cakeSize": 6.0,
             "baseColor": "yellow",
             "baseFlavor": "banana",
             "frostingColor": "red",
             "frostingFlavor": "apple",
-            "price": 38.0
+            "price": 38.0,
+            "quantity": 1
         },
         {
             "orderCakeID": "01112223333",
             "imageURL": "assets/images/cake.jpg",
+            "cakeName": "Strawberry Chocolate Cake",
             "cakeSize": 8.0,
             "baseColor": "pink",
             "baseFlavor": "strawberry",
             "frostingColor": "chocolate",
             "frostingFlavor": "chocolate",
-            "price": 45.0
+            "price": 45.0,
+            "quantity": 1
         },
         {
             "orderCakeID": "01112223334",
+            "cakeName": "Customer Build Cake",
             "imageURL": "assets/images/cake.jpg",
             "cakeSize": 12.0,
             "baseColor": "original",
             "baseFlavor": "vanilla",
             "frostingColor": "purple",
             "frostingFlavor": "blueberry",
-            "price": 78.99
+            "price": 78.99,
+            "quantity": 1
         }
     ]
 }

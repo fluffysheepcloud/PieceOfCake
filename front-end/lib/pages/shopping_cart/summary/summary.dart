@@ -1,16 +1,39 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:frontend/pages/shopping_cart/shopping_cart_card.dart';
+import 'package:frontend/pages/shopping_cart/summary/summary_card.dart';
 
-class ShoppingCartPage extends StatefulWidget {
-  const ShoppingCartPage({Key? key}) : super(key: key);
+class Summary extends StatefulWidget {
+  var arguments;
+
+  Summary({Key? key, this.arguments}) : super(key: key);
 
   @override
-  _ShoppingCartPageState createState() => _ShoppingCartPageState();
+  _SummaryState createState() => _SummaryState();
 }
 
-class _ShoppingCartPageState extends State<ShoppingCartPage> {
+class _SummaryState extends State<Summary> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.deepOrange[100],
+      appBar: AppBar(title:
+      Text("Order Summary")),
+      body: SummaryCardPage(),
+    );
+  }
+}
+
+class SummaryCardPage extends StatefulWidget {
+  const SummaryCardPage({Key? key, arguments}) : super(key: key);
+
+  @override
+  _SummaryCardPageState createState() => _SummaryCardPageState();
+}
+
+class _SummaryCardPageState extends State<SummaryCardPage> {
 
   Future<List> mockData() async {
     final String res = await rootBundle.loadString('assets/mock/shopping_cart_mock.json');
@@ -41,21 +64,25 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
   List<Widget> _itemCarBuilder(AsyncSnapshot snapshot){
     List itemInfo = snapshot.data;
     List<Widget> list = List.generate(
-        itemInfo.length,
-            (index) => Dismissible(key: UniqueKey(),
-                direction: DismissDirection.endToStart,
-                child: ShoppingCartCard(
-                  orderCakeID: snapshot.data[index]['orderCakeID'],
-                  imageURL: snapshot.data[index]['imageURL'],
-                  cakeSize: snapshot.data[index]['cakeSize'],
-                  baseColor: snapshot.data[index]['baseColor'],
-                  baseFlavor: snapshot.data[index]['baseFlavor'],
-                  frostingColor: snapshot.data[index]['frostingColor'],
-                  frostingFlavor: snapshot.data[index]['frostingFlavor'],
-                  price: snapshot.data[index]['price'],
-                  dataIndex:index.toInt(),
-                ),
-            ),
+      itemInfo.length,
+          (index) => Dismissible(key: UniqueKey(),
+        direction: DismissDirection.endToStart,
+        child: summaryCard(
+          orderCakeID: snapshot.data[index]['orderCakeID'],
+          cakeName: snapshot.data[index]['cakeName'],
+          imageURL: snapshot.data[index]['imageURL'],
+          cakeSize: snapshot.data[index]['cakeSize'],
+          baseColor: snapshot.data[index]['baseColor'],
+          baseFlavor: snapshot.data[index]['baseFlavor'],
+          frostingColor: snapshot.data[index]['frostingColor'],
+          frostingFlavor: snapshot.data[index]['frostingFlavor'],
+          price: snapshot.data[index]['price'],
+          dataIndex:index.toInt(),
+            quantity: snapshot.data[index]['quantity'],
+          quantityList: itemInfo[index],
+
+        ),
+      ),
     );
 
     list.add(
@@ -81,7 +108,4 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
         )
     );
   }
-
-
 }
-

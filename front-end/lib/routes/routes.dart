@@ -13,6 +13,7 @@ import 'package:frontend/pages/profile/registration/success.dart';
 import 'package:frontend/pages/received_order.dart';
 import 'package:frontend/pages/search/merchant_home/product_page.dart';
 import 'package:frontend/pages/shopping_cart/shopping_cart.dart';
+import 'package:frontend/pages/shopping_cart/summary/summary.dart';
 
 /* We write front-end routes here.
  * It is key-value pattern.
@@ -34,6 +35,7 @@ final routes = {
   "/review": (context, {arguments}) => Review(arguments: arguments),
   "/build_cake": (context, {arguments}) => CustomCakePage(arguments: arguments),
   "/shopping_cart": (context, {arguments}) => ShoppingCart(arguments: arguments),
+  "/shopping_cart/summary": (context, {arguments}) => Summary(arguments: arguments),
   "/product_page": (context, {arguments}) => ProductPage(arguments: arguments),
 };
 

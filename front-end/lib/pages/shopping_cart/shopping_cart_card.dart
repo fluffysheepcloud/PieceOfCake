@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 class ShoppingCartCard extends StatefulWidget {
   String orderCakeID;
+  String cakeName;
   String imageURL;
   double cakeSize;
   String baseColor;
@@ -9,18 +10,18 @@ class ShoppingCartCard extends StatefulWidget {
   String frostingFlavor;
   double price;
   int dataIndex;
+  int quantity;
 
 
 
-  ShoppingCartCard({required this.orderCakeID, required this.imageURL,
+  ShoppingCartCard({required this.orderCakeID, required this.cakeName, required this.imageURL,
     required this.cakeSize, required this.baseColor, required this.baseFlavor,
     required this.frostingColor, required this.frostingFlavor, required this.price,
-    required this.dataIndex, Key? key})
+    required this.dataIndex, required this.quantity, Key? key})
       : super(key: key);
 
-  //growable list (make sure dataIndex and quantity Index are the same)
+//growable list (make sure dataIndex and quantity Index are the same)
   List  quantityList = List .filled(100, 1, growable: true);
-
 
 
   @override
@@ -63,8 +64,15 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
             padding: EdgeInsets.only(
                 left: 8, top: 5),
             child: Text(
-                "Cake ID: ${widget.orderCakeID}"
-            "Item index: ${widget.dataIndex}")
+                "Cake ID: ${widget.orderCakeID}",)
+        ),
+        Padding(
+            padding: EdgeInsets.only(
+                left: 8, top: 5),
+            child: Text(
+              "Name: ${widget.cakeName}",
+                overflow: TextOverflow.ellipsis,
+            )
         ),
       ],
     );
@@ -86,24 +94,19 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
           ),
         ),
         Expanded(
-            flex: 1,
             child: Padding(
               padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
-              child: SizedBox(
-                height: 80,
-                width: 100,
-                child: Text(
-                    "Cake Size: ${widget.cakeSize} '', Base color: ${widget.baseColor}, Base flavor: ${widget.baseFlavor},"
-                        " Frosting Color:${widget.frostingColor}, Frosting Flavor:${widget.frostingFlavor}",
-
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 5
-                ),
-
-              ),
-            )
+              child: Column(
+                children: [
+                  Text("Cake Size: ${widget.cakeSize} ''",overflow: TextOverflow.ellipsis, maxLines: 1,),
+                  Text("Base color: ${widget.baseColor}",overflow: TextOverflow.ellipsis, maxLines: 1,),
+                  Text("Base flavor: ${widget.baseFlavor} ",overflow: TextOverflow.ellipsis, maxLines: 1,),
+                  Text("Frosting Color:${widget.frostingColor} ",overflow: TextOverflow.ellipsis, maxLines: 1,),
+                  Text("Frosting Flavor:${widget.frostingFlavor}",overflow: TextOverflow.ellipsis, maxLines: 1,),
+                ],
         ),
-      ],
+            )
+    )],
     );
   }
 
@@ -115,7 +118,8 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
             padding: EdgeInsets.only(
                 left: 8, top: 5),
             child: Text(
-                "Unit Price: ${widget.price},"
+                "Unit Price: ${widget.price}, "
+                    //"qu: ${widget.quantityList[widget.dataIndex]}"
             )
         ),
       ],
@@ -168,3 +172,4 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
         backgroundColor: Colors.white);
   }
 }
+
