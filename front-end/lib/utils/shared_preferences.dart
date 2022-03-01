@@ -63,12 +63,12 @@ class SPUtil {
     return sp.getString(key);
   }
 
-  static void setString(String key, String value) async {
+  static setString(String key, String value) async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     sp.setString(key, value);
   }
 
-  static void remove(String key) async {
+  static remove(String key) async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     sp.remove(key);
   }

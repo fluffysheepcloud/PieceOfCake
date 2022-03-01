@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:frontend/components/common.dart';
 import 'package:frontend/components/input_text_box.dart';
 import 'package:frontend/network/customer_service.dart' as service;
+import 'package:frontend/pages/index.dart';
 import 'package:frontend/utils/shared_preferences.dart';
 import 'package:frontend/utils/toast.dart';
+
+
 
 class CustomerSettingsPage extends StatefulWidget {
 
@@ -151,7 +154,17 @@ class _CustomerSettingsPageState extends State<CustomerSettingsPage> {
             TextButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
-                  _updateInfo(context, Common.PASSWORD, controller);
+                  _updateInfo(context, Common.PASSWORD, controller).then((res) {
+                    if (res == 1) {
+                      SPUtil.remove("customer");
+                      SPUtil.updateLoginStatus();
+                      Navigator.pushAndRemoveUntil(context,
+                          MaterialPageRoute(
+                              builder: (context) => Index()
+                          ), (route) => false);
+                    }
+                  });
+
                 }
               },
               child: const Text("Submit"),
@@ -211,12 +224,13 @@ class _CustomerSettingsPageState extends State<CustomerSettingsPage> {
 
   _updateInfo(BuildContext context, String field, TextEditingController controller) async {
     // Get customer data from global storage
+
     Map customer = await SPUtil.getUserData();
     // Change the filed to new value(At this point, it did not change the global
     // storage yet. It only chane this variable "customer" Map
     customer[field] = controller.text;
     var res = await service.updateCustomerInfo(customer);
-
+    print(res);
     if (res["code"] == 200) {
       setState(() {
         SPUtil.setString("customer", json.encode(res["data"]));
@@ -224,10 +238,12 @@ class _CustomerSettingsPageState extends State<CustomerSettingsPage> {
       controller.clear();
       Navigator.of(context).pop();
       ToastUtil.showToast("Success!");
+      return 1;
     }
     else {
       controller.clear();
       Navigator.of(context).pop();
+      return 0;
     }
 
   }

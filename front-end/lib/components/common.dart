@@ -10,7 +10,7 @@ class Common {
   static const String MERCHANT = "merchant";
   static const String USERNAME = "username";
   static const String PASSWORD = "password";
-  static const String NICKNAME = "nikeName";
+  static const String NICKNAME = "nickName";
   static const String EMAIL = "email";
 
 }
