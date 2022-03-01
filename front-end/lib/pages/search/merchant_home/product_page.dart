@@ -1,12 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-main() => runApp(
-  MaterialApp(
-    home: ProductPage()
-  )
-);
-
 class ProductPage extends StatefulWidget {
 
   final arguments;

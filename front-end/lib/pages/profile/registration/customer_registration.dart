@@ -116,10 +116,8 @@ class _CreateCustomerAccountState extends State<CreateCustomerAccount> {
         const SnackBar(content: Text('Processing Data')),
       );
 
-      Customer c = Customer(_username.text, _password.text,
+      Customer c = Customer(null, _username.text, _username.text ,_password.text,
           _email.text, _phone.text);
-
-
 
       var res = await customerRegister(c);
 

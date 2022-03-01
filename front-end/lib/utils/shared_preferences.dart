@@ -4,6 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SPUtil {
 
+  static int loginStatus = -1;
+
   static const unknownCustomer = {
     "id": -1,
     "username": "Unknown",
@@ -25,13 +27,12 @@ class SPUtil {
   };
 
   static Future<Map> getUserData() async {
-    int stat = await getLoginState();
-    if (stat == 0) {
+    if (loginStatus == 0) {
       String? data = await getString("customer");
       return data == null ? unknownCustomer :
           json.decode(data);
     }
-    else if (stat == 1) {
+    else if (loginStatus == 1) {
       String? data = await getString("merchant");
       return data == null ? unknownMerchant :
       json.decode(data);
@@ -41,19 +42,19 @@ class SPUtil {
     }
   }
 
-  static Future<int> getLoginState() async{
+  static updateLoginStatus() async{
     SharedPreferences sp = await SharedPreferences.getInstance();
     String? customerStat = sp.getString("customer");
     String? merchantStat = sp.getString("merchant");
 
     if(customerStat != null) {
-      return 0;
+      loginStatus = 0;
     }
     else if (merchantStat != null) {
-      return 1;
+      loginStatus = 1;
     }
     else {
-      return -1;
+      loginStatus = -1;
     }
   }
 

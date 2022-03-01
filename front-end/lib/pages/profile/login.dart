@@ -136,15 +136,12 @@ class _LoginState extends State<Login> {
 
     if (res["code"] == 200) {
       if (_role == 0) {
-        setState(() {
-          print(json.encode(res["data"]));
-          SPUtil.setString("customer", json.encode(res["data"]));
-        });
+        SPUtil.setString("customer", json.encode(res["data"]));
+        SPUtil.updateLoginStatus();
       }
       else {
-        setState(() {
-          SPUtil.setString("merchant", json.encode(res["data"]));
-        });
+        SPUtil.setString("merchant", json.encode(res["data"]));
+        SPUtil.updateLoginStatus();
       }
 
       Navigator.pushAndRemoveUntil(context,

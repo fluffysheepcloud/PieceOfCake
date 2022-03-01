@@ -5,8 +5,9 @@ class ProfileBlock extends StatelessWidget {
   final String _blockTitle;
   final List<String> _blockItems;
   final List<String> _routes;
+  final VoidCallback setState;
 
-  const ProfileBlock(this._blockTitle, this._blockItems, this._routes, {Key? key}) : super(key: key);
+  const ProfileBlock(this._blockTitle, this._blockItems, this._routes, this.setState, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class ProfileBlock extends StatelessWidget {
                 for (int i = 0; i < _blockItems.length; i++)
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, _routes[i]);
+                      Navigator.pushNamed(context, _routes[i]).then((res) => setState());
                     },
                     child: Text(_blockItems[i]),
                     style: _buttonStyle(),

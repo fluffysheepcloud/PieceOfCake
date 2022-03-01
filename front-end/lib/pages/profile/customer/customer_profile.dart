@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/components/common.dart';
 import 'package:frontend/components/profile_block.dart';
 import 'package:frontend/utils/shared_preferences.dart';
 
-class CustomerProfile extends StatelessWidget {
+class CustomerProfile extends StatefulWidget {
+  const CustomerProfile({Key? key}) : super(key: key);
+
+  @override
+  _CustomerProfileState createState() => _CustomerProfileState();
+}
+
+class _CustomerProfileState extends State<CustomerProfile> {
 
   Map<String, dynamic> customerInfo = {};
 
@@ -28,8 +36,6 @@ class CustomerProfile extends StatelessWidget {
     Map data = await SPUtil.getUserData();
     return data;
   }
-
-  CustomerProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +64,7 @@ class CustomerProfile extends StatelessWidget {
       backgroundColor: Colors.amber[100],
       appBar: AppBar(
         centerTitle: true,
-        title: Text("${customerInfo["username"]}'s Profile"),
+        title: Text("${customerInfo["nickName"]}'s Profile"),
         backgroundColor: Colors.red[100],
         toolbarHeight: 50,
       ),
@@ -87,12 +93,18 @@ class CustomerProfile extends StatelessWidget {
             //for spacing under the avatar
             SizedBox(height: 55),
             for (int i = 0; i < profileDataMap.length; i++)
-              ProfileBlock(profileDataMap[i]["title"], profileDataMap[i]["items"], profileDataMap[i]["routes"]),
+              ProfileBlock(
+                profileDataMap[i]["title"],
+                profileDataMap[i]["items"],
+                profileDataMap[i]["routes"],
+                () => setState(() {})
+              ),
             SizedBox(height: 10),
 
             ElevatedButton(
                 onPressed: () {
-                  SPUtil.remove("customer");
+                  SPUtil.remove(Common.CUSTOMER);
+                  SPUtil.updateLoginStatus();
                   Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
                 },
                 child: Text("Log Out"))

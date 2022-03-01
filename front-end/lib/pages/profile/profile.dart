@@ -19,20 +19,8 @@ class _ProfileState extends State<Profile> {
     Login(),
   ];
 
-  late int _loginStat = -1;
+  int _loginStat = SPUtil.loginStatus;
 
-  _updateLoginState() async {
-    int res = await SPUtil.getLoginState();
-    setState(() {
-      _loginStat = res;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _updateLoginState();
-  }
 
   @override
   Widget build(BuildContext context) {

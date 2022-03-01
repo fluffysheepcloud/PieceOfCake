@@ -26,9 +26,28 @@ customerRegister(Customer c) async {
   var res = await http.post(url,
     body: {
       "username": c.username,
+      "nickName": c.nickName,
       "password": c.password,
       "email": c.email,
       "phone": c.phone
+    }
+  );
+
+  return json.decode(res.body);
+}
+
+updateCustomerInfo(Map c) async {
+  String path = "";
+
+  var url = Uri.parse(baseURL + path);
+  var res = await http.put(url,
+    body: {
+      "id": c["id"].toString(),
+      "username": c["username"],
+      "nickName": c["nickName"],
+      "password": c["password"],
+      "email": c["email"],
+      "phone": c["phone"]
     }
   );
 
