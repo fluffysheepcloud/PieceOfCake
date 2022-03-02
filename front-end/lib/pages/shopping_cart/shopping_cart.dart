@@ -71,6 +71,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
         onDismissed: (direction) {
           quantity?.removeAt(index);
         },
+
         child: ShoppingCartCard(
           itemInfo[index],
           index,

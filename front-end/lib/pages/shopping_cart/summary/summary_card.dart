@@ -44,6 +44,7 @@ class summaryCard extends StatelessWidget {
                     _pictureAndInfo(),
                     _price(dataIndex),
 
+
                   ],
                 ),),
             )

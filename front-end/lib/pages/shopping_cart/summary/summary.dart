@@ -52,6 +52,7 @@ class _SummaryCardPageState extends State<SummaryCardPage> {
               return Text("Error: ${snapshot.error}");
             } else {
               // return _cardBuilder(snapshot);
+
               return Center(child: Text("Test"));
             }
           } else {

@@ -143,6 +143,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
         primary: Colors.white,
         shape: CircleBorder()
       ),
+
       onPressed: () {
         setState(() {
           widget.quantity[index]--;
