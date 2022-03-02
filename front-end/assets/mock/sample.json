@@ -5,11 +5,11 @@
       "description": "Strawberry and creme cake base"
     },
     {
-      "title": "Chocolate Cake",
+      "shopName": "Chocolate Cake",
       "description": "Dark and rich cake with default ganache frosting"
     },
     {
-      "title": "Vanilla Cake",
+      "shopName": "Vanilla Cake",
 
       "description": "Simple and classic vanilla flavored cake with buttercream frosting"
     }

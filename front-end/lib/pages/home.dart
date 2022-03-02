@@ -117,6 +117,7 @@ class _HomeState extends State<Home> {
                shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: _items.length,
+
                 itemBuilder: (context, index){
                   return InfoCard(_items[index]["shopName"], _items[index]["description"]);//new Text("hello");//InfoCard(_items[index number]);
                 }
