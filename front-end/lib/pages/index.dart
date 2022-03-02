@@ -18,7 +18,7 @@ class _IndexState extends State<Index> {
   int _currentIndex = 0;
   final List _pageList = <Widget>[
     Home(),
-    ShoppingCart(),
+    ShoppingCartPage(),
     Profile(),
     Browse(),
     Demo(),

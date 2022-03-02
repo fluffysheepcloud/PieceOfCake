@@ -51,7 +51,8 @@ class _SummaryCardPageState extends State<SummaryCardPage> {
             if (snapshot.hasError) {
               return Text("Error: ${snapshot.error}");
             } else {
-              return _cardBuilder(snapshot);
+              // return _cardBuilder(snapshot);
+              return Center(child: Text("Test"));
             }
           } else {
             return CircularProgressIndicator();
@@ -65,22 +66,21 @@ class _SummaryCardPageState extends State<SummaryCardPage> {
     List itemInfo = snapshot.data;
     List<Widget> list = List.generate(
       itemInfo.length,
-          (index) => Dismissible(key: UniqueKey(),
+      (index) => Dismissible(key: UniqueKey(),
         direction: DismissDirection.endToStart,
-        child: summaryCard(
-          orderCakeID: snapshot.data[index]['orderCakeID'],
-          cakeName: snapshot.data[index]['cakeName'],
-          imageURL: snapshot.data[index]['imageURL'],
-          cakeSize: snapshot.data[index]['cakeSize'],
-          baseColor: snapshot.data[index]['baseColor'],
-          baseFlavor: snapshot.data[index]['baseFlavor'],
-          frostingColor: snapshot.data[index]['frostingColor'],
-          frostingFlavor: snapshot.data[index]['frostingFlavor'],
-          price: snapshot.data[index]['price'],
-          dataIndex:index.toInt(),
+          child: summaryCard(
+            orderCakeID: snapshot.data[index]['orderCakeID'],
+            cakeName: snapshot.data[index]['cakeName'],
+            imageURL: snapshot.data[index]['imageURL'],
+            cakeSize: snapshot.data[index]['cakeSize'],
+            baseColor: snapshot.data[index]['baseColor'],
+            baseFlavor: snapshot.data[index]['baseFlavor'],
+            frostingColor: snapshot.data[index]['frostingColor'],
+            frostingFlavor: snapshot.data[index]['frostingFlavor'],
+            price: snapshot.data[index]['price'],
+            dataIndex:index.toInt(),
             quantity: snapshot.data[index]['quantity'],
-          quantityList: itemInfo[index],
-
+            quantityList: itemInfo[index],
         ),
       ),
     );
