@@ -9,8 +9,7 @@
             "baseFlavor": "mint",
             "frostingColor": "white",
             "frostingFlavor": "milk",
-            "price": 35.0,
-            "quantity": 1
+            "price": 35.0
         },
         {
             "orderCakeID": "01112223332",
@@ -21,8 +20,7 @@
             "baseFlavor": "banana",
             "frostingColor": "red",
             "frostingFlavor": "apple",
-            "price": 38.0,
-            "quantity": 1
+            "price": 38.0
         },
         {
             "orderCakeID": "01112223333",
@@ -33,8 +31,7 @@
             "baseFlavor": "strawberry",
             "frostingColor": "chocolate",
             "frostingFlavor": "chocolate",
-            "price": 45.0,
-            "quantity": 1
+            "price": 45.0
         },
         {
             "orderCakeID": "01112223334",
@@ -45,8 +42,7 @@
             "baseFlavor": "vanilla",
             "frostingColor": "purple",
             "frostingFlavor": "blueberry",
-            "price": 78.99,
-            "quantity": 1
+            "price": 78.99
         }
     ]
 }
