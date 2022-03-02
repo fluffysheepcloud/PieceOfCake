@@ -48,3 +48,27 @@ getMerchantInfoById(int id) async {
 
   return json.decode(res.body);
 }
+
+updateMerchantInfo(Map c) async {
+  String path = "";
+
+  var url = Uri.parse(baseURL + path);
+  var res = await http.put(url,
+      body: {
+        "id": c["id"].toString(),
+        "username": c["username"],
+        "shopname": c["shopname"],
+        "password": c["password"],
+        "email": c["email"],
+        "phone": c["phone"],
+        "description": c["description"],
+        "businessHour": c["businessHour"],
+        "street": c["street"],
+        "city": c["city"],
+        "state": c["state"],
+        "zip": c["zip"].toString()
+      }
+  );
+
+  return json.decode(res.body);
+}
