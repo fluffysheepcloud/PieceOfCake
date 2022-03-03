@@ -105,7 +105,7 @@ class _CustomerProfileState extends State<CustomerProfile> {
                 onPressed: () {
                   SPUtil.remove(Common.CUSTOMER);
                   SPUtil.updateLoginStatus();
-                  Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+                  Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false, arguments: 2);
                 },
                 child: Text("Log Out"))
           ],

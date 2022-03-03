@@ -57,7 +57,7 @@ updateMerchantInfo(Map c) async {
       body: {
         "id": c["id"].toString(),
         "username": c["username"],
-        "shopname": c["shopname"],
+        "shopName": c["shopName"],
         "password": c["password"],
         "email": c["email"],
         "phone": c["phone"],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/components/card_title.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 
 class ReviewCard extends StatelessWidget {
@@ -27,7 +28,7 @@ class ReviewCard extends StatelessWidget {
             },
             child: Column(
               children: [
-                _reviewedCardTitle(),
+                CardTitle(orderNumber, "Completed"),
                 Divider(thickness: 2.0, color: Colors.brown[200],),
                 _pictureAndComment(),
                 _ratingWidget()
@@ -39,15 +40,7 @@ class ReviewCard extends StatelessWidget {
   }
 
   // Display order number and "completed" status
-  Widget _reviewedCardTitle() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Padding(padding: EdgeInsets.only(left: 8, top: 5), child: Text("Order#: ${orderNumber}")),
-        Padding(padding: EdgeInsets.only(right: 8, top: 5), child: Text("Completed")),
-      ],
-    );
-  }
+
 
   // Display cake pic and the comment for this order
   Widget _pictureAndComment() {

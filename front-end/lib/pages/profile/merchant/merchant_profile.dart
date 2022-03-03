@@ -71,7 +71,7 @@ class _MerchantProfileState extends State<MerchantProfile> {
       backgroundColor: Colors.amber[50],
       appBar: AppBar(
         centerTitle: true,
-        title: Text("${merchantInfo["username"]}'s Profile"),
+        title: Text("${merchantInfo["shopName"]}'s Profile"),
         backgroundColor: Colors.red[100],
         toolbarHeight: 50,
       ),
@@ -104,17 +104,17 @@ class _MerchantProfileState extends State<MerchantProfile> {
                   profileDataMap[i]["title"],
                   profileDataMap[i]["items"],
                   profileDataMap[i]["routes"],
-                      () => setState(() {})
+                  () => setState(() {})
               ),
             SizedBox(height: 10),
 
             ElevatedButton(
-                onPressed: () {
-                  SPUtil.remove(Common.MERCHANT);
-                  SPUtil.updateLoginStatus();
-                  Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
-                },
-                child: Text("Log Out"))
+              onPressed: () {
+                SPUtil.remove(Common.MERCHANT);
+                SPUtil.updateLoginStatus();
+                Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false, arguments: 2);
+              },
+              child: Text("Log Out"))
           ],
         ),
       ),

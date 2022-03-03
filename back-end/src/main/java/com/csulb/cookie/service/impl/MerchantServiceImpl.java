@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.csulb.cookie.bean.ControllerResult;
 import com.csulb.cookie.domain.Address;
-import com.csulb.cookie.domain.Customer;
 import com.csulb.cookie.domain.Merchant;
 import com.csulb.cookie.service.AddressService;
 import com.csulb.cookie.service.MerchantService;
@@ -27,10 +26,12 @@ public class MerchantServiceImpl extends ServiceImpl<MerchantMapper, Merchant>  
 
         QueryWrapper<Merchant> wrapper = new QueryWrapper<>();
         wrapper.eq("username", username);
-        Merchant c = getBaseMapper().selectOne(wrapper);
-        if (c != null && c.getPassword() != null) {
-            if (c.getPassword().equals(password))
-                return new ControllerResult(ControllerResult.SUCCESS, c, "success").toJsonMap();
+        Merchant m = getBaseMapper().selectOne(wrapper);
+        if (m != null && m.getPassword() != null) {
+            if (m.getPassword().equals(password)) {
+                setAddress(m);
+                return new ControllerResult(ControllerResult.SUCCESS, m, "success").toJsonMap();
+            }
             else
                 return new ControllerResult(ControllerResult.UNLOGIN, null, "fail").toJsonMap();
 
@@ -81,17 +82,34 @@ public class MerchantServiceImpl extends ServiceImpl<MerchantMapper, Merchant>  
             return new ControllerResult(ControllerResult.NOT_FOUND, null, "not found").toJsonMap();
         }
         else {
-            return new ControllerResult(ControllerResult.SUCCESS, getById(id), "success").toJsonMap();
+            setAddress(m);
+            return new ControllerResult(ControllerResult.SUCCESS, m, "success").toJsonMap();
         }
     }
 
     @Override
     public Map<String, Object> updateMerchantById(Merchant m) {
-        boolean res = updateById(m);
+        MerchantMapper mapper = getBaseMapper();
+        int row = mapper.updateMerchantById(m);
+        if (row > 1) {
+            m = mapper.selectById(m.getId());
+            setAddress(m);
+            return new ControllerResult(ControllerResult.SUCCESS, m, "success").toJsonMap();
+        }
+        else {
+            return new ControllerResult(ControllerResult.ERROR, null, "error").toJsonMap();
+        }
 
-        return res ?
-                new ControllerResult(ControllerResult.SUCCESS, m, "success").toJsonMap() :
-                new ControllerResult(ControllerResult.ERROR, null, "error").toJsonMap();
+    }
+
+    private void setAddress(Merchant m) {
+        QueryWrapper<Address> qw = new QueryWrapper<>();
+        qw.eq("merchant_id", m.getId());
+        Address address = addressService.getOne(qw);
+        m.setStreet(address.getStreet());
+        m.setCity(address.getCity());
+        m.setState(address.getState());
+        m.setZip(address.getZip());
     }
 
     @Autowired
