@@ -3,7 +3,7 @@ import 'package:frontend/components/input_text_box.dart';
 
 void main() {
   runApp(new MaterialApp(
-    title: 'Received Order',
+    title: 'Cake Request Form',
     home: new PurelyCustomizedCake(),
   ));
 }
