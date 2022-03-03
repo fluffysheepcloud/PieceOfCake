@@ -15,9 +15,28 @@
             <result property="businessHour" column="business_hour" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <sql id="Base_Column_List">
-        id,username,shop_name,
-        password,email,phone,
-        description,business_hour
-    </sql>
+<!--    <sql id="Base_Column_List">-->
+<!--        id,username,shop_name,-->
+<!--        password,email,phone,-->
+<!--        description,business_hour-->
+<!--    </sql>-->
+
+    <update id="updateMerchantById">
+        update
+            merchant m inner join address a on m.id = a.merchant_id
+        set
+            m.username = #{username},
+            m.shop_name = #{shopName},
+            m.password = #{password},
+            m.email = #{email},
+            m.phone = #{phone},
+            m.description = #{description},
+            m.business_hour = #{businessHour},
+            a.street = #{street},
+            a.city = #{city},
+            a.state = #{state},
+            a.zip = #{zip}
+        where m.id = #{id}
+    </update>
+
 </mapper>

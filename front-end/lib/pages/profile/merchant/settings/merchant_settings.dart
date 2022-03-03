@@ -26,22 +26,21 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
   final _icons = <Icon>[
     Icon(Icons.password_outlined),
     Icon(Icons.email_outlined),
-    Icon(Icons.house_outlined)
+    Icon(Icons.house_outlined),
+    Icon(Icons.drive_file_rename_outline)
   ];
 
   final _options = [
     "Change Password",
     "Change Email",
-    "Change Address"
+    "Change Address",
+    "Change Shop Name"
   ];
-
-  final _passwordController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _addressController = TextEditingController();
 
   final _passwordFormKey = GlobalKey<FormState>();
   final _emailFormKey = GlobalKey<FormState>();
   final _addressFormKey = GlobalKey<FormState>();
+  final _shopNameFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -68,13 +67,16 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
 
   VoidCallback _callbackFunctionGenerator(BuildContext context, int index) {
     if (index == 0) {
-      return () => _showPasswordDialog(context, index, _passwordController, _passwordFormKey);
+      return () => _showPasswordDialog(context, index, _passwordFormKey);
     }
     else if (index == 1) {
-      return () => _showTextFiledDialog(context, index, _emailController, _emailFormKey);
+      return () => _showTextFiledDialog(context, index, _emailFormKey);
     }
     else if (index == 2) {
-      return () => _showAddressDialog(context, index, _addressController, _addressFormKey);
+      return () => _showAddressDialog(context, index, _addressFormKey);
+    }
+    else if (index == 3) {
+      return () => _showTextFiledDialog(context, index, _shopNameFormKey);
     }
     else {
       return () => {};
@@ -82,13 +84,14 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
 
   }
 
-  Future<void> _showPasswordDialog(BuildContext context, int index,
-      TextEditingController controller, GlobalKey<FormState> formKey) async {
+  Future<void> _showPasswordDialog(BuildContext context, int index, GlobalKey<FormState> formKey) async {
 
     Map merchant = await SPUtil.getUserData();
 
     TextEditingController old = TextEditingController();
-    TextEditingController new_temp = TextEditingController();
+    TextEditingController temp = TextEditingController();
+    TextEditingController password = TextEditingController();
+
 
     return showDialog<void>(
       context: context,
@@ -106,7 +109,7 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
                     TextFormField(
                       controller: old,
                       validator: (value) {
-                        if (new_temp.text.isNotEmpty && controller.text.isNotEmpty && new_temp.text == controller.text) {
+                        if (temp.text.isNotEmpty && password.text.isNotEmpty && temp.text == password.text) {
                           return merchant[Common.PASSWORD] == old.text ? null : "Wrong old password!";
                         }
                       },
@@ -114,19 +117,19 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
                     SizedBox(height: 10),
                     Text("New Password", ),
                     TextFormField(
-                      controller: new_temp,
+                      controller: temp,
                       obscureText: true,
                       validator: (value) {
-                        return new_temp.text == controller.text ? null : "Twice not same!";
+                        return temp.text == password.text ? null : "Twice not same!";
                       },
                     ),
                     SizedBox(height: 10),
                     Text("Re-enter New Password"),
                     TextFormField(
-                      controller: controller,
+                      controller: password,
                       obscureText: true,
                       validator: (value) {
-                        return controller.text == new_temp.text ? null : "Twice not same!";
+                        return password.text == temp.text ? null : "Twice not same!";
                       },
                     ),
                   ],
@@ -137,21 +140,22 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
             TextButton(
               child: const Text("Cancel"),
               onPressed: () {
-                controller.clear();
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
-                  _updateInfo(context, Common.PASSWORD, controller).then((res) {
+                  _updateInfo(context, {
+                    Common.PASSWORD: password
+                  }).then((res) {
                     if (res == 1) {
                       SPUtil.remove("merchant");
                       SPUtil.updateLoginStatus();
                       Navigator.pushAndRemoveUntil(context,
-                          MaterialPageRoute(
-                              builder: (context) => Index()
-                          ), (route) => false);
+                        MaterialPageRoute(
+                          builder: (context) => Index()
+                        ), (route) => false);
                     }
                   });
 
@@ -165,8 +169,10 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
     );
   }
 
-  Future<void> _showTextFiledDialog(BuildContext context, int index,
-      TextEditingController controller, GlobalKey<FormState> formKey) async {
+  Future<void> _showTextFiledDialog(BuildContext context, int index, GlobalKey<FormState> formKey) async {
+
+    TextEditingController controller  = TextEditingController();
+
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -196,8 +202,15 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   // Change Email
-                  if (index == 2) {
-                    _updateInfo(context, Common.EMAIL, controller);
+                  if (index == 1) {
+                    _updateInfo(context,{
+                      Common.EMAIL: controller
+                    });
+                  }
+                  else if (index == 3) {
+                    _updateInfo(context, {
+                      Common.SHOP_NAME: controller
+                    });
                   }
                 }
               },
@@ -208,9 +221,12 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
     );
   }
 
-  Future<void> _showAddressDialog(BuildContext context, int index,
-      TextEditingController controller, GlobalKey<FormState> formKey) async {
-    TextEditingController new_temp = TextEditingController();
+  Future<void> _showAddressDialog(BuildContext context, int index, GlobalKey<FormState> formKey) async {
+
+    TextEditingController streetController = TextEditingController();
+    TextEditingController cityController = TextEditingController();
+    TextEditingController stateController = TextEditingController();
+    TextEditingController zipController = TextEditingController();
 
     return showDialog<void>(
       context: context,
@@ -226,37 +242,41 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
                   children: [
                     Text("Street"),
                     TextFormField(
-                      controller: new_temp,
-                      obscureText: true,
+                      controller: streetController,
                       validator: (value) {
-                        return new_temp.text == controller.text ? null : "Invalid Street";
+                        if (value != null) {
+                          return value.trim().isNotEmpty ? null : "Invalid Street";
+                        }
                       },
                     ),
                     SizedBox(height: 10),
                     Text("City"),
                     TextFormField(
-                      controller: new_temp,
-                      obscureText: true,
+                      controller: cityController,
                       validator: (value) {
-                        return new_temp.text == controller.text ? null : "Invalid City";
+                        if (value != null) {
+                          return value.trim().isNotEmpty ? null : "Invalid City";
+                        }
                       },
                     ),
                     SizedBox(height: 10),
                     Text("State"),
                     TextFormField(
-                      controller: controller,
-                      obscureText: true,
+                      controller: stateController,
                       validator: (value) {
-                        return controller.text == new_temp.text ? null : "Invalid State";
+                        if (value != null) {
+                          return value.trim().isNotEmpty ? null : "Invalid State";
+                        }
                       },
                     ),
                     SizedBox(height: 10),
                     Text("Zip Code"),
                     TextFormField(
-                      controller: controller,
-                      obscureText: true,
+                      controller: zipController,
                       validator: (value) {
-                        return controller.text == new_temp.text ? null : "Invalid Zip Code";
+                        if (value != null) {
+                          return value.trim().isNotEmpty ? null : "Invalid Zip Code";
+                        }
                       },
                     ),
                   ],
@@ -275,12 +295,12 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   // Change Address
-                  if (index == 2) {
-                    _updateInfo(context, Common.STREET, controller);
-                    _updateInfo(context, Common.CITY, controller);
-                    _updateInfo(context, Common.STATE, controller);
-                    _updateInfo(context, Common.ZIP, controller);
-                  }
+                  _updateInfo(context, {
+                    Common.STREET: streetController,
+                    Common.CITY: cityController,
+                    Common.STATE: stateController,
+                    Common.ZIP: zipController
+                  });
                 }
               },
             ),
@@ -291,26 +311,32 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
   }
 
 
-  _updateInfo(BuildContext context, String field, TextEditingController controller) async {
+  _updateInfo(BuildContext context, Map<String, TextEditingController> fields) async {
     // Get Merchant data from global storage
 
     Map merchant = await SPUtil.getUserData();
     // Change the filed to new value(At this point, it did not change the global
     // storage yet. It only change this variable "merchant" Map
-    merchant[field] = controller.text;
+
+    for (String key in fields.keys) {
+      merchant[key] = fields[key]!.text;
+    }
+
     var res = await service.updateMerchantInfo(merchant);
     print(res);
     if (res["code"] == 200) {
       setState(() {
         SPUtil.setString("merchant", json.encode(res["data"]));
       });
-      controller.clear();
+
       Navigator.of(context).pop();
       ToastUtil.showToast("Success!");
       return 1;
     }
     else {
-      controller.clear();
+      for (String key in fields.keys) {
+        fields[key]!.clear();
+      }
       Navigator.of(context).pop();
       return 0;
     }

@@ -7,7 +7,10 @@ import 'package:frontend/pages/browse.dart';
 
 
 class Index extends StatefulWidget {
-  const Index({Key? key, arguments}) : super(key: key);
+
+  final arguments;
+
+  const Index({Key? key, this.arguments}) : super(key: key);
 
   @override
   _IndexState createState() => _IndexState();
@@ -31,7 +34,7 @@ class _IndexState extends State<Index> {
       body: _pageList[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        currentIndex: _currentIndex,
+        currentIndex: widget.arguments ?? _currentIndex,
         onTap: (int index) {
           setState(() {
             _currentIndex = index;
@@ -67,6 +70,12 @@ class _IndexState extends State<Index> {
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.arguments ?? 0;
   }
 }
 
