@@ -7,26 +7,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Datepicker',
+      title: 'Pickup Appointment',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: PickupAppointment(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class PickupAppointment extends StatefulWidget {
+  const PickupAppointment({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState()
+  _PickupAppointmentState createState()
   {
-    return _MyHomePageState();
+    return _PickupAppointmentState();
   }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _PickupAppointmentState extends State<PickupAppointment> {
   String date = "";
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay(hour: 00, minute: 00);
