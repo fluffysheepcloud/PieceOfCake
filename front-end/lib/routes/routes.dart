@@ -45,7 +45,7 @@ final routes = {
   "/review": (context, {arguments}) => Review(arguments: arguments),
   "/build_cake": (context, {arguments}) => CustomCakePage(arguments: arguments),
   "/shopping_cart": (context, {arguments}) => ShoppingCartPage(argumenets: arguments),
-  "/shopping_cart/summary": (context, {arguments}) => Summary(arguments: arguments),
+  "/shopping_cart/summary": (context, {arguments}) => Summary(argumenets: arguments),
   "/product_page": (context, {arguments}) => ProductPage(arguments: arguments),
 };
 

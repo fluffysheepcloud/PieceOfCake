@@ -1,81 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/shopping_cart/shopping_cart_card.dart';
+class SummaryCard extends StatefulWidget {
 
-class summaryCard extends StatelessWidget {
-  String orderCakeID;
-  String cakeName;
-  String imageURL;
-  double cakeSize;
-  String baseColor;
-  String baseFlavor;
-  String frostingColor;
-  String frostingFlavor;
-  double price;
-  int dataIndex;
-  int quantity;
-  List  quantityList;
+  Map areguments;
+  int index;
+  List<int> quantity;
 
-  summaryCard({required this.orderCakeID, required this.cakeName, required this.imageURL,
-    required this.cakeSize, required this.baseColor, required this.baseFlavor,
-    required this.frostingColor, required this.frostingFlavor, required this.price,
-    required this.dataIndex, required this.quantity,required this.quantityList, Key? key})
-      : super(key: key);
+  SummaryCard(this.areguments, this.index, this.quantity, {Key? key}) : super(key: key);
 
+  @override
+  _SummaryCardState createState() => _SummaryCardState();
+}
 
+class _SummaryCardState extends State<SummaryCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-        child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.85,
-            height: 220.0,
-            child: Card(
-              elevation: 5,
-              color: Colors.grey[200],
-              shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(5.0)),
-              child: InkWell(
-                onTap: () {
-                  // TODO: navigate to a order detail page
-                },
-                child: Column(
-                  children: [
-                    _summaryTitle(),
-                    Divider(thickness: 2.0, color: Colors.brown[200],),
-                    _pictureAndInfo(),
-                    _price(dataIndex),
+      padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+      child: SizedBox(
+        width: MediaQuery
+            .of(context)
+            .size
+            .width * 0.85,
+        height: 220.0,
+        child: Card(
+          elevation: 5,
+          color: Colors.grey[200],
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 5, top: 5),
+                child: Text("Cake ID: ${widget.areguments["orderCakeID"]}"),
+              ),
+              // _shoppingCartCardTitle(),
+              _pictureAndInfo(),
+              Divider(thickness: 2.0, color: Colors.brown[200],),
+              _price(),
 
-
-                  ],
-                ),),
-            )
-        )
+            ],
+          ),),
+      ),
     );
   }
-
-  // Display order number and "completed" status
-  Widget _summaryTitle() {
+  Widget _shoppingCartCardTitle() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Padding(padding: EdgeInsets.only(left: 8, top: 5), child: Text("Order#: ${orderCakeID}")),
-        //Padding(padding: EdgeInsets.only(right: 8, top: 5), child: Text("Cake name: ${cakeName}")),
+        Padding(
+            padding: EdgeInsets.only(
+                left: 8, top: 5),
+            child: Text(
+              "Name: ${widget.areguments["cakeName"]}",
+              overflow: TextOverflow.ellipsis,
+            )
+        ),
       ],
     );
   }
 
-  // Display cake pic and the comment for this order
   Widget _pictureAndInfo() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Padding(
-          padding: EdgeInsets.fromLTRB(10, 5, 5, 0),
+          padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
           child: SizedBox(
               height: 80,
               width:120,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset(imageURL, fit: BoxFit.cover),
+                child: Image.asset(widget.areguments["imageURL"], fit: BoxFit.cover),
               )
           ),
         ),
@@ -84,7 +79,12 @@ class summaryCard extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
               child: Column(
                 children: [
-                  Text(quantity.toString()),
+                  Text("${widget.areguments["cakeName"]}", overflow: TextOverflow.ellipsis, maxLines: 1),
+                  Text("Cake Size: ${widget.areguments["cakeSize"]}",overflow: TextOverflow.ellipsis, maxLines: 1,),
+                  Text("Base color: ${widget.areguments["baseColor"]}",overflow: TextOverflow.ellipsis, maxLines: 1,),
+                  Text("Base flavor: ${widget.areguments["baseFlavor"]} ",overflow: TextOverflow.ellipsis, maxLines: 1,),
+                  Text("Frosting Color:${widget.areguments["frostingColor"]} ",overflow: TextOverflow.ellipsis, maxLines: 1,),
+                  Text("Frosting Flavor:${widget.areguments["frostingFlavor"]}",overflow: TextOverflow.ellipsis, maxLines: 1,),
                 ],
               ),
             )
@@ -92,16 +92,15 @@ class summaryCard extends StatelessWidget {
     );
   }
 
-  Widget _price(int index) {
+  Widget _price() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
-            padding: EdgeInsets.only(
-                left: 8, top: 5),
+            padding: EdgeInsets.only(left: 8, top: 0),
             child: Text(
-                "Unit Price: ${price},"
-                    "qu: ${quantityList[dataIndex]}"
+                "Unit Price: ${widget.areguments["price"]}, "
+                    "Quantity: ${widget.quantity[widget.index]}"
             )
         ),
       ],
@@ -109,5 +108,4 @@ class summaryCard extends StatelessWidget {
   }
 
 }
-
 
