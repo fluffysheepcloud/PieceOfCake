@@ -24,12 +24,17 @@ class _BrowseState extends State<Browse>{
   String val = '';
   TextEditingController tc = new TextEditingController();
 
-  Future<void> readJson() async {
+   readJson() async {
+    var m1 = await getMerchantInfoById(1);
+    var m2 = await getMerchantInfoById(2);
+    var m3 = await getMerchantInfoById(3);
 
-    final String response = await rootBundle.loadString('assets/mock/sample.json');
-    final data = await json.decode(response);
+    //final String response = await rootBundle.loadString('assets/mock/sample.json');
+    //final data = await json.decode(response);
     setState(() {
-      _items = data["items"];
+      _items.add(m1["data"]);
+      _items.add(m2["data"]);
+      _items.add(m3["data"]);
     });
   }
 
@@ -59,9 +64,10 @@ class _BrowseState extends State<Browse>{
         children:<Widget>[
           //searchbar
           Container(
-              padding: const EdgeInsets.all(50.0),
+              padding: const EdgeInsets.only(bottom:5.0, left: 50.0, right: 50.0, top: 50.0),
               //instead of appbar make a textfield with icon button
               child: TextFormField(
+                  controller: tc,
                 //controller: _controller,
                 decoration: InputDecoration(
                     labelText: 'Search',
@@ -100,8 +106,8 @@ class _BrowseState extends State<Browse>{
                   );
                 },
                 onFieldSubmitted: (val) {
+                  //when user hits enter this method will be called
                   results.clear();
-                  /// call filter function here
                   filterSearch(val);
                 },
                 //controller: ec,
