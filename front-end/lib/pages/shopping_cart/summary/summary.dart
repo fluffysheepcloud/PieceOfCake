@@ -76,6 +76,7 @@ class _SummaryState extends State<Summary> {
 
     for (var i =0; i < summaryInfo.length; i++)
       {
+
         if (summaryQu[i] == 0)
           {
             list.removeAt(i);
@@ -99,8 +100,9 @@ class _SummaryState extends State<Summary> {
           padding: EdgeInsets.only(bottom: 25, top: 10),
           child: ElevatedButton(
               onPressed: (){
-                //Navigator.pushNamed(context, "/shopping_cart/summary",arguments:quantity);
+                Navigator.pushNamed(context, "/shopping_cart/payment",arguments: _getTotal(snapshot));
                 print(widget.argumenets.toString());
+                print(itemInfo[0]["price"].toString());
               },
               child: Text("Pay")
           ),
@@ -108,5 +110,20 @@ class _SummaryState extends State<Summary> {
     );
     return list;
   }
+
+  double? _getTotal(AsyncSnapshot snapshot){
+    double? total=0;
+    List itemInfo = snapshot.data;
+    List summaryQu = widget.argumenets;
+
+    for (var i =0; i < itemInfo.length; i++)
+    {
+      total = (total! + (itemInfo[i]["price"] * summaryQu[i] )) as double?;
+    }
+    return total;
+
+  }
+
+
 }
 
