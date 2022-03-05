@@ -21,7 +21,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
               .of(context)
               .size
               .width * 0.85,
-          height: 220.0,
+          height: 240.0,
           child: Card(
             elevation: 5,
             color: Colors.grey[200],
@@ -33,7 +33,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                   padding: EdgeInsets.only(left: 5, top: 5),
                   child: Text("Cake ID: ${widget.areguments["orderCakeID"]}"),
                 ),
-                // _shoppingCartCardTitle(),
+                 _shoppingCartCardTitle(),
                 _pictureAndInfo(),
                 Divider(thickness: 2.0, color: Colors.brown[200],),
                 _price(),

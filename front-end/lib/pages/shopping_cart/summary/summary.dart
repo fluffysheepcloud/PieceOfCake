@@ -64,24 +64,35 @@ class _SummaryState extends State<Summary> {
   List<Widget> _itemCarBuilder(AsyncSnapshot snapshot){
     List itemInfo = snapshot.data;
     List summaryInfo = itemInfo;
+    List summaryQu = widget.argumenets;
 
     List<Widget> list = List.generate(
-      widget.argumenets.length,
-          (index) => Dismissible(
-        key: UniqueKey(),
-        direction: DismissDirection.endToStart,
-        onDismissed: (direction) {
-          widget.argumenets?.removeAt(index);
+      summaryInfo.length, (index) => SummaryCard(
+        itemInfo[index],
+        index,
+        widget.argumenets ?? [])
 
-        },
-
-        child: SummaryCard(
-            itemInfo[index],
-            index,
-            widget.argumenets ?? []
-        ),
-      ),
     );
+
+    for (var i =0; i < summaryInfo.length; i++)
+      {
+        if (summaryQu[i] == 0)
+          {
+            list.removeAt(i);
+          }
+      }
+
+      //
+    /*List<Widget> list = List.generate(
+    summaryInfo.length, (index) => summaryQu[index] != 0
+        ? SummaryCard(
+          itemInfo[index],
+          index,
+          widget.argumenets ?? [])
+    //    : summaryInfo.removeAt(index),
+
+    );
+*/
 
     list.add(
         Padding(
