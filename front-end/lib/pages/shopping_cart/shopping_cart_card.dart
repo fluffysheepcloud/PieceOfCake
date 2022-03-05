@@ -21,7 +21,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
               .of(context)
               .size
               .width * 0.85,
-          height: 240.0,
+          height: 220.0,
           child: Card(
             elevation: 5,
             color: Colors.grey[200],
@@ -81,10 +81,6 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                 children: [
                   Text("${widget.areguments["cakeName"]}", overflow: TextOverflow.ellipsis, maxLines: 1),
                   Text("Cake Size: ${widget.areguments["cakeSize"]}",overflow: TextOverflow.ellipsis, maxLines: 1,),
-                  Text("Base color: ${widget.areguments["baseColor"]}",overflow: TextOverflow.ellipsis, maxLines: 1,),
-                  Text("Base flavor: ${widget.areguments["baseFlavor"]} ",overflow: TextOverflow.ellipsis, maxLines: 1,),
-                  Text("Frosting Color:${widget.areguments["frostingColor"]} ",overflow: TextOverflow.ellipsis, maxLines: 1,),
-                  Text("Frosting Flavor:${widget.areguments["frostingFlavor"]}",overflow: TextOverflow.ellipsis, maxLines: 1,),
                 ],
         ),
             )
