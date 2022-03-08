@@ -69,7 +69,8 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
         key: UniqueKey(),
         direction: DismissDirection.endToStart,
         onDismissed: (direction) {
-          quantity?.removeAt(index);
+          quantity?[index] = 0;
+          //widget.argumenets?.removeAt(index);
         },
 
         child: ShoppingCartCard(
@@ -85,8 +86,8 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
         padding: EdgeInsets.only(bottom: 25, top: 10),
         child: ElevatedButton(
           onPressed: (){
-            // Navigator.pushNamed(context, "/shopping_cart/summary");
-            print(quantity);
+             Navigator.of(context).pushNamed( "/shopping_cart/summary", arguments: quantity);
+             print(quantity);
           },
           child: Text("Proceed to checkout")
         ),

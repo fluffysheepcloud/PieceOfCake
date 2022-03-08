@@ -33,7 +33,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                   padding: EdgeInsets.only(left: 5, top: 5),
                   child: Text("Cake ID: ${widget.areguments["orderCakeID"]}"),
                 ),
-                // _shoppingCartCardTitle(),
+                 _shoppingCartCardTitle(),
                 _pictureAndInfo(),
                 Divider(thickness: 2.0, color: Colors.brown[200],),
                 _price(),
@@ -81,10 +81,6 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
                 children: [
                   Text("${widget.areguments["cakeName"]}", overflow: TextOverflow.ellipsis, maxLines: 1),
                   Text("Cake Size: ${widget.areguments["cakeSize"]}",overflow: TextOverflow.ellipsis, maxLines: 1,),
-                  Text("Base color: ${widget.areguments["baseColor"]}",overflow: TextOverflow.ellipsis, maxLines: 1,),
-                  Text("Base flavor: ${widget.areguments["baseFlavor"]} ",overflow: TextOverflow.ellipsis, maxLines: 1,),
-                  Text("Frosting Color:${widget.areguments["frostingColor"]} ",overflow: TextOverflow.ellipsis, maxLines: 1,),
-                  Text("Frosting Flavor:${widget.areguments["frostingFlavor"]}",overflow: TextOverflow.ellipsis, maxLines: 1,),
                 ],
         ),
             )
