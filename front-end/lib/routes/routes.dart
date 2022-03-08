@@ -7,6 +7,10 @@ import 'package:frontend/pages/profile/customer/fav_cakes/fav_cakes.dart';
 import 'package:frontend/pages/profile/customer/fav_merchants/fav_merchants.dart';
 import 'package:frontend/pages/profile/customer/orders/orders.dart';
 import 'package:frontend/pages/profile/customer/settings/customer_settings.dart';
+import 'package:frontend/pages/profile/merchant/cake_products/cake_product.dart';
+import 'package:frontend/pages/profile/merchant/orders/orders.dart';
+import 'package:frontend/pages/profile/merchant/review/merchant_review.dart';
+import 'package:frontend/pages/profile/merchant/settings/merchant_settings.dart';
 import 'package:frontend/pages/profile/registration/account_registration.dart';
 import 'package:frontend/pages/profile/customer/review/review.dart';
 import 'package:frontend/pages/profile/registration/success.dart';
@@ -29,6 +33,12 @@ final routes = {
   "/profile/customer/fav_cakes": (context, {arguments}) => FavCakesPage(arguments: arguments),
   "/profile/customer/fav_merchants": (context, {arguments}) => FavMerchantsPage(arguments: arguments),
   "/profile/customer/customer_settings": (context, {arguments}) => CustomerSettingsPage(arguments: arguments),
+
+  // Merchant Profile Routes
+  "/profile/merchant/merchant_all_orders": (context, {arguments}) => MerchantOrdersPage(arguments: arguments),
+  "/profile/merchant/cake_product": (context, {arguments}) => CakeProductPage(arguments: arguments),
+  "/profile/customer/merchant_reviews": (context, {arguments}) => MerchantReviewsPage(arguments: arguments),
+  "/profile/merchant/merchant_settings": (context, {arguments}) => MerchantSettingsPage(arguments: arguments),
 
   "/cancel_order": (context, {arguments}) => CanceledOrder(arguments: arguments),
   "/received_order": (context, {arguments}) => ReceivedOrder(arguments: arguments),
