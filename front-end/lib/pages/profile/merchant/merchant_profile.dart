@@ -30,12 +30,12 @@ class _MerchantProfileState extends State<MerchantProfile> {
     {
       "title": "My Cakes",
       "items": ["Cakes", "Cake Reviews"],
-      "routes": ["/profile/merchant/cake_product", "/profile/customer/merchant_reviews"],
+      "routes": ["/profile/merchant/cake_product", "/profile/merchant/merchant_reviews"],
     },
     {
       "title": "Personal Info",
-      "items": ["Settings"],
-      "routes": ["/profile/merchant/merchant_settings"],
+      "items": ["Settings", "Shop Manager"],
+      "routes": ["/profile/merchant/merchant_settings", "/profile/merchant/shop_manager"],
     }
   ];
 
@@ -71,7 +71,7 @@ class _MerchantProfileState extends State<MerchantProfile> {
       backgroundColor: Colors.amber[50],
       appBar: AppBar(
         centerTitle: true,
-        title: Text("${merchantInfo["shopName"]}'s Profile"),
+        title: Text("${merchantInfo["username"]}'s Profile"),
         backgroundColor: Colors.red[100],
         toolbarHeight: 50,
       ),
