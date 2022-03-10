@@ -17,6 +17,7 @@ import 'package:frontend/pages/profile/customer/review/review.dart';
 import 'package:frontend/pages/profile/registration/success.dart';
 import 'package:frontend/pages/received_order.dart';
 import 'package:frontend/pages/search/merchant_home/product_page.dart';
+import 'package:frontend/pages/shopping_cart/payment/payment.dart';
 import 'package:frontend/pages/shopping_cart/shopping_cart.dart';
 import 'package:frontend/pages/shopping_cart/summary/summary.dart';
 
@@ -47,7 +48,8 @@ final routes = {
   "/review": (context, {arguments}) => Review(arguments: arguments),
   "/build_cake": (context, {arguments}) => CustomCakePage(arguments: arguments),
   "/shopping_cart": (context, {arguments}) => ShoppingCartPage(argumenets: arguments),
-  "/shopping_cart/summary": (context, {arguments}) => Summary(arguments: arguments),
+  "/shopping_cart/summary": (context, {arguments}) => Summary(argumenets: arguments),
+  "/shopping_cart/payment": (context, {arguments}) => Payment(argumenets: arguments),
   "/product_page": (context, {arguments}) => ProductPage(arguments: arguments),
 };
 
