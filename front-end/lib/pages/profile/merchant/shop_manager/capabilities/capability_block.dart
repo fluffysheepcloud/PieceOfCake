@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 class CapabilityBlock extends StatefulWidget {
   // refers to base size, base flavor, base color, etc
   String blockLabel;
+
+  // map that contains the name of the item and price of the item
   Map<String, double> blockItems;
 
   CapabilityBlock({
