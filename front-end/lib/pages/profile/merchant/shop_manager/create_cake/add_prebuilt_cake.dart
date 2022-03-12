@@ -21,6 +21,7 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
   final TextEditingController _cake_name = TextEditingController();
   final TextEditingController _cake_description = TextEditingController();
   final CurrencyTextInputFormatter _cake_price = CurrencyTextInputFormatter();
+  final TextEditingController _cake_quantity = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -105,28 +106,59 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
             Padding(
               padding: EdgeInsets.all(10.0),
               child: Container(
+                padding: EdgeInsets.all(10.0),
+                color: Colors.orange[50],
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                    "Cake Price",
+                    textAlign: TextAlign.left,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.brown),
+                    ),
+
+                    TextFormField(
+                      initialValue: _cake_price.format('2000'),
+                      inputFormatters: <TextInputFormatter>[_cake_price],
+                      keyboardType: TextInputType.number,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            // enter quantity of cakes
+            Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Container(
                   padding: EdgeInsets.all(10.0),
                   color: Colors.orange[50],
-                  child: Column(
+                  child: Column (
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                      "Cake Price",
-                      textAlign: TextAlign.left,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.brown),
+                        "Cake Quantity",
+                        textAlign: TextAlign.left,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.brown),
                       ),
 
-                      TextFormField(
-                        initialValue: _cake_price.format('2000'),
-                        inputFormatters: <TextInputFormatter>[_cake_price],
+                      TextField(
+                        controller: _cake_quantity,
                         keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ], // Only numbers can be entered
                       ),
                     ],
-                  ),
-                ),
+                  )
+
+                  //InputTextBox("Cake Name", "the name of your cake", _cake_name)
               ),
+            ),
 
             // submit and add new cake to the database
             TextButton(
@@ -143,5 +175,4 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
       )
     );
   }
-
 }
