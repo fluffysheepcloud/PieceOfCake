@@ -27,20 +27,20 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
     Icon(Icons.password_outlined),
     Icon(Icons.email_outlined),
     Icon(Icons.house_outlined),
-    Icon(Icons.drive_file_rename_outline)
+    Icon(Icons.phone),
   ];
 
   final _options = [
     "Change Password",
     "Change Email",
     "Change Address",
-    "Change Shop Name"
+    "Change Phone Number"
   ];
 
   final _passwordFormKey = GlobalKey<FormState>();
   final _emailFormKey = GlobalKey<FormState>();
   final _addressFormKey = GlobalKey<FormState>();
-  final _shopNameFormKey = GlobalKey<FormState>();
+  final _phoneFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,7 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
       return () => _showAddressDialog(context, index, _addressFormKey);
     }
     else if (index == 3) {
-      return () => _showTextFiledDialog(context, index, _shopNameFormKey);
+      return () => _showTextFiledDialog(context, index, _phoneFormKey);
     }
     else {
       return () => {};
@@ -207,9 +207,10 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
                       Common.EMAIL: controller
                     });
                   }
+                  // Change phone number
                   else if (index == 3) {
                     _updateInfo(context, {
-                      Common.SHOP_NAME: controller
+                      Common.PHONE: controller
                     });
                   }
                 }
