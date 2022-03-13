@@ -155,8 +155,6 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
                       ),
                     ],
                   )
-
-                  //InputTextBox("Cake Name", "the name of your cake", _cake_name)
               ),
             ),
 
