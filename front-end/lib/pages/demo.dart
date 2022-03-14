@@ -56,6 +56,12 @@ class Demo extends StatelessWidget {
                 Navigator.pushNamed(context, "/product_page", arguments: mockData);
               },
               child: Text("Product Page")),
+            SizedBox(height: 20),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "/profile/merchant/shop_manager/create_cake");
+                },
+                child: Text("Add Prebuilt Cake")),
           ],
         ),
       ),

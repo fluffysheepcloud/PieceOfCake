@@ -11,6 +11,7 @@ import 'package:frontend/pages/profile/merchant/cake_products/cake_product.dart'
 import 'package:frontend/pages/profile/merchant/orders/orders.dart';
 import 'package:frontend/pages/profile/merchant/review/merchant_review.dart';
 import 'package:frontend/pages/profile/merchant/settings/merchant_settings.dart';
+import 'package:frontend/pages/profile/merchant/shop_manager/create_cake/add_prebuilt_cake.dart';
 import 'package:frontend/pages/profile/merchant/shop_manager/shop_manager.dart';
 import 'package:frontend/pages/profile/registration/account_registration.dart';
 import 'package:frontend/pages/profile/customer/review/review.dart';
@@ -42,6 +43,7 @@ final routes = {
   "/profile/merchant/merchant_reviews": (context, {arguments}) => MerchantReviewsPage(arguments: arguments),
   "/profile/merchant/merchant_settings": (context, {arguments}) => MerchantSettingsPage(arguments: arguments),
   "/profile/merchant/shop_manager": (context, {arguments}) => ShopManagerPage(arguments: arguments),
+  "/profile/merchant/shop_manager/create_cake": (context, {arguments}) => AddPrebuiltCake(arguments: arguments),
 
   "/cancel_order": (context, {arguments}) => CanceledOrder(arguments: arguments),
   "/received_order": (context, {arguments}) => ReceivedOrder(arguments: arguments),

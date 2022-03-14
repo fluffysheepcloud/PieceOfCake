@@ -11,7 +11,9 @@ void main() {
 }
 
 class AddPrebuiltCake extends StatefulWidget {
-  const AddPrebuiltCake() : super();
+  var arguments;
+
+  AddPrebuiltCake({Key? key, this.arguments}) : super(key: key);
 
   @override
   _AddPrebuiltCakeState createState() => _AddPrebuiltCakeState();
