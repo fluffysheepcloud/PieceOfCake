@@ -1,5 +1,6 @@
 package com.csulb.cookie.controller;
 
+import com.csulb.cookie.domain.CakeBase;
 import com.csulb.cookie.domain.Merchant;
 import com.csulb.cookie.service.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +49,6 @@ public class MerchantController {
     public Map<String, Object> getMerchantCapability(@PathVariable(value = "id") int id) {
         return service.getMerchantCapability(id);
     }
-
-
 
     @Autowired
     public void setService(MerchantService service) {
