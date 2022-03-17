@@ -50,7 +50,7 @@ class _ReviewedPageState extends State<ReviewedPage> {
             orderNumber: snapshot.data[index][Common.ORDER_NUMBER],
             imageURL: snapshot.data[index][Common.IMAGE_URL],
             comment: snapshot.data[index][Common.CAKE_COMMENT],
-            rating: snapshot.data[index]['rating'],
+            rating: snapshot.data[index]['rate'],
           );
         }
     );
