@@ -11,6 +11,10 @@ import 'package:frontend/pages/profile/merchant/cake_products/cake_product.dart'
 import 'package:frontend/pages/profile/merchant/orders/orders.dart';
 import 'package:frontend/pages/profile/merchant/review/merchant_review.dart';
 import 'package:frontend/pages/profile/merchant/settings/merchant_settings.dart';
+import 'package:frontend/pages/profile/merchant/shop_manager/capabilities/capability_page.dart';
+import 'package:frontend/pages/profile/merchant/shop_manager/capabilities/modify_capability_page.dart';
+import 'package:frontend/pages/profile/merchant/shop_manager/create_cake/add_prebuilt_cake.dart';
+import 'package:frontend/pages/profile/merchant/shop_manager/shop_manager.dart';
 import 'package:frontend/pages/profile/registration/account_registration.dart';
 import 'package:frontend/pages/profile/customer/review/review.dart';
 import 'package:frontend/pages/profile/registration/success.dart';
@@ -38,8 +42,12 @@ final routes = {
   // Merchant Profile Routes
   "/profile/merchant/merchant_all_orders": (context, {arguments}) => MerchantOrdersPage(arguments: arguments),
   "/profile/merchant/cake_product": (context, {arguments}) => CakeProductPage(arguments: arguments),
-  "/profile/customer/merchant_reviews": (context, {arguments}) => MerchantReviewsPage(arguments: arguments),
+  "/profile/merchant/merchant_reviews": (context, {arguments}) => MerchantReviewsPage(arguments: arguments),
   "/profile/merchant/merchant_settings": (context, {arguments}) => MerchantSettingsPage(arguments: arguments),
+  "/profile/merchant/shop_manager": (context, {arguments}) => ShopManagerPage(arguments: arguments),
+  "/profile/merchant/shop_manager/create_cake": (context, {arguments}) => AddPrebuiltCake(arguments: arguments),
+  "/profile/merchant/shop_manager/modify_capability": (context, {arguments}) => CapabilityPage(arguments: arguments),
+  "/profile/merchant/shop_manager/create_capability": (context, {arguments}) => ModifyCapabilityPage(arguments: arguments),
 
   "/cancel_order": (context, {arguments}) => CanceledOrder(arguments: arguments),
   "/received_order": (context, {arguments}) => ReceivedOrder(arguments: arguments),

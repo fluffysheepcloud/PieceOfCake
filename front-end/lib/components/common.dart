@@ -13,7 +13,14 @@ class Common {
   static const String PASSWORD = "password";
   static const String NICKNAME = "nickName";
   static const String EMAIL = "email";
+  static const String PHONE = "phone";
+
+
   static const String SHOP_NAME = "shopName";
+
+  static const String SHOP_DESCRIPTION = "description";
+  static const String SHOP_HOURS = "businessHour";
+
   static const String STREET = "street";
   static const String CITY = "city";
   static const String STATE = "state";

@@ -1,5 +1,6 @@
 package com.csulb.cookie.service;
 
+import com.csulb.cookie.bean.Capability;
 import com.csulb.cookie.domain.Customer;
 import com.csulb.cookie.domain.Merchant;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -16,7 +17,12 @@ public interface MerchantService extends IService<Merchant> {
     }
 
     Map<String, Object> merchantLogin(String username, String password);
+
     Map<String, Object> merchantRegister(Merchant customer);
+
     Map<String, Object> getMerchantById(int id);
+
     Map<String, Object> updateMerchantById(Merchant m);
+
+    Map<String, Object> getMerchantCapability(int id);
 }

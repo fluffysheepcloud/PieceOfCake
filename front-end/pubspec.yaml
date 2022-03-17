@@ -19,7 +19,8 @@ dependencies:
   toggle_switch: ^1.4.0
   flutter_multi_select_items: ^0.2.1
   carousel_slider: ^4.0.0
-#  syncfusion_flutter_calendar: ^19.4.54
+  syncfusion_flutter_calendar: ^19.4.54
+  currency_text_input_formatter: ^2.1.5a
 
 dev_dependencies:
   flutter_test:
