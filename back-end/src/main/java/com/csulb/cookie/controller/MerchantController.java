@@ -43,6 +43,14 @@ public class MerchantController {
     }
 
 
+    @ResponseBody
+    @RequestMapping(value = "/api/merchant/capability/{id}", method = RequestMethod.GET)
+    public Map<String, Object> getMerchantCapability(@PathVariable(value = "id") int id) {
+        return service.getMerchantCapability(id);
+    }
+
+
+
     @Autowired
     public void setService(MerchantService service) {
         this.service = service;
