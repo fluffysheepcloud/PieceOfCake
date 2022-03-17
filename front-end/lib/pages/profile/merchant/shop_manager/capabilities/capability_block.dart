@@ -39,7 +39,7 @@ class _CapabilityBlockState extends State<CapabilityBlock> {
           Wrap(children: [
             for (int i = 0; i < widget.items.length; i++)
               // Container()
-              CapabilityCard(widget.items[i]["id"], widget.items[i]["name"].toString(), widget.items[i]["price"]),
+              CapabilityCard(widget.items[i]["id"], widget.blockLabel, widget.items[i]["name"].toString(), widget.items[i]["price"]),
 
             AddCapabilityCard()
           ])

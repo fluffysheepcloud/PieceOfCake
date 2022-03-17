@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 class CapabilityCard extends StatelessWidget {
   var arguments;
 
-  CapabilityCard(this.id, this.name, this.price, {Key? key}) : super(key: key);
+  CapabilityCard(this.id, this. title, this.name, this.price, {Key? key}) : super(key: key);
 
   int id;
+  String title;
   String name;
   double price;
 
@@ -25,7 +26,12 @@ class CapabilityCard extends StatelessWidget {
       child: InkWell(
         splashColor: Colors.red[300],
         onTap: (){
-          debugPrint('Ingredient tapped');
+          Navigator.pushNamed(context, "/profile/merchant/shop_manager/create_capability", arguments: {
+            "id": id,
+            "title": title,
+            "name": name,
+            "price": price
+          });
         },
         child: Column(
 
