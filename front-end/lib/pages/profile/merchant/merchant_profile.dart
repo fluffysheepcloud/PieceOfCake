@@ -71,7 +71,7 @@ class _MerchantProfileState extends State<MerchantProfile> {
       backgroundColor: Colors.amber[50],
       appBar: AppBar(
         centerTitle: true,
-        title: Text("${merchantInfo["username"]}'s Profile"),
+        title: Text("${merchantInfo["shopName"]}'s Profile"),
         backgroundColor: Colors.red[100],
         toolbarHeight: 50,
       ),

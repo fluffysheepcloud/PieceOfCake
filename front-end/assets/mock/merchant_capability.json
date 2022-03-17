@@ -1,0 +1,176 @@
+{
+  "data": {
+    "base_size": [
+      {
+        "id": 1,
+        "name": 12.0,
+        "price": 10.0
+      },
+      {
+        "id": 2,
+        "name": 14.0,
+        "price": 15.0
+      },
+      {
+        "id": 3,
+        "name": 16.0,
+        "price": 20.0
+      },
+      {
+        "id": 4,
+        "name": 18.0,
+        "price": 25.0
+      },
+      {
+        "id": 5,
+        "name": 20.0,
+        "price": 30.0
+      }
+    ],
+    "base_color": [
+      {
+        "id": 1,
+        "name": "Red",
+        "price": 1.0
+      },
+      {
+        "id": 1,
+        "name": "Yellow",
+        "price": 1.0
+      },
+      {
+        "id": 1,
+        "name": "Brown",
+        "price": 1.0
+      },
+      {
+        "id": 1,
+        "name": "Green",
+        "price": 1.0
+      },
+      {
+        "id": 1,
+        "name": "Pink",
+        "price": 1.0
+      },
+      {
+        "id": 1,
+        "name": "Blue",
+        "price": 1.0
+      }
+    ],
+    "base_flavor": [
+      {
+        "id": 1,
+        "name": "Red Velvet",
+        "price": 1.0
+      },
+      {
+        "id": 2,
+        "name": "Vanilla",
+        "price": 1.0
+      },
+      {
+        "id": 3,
+        "name": "Chocolate",
+        "price": 1.0
+      },
+      {
+        "id": 4,
+        "name": "Lemon",
+        "price": 1.0
+      }
+    ],
+    "frosting_color": [
+      {
+        "id": 1,
+        "name": "Pink",
+        "price": 1.0
+      },
+      {
+        "id": 2,
+        "name": "White",
+        "price": 1.0
+      },
+      {
+        "id": 3,
+        "name": "Yellow",
+        "price": 1.0
+      },
+      {
+        "id": 4,
+        "name": "Orange",
+        "price": 1.0
+      }
+    ],
+    "frosting_flavor": [
+      {
+        "id": 1,
+        "name": "Butter Cream",
+        "price": 1.0
+      },
+      {
+        "id": 2,
+        "name": "Peppermint",
+        "price": 1.0
+      },
+      {
+        "id": 3,
+        "name": "Coconut",
+        "price": 1.0
+      },
+      {
+        "id": 4,
+        "name": "Strawberry",
+        "price": 1.0
+      },
+      {
+        "id": 5,
+        "name": "Chocolate",
+        "price": 1.0
+      },
+      {
+        "id": 6,
+        "name": "Lemon",
+        "price": 1.0
+      }
+    ],
+    "toppings": [
+      {
+        "id": 1,
+        "name": "Cookie",
+        "price": 2.0
+      },
+      {
+        "id": 2,
+        "name": "Nuts",
+        "price": 2.0
+      },
+      {
+        "id": 3,
+        "name": "Berries",
+        "price": 2.0
+      },
+      {
+        "id": 4,
+        "name": "M&M",
+        "price": 2.0
+      },
+      {
+        "id": 5,
+        "name": "Oreo",
+        "price": 2.0
+      },
+      {
+        "id": 6,
+        "name": "Chocolate",
+        "price": 2.0
+      },
+      {
+        "id": 7,
+        "name": "Skittles",
+        "price": 2.0
+      }
+    ]
+  }
+}

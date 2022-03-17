@@ -15,6 +15,7 @@ class _ReviewedPageState extends State<ReviewedPage> {
   Future<List> mockData() async {
     final String res = await rootBundle.loadString('assets/mock/reviewed.json');
     var data = json.decode(res)["data"] as List;
+    print(data);
     return data;
   }
 

@@ -72,3 +72,12 @@ updateMerchantInfo(Map c) async {
 
   return json.decode(res.body);
 }
+
+getMerchantCapability(int id) async {
+  String path = "/capability/" + id.toString();
+
+  var uri = Uri.parse(baseURL + path);
+  var res = await http.get(uri);
+
+  return json.decode(res.body);
+}

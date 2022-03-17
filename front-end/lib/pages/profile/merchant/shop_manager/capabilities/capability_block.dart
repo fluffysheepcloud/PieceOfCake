@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/profile/merchant/shop_manager/capabilities/capability_card.dart';
+
+import 'add_capability_card.dart';
 
 // this class is the block component that contains multiple items that the
 // the merchant has in their profile
@@ -8,11 +11,11 @@ class CapabilityBlock extends StatefulWidget {
   String blockLabel;
 
   // map that contains the name of the item and price of the item
-  Map<String, double> blockItems;
+  List items;
 
   CapabilityBlock({
     required this.blockLabel,
-    required this.blockItems,
+    required this.items,
     Key? key
   }) : super(key: key);
 
@@ -24,26 +27,24 @@ class _CapabilityBlockState extends State<CapabilityBlock> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      // distance between each block
-      padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.red.shade200.withOpacity(0.7),
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-        ),
-        padding: EdgeInsets.fromLTRB(10, 10, 10, 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(widget.blockLabel, style: _labelTextStyle()),
-            Divider(color: Colors.red.shade900),
-            Container(
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.95,
+      // color: Colors.pink,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("${widget.blockLabel}"),
+          Divider( thickness: 3.0,),
+          Wrap(children: [
+            for (int i = 0; i < widget.items.length; i++)
+              // Container()
+              CapabilityCard(widget.items[i]["id"], widget.items[i]["name"].toString(), widget.items[i]["price"]),
 
-            )
-          ]
-        )
-      )
+            AddCapabilityCard()
+          ])
+        ],
+      ),
     );
   }
 
@@ -51,7 +52,6 @@ class _CapabilityBlockState extends State<CapabilityBlock> {
     // test decoration for label of the block
     return TextStyle(
         fontWeight: FontWeight.w600,
-        color: Colors.red.shade900,
         letterSpacing: 3.5,
         shadows: [
           Shadow(

@@ -73,7 +73,7 @@ class _ShopManagerPageState extends State<ShopManagerPage> {
       return () => _showTextFiledDialog(context, index, _shopHoursFormKey);
     }
     else if (index == 3) {
-      return () => {};
+      return () => { Navigator.pushNamed(context, "/profile/merchant/shop_manager/modify_capability") };
     }
     else if (index == 4){
       return () => {};

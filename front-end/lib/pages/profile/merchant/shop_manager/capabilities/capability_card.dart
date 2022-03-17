@@ -5,16 +5,17 @@ import 'package:flutter/material.dart';
 class CapabilityCard extends StatelessWidget {
   var arguments;
 
-  CapabilityCard(this.name, this.price, {Key? key}) : super(key: key);
+  CapabilityCard(this.id, this.name, this.price, {Key? key}) : super(key: key);
 
+  int id;
   String name;
   double price;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.3,
-      height: 150,
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.95 * 0.25,
+      height: 100,
       child: Card(
         elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -26,14 +27,18 @@ class CapabilityCard extends StatelessWidget {
         onTap: (){
           debugPrint('Ingredient tapped');
         },
-          child: Column(
+        child: Column(
+
           mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(name, style: _labelTextStyle()),
-              Divider(color: Colors.red.shade900),
-              Text(price.toString(), style: _labelTextStyle())
-            ],
-          ),
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 2, right: 2),
+              child: Text(name, style: _labelTextStyle())
+            ),
+            Divider(color: Colors.red.shade900),
+            Text(price.toString(), style: _labelTextStyle())
+          ],
+        ),
         ),
       )
     );
