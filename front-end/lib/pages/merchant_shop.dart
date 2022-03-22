@@ -22,27 +22,22 @@ class MerchantShop extends StatefulWidget{
 //if query not empty and _items.contains(query) --> add
 
 class _ShopState extends State<MerchantShop>{
-  Map<String, dynamic> customerInfo = {};
-
-  List<Map> profileDataMap = [
+  Map<String, dynamic> merchantInfo = {};
+  final List _items = [
     {
-      "title": "My Orders",
-      "items": ["All Orders", "Reviews"],
-      "routes": ["/profile/customer/customer_all_orders", "/profile/customer/customer_reviews"],
+      "shopName": "pppoopoo",
+      "description": "cries in spanish",
     },
     {
-      "title": "Favorite",
-      "items": ["Cakes", "Merchants"],
-      "routes": ["/profile/customer/fav_cakes", "/profile/customer/fav_merchants"],
+      "shopName": "pppoopoo",
+      "description": "cries in spanish",
     },
     {
-      "title": "Personal Info",
-      "items": ["Settings"],
-      "routes": ["/profile/customer/customer_settings"],
-    }
+      "shopName": "pppoopoo",
+      "description": "cries in spanish",
+    },
   ];
-
-  Future<Map> _loadCustomer() async {
+  Future<Map> _loadMerchantShop() async {
     Map data = await SPUtil.getUserData();
     return data;
   }
@@ -51,14 +46,14 @@ class _ShopState extends State<MerchantShop>{
   Widget build(BuildContext context) {
 
     return FutureBuilder<Map>(
-      future: _loadCustomer(),
+      future: _loadMerchantShop(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
             return Text("Error: ${snapshot.error}");
           } else {
             for (String key in snapshot.data.keys) {
-              customerInfo[key] = snapshot.data[key] ?? "Unknown";
+              merchantInfo[key] = snapshot.data[key] ?? "Unknown";
             }
             return _pageBuilder(context);
           }
@@ -68,14 +63,17 @@ class _ShopState extends State<MerchantShop>{
       },
     );
   }
-
+  //TEMPORARY LOG IN STATE BUTTON FOR NOW BC NOT CONNECED TO DB :(
+  int log1 = 1;
   @override
   _pageBuilder (BuildContext context) {
     return Scaffold(
+      //display shop name
       backgroundColor: Colors.orange[50],
       appBar: AppBar(
         centerTitle: true,
-        title: Text("${customerInfo["nickName"]}'s Profile"),
+        //merchant name
+        title: Text("${merchantInfo["shopName"]}'s Shop"),
         backgroundColor: Colors.red[100],
         toolbarHeight: 50,
       ),
@@ -93,36 +91,43 @@ class _ShopState extends State<MerchantShop>{
                     )
                 ),
             ),
-
+            SizedBox(height: 20,),
            Row(
+             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
              children: [
                Container(
                    child: Align(
-                       alignment: Alignment.center,
-                       child: Text("${customerInfo["nickName"]}'s Shop",
-                         style: TextStyle(fontSize: 25),)
-
+                       alignment: Alignment.topLeft,
+                       child: Text("address\nphone number\nbusiness hours",
+                         style: TextStyle(fontSize: 15),)
                    )
                ),
-               ElevatedButton(onPressed: (){}, child: Text("Edit shop"))
+               //if user is merchant return button, otherwise return an empty box
+               //refer to registration/profile.dart for inspo
+               //TEMPORARY LOG IN BUTTON CHANGE TO CONNECT TO DB
+               log1 == 1 ?
+                   Container(
+                       child: ElevatedButton(onPressed: (){}, child: Text("Edit shop"))
+                   )
+               :
+                Container(child: ElevatedButton(onPressed: (){}, child: Text("Build a custom cake")),)
              ],
            ),
-            Row(
-              children: [
-                Container(
-                    child: Align(
-                        alignment: Alignment.center,
-                        child: Text("address and things",
-                          style: TextStyle(fontSize: 25),)
-
-                    )
-                ),
-                //the icons
-                Text("icons and things")
-              ],
+            SizedBox(height: 20,),
+            Container(
+              child: Text("${merchantInfo['shopName']}'s Cakes",
+                      style: TextStyle(fontSize: 25),),
             ),
-            
-            InfoCard("Something", "something"),
+            //InfoCard("Something", "something"),
+            ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: _items.length,
+                itemBuilder: (context, index){
+                return InfoCard(_items[index]["shopName"], _items[index]["description"]);
+            }
+            ),
 
             ElevatedButton(
                 onPressed: () {
