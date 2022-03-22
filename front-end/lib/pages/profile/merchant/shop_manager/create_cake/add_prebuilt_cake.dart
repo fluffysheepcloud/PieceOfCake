@@ -2,18 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:frontend/components/input_text_box.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import 'add_prebuilt_cake_2.dart';
 
-void main() {
-  runApp(new MaterialApp(
-    title: "Add prebuilt cake",
-    home: new AddPrebuiltCake(),
-  ));
-}
 
+// cake name, cake description, cake price, cake quantity on this page
 class AddPrebuiltCake extends StatefulWidget {
   var arguments;
 
-  AddPrebuiltCake({Key? key, this.arguments}) : super(key: key);
+  AddPrebuiltCake({Key? key, required this.arguments}) : super(key: key);
 
   @override
   _AddPrebuiltCakeState createState() => _AddPrebuiltCakeState();
@@ -37,8 +33,16 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
               color: Colors.white, fontWeight: FontWeight.bold),
           backgroundColor: Colors.brown[700],
         ),
-        body: buildCake(context)
+        body: buildCake(context),
     );
+  }
+
+  _getEnteredItems() {
+    var route = MaterialPageRoute(builder: (BuildContext context) =>
+        AddPrebuiltCake2(cakeName: _cake_name.text, cakeDescription: _cake_description.text,
+          cakePrice: _cake_price.getUnformattedValue().toDouble(), cakeQuantity: int.parse(_cake_quantity.text)));
+
+    Navigator.of(context).push(route);
   }
 
   Widget buildCake(BuildContext context) {
@@ -160,19 +164,20 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
               ),
             ),
 
-            // submit and add new cake to the database
+            // Next leads to photo uploading and tags
             TextButton(
               style: TextButton.styleFrom
                 (backgroundColor: Colors.brown[700]),
-              onPressed: () {},
+              onPressed: _getEnteredItems,
               child: Text(
-                'Create Cake',
+                'Next',
                 style: TextStyle(color: Colors.white, fontSize: 15),
               ),
             )
           ],
-        )
-      )
+        ),
+      ),
     );
+
   }
 }
