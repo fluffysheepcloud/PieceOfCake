@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/components/input_text_box.dart';
+import 'package:frontend/network/capability_service.dart';
+import 'package:frontend/utils/toast.dart';
 
 class ModifyCapabilityPage extends StatefulWidget {
 
@@ -14,7 +15,8 @@ class ModifyCapabilityPage extends StatefulWidget {
 class _ModifyCapabilityPageState extends State<ModifyCapabilityPage> {
 
   TextEditingController price = TextEditingController();
-  GlobalKey key = GlobalKey();
+  final _formKey = GlobalKey<FormState>();
+  bool _isChanged = false;
 
   @override
   void initState() {
@@ -27,7 +29,7 @@ class _ModifyCapabilityPageState extends State<ModifyCapabilityPage> {
     return Scaffold(
       appBar: AppBar(),
       body: Form(
-        key: key,
+        key: _formKey,
         child: Column(
           children: [
             Container(
@@ -41,7 +43,19 @@ class _ModifyCapabilityPageState extends State<ModifyCapabilityPage> {
                   SizedBox(height: 10),
                   Text("Price", style: _titleStyle()),
                   Divider(thickness: 2),
-                  TextFormField(controller: price)
+                  TextFormField(
+                    controller: price,
+                    onChanged: (value) {
+                      setState(() {
+                        _isChanged = true;
+                      });
+                    },
+                    validator: (value) {
+                      if (value != null) {
+                        return value.trim().isNotEmpty ? null : "Price can not be empty!";
+                      }
+                    },
+                  )
                 ],
               ),
             ),
@@ -58,7 +72,8 @@ class _ModifyCapabilityPageState extends State<ModifyCapabilityPage> {
                 ),
                 // SizedBox(width: 50),
                 ElevatedButton(
-                  onPressed: () => {}, child: Text("Save"),
+                  onPressed: _isChanged ? _updateCapability : null,
+                  child: Text("Save"),
                   style: ElevatedButton.styleFrom(
                       primary: Colors.blueGrey,
                       minimumSize: Size(120, 60)
@@ -70,6 +85,36 @@ class _ModifyCapabilityPageState extends State<ModifyCapabilityPage> {
         )
       )
     );
+  }
+
+  void _updateCapability() async {
+    // Validate returns true if the form is valid, or false otherwise.
+    if (_formKey.currentState!.validate()) {
+      switch (widget.arguments["title"]) {
+        case "Base Size":
+          var res = await updateMerchantBaseSize(widget.arguments["id"], double.parse(price.text));
+          Navigator.pop(context, res["data"]["price"]);
+          break;
+        case "Base Color":
+          updateMerchantBaseColor(int.parse(widget.arguments["id"].toString()), double.parse(price.text));
+          break;
+        case "Base Flavor":
+          updateMerchantBaseFlavor(int.parse(widget.arguments["id"]), double.parse(price.text));
+          break;
+        case "Frosting Colors":
+          updateMerchantFrostingColor(int.parse(widget.arguments["id"]), double.parse(price.text));
+          break;
+        case "Frosting Flavors":
+          updateMerchantFrostingFlavor(int.parse(widget.arguments["id"]), double.parse(price.text));
+          break;
+        case "Toppings":
+          updateMerchantTopping(int.parse(widget.arguments["id"]), double.parse(price.text));
+          break;
+        default:
+          ToastUtil.showToast("error");
+      }
+    }
+
   }
 
   TextStyle _titleStyle() {

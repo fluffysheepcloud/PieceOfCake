@@ -11,6 +11,7 @@ import 'package:frontend/pages/profile/merchant/cake_products/cake_product.dart'
 import 'package:frontend/pages/profile/merchant/orders/orders.dart';
 import 'package:frontend/pages/profile/merchant/review/merchant_review.dart';
 import 'package:frontend/pages/profile/merchant/settings/merchant_settings.dart';
+import 'package:frontend/pages/profile/merchant/shop_manager/capabilities/add_capability_page.dart';
 import 'package:frontend/pages/profile/merchant/shop_manager/capabilities/capability_page.dart';
 import 'package:frontend/pages/profile/merchant/shop_manager/capabilities/modify_capability_page.dart';
 import 'package:frontend/pages/profile/merchant/shop_manager/create_cake/add_prebuilt_cake.dart';
@@ -47,7 +48,8 @@ final routes = {
   "/profile/merchant/shop_manager": (context, {arguments}) => ShopManagerPage(arguments: arguments),
   "/profile/merchant/shop_manager/create_cake": (context, {arguments}) => AddPrebuiltCake(arguments: arguments),
   "/profile/merchant/shop_manager/modify_capability": (context, {arguments}) => CapabilityPage(arguments: arguments),
-  "/profile/merchant/shop_manager/create_capability": (context, {arguments}) => ModifyCapabilityPage(arguments: arguments),
+  "/profile/merchant/shop_manager/change_capability": (context, {arguments}) => ModifyCapabilityPage(arguments: arguments),
+  "/profile/merchant/shop_manager/add_capability": (context, {arguments}) => AddCapabilityPage(arguments: arguments),
 
   "/cancel_order": (context, {arguments}) => CanceledOrder(arguments: arguments),
   "/received_order": (context, {arguments}) => ReceivedOrder(arguments: arguments),
