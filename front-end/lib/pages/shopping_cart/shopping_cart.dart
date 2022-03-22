@@ -69,8 +69,10 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
         key: UniqueKey(),
         direction: DismissDirection.endToStart,
         onDismissed: (direction) {
-          quantity?[index] = 0;
+          //quantity?.removeAt(index);
           //widget.argumenets?.removeAt(index);
+          quantity?[index] = 0;
+
         },
 
         child: ShoppingCartCard(
