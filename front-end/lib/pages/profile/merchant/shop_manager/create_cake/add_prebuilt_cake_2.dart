@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:textfield_tags/textfield_tags.dart';
 
 
 // photo taking/gallery and tags on this page
@@ -25,6 +26,21 @@ class AddPrebuiltCake2Body extends State<AddPrebuiltCake2> {
   File _image = File('assets/images/PieceOfCakeLogo.png');
   //ImagePicker instance.
   final picker = ImagePicker();
+
+  // for the tags that the merchant inputs
+  List<String> _tags = [];
+
+  TextFieldTagsController _textFieldTagsController = TextFieldTagsController();
+
+  @override
+  void initState() {
+    super.initState();
+    //listen for everything being entered here if you want suggestions
+    TextFieldTagsController.getTextEditingController.addListener(() {
+      TextFieldTagsController.getTextEditingController.text;
+    });
+    _tags = ['your', 'tags'];
+  }
 
   //ImageSource: Camera and Gallery.
   _getImage(ImageSource imageSource) async
@@ -51,7 +67,7 @@ class AddPrebuiltCake2Body extends State<AddPrebuiltCake2> {
             color: Colors.white, fontWeight: FontWeight.bold),
         backgroundColor: Colors.brown[700],
       ),
-        body: Column(
+        body: SingleChildScrollView(child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
@@ -91,19 +107,109 @@ class AddPrebuiltCake2Body extends State<AddPrebuiltCake2> {
 
             // spacing
             SizedBox(height: 10),
-            
-            TextButton(
-              style: TextButton.styleFrom
-                (backgroundColor: Colors.brown[700]),
-              // TODO: add this cake to the merchant's shop
-              onPressed: () {},
-              child: Text(
-                'Add Cake',
-                style: TextStyle(color: Colors.white, fontSize: 15),
+
+            // adding tags to the cake
+            Column(
+              children: [
+                TextFieldTags(
+                  textFieldTagsController: _textFieldTagsController,
+                  letterCase: LetterCase.small,
+                  initialTags: _tags,
+                  textSeparators: const [' ', '.', ','],
+                  tagsStyler: TagsStyler(
+                    showHashtag: true,
+                    tagMargin: const EdgeInsets.only(right: 4.0),
+                    tagCancelIcon: const Icon(
+                      Icons.cancel,
+                      size: 15.0,
+                      color: Colors.black,),
+                    tagCancelIconPadding:
+                    const EdgeInsets.only(left: 4.0, top: 2.0),
+                    tagPadding: const EdgeInsets.only(
+                      top: 2.0,
+                      bottom: 4.0,
+                      left: 8.0,
+                      right: 4.0,
+                    ),
+                    tagDecoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(
+                    color: Colors.grey.shade300,),
+                    borderRadius: const BorderRadius.all(Radius.circular(20.0),),
+                    ),
+                    tagTextStyle: const TextStyle(
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black,),
+                  ),
+              textFieldStyler: TextFieldStyler(
+                readOnly: false,
+                hintText: 'Tags',
+                isDense: false,
+                textFieldFocusedBorder: const UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black, width: 3.0),
+                ),
+                textFieldBorder: const UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black, width: 3.0),
+                ),
               ),
-            )
+              onDelete: (tag) {
+                _tags.remove(tag);
+              },
+              onTag: (tag) {
+                _tags.add(tag);
+              },
+              validator: (String tag) {
+              if (tag.length > 10) {
+                return 'You have hit the maximum number of tags';
+              } else if (tag.isEmpty) {
+                return 'Please enter at least one tag';
+              } else if (_textFieldTagsController.getAllTags.contains(tag)) {
+                return 'This tag has already been entered';
+              }
+                return null;
+              },
+              ),
+              TextButton(
+                style: TextButton.styleFrom
+                  (backgroundColor: Colors.brown[700]),
+                // TODO: add this cake to the merchant's shop
+                onPressed: () {
+                // //Clear the textfield and tags
+                // _textFieldTagsController.clearTextFieldTags();
+                //
+                // //Set a new custom error
+                // _textFieldTagsController.showError(
+                //   "Clear?",
+                //   errorStyle: const TextStyle(color: Colors.purple),
+                // );
+                //
+                // //Set the focus of the textfield if you choose
+                // TextFieldTagsController.getFocusNode.unfocus();
+
+                //set all tags
+                _tags = _textFieldTagsController.getAllTags;
+
+                //Submit form
+                },
+                  child: const Text('Add Cake',
+                    style: TextStyle(color: Colors.white, fontSize: 15),),
+                )
+              ],
+            ),
+            // // button for creating the new cake
+            // TextButton(
+            //   style: TextButton.styleFrom
+            //     (backgroundColor: Colors.brown[700]),
+            //   // TODO: add this cake to the merchant's shop
+            //   onPressed: () {},
+            //   child: Text(
+            //     'Add Cake',
+            //     style: TextStyle(color: Colors.white, fontSize: 15),
+            //   ),
+            // )
           ],
         ),
-      );
+      )
+    );
   }
 }
