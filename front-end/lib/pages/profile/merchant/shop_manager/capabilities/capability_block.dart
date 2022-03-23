@@ -25,6 +25,7 @@ class CapabilityBlock extends StatefulWidget {
 
 class _CapabilityBlockState extends State<CapabilityBlock> {
 
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,7 +42,7 @@ class _CapabilityBlockState extends State<CapabilityBlock> {
               // Container()
               CapabilityCard(widget.items[i]["id"], widget.blockLabel, widget.items[i]["name"].toString(), widget.items[i]["price"]),
 
-            AddCapabilityCard()
+            AddCapabilityCard(widget.blockLabel)
           ])
         ],
       ),

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:frontend/components/common.dart';
 import 'package:frontend/components/input_text_box.dart';
 import 'package:frontend/network/customer_service.dart';
 import 'package:frontend/network/merchant_service.dart';
@@ -136,11 +137,12 @@ class _LoginState extends State<Login> {
 
     if (res["code"] == 200) {
       if (_role == 0) {
-        await SPUtil.setString("customer", json.encode(res["data"]));
+        print(res["data"]);
+        await SPUtil.setString(Common.CUSTOMER, json.encode(res["data"]));
         await SPUtil.updateLoginStatus();
       }
       else {
-        await SPUtil.setString("merchant", json.encode(res["data"]));
+        await SPUtil.setString(Common.MERCHANT, json.encode(res["data"]));
         await SPUtil.updateLoginStatus();
       }
 

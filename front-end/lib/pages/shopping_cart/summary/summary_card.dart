@@ -21,7 +21,7 @@ class _SummaryCardState extends State<SummaryCard> {
             .of(context)
             .size
             .width * 0.85,
-        height: 220.0,
+        height: 200.0,
         child: Card(
           elevation: 5,
           color: Colors.grey[200],
@@ -93,7 +93,7 @@ class _SummaryCardState extends State<SummaryCard> {
   }
 
   Widget _price() {
-    return Row(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
@@ -101,8 +101,15 @@ class _SummaryCardState extends State<SummaryCard> {
             child: Text(
                 "Unit Price: ${widget.areguments["price"]}, "
                     "Quantity: ${widget.quantity[widget.index]}"
-            )
+            ),
         ),
+        Padding(
+          padding: EdgeInsets.only(left: 255, top: 5),
+          child: Text(
+              "Total: ${(widget.areguments["price"] * widget.quantity[widget.index]).toStringAsFixed(2)}"
+          ),
+        ),
+
       ],
     );
   }

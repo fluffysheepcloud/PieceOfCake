@@ -154,7 +154,7 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
                       SPUtil.updateLoginStatus();
                       Navigator.pushAndRemoveUntil(context,
                         MaterialPageRoute(
-                          builder: (context) => Index()
+                          builder: (context) => Index(arguments: 2,)
                         ), (route) => false);
                     }
                   });
@@ -327,7 +327,7 @@ class _MerchantSettingsPageState extends State<MerchantSettingsPage> {
     print(res);
     if (res["code"] == 200) {
       setState(() {
-        SPUtil.setString("merchant", json.encode(res["data"]));
+        SPUtil.setString(Common.CUSTOMER, json.encode(res["data"]));
       });
 
       Navigator.of(context).pop();

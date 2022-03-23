@@ -81,13 +81,3 @@ getMerchantCapability(int id) async {
 
   return json.decode(res.body);
 }
-
-updateMerchantBaseSize(int sId, double price) async {
-  String path = "/capability/cake_base";
-
-  var uri = Uri.parse(baseURL + path);
-  var res = await http.put(uri, body: {
-    "id": sId,
-    "price": price
-  });
-}

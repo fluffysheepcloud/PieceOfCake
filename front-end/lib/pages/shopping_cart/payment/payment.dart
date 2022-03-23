@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -26,7 +27,6 @@ class _PaymentState extends State<Payment> {
       body: Center(
         child: Column(
           children: [
-            Text("Payment"),
             Padding(
               padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
               child: SizedBox(
@@ -34,15 +34,37 @@ class _PaymentState extends State<Payment> {
                     .of(context)
                     .size
                     .width * 0.85,
-                height: 220.0,
+                height: 35.0,
+              ),
+            ),
+            Text("Payment Infomation",
+                style: TextStyle(
+                    fontSize: 30.0,
+                    fontWeight:FontWeight.w600,
+                    fontStyle: FontStyle.normal)),
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+              child: SizedBox(
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width * 0.85,
+                height: 300.0,
                 child: Column(
                   children: [
-                    Text("Your subtotal:  ${widget.argumenets.toString()}",overflow: TextOverflow.ellipsis, maxLines: 1,),
-                    Text("Tax Rate: 9.50%",overflow: TextOverflow.ellipsis, maxLines: 1,),
-                    Text("Tax: ${((widget.argumenets * 0.095).toStringAsFixed(2)).toString() }",overflow: TextOverflow.ellipsis, maxLines: 1,),
-                    Text("Total: ${((widget.argumenets * 0.095 +widget.argumenets).toStringAsFixed(2)).toString()}", overflow: TextOverflow.ellipsis, maxLines: 1,),
+                    Text(""), Text(""),
+                    Text("Your subtotal:  ${widget.argumenets.toString()}",overflow: TextOverflow.ellipsis, maxLines: 1,
+                      style: TextStyle(fontSize: 20.0, fontWeight:FontWeight.w500),),
+                    Text(""),
+                    Text("Tax Rate: 9.50%",overflow: TextOverflow.ellipsis, maxLines: 1,
+                      style: TextStyle(fontSize: 20.0, fontWeight:FontWeight.w500),),
+                    Text(""),
+                    Text("Tax: ${(widget.argumenets * 0.095).toStringAsFixed(2)}",overflow: TextOverflow.ellipsis, maxLines: 1,
+                      style: TextStyle(fontSize: 20.0, fontWeight:FontWeight.w500),),
+                    Text(""),Text(""),Text(""),
+                    Text("Total: ${((widget.argumenets * 0.095 +widget.argumenets).toStringAsFixed(2))}", overflow: TextOverflow.ellipsis, maxLines: 1,
+                      style: TextStyle(fontSize: 25.0, fontWeight:FontWeight.w600),),
                   ],
-
                 ),
               )
             ),
@@ -53,7 +75,7 @@ class _PaymentState extends State<Payment> {
                     //Navigator.of(context).pushNamed( "/shopping_cart/summary", arguments: quantity);
                     print("card");
                   },
-                  child: Text("Pay with card")
+                  child: Text("Pay with card",style: TextStyle(fontSize: 20.0, fontWeight:FontWeight.w500), )
               ),
             ),
 
@@ -64,7 +86,7 @@ class _PaymentState extends State<Payment> {
                     //Navigator.of(context).pushNamed( "/shopping_cart/summary", arguments: quantity);
                     print("PayPal");
                   },
-                  child: Text("PayPal")
+                  child: Text("PayPal", style: TextStyle(fontSize: 20.0, fontWeight:FontWeight.w500),)
               ),
             ),
           ],

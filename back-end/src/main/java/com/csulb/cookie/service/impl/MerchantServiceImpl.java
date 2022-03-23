@@ -103,7 +103,7 @@ public class MerchantServiceImpl extends ServiceImpl<MerchantMapper, Merchant>  
     public Map<String, Object> updateMerchantById(Merchant m) {
         MerchantMapper mapper = getBaseMapper();
         int row = mapper.updateMerchantById(m);
-        if (row > 1) {
+        if (row >= 1) {
             m = mapper.selectById(m.getId());
             setAddress(m);
             return new ControllerResult(ControllerResult.SUCCESS, m, "success").toJsonMap();

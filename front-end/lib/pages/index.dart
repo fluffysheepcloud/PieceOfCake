@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/pages/demo.dart';
 import 'package:frontend/pages/home.dart';
+import 'package:frontend/pages/merchant_shop.dart';
 import 'package:frontend/pages/shopping_cart/shopping_cart.dart';
 import 'package:frontend/pages/profile/profile.dart';
 import 'package:frontend/pages/browse.dart';
+
 
 
 class Index extends StatefulWidget {
@@ -24,6 +26,7 @@ class _IndexState extends State<Index> {
     ShoppingCartPage(),
     Profile(),
     Browse(),
+    MerchantShop(),
     Demo(),
 
   ];
@@ -59,6 +62,11 @@ class _IndexState extends State<Index> {
           BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
               label: "Browse",
+              activeIcon: Icon(Icons.search)
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined),
+              label: "Shop-Temp",
               activeIcon: Icon(Icons.search)
           ),
           BottomNavigationBarItem(

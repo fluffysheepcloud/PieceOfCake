@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AddCapabilityCard extends StatelessWidget {
-  const AddCapabilityCard({Key? key}) : super(key: key);
+
+  final String title;
+
+  const AddCapabilityCard(this.title, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,10 @@ class AddCapabilityCard extends StatelessWidget {
           child: InkWell(
             splashColor: Colors.red[300],
             onTap: (){
-              debugPrint('Ingredient tapped');
+              Navigator.pushNamed(context, "/profile/merchant/shop_manager/add_capability",
+              arguments: {
+                "title": title
+              });
             },
             child: Icon(
               Icons.add_circle_outline,

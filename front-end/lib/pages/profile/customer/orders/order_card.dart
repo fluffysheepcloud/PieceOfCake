@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/components/card_title.dart';
+import 'package:frontend/components/common.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 
 class OrderCard extends StatelessWidget {
@@ -24,10 +25,10 @@ class OrderCard extends StatelessWidget {
               },
               child: Column(
                 children: [
-                  CardTitle(arguments["orderNumber"], arguments["status"]),
+                  CardTitle(arguments[Common.ORDER_NUMBER], arguments[Common.ORDER_STATUS]),
                   Divider(thickness: 2.0, color: Colors.brown[200],),
-                  _pictureAndCakeInfo(arguments["imageURL"], arguments["cakeName"], arguments["cakeSize"]),
-                  _dateAndRating(arguments["date"], arguments["rate"])
+                  _pictureAndCakeInfo(arguments[Common.IMAGE_URL], arguments[Common.CAKE_NAME], arguments[Common.CAKE_SIZE]),
+                  _dateAndRating(arguments[Common.CAKE_DATE], arguments[Common.CAKE_RATE])
                 ],
               ),),
           )

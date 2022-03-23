@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:frontend/components/common.dart';
 import 'package:frontend/pages/profile/customer/review/review_card.dart';
 
 class ReviewedPage extends StatefulWidget {
@@ -47,10 +48,10 @@ class _ReviewedPageState extends State<ReviewedPage> {
         itemCount: snapshot.data.length,
         itemBuilder: (context, index) {
           return ReviewCard(
-            orderNumber: snapshot.data[index]['orderNumber'],
-            imageURL: snapshot.data[index]['imageURL'],
-            comment: snapshot.data[index]['comment'],
-            rating: snapshot.data[index]['rating'],
+            orderNumber: snapshot.data[index][Common.ORDER_NUMBER],
+            imageURL: snapshot.data[index][Common.IMAGE_URL],
+            comment: snapshot.data[index][Common.CAKE_COMMENT],
+            rating: snapshot.data[index]['rate'],
           );
         }
     );
