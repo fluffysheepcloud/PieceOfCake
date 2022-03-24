@@ -25,6 +25,9 @@ dependencies:
   textfield_tags: ^1.4.4
   timelines: ^0.1.0
   timeline_tile: ^2.0.0
+  flutter_stripe: ^2.4.0
+  stripe_payment: ^1.1.4
+
 
 dev_dependencies:
   flutter_test:
