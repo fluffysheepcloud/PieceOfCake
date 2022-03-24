@@ -64,7 +64,8 @@ class _ModifyCapabilityPageState extends State<ModifyCapabilityPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () => {}, child: Text("Delete"),
+                  onPressed: () => {},
+                  child: Text("Delete"),
                   style: ElevatedButton.styleFrom(
                       primary: Colors.redAccent,
                       minimumSize: Size(120, 60)

@@ -42,7 +42,7 @@ class _CapabilityBlockState extends State<CapabilityBlock> {
               // Container()
               CapabilityCard(widget.items[i]["id"], widget.blockLabel, widget.items[i]["name"].toString(), widget.items[i]["price"]),
 
-            AddCapabilityCard(widget.blockLabel)
+            AddCapabilityCard(widget.blockLabel, widget.items)
           ])
         ],
       ),
