@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:frontend/pages/shopping_cart/payment/payment_service.dart';
 
 class Payment extends StatefulWidget {
   var argumenets;
@@ -13,11 +15,13 @@ class Payment extends StatefulWidget {
 }
 
 class _PaymentState extends State<Payment> {
+  PaymentMethod? paymentMethod;
 
   @override
   void initState() {
     super.initState();
     print(widget.argumenets);
+    PaymentService.init();
   }
 
   @override
@@ -62,7 +66,7 @@ class _PaymentState extends State<Payment> {
                     Text("Tax: ${(widget.argumenets * 0.095).toStringAsFixed(2)}",overflow: TextOverflow.ellipsis, maxLines: 1,
                       style: TextStyle(fontSize: 20.0, fontWeight:FontWeight.w500),),
                     Text(""),Text(""),Text(""),
-                    Text("Total: ${((widget.argumenets * 0.095 +widget.argumenets).toStringAsFixed(2))}", overflow: TextOverflow.ellipsis, maxLines: 1,
+                    Text("Total: ${((widget.argumenets * 0.095 + widget.argumenets).toStringAsFixed(2))}", overflow: TextOverflow.ellipsis, maxLines: 1,
                       style: TextStyle(fontSize: 25.0, fontWeight:FontWeight.w600),),
                   ],
                 ),
@@ -71,7 +75,10 @@ class _PaymentState extends State<Payment> {
             Padding(
               padding: EdgeInsets.only(bottom: 25, top: 10),
               child: ElevatedButton(
-                  onPressed: (){
+                  onPressed: () async{
+                    paymentMethod = (await PaymentService().createPaymentMethod()) as PaymentMethod?;
+                    print("paymentMethod!.id");
+                    print(paymentMethod!.id);
                     //Navigator.of(context).pushNamed( "/shopping_cart/summary", arguments: quantity);
                     print("card");
                   },
@@ -94,8 +101,6 @@ class _PaymentState extends State<Payment> {
       
     )
     );
-
-
 
   }
 
