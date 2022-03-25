@@ -34,6 +34,7 @@ class _CustomerProfileState extends State<CustomerProfile> {
 
   Future<Map> _loadCustomer() async {
     Map data = await SPUtil.getUserData();
+    debugPrint(data.toString());
     return data;
   }
 

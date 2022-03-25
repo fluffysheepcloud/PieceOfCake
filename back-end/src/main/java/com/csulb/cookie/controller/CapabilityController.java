@@ -59,10 +59,12 @@ public class CapabilityController {
     }
 
     @ResponseBody
+
     @RequestMapping(value = "/api/merchant/capability/cake_base", method = RequestMethod.POST)
     public Map<String, Object> addBaseSizeById(CakeBase cb) {
        return cbService.addBaseSizeById(cb);
     }
+
 
     @ResponseBody
     @RequestMapping(value = "/api/merchant/capability/base_color", method = RequestMethod.POST)
