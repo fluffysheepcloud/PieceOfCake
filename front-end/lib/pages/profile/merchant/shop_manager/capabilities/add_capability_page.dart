@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/network/capability_service.dart';
+import 'package:frontend/utils/shared_preferences.dart';
+import 'package:frontend/utils/toast.dart';
 
 class AddCapabilityPage extends StatefulWidget {
 
@@ -16,6 +19,9 @@ class _AddCapabilityPageState extends State<AddCapabilityPage> {
 
   TextEditingController itemNameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
+
+  bool itemFilled = false;
+  bool priceFilled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +45,15 @@ class _AddCapabilityPageState extends State<AddCapabilityPage> {
                         return value.trim().isNotEmpty ? null : "Item name can not be empty!";
                       }
                     },
+                    onChanged: (value) {
+                      if (value.trim().isNotEmpty) {
+                        itemFilled = true;
+                      } else {
+                        itemFilled = false;
+                      }
+                      setState(() {});
+
+                    },
                   ),
                   SizedBox(height: 10),
                   Text("Price", style: _titleStyle()),
@@ -50,6 +65,14 @@ class _AddCapabilityPageState extends State<AddCapabilityPage> {
                         return value.trim().isNotEmpty ? null : "Price can not be empty!";
                       }
                     },
+                    onChanged: (value) {
+                      if (value.trim().isNotEmpty) {
+                        priceFilled = true;
+                      } else {
+                        priceFilled = false;
+                      }
+                      setState(() {});
+                    },
                   )
                 ],
               ),
@@ -59,15 +82,7 @@ class _AddCapabilityPageState extends State<AddCapabilityPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
-                    onPressed: () => {}, child: Text("Delete"),
-                    style: ElevatedButton.styleFrom(
-                        primary: Colors.redAccent,
-                        minimumSize: Size(120, 60)
-                    ),
-                  ),
-                  // SizedBox(width: 50),
-                  ElevatedButton(
-                    onPressed: () => {},
+                    onPressed: (itemFilled && priceFilled) ? _addCapability : null,
                     child: Text("Save"),
                     style: ElevatedButton.styleFrom(
                         primary: Colors.blueGrey,
@@ -88,4 +103,14 @@ class _AddCapabilityPageState extends State<AddCapabilityPage> {
         fontSize: 18
     );
   }
+
+  void _addCapability() async {
+    int id = (await SPUtil.getUserData())["id"];
+    var res = await addMerchantCakeSize(id, itemNameController.text, priceController.text);
+    if (res["code"] != 200) {
+      ToastUtil.showToast("error");
+    }
+    Navigator.pop(context, res["data"]);
+  }
+
 }

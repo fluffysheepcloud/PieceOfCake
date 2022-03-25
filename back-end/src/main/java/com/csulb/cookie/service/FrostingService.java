@@ -9,4 +9,6 @@ import java.util.Map;
 public interface FrostingService extends IService<Frosting> {
 
     Map<String, Object> updateFrostingColorByID(Frosting fc);
+
+    Map<String, Object> addFrostingColorById(Frosting fc);
 }

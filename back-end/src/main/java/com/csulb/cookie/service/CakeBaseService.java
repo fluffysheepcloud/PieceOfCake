@@ -11,4 +11,6 @@ public interface CakeBaseService extends IService<CakeBase> {
 
     Map<String, Object> updateBaseSizeByID(CakeBase cb);
 
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    Map<String, Object> addBaseSizeById(CakeBase cb);
 }

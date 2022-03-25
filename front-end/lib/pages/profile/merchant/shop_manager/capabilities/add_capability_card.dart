@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
-class AddCapabilityCard extends StatelessWidget {
+class AddCapabilityCard extends StatefulWidget {
 
   final String title;
+  List items;
 
-  const AddCapabilityCard(this.title, {Key? key}) : super(key: key);
+  AddCapabilityCard(this.title, this.items, {Key? key}) : super(key: key);
+
+  @override
+  _AddCapabilityCardState createState() => _AddCapabilityCardState();
+}
+
+class _AddCapabilityCardState extends State<AddCapabilityCard> {
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +25,22 @@ class AddCapabilityCard extends StatelessWidget {
           color: Colors.red[100],
 
           child: InkWell(
-            splashColor: Colors.red[300],
-            onTap: (){
-              Navigator.pushNamed(context, "/profile/merchant/shop_manager/add_capability",
-              arguments: {
-                "title": title
-              });
-            },
-            child: Icon(
-              Icons.add_circle_outline,
-              color: Colors.red.shade900,
-            )
+              splashColor: Colors.red[300],
+              onTap: (){
+                Navigator.pushNamed(
+                  context, "/profile/merchant/shop_manager/add_capability",
+                  arguments: {
+                    "title": widget.title
+                  }).then((value) {
+                    setState(() {
+                      widget.items.add(value);
+                    });
+                  });
+              },
+              child: Icon(
+                Icons.add_circle_outline,
+                color: Colors.red.shade900,
+              )
           ),
         )
     );

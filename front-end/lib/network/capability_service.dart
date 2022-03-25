@@ -20,8 +20,8 @@ updateMerchantBaseColor(int bcId, double price) async {
 
   var uri = Uri.parse(baseURL + path);
   var res = await http.put(uri, body: {
-    "id": bcId,
-    "price": price
+    "id": bcId.toString(),
+    "price": price.toString()
   });
 
   return json.decode(res.body);
@@ -32,8 +32,8 @@ updateMerchantBaseFlavor(int bfId, double price) async {
 
   var uri = Uri.parse(baseURL + path);
   var res = await http.put(uri, body: {
-    "id": bfId,
-    "price": price
+    "id": bfId.toString(),
+    "price": price.toString()
   });
 
   return json.decode(res.body);
@@ -44,8 +44,8 @@ updateMerchantFrostingColor(int fcId, double price) async {
 
   var uri = Uri.parse(baseURL + path);
   var res = await http.put(uri, body: {
-    "id": fcId,
-    "price": price
+    "id": fcId.toString(),
+    "price": price.toString()
   });
 
   return json.decode(res.body);
@@ -56,8 +56,8 @@ updateMerchantFrostingFlavor(int ffId, double price) async {
 
   var uri = Uri.parse(baseURL + path);
   var res = await http.put(uri, body: {
-    "id": ffId,
-    "price": price
+    "id": ffId.toString(),
+    "price": price.toString()
   });
 
   return json.decode(res.body);
@@ -68,8 +68,21 @@ updateMerchantTopping(int tpId, double price) async {
 
   var uri = Uri.parse(baseURL + path);
   var res = await http.put(uri, body: {
-    "id": tpId,
-    "price": price
+    "id": tpId.toString(),
+    "price": price.toString()
+  });
+
+  return json.decode(res.body);
+}
+
+addMerchantCakeSize(int mId, String size, String price) async {
+  String path = "/capability/cake_base";
+
+  var uri = Uri.parse(baseURL + path);
+  var res = await http.post(uri, body: {
+    "mId": mId.toString(),
+    "name": size.toString(),
+    "price": price.toString()
   });
 
   return json.decode(res.body);
