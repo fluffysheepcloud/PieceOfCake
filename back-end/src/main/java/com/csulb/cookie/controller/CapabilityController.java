@@ -59,11 +59,11 @@ public class CapabilityController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/api/merchant/capability/cake_base", method = RequestMethod.POST)
-    public Map<String, Object> addBaseSizeById(CakeBase cb) {
-        cbService.addBaseSizeById(cb);
-       return null;
-    }
+//    @RequestMapping(value = "/api/merchant/capability/cake_base", method = RequestMethod.POST)
+//    public Map<String, Object> addBaseSizeById(CakeBase cb) {
+//        cbService.addBaseSizeById(cb);
+//       return null;
+//    }
 
     @Autowired
     public void setService(CakeBaseService service) { this.cbService = service; }

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/merchant_shop.dart';
+
 
 //this is like an object class
 class InfoCard extends StatelessWidget {
   //var arguments;
   //infocard constructor of class
   //description, title, img url
-  InfoCard(this.title, this.description, /*{Key? key,  required this.arguments}) : super(key: key*/);
+  InfoCard(this.title, this.description, this.id); /*{Key? key,  required this.arguments}) : super(key: key*/
   //these are its attributes, this.imgurl
+  int id;
   String description;
   String title;
   var arguments ; //var can be all types
@@ -30,7 +33,12 @@ class InfoCard extends StatelessWidget {
                 child: InkWell(
                     splashColor: Colors.brown.withAlpha(70),
                     onTap: () {
-                      debugPrint('Card tapped.');
+                      //debugPrint('Card tapped.');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MerchantShop(id),
+                          ));
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

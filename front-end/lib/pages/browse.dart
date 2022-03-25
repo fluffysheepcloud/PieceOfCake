@@ -123,7 +123,7 @@ class _BrowseState extends State<Browse>{
               physics: const NeverScrollableScrollPhysics(),
               itemCount: results.length,
               itemBuilder: (context, index){
-                return InfoCard(results[index]["shopName"], results[index]["description"]);//new Text("hello");//InfoCard(_items[index number]);
+                return InfoCard(results[index]["shopName"], results[index]["description"], results[index]["id"]);//new Text("hello");//InfoCard(_items[index number]);
               }
           )
               : ListView.builder(
@@ -132,7 +132,7 @@ class _BrowseState extends State<Browse>{
             physics: const NeverScrollableScrollPhysics(),
             itemCount: _items.length,
             itemBuilder: (context, index){
-              return InfoCard(_items[index]["shopName"], _items[index]["description"]);//new Text("hello");//InfoCard(_items[index number]);
+              return InfoCard(_items[index]["shopName"], _items[index]["description"],  _items[index]["id"]);//new Text("hello");//InfoCard(_items[index number]);
             },
           )
           //end searchbar
