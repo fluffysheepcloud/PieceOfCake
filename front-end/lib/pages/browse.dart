@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:frontend/components/card.dart';
 import 'package:frontend/network/merchant_service.dart';
+import 'package:frontend/pages/search/find_baker.dart';
 
 class Browse extends StatefulWidget{
 
@@ -116,6 +117,13 @@ class _BrowseState extends State<Browse>{
           ),
               //we must set the state, if results [ ] is empty, then we do not render
               // after the search is queried, we must set the state/repaint the page
+          ElevatedButton(onPressed: (){
+            Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FindBaker() ,
+                    ));
+          }, child: Text("Find a baker")),
           results.isNotEmpty
           ? ListView.builder(
               scrollDirection: Axis.vertical,
