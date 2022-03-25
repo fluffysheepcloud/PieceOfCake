@@ -27,6 +27,17 @@ public class BaseFlavorServiceImpl extends ServiceImpl<BaseFlavorMapper, BaseFla
         else return new ControllerResult(ControllerResult.ERROR, null, "error").toJsonMap();
 
     }
+
+    @Override
+    public Map<String, Object> addBaseFlavorById(BaseFlavor bf) {
+        if (bf == null) return new ControllerResult(ControllerResult.FORBIDDEN, null, "not allowed").toJsonMap();
+
+        boolean res = this.save(bf);
+        if (!res) return new ControllerResult(ControllerResult.ERROR, null, "ERROR").toJsonMap();
+
+        return new ControllerResult(ControllerResult.SUCCESS, bf, "success").toJsonMap();
+
+    }
 }
 
 

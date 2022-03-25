@@ -27,6 +27,17 @@ public class ToppingsServiceImpl extends ServiceImpl<ToppingsMapper, Toppings>
         else return new ControllerResult(ControllerResult.ERROR, null, "error").toJsonMap();
 
     }
+
+    @Override
+    public Map<String, Object> addToppingById(Toppings tp) {
+        if (tp == null) return new ControllerResult(ControllerResult.FORBIDDEN, null, "not allowed").toJsonMap();
+
+        boolean res = this.save(tp);
+        if (!res) return new ControllerResult(ControllerResult.ERROR, null, "ERROR").toJsonMap();
+
+        return new ControllerResult(ControllerResult.SUCCESS, tp, "success").toJsonMap();
+
+    }
 }
 
 

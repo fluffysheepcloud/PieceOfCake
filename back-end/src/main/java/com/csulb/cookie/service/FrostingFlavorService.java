@@ -9,4 +9,6 @@ import java.util.Map;
 public interface FrostingFlavorService extends IService<FrostingFlavor> {
 
     Map<String, Object> updateFrostingFlavorByID(FrostingFlavor ff);
+
+    Map<String, Object> addFrostingFlavorById(FrostingFlavor ff);
 }
