@@ -21,7 +21,7 @@ class _ModifyCapabilityPageState extends State<ModifyCapabilityPage> {
   @override
   void initState() {
     super.initState();
-    price.text = widget.arguments["price"].toString();
+    price.text = widget.arguments["info"]["price"].toString();
   }
 
   @override
@@ -37,9 +37,9 @@ class _ModifyCapabilityPageState extends State<ModifyCapabilityPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("${widget.arguments["title"]}", style: _titleStyle()),
+                  Text("${widget.arguments["info"]["title"]}", style: _titleStyle()),
                   Divider(thickness: 2),
-                  Text("${widget.arguments["name"]}"),
+                  Text("${widget.arguments["info"]["name"]}"),
                   SizedBox(height: 10),
                   Text("Price", style: _titleStyle()),
                   Divider(thickness: 2),
@@ -64,7 +64,9 @@ class _ModifyCapabilityPageState extends State<ModifyCapabilityPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () => {},
+                  onPressed: () {
+                    _removeCapability();
+                  },
                   child: Text("Delete"),
                   style: ElevatedButton.styleFrom(
                       primary: Colors.redAccent,
@@ -90,32 +92,71 @@ class _ModifyCapabilityPageState extends State<ModifyCapabilityPage> {
 
   void _updateCapability() async {
     // Validate returns true if the form is valid, or false otherwise.
+
     if (_formKey.currentState!.validate()) {
+      var res;
       switch (widget.arguments["title"]) {
         case "Base Size":
-          var res = await updateMerchantBaseSize(widget.arguments["id"], double.parse(price.text));
-          Navigator.pop(context, res["data"]["price"]);
+          res = await updateMerchantBaseSize(widget.arguments["info"]["id"], double.parse(price.text));
           break;
-        case "Base Color":
-          updateMerchantBaseColor(int.parse(widget.arguments["id"].toString()), double.parse(price.text));
+        case "Base Colors":
+          res = await updateMerchantBaseColor(widget.arguments["info"]["id"], double.parse(price.text));
           break;
-        case "Base Flavor":
-          updateMerchantBaseFlavor(int.parse(widget.arguments["id"]), double.parse(price.text));
+        case "Base Flavors":
+          res = await updateMerchantBaseFlavor(widget.arguments["info"]["id"], double.parse(price.text));
           break;
         case "Frosting Colors":
-          updateMerchantFrostingColor(int.parse(widget.arguments["id"]), double.parse(price.text));
+          res = await updateMerchantFrostingColor(widget.arguments["info"]["id"], double.parse(price.text));
           break;
         case "Frosting Flavors":
-          updateMerchantFrostingFlavor(int.parse(widget.arguments["id"]), double.parse(price.text));
+          res = await updateMerchantFrostingFlavor(widget.arguments["info"]["id"], double.parse(price.text));
           break;
         case "Toppings":
-          updateMerchantTopping(int.parse(widget.arguments["id"]), double.parse(price.text));
+          res = await updateMerchantTopping(widget.arguments["info"]["id"], double.parse(price.text));
           break;
         default:
           ToastUtil.showToast("error");
       }
-    }
 
+      if (res["code"] != 200) {
+        ToastUtil.showToast("error");
+      }
+      else {
+        Navigator.pop(context, [0, res["data"]["price"]]);
+      }
+    }
+  }
+
+  void _removeCapability() async {
+    var res;
+    switch (widget.arguments["title"]) {
+      case "Base Size":
+        res = await removeMerchantBaseSize(widget.arguments["info"]["id"]);
+        break;
+      case "Base Colors":
+        res =await removeMerchantBaseColor(widget.arguments["info"]["id"]);
+        break;
+      case "Base Flavors":
+        res = await removeMerchantBaseFlavor(widget.arguments["info"]["id"]);
+        break;
+      case "Frosting Colors":
+        res = await removeMerchantFrostingColor(widget.arguments["info"]["id"]);
+        break;
+      case "Frosting Flavors":
+        res = await removeMerchantFrostingFlavor(widget.arguments["info"]["id"]);
+        break;
+      case "Toppings":
+        res = await removeMerchantTopping(widget.arguments["info"]["id"]);
+        break;
+      default:
+        ToastUtil.showToast("error");
+    }
+    if (res["code"] != 200) {
+      ToastUtil.showToast("error");
+    }
+    else {
+      Navigator.pop(context, [1, widget.arguments["info"]]);
+    }
   }
 
   TextStyle _titleStyle() {
@@ -124,5 +165,7 @@ class _ModifyCapabilityPageState extends State<ModifyCapabilityPage> {
       fontSize: 18
     );
   }
+
+
 
 }

@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 // appearance: vertical composition - name of the ingredient, divider, price of the ingredient
 class CapabilityCard extends StatefulWidget {
 
-  var arguments;
 
-  int id;
   String title;
-  String name;
-  double price;
+  Map info;
+  final void Function(Object? o) removeItem;
 
-  CapabilityCard(this.id, this.title, this.name, this.price, {this.arguments, Key? key}) : super(key: key);
+  CapabilityCard(this.title, this.info, this.removeItem, {Key? key}) : super(key: key);
 
   @override
   _CapabilityCardState createState() => _CapabilityCardState();
@@ -35,14 +33,21 @@ class _CapabilityCardState extends State<CapabilityCard> {
             splashColor: Colors.red[300],
             onTap: (){
               Navigator.pushNamed(context, "/profile/merchant/shop_manager/change_capability", arguments: {
-                "id": widget.id,
-                "title": widget.title,
-                "name": widget.name,
-                "price": widget.price
+                "info": widget.info,
+                "title": widget.title
               }).then((value) {
-                setState(() {
-                  widget.price = double.parse(value.toString());
-                });
+                if (value != null) {List res = value as List;
+                  // Update
+                  if (res[0] == 0) {
+                    setState(() {
+                      widget.info["price"] = double.parse(res[1].toString());
+                    });
+                  }
+                  // Delete
+                  else if (res[0] == 1) {
+                    widget.removeItem(res[1]);
+                  }
+                }
               });
             },
             child: Column(
@@ -51,10 +56,10 @@ class _CapabilityCardState extends State<CapabilityCard> {
               children: [
                 Padding(
                     padding: EdgeInsets.only(left: 2, right: 2),
-                    child: Text(widget.name, style: _labelTextStyle())
+                    child: Text(widget.info["name"].toString(), style: _labelTextStyle())
                 ),
                 Divider(color: Colors.red.shade900),
-                Text(widget.price.toString(), style: _labelTextStyle())
+                Text(widget.info["price"].toString(), style: _labelTextStyle())
               ],
             ),
           ),

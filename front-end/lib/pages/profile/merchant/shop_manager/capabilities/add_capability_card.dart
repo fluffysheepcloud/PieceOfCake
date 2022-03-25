@@ -4,8 +4,9 @@ class AddCapabilityCard extends StatefulWidget {
 
   final String title;
   List items;
+  VoidCallback resetState;
 
-  AddCapabilityCard(this.title, this.items, {Key? key}) : super(key: key);
+  AddCapabilityCard(this.title, this.items, this.resetState, {Key? key}) : super(key: key);
 
   @override
   _AddCapabilityCardState createState() => _AddCapabilityCardState();
@@ -32,9 +33,10 @@ class _AddCapabilityCardState extends State<AddCapabilityCard> {
                   arguments: {
                     "title": widget.title
                   }).then((value) {
-                    setState(() {
+                    if (value != null) {
                       widget.items.add(value);
-                    });
+                      widget.resetState();
+                    }
                   });
               },
               child: Icon(

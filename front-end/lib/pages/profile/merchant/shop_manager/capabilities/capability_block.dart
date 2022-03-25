@@ -40,9 +40,9 @@ class _CapabilityBlockState extends State<CapabilityBlock> {
           Wrap(children: [
             for (int i = 0; i < widget.items.length; i++)
               // Container()
-              CapabilityCard(widget.items[i]["id"], widget.blockLabel, widget.items[i]["name"].toString(), widget.items[i]["price"]),
+              CapabilityCard(widget.blockLabel, widget.items[i], _removeItem),
 
-            AddCapabilityCard(widget.blockLabel, widget.items)
+            AddCapabilityCard(widget.blockLabel, widget.items, () => setState(() {}))
           ])
         ],
       ),
@@ -61,6 +61,12 @@ class _CapabilityBlockState extends State<CapabilityBlock> {
           )
         ]
     );
+  }
+
+  _removeItem(Object? o) {
+    setState(() {
+      widget.items.remove(o);
+    });
   }
 
 }

@@ -15,7 +15,7 @@ class AddCapabilityPage extends StatefulWidget {
 
 class _AddCapabilityPageState extends State<AddCapabilityPage> {
 
-  final key = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   TextEditingController itemNameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
@@ -28,7 +28,7 @@ class _AddCapabilityPageState extends State<AddCapabilityPage> {
     return Scaffold(
       appBar: AppBar(),
       body: Form(
-        key: key,
+        key: _formKey,
         child: Column(
           children: [
             Container(
@@ -105,12 +105,39 @@ class _AddCapabilityPageState extends State<AddCapabilityPage> {
   }
 
   void _addCapability() async {
-    int id = (await SPUtil.getUserData())["id"];
-    var res = await addMerchantCakeSize(id, itemNameController.text, priceController.text);
-    if (res["code"] != 200) {
-      ToastUtil.showToast("error");
+
+    if (_formKey.currentState!.validate()) {
+      int id = (await SPUtil.getUserData())["id"];
+      var res;
+      switch (widget.arguments["title"]) {
+        case "Base Size":
+          res = await addMerchantBaseSize(id, itemNameController.text, priceController.text);
+          break;
+        case "Base Colors":
+          res = await addMerchantBaseColor(id, itemNameController.text, priceController.text);
+          break;
+        case "Base Flavors":
+          res = await addMerchantBaseFlavor(id, itemNameController.text, priceController.text);
+          break;
+        case "Frosting Colors":
+          res = await addMerchantFrostingColor(id, itemNameController.text, priceController.text);
+          break;
+        case "Frosting Flavors":
+          res = await addMerchantFrostingFlavor(id, itemNameController.text, priceController.text);
+          break;
+        case "Toppings":
+          res = await addMerchantTopping(id, itemNameController.text, priceController.text);
+          break;
+        default:
+          ToastUtil.showToast("error");
+      }
+      if (res["code"] != 200) {
+        ToastUtil.showToast("error");
+      }
+      else {
+        Navigator.pop(context, res["data"]);
+      }
     }
-    Navigator.pop(context, res["data"]);
   }
 
 }
