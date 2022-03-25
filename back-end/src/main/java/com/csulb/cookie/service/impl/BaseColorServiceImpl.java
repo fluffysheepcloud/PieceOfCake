@@ -36,6 +36,16 @@ public class BaseColorServiceImpl extends ServiceImpl<BaseColorMapper, BaseColor
         return new ControllerResult(ControllerResult.SUCCESS, bc, "success").toJsonMap();
     }
 
+    @Override
+    public Map<String, Object> deleteBaseColorById(Integer bcID) {
+        if (bcID == null) return new ControllerResult(ControllerResult.FORBIDDEN, null, "not allowed").toJsonMap();
+
+        boolean res = this.removeById(bcID);
+        if (!res) return new ControllerResult(ControllerResult.ERROR, null, "ERROR").toJsonMap();
+
+        return new ControllerResult(ControllerResult.SUCCESS, null, "success").toJsonMap();
+    }
+
 
 }
 

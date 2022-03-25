@@ -39,6 +39,16 @@ public class FrostingFlavorServiceImpl extends ServiceImpl<FrostingFlavorMapper,
         return new ControllerResult(ControllerResult.SUCCESS, ff, "success").toJsonMap();
 
     }
+
+    @Override
+    public Map<String, Object> deleteBaseFlavorById(Integer ffID) {
+        if (ffID == null) return new ControllerResult(ControllerResult.FORBIDDEN, null, "not allowed").toJsonMap();
+
+        boolean res = this.removeById(ffID);
+        if (!res) return new ControllerResult(ControllerResult.ERROR, null, "ERROR").toJsonMap();
+
+        return new ControllerResult(ControllerResult.SUCCESS, null, "success").toJsonMap();
+    }
 }
 
 

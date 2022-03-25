@@ -37,6 +37,16 @@ public class CakeBaseServiceImpl extends ServiceImpl<CakeBaseMapper, CakeBase>
 
         return new ControllerResult(ControllerResult.SUCCESS, cb, "success").toJsonMap();
     }
+
+    @Override
+    public Map<String, Object> deleteBaseSizeById(Integer cbID) {
+        if (cbID == null) return new ControllerResult(ControllerResult.FORBIDDEN, null, "not allowed").toJsonMap();
+
+        boolean res = this.removeById(cbID);
+        if (!res) return new ControllerResult(ControllerResult.ERROR, null, "ERROR").toJsonMap();
+
+        return new ControllerResult(ControllerResult.SUCCESS, null, "success").toJsonMap();
+    }
 }
 
 
