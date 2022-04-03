@@ -76,9 +76,10 @@ class _PaymentState extends State<Payment> {
               padding: EdgeInsets.only(bottom: 25, top: 10),
               child: ElevatedButton(
                   onPressed: () async{
+                    double total = widget.argumenets * 1.095;
                     paymentMethod = (await PaymentService().createPaymentMethod()) as PaymentMethod?;
-                    print("paymentMethod!.id");
-                    print(paymentMethod!.id);
+                    //await Stripe.instance.createPaymentMethod(PaymentMethodParams.card());
+                    //(await PaymentService().createPaymentMethod()) as PaymentMethod?;
                     //Navigator.of(context).pushNamed( "/shopping_cart/summary", arguments: quantity);
                     print("card");
                   },
@@ -98,7 +99,6 @@ class _PaymentState extends State<Payment> {
             ),
           ],
         ),
-      
     )
     );
 

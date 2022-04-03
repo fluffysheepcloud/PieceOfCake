@@ -22,7 +22,7 @@ class PaymentService{
   }
 
   Future<PaymentMethod?> createPaymentMethod() async {
-    //print('The total is: $total ');
+    print('The total is: $total ');
     PaymentMethod paymentMethod =
     await StripePayment.paymentRequestWithCardForm(
     CardFormPaymentRequest(),
