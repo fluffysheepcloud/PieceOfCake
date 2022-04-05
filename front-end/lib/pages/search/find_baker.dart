@@ -63,7 +63,15 @@ class _FindBakerState extends State<FindBaker>{
         backgroundColor: Colors.orange[50],
         body: SingleChildScrollView(
             child: Column(
+
               children:<Widget>[
+                SizedBox(
+                width: 42.0,
+                height: 42.0,
+                child: const DecoratedBox(
+                decoration: const BoxDecoration(
+                color: Colors.red
+                ))),
 
                 results.isNotEmpty
                     ? ListView.builder(
