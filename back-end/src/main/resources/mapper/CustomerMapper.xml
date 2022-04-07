@@ -17,6 +17,23 @@
         id,username,nick_name,
         password,email,phone
     </sql>
+    <select id="getUnreviewedOrders" resultType="com.csulb.cookie.bean.Review">
+        select o.placed_date, c.comment, c.rate from `order` o
+             left join comments c on o.id = c.order_id
+        where o.customer_id = #{id}
+          and o.status = 'Completed'
+          and c.rate IS NULL
+        ORDER BY placed_date DESC;
+    </select>
+
+    <select id="getReviewedOrders" resultType="com.csulb.cookie.bean.Review">
+        select o.placed_date, c.comment, c.rate from `order` o
+            left join comments c on o.id = c.order_id
+        where o.customer_id = #{id}
+          and o.status = 'Completed'
+          and c.rate IS NOT NULL
+        ORDER BY placed_date DESC;
+    </select>
 
 
 </mapper>
