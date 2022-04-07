@@ -35,6 +35,18 @@ public class CustomerController {
         return service.updateCustomerById(c);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/api/customer/reviewed/{id}", method = RequestMethod.GET)
+    public Map<String, Object> getReviewedOrders(@PathVariable("id") Integer id) {
+        return service.getReviewedOrders(id);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/api/customer/unreviewed/{id}", method = RequestMethod.GET)
+    public Map<String, Object> getUnreviewedOrders(@PathVariable("id") Integer id) {
+        return service.getUnreviewedOrders(id);
+    }
+
 
     @Autowired
     public void setService(CustomerService service) { this.service = service; }
