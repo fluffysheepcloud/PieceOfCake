@@ -18,4 +18,8 @@ public interface CustomerService extends IService<Customer> {
     Map<String, Object> customerRegister(Customer customer);
 
     Map<String, Object> updateCustomerById(Customer c);
+
+    Map<String, Object> getReviewedOrders(Integer id);
+
+    Map<String, Object> getUnreviewedOrders(Integer id);
 }

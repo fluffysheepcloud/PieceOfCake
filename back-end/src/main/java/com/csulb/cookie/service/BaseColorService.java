@@ -9,4 +9,8 @@ import java.util.Map;
 public interface BaseColorService extends IService<BaseColor> {
 
     Map<String, Object> updateBaseColorByID(BaseColor bc);
+
+    Map<String, Object> addBaseColorById(BaseColor bc);
+
+    Map<String, Object> deleteBaseColorById(Integer bcID);
 }

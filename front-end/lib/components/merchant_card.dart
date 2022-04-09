@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/pages/merchant_shop.dart';
-import 'package:frontend/pages/search/merchant_home/product_page.dart';
 
-//TODO: Navigate to the cake prodcut page
 
 //this is like an object class
-class InfoCard extends StatelessWidget {
-  //infocard constructor of class
-  //description, title, img url
-  InfoCard(this.title, this.description, this.id); /*{Key? key,  required this.arguments}) : super(key: key*/
+class MerchantCard extends StatelessWidget {
+
+  MerchantCard(this.shopName, this.street, this.city, this.state, this.zip, this.id); /*{Key? key,  required this.arguments}) : super(key: key*/
   //these are its attributes, this.imgurl
   int id;
-  String description;
-  String title;
+  String street;
+  String city;
+  String state;
+  int zip;
+  String shopName;
+
   var arguments ; //var can be all types
-  //{Key ? key, this.arguments} indicates that the arguments can be option/can be null
   //Scaffold is a whole page, Center is a container for elements
 
   @override
@@ -34,13 +34,12 @@ class InfoCard extends StatelessWidget {
                 child: InkWell(
                     splashColor: Colors.brown.withAlpha(70),
                     onTap: () {
-                      debugPrint('Card tapped.');
-                      //pass id into product page which gets the cakes details - talk to guanyu about this
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => ProductPage(id: id,),
-                      //     ));
+                      //debugPrint('Card tapped.');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MerchantShop(id),
+                          ));
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -64,12 +63,15 @@ class InfoCard extends StatelessWidget {
                               children: [
                                 Container(
                                   padding: const EdgeInsets.all(8.0),
-                                  child:  Text(title),
+                                  child:  Text(shopName),
                                 ),
                                 Container(
                                   padding: const EdgeInsets.all(8.0),
-                                  child:  Text(description), //arguments["description"]
+                                  child:  Text(street + "\n" + city + ", " + state + "\n " + zip.toString()),
                                 ),
+                                // ElevatedButton(onPressed: (){
+                                //
+                                // }, child: Text("Go to shop"))
                               ],
                             )
                         )

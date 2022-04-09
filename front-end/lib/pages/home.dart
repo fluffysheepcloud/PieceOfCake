@@ -27,6 +27,7 @@ class _HomeState extends State<Home> {
     var m2 = await getMerchantInfoById(2);
     var m3 = await getMerchantInfoById(3);
     var p1 = await getMerchantInfoById(1);
+    debugPrint(m2.toString());
 
     // final String response = await rootBundle.loadString('assets/mock/sample.json');
     // debugPrint(response);
@@ -41,8 +42,9 @@ class _HomeState extends State<Home> {
       _items.add(m2["data"]);
       _items.add(m3["data"]);
       _pickCard.add(p1["data"]);
+      debugPrint(m1["data"].toString());
     });
-    //debugPrint(pickcard["shopName"]);
+
   }
 
   @override
@@ -95,7 +97,7 @@ class _HomeState extends State<Home> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: _pickCard.length,
                   itemBuilder: (context, index){
-                    return InfoCard(_pickCard[index]["shopName"], _pickCard[index]["description"]);
+                    return InfoCard(_pickCard[index]["shopName"], _pickCard[index]["description"], _pickCard[index]["id"]);
                   },
 
             ),
@@ -119,7 +121,7 @@ class _HomeState extends State<Home> {
                 itemCount: _items.length,
 
                 itemBuilder: (context, index){
-                  return InfoCard(_items[index]["shopName"], _items[index]["description"]);//new Text("hello");//InfoCard(_items[index number]);
+                  return InfoCard(_items[index]["shopName"], _items[index]["description"], _items[index]["id"]);//new Text("hello");//InfoCard(_items[index number]);
                 }
             )
         ,

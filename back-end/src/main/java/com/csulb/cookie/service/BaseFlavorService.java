@@ -9,4 +9,9 @@ import java.util.Map;
 public interface BaseFlavorService extends IService<BaseFlavor> {
 
     Map<String, Object> updateBaseFlavorByID(BaseFlavor bf);
+
+    Map<String, Object> addBaseFlavorById(BaseFlavor bf);
+
+    Map<String, Object> deleteBaseFlavorById(Integer bfID);
+
 }

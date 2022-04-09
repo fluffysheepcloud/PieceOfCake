@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 const String baseURL = "http://10.0.2.2:8080/api/customer";
+// const String baseURL = "http://127.0.0.1:8080/api/customer";
 
 // Service for customer login
 customerLogin(String username, String password) async {
@@ -50,6 +51,24 @@ updateCustomerInfo(Map c) async {
       "phone": c["phone"]
     }
   );
+
+  return json.decode(res.body);
+}
+
+getCustomerReviewedOrders(int id) async {
+  String path = "/reviewed/" + id.toString();
+  var url = Uri.parse(baseURL + path);
+  print(url);
+  var res = await http.get(url);
+
+  return json.decode(res.body);
+}
+
+getCustomerUnreviewedOrders(int id) async {
+  String path = "/unreviewed/" + id.toString();
+
+  var url = Uri.parse(baseURL + path);
+  var res = await http.get(url);
 
   return json.decode(res.body);
 }

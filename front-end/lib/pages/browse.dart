@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:frontend/components/card.dart';
 import 'package:frontend/network/merchant_service.dart';
+import 'package:frontend/pages/search/find_baker.dart';
 
 class Browse extends StatefulWidget{
 
@@ -116,6 +117,20 @@ class _BrowseState extends State<Browse>{
           ),
               //we must set the state, if results [ ] is empty, then we do not render
               // after the search is queried, we must set the state/repaint the page
+          //use height/width constraints
+          // Container(height: 70, width: 200,
+          // decoration: BoxDecoration(
+          //   color: Colors.orange
+          // ),
+          // child: Text("find baker")),
+
+          ElevatedButton(onPressed: (){
+            Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FindBaker() ,
+                    ));
+          }, child: Text("Find a baker")),
           results.isNotEmpty
           ? ListView.builder(
               scrollDirection: Axis.vertical,
@@ -123,7 +138,7 @@ class _BrowseState extends State<Browse>{
               physics: const NeverScrollableScrollPhysics(),
               itemCount: results.length,
               itemBuilder: (context, index){
-                return InfoCard(results[index]["shopName"], results[index]["description"]);//new Text("hello");//InfoCard(_items[index number]);
+                return InfoCard(results[index]["shopName"], results[index]["description"], results[index]["id"]);//new Text("hello");//InfoCard(_items[index number]);
               }
           )
               : ListView.builder(
@@ -132,7 +147,7 @@ class _BrowseState extends State<Browse>{
             physics: const NeverScrollableScrollPhysics(),
             itemCount: _items.length,
             itemBuilder: (context, index){
-              return InfoCard(_items[index]["shopName"], _items[index]["description"]);//new Text("hello");//InfoCard(_items[index number]);
+              return InfoCard(_items[index]["shopName"], _items[index]["description"],  _items[index]["id"]);//new Text("hello");//InfoCard(_items[index number]);
             },
           )
           //end searchbar

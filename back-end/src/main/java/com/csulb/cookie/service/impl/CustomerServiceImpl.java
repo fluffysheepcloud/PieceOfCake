@@ -3,12 +3,14 @@ package com.csulb.cookie.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.csulb.cookie.bean.ControllerResult;
+import com.csulb.cookie.bean.Review;
 import com.csulb.cookie.domain.Customer;
 import com.csulb.cookie.service.CustomerService;
 import com.csulb.cookie.mapper.CustomerMapper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Log4j2
@@ -61,6 +63,20 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
         return res ?
             new ControllerResult(ControllerResult.SUCCESS, c, "success").toJsonMap() :
             new ControllerResult(ControllerResult.ERROR, null, "error").toJsonMap();
+    }
+
+    @Override
+    public Map<String, Object> getReviewedOrders(Integer id) {
+        if (id == null) return new ControllerResult(ControllerResult.BAD_REQUEST, null, "bad request").toJsonMap();
+        List<Review> orders = this.getBaseMapper().getReviewedOrders(id);
+        return new ControllerResult(ControllerResult.SUCCESS, orders, "success").toJsonMap();
+    }
+
+    @Override
+    public Map<String, Object> getUnreviewedOrders(Integer id) {
+        if (id == null) return new ControllerResult(ControllerResult.BAD_REQUEST, null, "bad request").toJsonMap();
+        List<Review> orders = this.getBaseMapper().getUnreviewedOrders(id);
+        return new ControllerResult(ControllerResult.SUCCESS, orders, "success").toJsonMap();
     }
 
 

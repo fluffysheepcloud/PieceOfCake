@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:frontend/components/common.dart';
+import 'package:frontend/network/customer_service.dart';
 import 'package:frontend/pages/profile/customer/review/review_card.dart';
+import 'package:frontend/utils/shared_preferences.dart';
 
 class ReviewedPage extends StatefulWidget {
   const ReviewedPage({Key? key}) : super(key: key);
@@ -13,10 +15,10 @@ class ReviewedPage extends StatefulWidget {
 
 class _ReviewedPageState extends State<ReviewedPage> {
 
-  Future<List> mockData() async {
-    final String res = await rootBundle.loadString('assets/mock/reviewed.json');
+  Future<List> getData() async {
+    int id = (await SPUtil.getUserData())["id"];
+    var res = await getCustomerReviewedOrders(id);
     var data = json.decode(res)["data"] as List;
-    print(data);
     return data;
   }
 
@@ -26,7 +28,7 @@ class _ReviewedPageState extends State<ReviewedPage> {
 
     return Center(
       child: FutureBuilder<List>(
-        future: mockData(),
+        future: getData(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasError) {
@@ -49,9 +51,9 @@ class _ReviewedPageState extends State<ReviewedPage> {
         itemBuilder: (context, index) {
           return ReviewCard(
             orderNumber: snapshot.data[index][Common.ORDER_NUMBER],
-            imageURL: snapshot.data[index][Common.IMAGE_URL],
+            imageURL: "assets/images/cake.jpg",
             comment: snapshot.data[index][Common.CAKE_COMMENT],
-            rating: snapshot.data[index]['rate'],
+            rating: snapshot.data[index][Common.CAKE_RATE],
           );
         }
     );

@@ -27,6 +27,26 @@ public class FrostingServiceImpl extends ServiceImpl<FrostingMapper, Frosting>
         else return new ControllerResult(ControllerResult.ERROR, null, "error").toJsonMap();
 
     }
+
+    @Override
+    public Map<String, Object> addFrostingColorById(Frosting fc) {
+        if (fc == null) return new ControllerResult(ControllerResult.FORBIDDEN, null, "not allowed").toJsonMap();
+
+        boolean res = this.save(fc);
+        if (!res) return new ControllerResult(ControllerResult.ERROR, null, "ERROR").toJsonMap();
+
+        return new ControllerResult(ControllerResult.SUCCESS, fc, "success").toJsonMap();
+    }
+
+    @Override
+    public Map<String, Object> deleteBaseFlavorById(Integer fcID) {
+        if (fcID == null) return new ControllerResult(ControllerResult.FORBIDDEN, null, "not allowed").toJsonMap();
+
+        boolean res = this.removeById(fcID);
+        if (!res) return new ControllerResult(ControllerResult.ERROR, null, "ERROR").toJsonMap();
+
+        return new ControllerResult(ControllerResult.SUCCESS, null, "success").toJsonMap();
+    }
 }
 
 

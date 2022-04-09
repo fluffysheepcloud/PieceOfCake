@@ -59,11 +59,80 @@ public class CapabilityController {
     }
 
     @ResponseBody
+
     @RequestMapping(value = "/api/merchant/capability/cake_base", method = RequestMethod.POST)
     public Map<String, Object> addBaseSizeById(CakeBase cb) {
-        cbService.addBaseSizeById(cb);
-       return null;
+       return cbService.addBaseSizeById(cb);
     }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/api/merchant/capability/base_color", method = RequestMethod.POST)
+    public Map<String, Object> addBaseColorById(BaseColor bc) {
+        return bcService.addBaseColorById(bc);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/api/merchant/capability/base_flavor", method = RequestMethod.POST)
+    public Map<String, Object> addBaseFlavorById(BaseFlavor bf) {
+        return bfService.addBaseFlavorById(bf);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/api/merchant/capability/frosting_color", method = RequestMethod.POST)
+    public Map<String, Object> addFrostingColorById(Frosting fc) {
+        return fcService.addFrostingColorById(fc);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/api/merchant/capability/frosting_flavor", method = RequestMethod.POST)
+    public Map<String, Object> addFrostingFlavorById(FrostingFlavor ff) {
+        return ffService.addFrostingFlavorById(ff);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/api/merchant/capability/topping", method = RequestMethod.POST)
+    public Map<String, Object> addToppingById(Toppings tp) {
+        return tpService.addToppingById(tp);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/api/merchant/capability/cake_base/{id}", method = RequestMethod.DELETE)
+    public Map<String, Object> deleteBaseSizeById(@PathVariable("id") Integer cbID) {
+        return cbService.deleteBaseSizeById(cbID);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/api/merchant/capability/base_color/{id}", method = RequestMethod.DELETE)
+    public Map<String, Object> deleteBaseColorById(@PathVariable("id") Integer bcID) {
+        return bcService.deleteBaseColorById(bcID);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/api/merchant/capability/base_flavor/{id}", method = RequestMethod.DELETE)
+    public Map<String, Object> deleteBaseFlavorById(@PathVariable("id") Integer bfID) {
+        return bfService.deleteBaseFlavorById(bfID);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/api/merchant/capability/frosting_color/{id}", method = RequestMethod.DELETE)
+    public Map<String, Object> deleteFrostingColorById(@PathVariable("id") Integer fcID) {
+        return fcService.deleteBaseFlavorById(fcID);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/api/merchant/capability/frosting_flavor/{id}", method = RequestMethod.DELETE)
+    public Map<String, Object> deleteFrostingFlavorById(@PathVariable("id") Integer ffID) {
+        return ffService.deleteBaseFlavorById(ffID);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/api/merchant/capability/topping/{id}", method = RequestMethod.DELETE)
+    public Map<String, Object> deleteToppingById(@PathVariable("id") Integer tpID) {
+        return tpService.deleteBaseFlavorById(tpID);
+    }
+
+
 
     @Autowired
     public void setService(CakeBaseService service) { this.cbService = service; }
