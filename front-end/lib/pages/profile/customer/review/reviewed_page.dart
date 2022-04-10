@@ -17,8 +17,7 @@ class _ReviewedPageState extends State<ReviewedPage> {
 
   Future<List> getData() async {
     int id = (await SPUtil.getUserData())["id"];
-    var res = await getCustomerReviewedOrders(id);
-    var data = json.decode(res)["data"] as List;
+    var data = (await getCustomerReviewedOrders(id))["data"] as List;
     return data;
   }
 
@@ -50,7 +49,7 @@ class _ReviewedPageState extends State<ReviewedPage> {
         itemCount: snapshot.data.length,
         itemBuilder: (context, index) {
           return ReviewCard(
-            orderNumber: snapshot.data[index][Common.ORDER_NUMBER],
+            orderNumber: snapshot.data[index][Common.ORDER_NUMBER].toString(),
             imageURL: "assets/images/cake.jpg",
             comment: snapshot.data[index][Common.CAKE_COMMENT],
             rating: snapshot.data[index][Common.CAKE_RATE],

@@ -58,9 +58,7 @@ updateCustomerInfo(Map c) async {
 getCustomerReviewedOrders(int id) async {
   String path = "/reviewed/" + id.toString();
   var url = Uri.parse(baseURL + path);
-  print(url);
   var res = await http.get(url);
-
   return json.decode(res.body);
 }
 

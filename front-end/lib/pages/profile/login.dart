@@ -137,7 +137,6 @@ class _LoginState extends State<Login> {
 
     if (res["code"] == 200) {
       if (_role == 0) {
-        print(res["data"]);
         await SPUtil.setString(Common.CUSTOMER, json.encode(res["data"]));
         await SPUtil.updateLoginStatus();
       }

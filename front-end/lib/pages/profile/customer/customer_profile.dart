@@ -23,7 +23,7 @@ class _CustomerProfileState extends State<CustomerProfile> {
     {
       "title": "Favorite",
       "items": ["Cakes", "Merchants"],
-      "routes": ["/profile/customer/fav_cakes", "/profile/customer/fav_merchants"],
+      "routes": ["/profile/customer/fav_cakes_page", "/profile/customer/fav_merchants"],
     },
     {
       "title": "Personal Info",
@@ -34,7 +34,6 @@ class _CustomerProfileState extends State<CustomerProfile> {
 
   Future<Map> _loadCustomer() async {
     Map data = await SPUtil.getUserData();
-    debugPrint(data.toString());
     return data;
   }
 

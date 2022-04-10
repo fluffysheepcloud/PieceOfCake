@@ -17,8 +17,7 @@ class _UnreviewedPageState extends State<UnreviewedPage> {
 
   Future<List> getData() async {
     int id = (await SPUtil.getUserData())["id"];
-    var res = await getCustomerReviewedOrders(id);
-    var data = json.decode(res)["data"] as List;
+    var data = (await getCustomerUnreviewedOrders(id))["data"] as List;
     return data;
   }
 
@@ -58,8 +57,8 @@ class _UnreviewedPageState extends State<UnreviewedPage> {
             itemBuilder: (context, index) {
               return UnreviewedCard(
                 key: ObjectKey(snapshot.data[index]),
-                orderNumber: snapshot.data[index]["orderNumber"],
-                imageURL: snapshot.data[index]["imageURL"],
+                orderNumber: snapshot.data[index]["orderNumber"].toString(),
+                imageURL: "assets/images/cake.jpg",
                 onDeleteClicked: () => _deleteItem(snapshot, index),
               );
             }
