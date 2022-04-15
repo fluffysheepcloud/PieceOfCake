@@ -3,9 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:frontend/components/input_text_box.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'dart:io';
+import 'dart:async';
 import 'package:image_picker/image_picker.dart';
 import 'package:textfield_tags/textfield_tags.dart';
-
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:path_provider/path_provider.dart';
 
 // cake name, cake description, cake price, cake quantity, image upload, tags, on this page
 class AddPrebuiltCake extends StatefulWidget {
@@ -15,6 +17,15 @@ class AddPrebuiltCake extends StatefulWidget {
 
   @override
   _AddPrebuiltCakeState createState() => _AddPrebuiltCakeState();
+}
+
+Future<File> getImageFileFromAssets(String path) async {
+  final byteData = await rootBundle.load('assets/$path');
+
+  final file = File('${(await getTemporaryDirectory()).path}/$path');
+  await file.writeAsBytes(byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+
+  return file;
 }
 
 // add capabilities to prebuilt cake
@@ -31,12 +42,10 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
   late final TextEditingController _frosting_color;
   late final TextEditingController _toppings;
 
-  // To store the image
-  File _image = File('assets/images/PieceOfCakeLogo.png');
-  final Image _empty_image = Image.asset('assets/images/PieceOfCakeLogo.png');
-
-  //ImagePicker instance.
-  final picker = ImagePicker();
+  // for selecting images
+  final ImagePicker _picker = ImagePicker();
+  File? image;
+  List<File> multipleImages = [];
 
   // for the tags that the merchant inputs
   List<String> _tags = [];
@@ -85,25 +94,10 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
     super.dispose();
   }
 
-  //ImageSource: Camera and Gallery
-  _getImage(ImageSource imageSource) async
-  {
-    PickedFile? imageFile = await picker.getImage(source: imageSource);
-    //if user doesn't take any image, just return.
-    if (imageFile == null) {
-      return _empty_image;
-    }
-    setState(
-          () {
-        //Rebuild UI with the selected image.
-        _image = File(imageFile.path);
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset : false,
         backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text('Add a New Prebuilt Cake'),
@@ -111,15 +105,18 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
               color: Colors.white, fontWeight: FontWeight.bold),
           backgroundColor: Colors.brown[700],
         ),
-        body: buildCake(context),
+        body: buildCake(context)
     );
   }
 
   Widget buildCake(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             // enter cake name
             Padding(
@@ -285,40 +282,48 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
               ),
             ),
 
-            Center(
-              child: _image != null
-                  ? Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  width: 300,
-                  height: 300,
-                  child: Image.file(
-                    _image,
+            Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  Divider(thickness: 1, color: Colors.brown),
+                  Text("Upload up to 6 photos",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.brown)),
+                  ElevatedButton(
+                      style: TextButton.styleFrom
+                        (backgroundColor: Colors.brown[700]),
+                      onPressed: () async {
+                        List<XFile>? picked = await _picker.pickMultiImage();
+                        setState(() {
+                          multipleImages = picked!.map((e) => File(e.path)).toList();
+                        });
+                      },
+                      child: const Text("Select Photos",
+                          style: TextStyle(color: Colors.white, fontSize: 15)
+                      )
                   ),
-                ),
+                ]
               )
-                  : Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Text('No image selected'),
+
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                children: [
+                  //other widgets
+                  Expanded(
+                    child: GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10),
+                        itemCount: multipleImages.length,
+                        itemBuilder: (context, index) {
+                          return GridTile(child: Image.file(multipleImages[index]));
+                        }),
+                  ),
+                ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton.icon(
-                    onPressed: () => _getImage(ImageSource.gallery),
-                    icon: Icon(Icons.image),
-                    label: Text('gallery'),
-                    style: TextButton.styleFrom(backgroundColor: Colors.brown[700])
-                ),
-                ElevatedButton.icon(
-                    onPressed: () => _getImage(ImageSource.camera),
-                    icon: Icon(Icons.camera),
-                    label: Text('camera'),
-                    style: TextButton.styleFrom(backgroundColor: Colors.brown[700])
-                ),
-              ],
-            ),
+
 
             // spacing
             SizedBox(height: 10),
@@ -419,7 +424,7 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
             ),
           ],
         ),
-      ),
+      )
     );
   }
 }
