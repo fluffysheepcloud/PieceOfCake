@@ -21,13 +21,12 @@ dependencies:
   carousel_slider: ^4.0.0
   syncfusion_flutter_calendar: ^19.4.54
   currency_text_input_formatter: ^2.1.5
-  image_picker: ^0.8.1
-  textfield_tags: ^1.4.4
+  image_picker: ^0.8.5
+  textfield_tags: ^1.4.3
   timelines: ^0.1.0
   timeline_tile: ^2.0.0
   flutter_stripe: ^2.4.0
   stripe_payment: ^1.1.4
-
 
 dev_dependencies:
   flutter_test:
