@@ -77,7 +77,6 @@ class _BrowseState extends State<Browse>{
                       icon: customIcon, onPressed: () {
                         if (customIcon.icon == Icons.cancel){
                           debugPrint("taps");
-                          //clear not working *w*
                           tc.clear();
                         }
                     },
@@ -125,11 +124,11 @@ class _BrowseState extends State<Browse>{
           // child: Text("find baker")),
 
           ElevatedButton(onPressed: (){
-            Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => FindBaker() ,
-                    ));
+            // Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) => FindBaker() ,
+            //         ));
           }, child: Text("Find a baker")),
           results.isNotEmpty
           ? ListView.builder(
