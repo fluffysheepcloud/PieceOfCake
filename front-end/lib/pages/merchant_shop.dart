@@ -5,8 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/components/card.dart';
 import 'package:frontend/network/merchant_service.dart';
+import 'package:frontend/pages/cake_request_form.dart';
+import 'package:frontend/pages/profile/merchant/shop_manager/shop_manager.dart';
 import 'package:frontend/utils/shared_preferences.dart';
 import 'dart:convert';
+
+import 'cake_building/custom_cake_page.dart';
 //when card clicked, pass id in to here, then retrieve data from that id using await getMerchantId(id passed in)
 
 class MerchantShop extends StatelessWidget{
@@ -14,10 +18,11 @@ class MerchantShop extends StatelessWidget{
   MerchantShop(this.id);
 
   // @override
-
   Map<String, dynamic> merchantInfo = {};
   final int _loginStat = SPUtil.loginStatus;
+  int userId = 0;
 
+  //get cakes of merchant
 
   final List _items = [
     {
@@ -42,14 +47,15 @@ class MerchantShop extends StatelessWidget{
     debugPrint(m1.toString());
     Map data = m1["data"];
 
+    //get stat and user info
+    var ud = await SPUtil.getUserData();
+    userId = ud["data"]["id"];
+
     debugPrint(data.toString());
 
     return data;
   }
 
-  // void initState(){
-  //   readJson();
-  // }
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Map>(
@@ -112,8 +118,24 @@ class MerchantShop extends StatelessWidget{
                 ),
                 //refer to registration/profile.dart for inspo
                 //will need to refine this so it checks that the login state is not 0 and the ID's match
-                _loginStat == 0 ?
-                ElevatedButton(onPressed: (){}, child: Text("Build a custom cake")) : ElevatedButton(onPressed: (){}, child: Text("Edit Shop"))
+                if (_loginStat == 1 && id == userId)...[
+                    ElevatedButton(onPressed: (){
+                      builder: (context) => ShopManagerPage();
+                    }, child: Text("Edit Shop"))
+                  ]
+                else if (_loginStat == 1) ...[
+                  SizedBox(
+                    height: 50,
+                  )
+                ]
+                else ... [
+                  ElevatedButton(onPressed: (){
+                    builder: (context) => CustomCakePage();
+                  }, child: Text("Build a custom cake")),
+                  ElevatedButton(onPressed: (){
+                    builder: (context) => PurelyCustomizedCake();
+                  }, child: Text("Request cake form"))
+                ]
               ],
             ),
             SizedBox(height: 5,),
