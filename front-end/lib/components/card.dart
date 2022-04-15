@@ -36,11 +36,11 @@ class InfoCard extends StatelessWidget {
                     onTap: () {
                       debugPrint('Card tapped.');
                       //pass id into product page which gets the cakes details - talk to guanyu about this
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => ProductPage(id: id,),
-                      //     ));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MerchantShop(id)//ProductPage(id: id,),
+                          ));
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

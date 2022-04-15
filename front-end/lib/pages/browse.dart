@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:frontend/components/card.dart';
+import 'package:frontend/components/merchant_card.dart';
 import 'package:frontend/network/merchant_service.dart';
 import 'package:frontend/pages/search/find_baker.dart';
 
@@ -45,11 +46,11 @@ class _BrowseState extends State<Browse>{
   }
 
   void filterSearch(String query){
-    debugPrint(_items.length.toString());
+    //debugPrint(_items.length.toString());
       for (var item in _items){
           if (item["shopName"].toLowerCase().contains(query.toLowerCase()) || item["description"].toLowerCase().contains(query.toLowerCase())){
             results.add(item);
-            debugPrint(results.toString());
+            //debugPrint(results.toString());
           }
       }
   }
@@ -76,7 +77,7 @@ class _BrowseState extends State<Browse>{
                     suffixIcon: IconButton(
                       icon: customIcon, onPressed: () {
                         if (customIcon.icon == Icons.cancel){
-                          debugPrint("taps");
+                          //debugPrint("taps");
                           tc.clear();
                         }
                     },
@@ -124,11 +125,11 @@ class _BrowseState extends State<Browse>{
           // child: Text("find baker")),
 
           ElevatedButton(onPressed: (){
-            // Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //           builder: (context) => FindBaker() ,
-            //         ));
+            Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FindBaker() ,
+                    ));
           }, child: Text("Find a baker")),
           results.isNotEmpty
           ? ListView.builder(
