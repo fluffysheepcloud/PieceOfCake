@@ -58,24 +58,19 @@ class _HomeState extends State<Home> {
   Widget build (BuildContext context){
 
   return Scaffold(
-    backgroundColor: Colors.orange[50],
+      appBar: AppBar(
+        title: Text("Welcome, " + customerName.toString(),
+          style: TextStyle(fontSize: 25),),
+        titleTextStyle: TextStyle(
+            color: Colors.white, fontWeight: FontWeight.bold),
+        backgroundColor: Colors.brown[700],
+      ),
+
+      backgroundColor: Colors.orange[50],
     body: SingleChildScrollView(
       child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        //banner for welcome
-        Container(
-            margin: EdgeInsets.only(top: 70.0) ,
-            color: Colors.brown[200],
-            height: 100,
-            width: 1000 ,
-            child: Align(
-              alignment: Alignment.center,
-              child: Text("welcome, " + customerName.toString(),
-              style: TextStyle(fontSize: 25),)
-
-            )
-        ),
 
         //banner
         Container(

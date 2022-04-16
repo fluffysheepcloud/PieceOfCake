@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-
+//takes in label and controller then returns value
+//main page will use this value for the query
+//this should be a form since it has more than 1 value
 class findBaker_textBox extends StatelessWidget{
   String _title;
+  TextEditingController _tc;
   //TextEditingController _textControl;
-  findBaker_textBox (this._title); // this._textControl);
+  findBaker_textBox (this._title, this._tc); // this._textControl);
 
   @override
   Widget build(BuildContext context){
@@ -34,7 +37,12 @@ class findBaker_textBox extends StatelessWidget{
                     height: 52,
                     width: 100,
                   child: TextFormField(
-                   // controller: tc,
+                   controller: _tc,
+                    validator: (value){
+                     if (value != null){
+                       return value.trim().isNotEmpty ? null: "$_title cannot be empty!";
+                     }
+                    },
                     decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,

@@ -59,7 +59,14 @@ class _BrowseState extends State<Browse>{
   Widget customSearchBar = const Text('Search');
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+        appBar: AppBar(
+          title: Text('Browse for Cakes'),
+          titleTextStyle: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold),
+          backgroundColor: Colors.brown[700],
+        ),
         backgroundColor: Colors.orange[50],
         body: SingleChildScrollView(
         child: Column(
