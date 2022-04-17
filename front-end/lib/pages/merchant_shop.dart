@@ -5,20 +5,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/components/card.dart';
 import 'package:frontend/network/merchant_service.dart';
+import 'package:frontend/pages/cake_request_form.dart';
+import 'package:frontend/pages/profile/merchant/shop_manager/shop_manager.dart';
 import 'package:frontend/utils/shared_preferences.dart';
 import 'dart:convert';
+
+import 'cake_building/custom_cake_page.dart';
 //when card clicked, pass id in to here, then retrieve data from that id using await getMerchantId(id passed in)
 
 class MerchantShop extends StatelessWidget{
   final int id;
-  MerchantShop(this.id);
+  MerchantShop(this.id, {Key? key}) : super(key: key);
 
   // @override
-
   Map<String, dynamic> merchantInfo = {};
   final int _loginStat = SPUtil.loginStatus;
+  int userId = 0;
 
-
+  //get cakes of merchant
   final List _items = [
     {
       "id": 1,
@@ -42,36 +46,38 @@ class MerchantShop extends StatelessWidget{
     debugPrint(m1.toString());
     Map data = m1["data"];
 
-    debugPrint(data.toString());
-
     return data;
   }
 
-  // void initState(){
-  //   readJson();
-  // }
+  Future<int> _loadId() async {
+    //get stat and user info
+    int userId = (await SPUtil.getUserData())["id"];
+    return userId;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Map>(
-      future: _loadMerchantShop(),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          if (snapshot.hasError) {
-            return Text("Error: ${snapshot.error}");
-          } else {
-            for (String key in snapshot.data.keys) {
-              merchantInfo[key] = snapshot.data[key] ?? "Unknown";
+    return Container(
+      child: FutureBuilder(
+        future: Future.wait({_loadMerchantShop(), _loadId()}),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) {
+              return Text("Error: ${snapshot.error}");
+            } else {
+              for (String key in snapshot.data[0].keys) {
+                merchantInfo[key] = snapshot.data[0][key] ?? "Unknown";
+                userId = snapshot.data[1];
+              }
+              return _pageBuilder(context);
             }
-            return _pageBuilder(context);
+          } else {
+            return CircularProgressIndicator();
           }
-        } else {
-          return CircularProgressIndicator();
-        }
-      },
+        },
+      ) ,
     );
   }
-  //TEMPORARY LOG IN STATE BUTTON FOR NOW BC NOT CONNECTED TO DB :(
-  //int log1 = 1;
   _pageBuilder(BuildContext context)  {
     return Scaffold(
       //display shop name
@@ -110,10 +116,38 @@ class MerchantShop extends StatelessWidget{
                           style: TextStyle(fontSize: 15),)
                     )
                 ),
-                //refer to registration/profile.dart for inspo
-                //will need to refine this so it checks that the login state is not 0 and the ID's match
-                _loginStat == 0 ?
-                ElevatedButton(onPressed: (){}, child: Text("Build a custom cake")) : ElevatedButton(onPressed: (){}, child: Text("Edit Shop"))
+                if (_loginStat == 1 && id == userId)...[
+                    ElevatedButton(onPressed: (){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ShopManagerPage()//ProductPage(id: id,),
+                          ));
+                    }, child: Text("Edit Shop"))
+                  ]
+                  else if (_loginStat == 0)...[
+                  Column(children: [
+                    ElevatedButton(onPressed: (){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CustomCakePage()//ProductPage(id: id,),
+                          ));
+                    }, child: Text("Build a custom cake")),
+                    ElevatedButton(onPressed: (){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PurelyCustomizedCake()//ProductPage(id: id,),
+                          ));
+                    }, child: Text("Request cake form"))
+                  ],)
+                ]
+                else ... [
+                    SizedBox(
+                      height: 50,
+                    )
+                ]
               ],
             ),
             SizedBox(height: 5,),

@@ -37,7 +37,7 @@ class _ModifyCapabilityPageState extends State<ModifyCapabilityPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("${widget.arguments["info"]["title"]}", style: _titleStyle()),
+                  Text("Name", style: _titleStyle()),
                   Divider(thickness: 2),
                   Text("${widget.arguments["info"]["name"]}"),
                   SizedBox(height: 10),

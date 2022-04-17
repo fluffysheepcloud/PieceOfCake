@@ -57,7 +57,7 @@ class _CapabilityPageState extends State<CapabilityPage> {
   Widget _blockBuilder(AsyncSnapshot snapshot) {
     Map data = snapshot.data;
     List keys = data.keys.toList();
-
+    print(data[keys[0]]);
     List _keys = ["Base Size", "Base Colors",
       "Base Flavors", "Frosting Colors",
       "Frosting Flavors", "Toppings"];

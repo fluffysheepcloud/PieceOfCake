@@ -27,6 +27,7 @@ dependencies:
   timeline_tile: ^2.0.0
   flutter_stripe: ^2.4.0
   stripe_payment: ^1.1.4
+  path_provider: ^2.0.9
 
 dev_dependencies:
   flutter_test:

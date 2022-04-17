@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:frontend/components/card.dart';
+import 'package:frontend/components/merchant_card.dart';
 import 'package:frontend/network/merchant_service.dart';
 import 'package:frontend/pages/search/find_baker.dart';
 
@@ -45,11 +46,11 @@ class _BrowseState extends State<Browse>{
   }
 
   void filterSearch(String query){
-    debugPrint(_items.length.toString());
+    //debugPrint(_items.length.toString());
       for (var item in _items){
           if (item["shopName"].toLowerCase().contains(query.toLowerCase()) || item["description"].toLowerCase().contains(query.toLowerCase())){
             results.add(item);
-            debugPrint(results.toString());
+            //debugPrint(results.toString());
           }
       }
   }
@@ -58,7 +59,14 @@ class _BrowseState extends State<Browse>{
   Widget customSearchBar = const Text('Search');
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+        appBar: AppBar(
+          title: Text('Browse for Cakes'),
+          titleTextStyle: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold),
+          backgroundColor: Colors.brown[700],
+        ),
         backgroundColor: Colors.orange[50],
         body: SingleChildScrollView(
         child: Column(
@@ -76,8 +84,7 @@ class _BrowseState extends State<Browse>{
                     suffixIcon: IconButton(
                       icon: customIcon, onPressed: () {
                         if (customIcon.icon == Icons.cancel){
-                          debugPrint("taps");
-                          //clear not working *w*
+                          //debugPrint("taps");
                           tc.clear();
                         }
                     },

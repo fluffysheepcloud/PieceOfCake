@@ -34,7 +34,7 @@ class MerchantCard extends StatelessWidget {
                 child: InkWell(
                     splashColor: Colors.brown.withAlpha(70),
                     onTap: () {
-                      //debugPrint('Card tapped.');
+                      debugPrint('Card tapped.');
                       Navigator.push(
                           context,
                           MaterialPageRoute(

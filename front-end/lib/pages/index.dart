@@ -60,7 +60,7 @@ class _IndexState extends State<Index> {
               activeIcon: Icon(Icons.home)
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
+              icon: Icon(Icons.search),
               label: "Browse",
               activeIcon: Icon(Icons.search)
           ),
