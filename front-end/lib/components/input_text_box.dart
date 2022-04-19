@@ -44,6 +44,8 @@ class InputTextBox extends StatelessWidget {
 
   _generateInputDecoration(String hintText) {
     return InputDecoration(
+      filled: true,
+      fillColor: Colors.white,
         border: const OutlineInputBorder(
           borderSide: BorderSide(
             width: 7,
