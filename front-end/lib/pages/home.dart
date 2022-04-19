@@ -63,7 +63,7 @@ class _HomeState extends State<Home> {
           style: TextStyle(fontSize: 25),),
         titleTextStyle: TextStyle(
             color: Colors.white, fontWeight: FontWeight.bold),
-        backgroundColor: Colors.brown[700],
+        backgroundColor: Colors.brown[300],
       ),
 
       backgroundColor: Colors.orange[50],
@@ -72,8 +72,13 @@ class _HomeState extends State<Home> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
 
-        //banner
+        SizedBox(
+          height:25
+        ),
         Container(
+          decoration: BoxDecoration(
+            color: Colors.brown[200]
+          ),
             padding: const EdgeInsets.all(20.0),
             child: Align(
                 alignment: Alignment.topLeft,
@@ -99,6 +104,9 @@ class _HomeState extends State<Home> {
             ),
         //banner
         Container(
+            decoration: BoxDecoration(
+                color: Colors.brown[200]
+            ),
           padding: const EdgeInsets.all(20.0),
             child: Align(
                 alignment: Alignment.topLeft,

@@ -65,9 +65,10 @@ class _BrowseState extends State<Browse>{
           title: Text('Browse for Cakes'),
           titleTextStyle: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold),
-          backgroundColor: Colors.brown[700],
+          backgroundColor: Colors.brown[300],
         ),
         backgroundColor: Colors.orange[50],
+
         body: SingleChildScrollView(
         child: Column(
         children:<Widget>[
@@ -79,9 +80,20 @@ class _BrowseState extends State<Browse>{
                   controller: tc,
                 //controller: _controller,
                 decoration: InputDecoration(
+                  filled: true,
+                    fillColor: Colors.white,
+                  border: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 7,
+                        color: Colors.deepOrange,
+                      ),
+                  ),
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.deepOrange)),
                     labelText: 'Search',
                     //just make regular icon
                     suffixIcon: IconButton(
+                      color: Colors.deepOrange,
                       icon: customIcon, onPressed: () {
                         if (customIcon.icon == Icons.cancel){
                           //debugPrint("taps");
@@ -160,7 +172,39 @@ class _BrowseState extends State<Browse>{
           //end searchbar
         ],
       )
-      )
+      ),
+    drawer: Container(
+
+        decoration: BoxDecoration(
+        color: Colors.deepOrange),
+        width: 200,
+        height: 100,
+        child: Drawer(
+
+          // Add a ListView to the drawer. This ensures the user can scroll
+          // through the options in the drawer if there isn't enough vertical
+          // space to fit everything.
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(child: Text("kjhkjhk"),
+                margin : EdgeInsets.zero,
+              ),
+              ListTile(
+                title: const Text('Item 1'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        )
+    )
+
     );
   }
 }
