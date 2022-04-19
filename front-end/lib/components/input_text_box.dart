@@ -31,6 +31,7 @@ class InputTextBox extends StatelessWidget {
               obscureText: obscure,
               validator: (value) {
                 if (value != null) {
+                  debugPrint(value);
                   return value.trim().isNotEmpty ? null : "${_labelName} can not be empty!";
                 }
               },

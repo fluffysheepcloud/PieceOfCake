@@ -88,7 +88,7 @@ class _FindBakerState extends State<FindBaker>{
         children: [
         Container(
         width: 400.0,
-        height: 250.0,
+        height: 272.0,
 
         decoration: BoxDecoration(
         color: Colors.brown[100],
