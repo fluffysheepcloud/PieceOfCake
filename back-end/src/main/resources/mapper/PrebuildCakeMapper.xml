@@ -6,9 +6,9 @@
 
     <resultMap id="BaseResultMap" type="com.csulb.cookie.domain.PrebuildCake">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="mId" column="m_id" jdbcType="INTEGER"/>
+            <result property="merchantId" column="m_id" jdbcType="INTEGER"/>
             <result property="cakeName" column="cake_name" jdbcType="VARCHAR"/>
-            <result property="baseId" column="base_id" jdbcType="INTEGER"/>
+            <result property="baseSizeId" column="base_id" jdbcType="INTEGER"/>
             <result property="baseColorId" column="base_color_id" jdbcType="INTEGER"/>
             <result property="baseFlavorId" column="base_flavor_id" jdbcType="INTEGER"/>
             <result property="frostingColorId" column="frosting_color_id" jdbcType="INTEGER"/>
@@ -22,7 +22,7 @@
         frosting_color_id,frosting_flavor_id,price
     </sql>
 
-    <insert id="addPrebuildCake" parameterType="com.csulb.cookie.bean.PrebuildCakeParam" useGeneratedKeys="true">
+    <insert id="addPrebuildCake" parameterType="com.csulb.cookie.domain.PrebuildCake" useGeneratedKeys="true">
         insert into prebuild_cake
             (id,
              m_id,

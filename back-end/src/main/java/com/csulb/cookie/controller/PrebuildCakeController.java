@@ -1,6 +1,4 @@
 package com.csulb.cookie.controller;
-
-import com.csulb.cookie.bean.PrebuildCakeParam;
 import com.csulb.cookie.domain.PrebuildCake;
 import com.csulb.cookie.service.PrebuildCakeService;
 import org.springframework.beans.factory.annotation.Autowired;
