@@ -1,9 +1,12 @@
 package com.csulb.cookie;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.csulb.cookie.bean.PrebuildCakeBean;
 import com.csulb.cookie.bean.Review;
 import com.csulb.cookie.domain.Frosting;
+import com.csulb.cookie.domain.PrebuildCake;
 import com.csulb.cookie.mapper.CustomerMapper;
+import com.csulb.cookie.mapper.PrebuildCakeMapper;
 import com.csulb.cookie.service.FrostingService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,10 @@ class CookieApplicationTests {
     @Autowired
     FrostingService service;
     @Autowired
-    CustomerMapper mapper;
+    CustomerMapper cMapper;
+
+    @Autowired
+    PrebuildCakeMapper pcMapper;
 
     @Test
     void testFrostingService() {
@@ -32,14 +38,25 @@ class CookieApplicationTests {
 
     @Test
     void testSelectUnreviewedOrder() {
-        List<Review> unreviewedOrders = mapper.getUnreviewedOrders(24);
+        List<Review> unreviewedOrders = cMapper.getUnreviewedOrders(24);
         System.out.println(unreviewedOrders);
     }
 
     @Test
     void testSelectReviewedOrder() {
-        List<Review> unreviewedOrders = mapper.getReviewedOrders(24);
+        List<Review> unreviewedOrders = cMapper.getReviewedOrders(24);
         System.out.println(unreviewedOrders);
     }
 
+    @Test
+    void testSelectPrebuildCakes() {
+        List<PrebuildCakeBean> cakes = pcMapper.getPrebuildCakesById(1);
+        cakes.forEach(System.out::println);
+    }
+
+    @Test
+    void testSelectOnePrebuildCake() {
+        PrebuildCakeBean oneCakeById = pcMapper.getOneCakeById(1);
+        System.out.println(oneCakeById);
+    }
 }

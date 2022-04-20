@@ -69,6 +69,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
     public Map<String, Object> getReviewedOrders(Integer id) {
         if (id == null) return new ControllerResult(ControllerResult.BAD_REQUEST, null, "bad request").toJsonMap();
         List<Review> orders = this.getBaseMapper().getReviewedOrders(id);
+        System.out.println(orders);
         return new ControllerResult(ControllerResult.SUCCESS, orders, "success").toJsonMap();
     }
 
