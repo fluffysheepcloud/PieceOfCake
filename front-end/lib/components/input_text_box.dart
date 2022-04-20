@@ -31,6 +31,7 @@ class InputTextBox extends StatelessWidget {
               obscureText: obscure,
               validator: (value) {
                 if (value != null) {
+                  debugPrint(value);
                   return value.trim().isNotEmpty ? null : "${_labelName} can not be empty!";
                 }
               },
@@ -44,6 +45,8 @@ class InputTextBox extends StatelessWidget {
 
   _generateInputDecoration(String hintText) {
     return InputDecoration(
+      filled: true,
+      fillColor: Colors.white,
         border: const OutlineInputBorder(
           borderSide: BorderSide(
             width: 7,

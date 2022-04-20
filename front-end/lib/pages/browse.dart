@@ -65,9 +65,10 @@ class _BrowseState extends State<Browse>{
           title: Text('Browse for Cakes'),
           titleTextStyle: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold),
-          backgroundColor: Colors.brown[700],
+          backgroundColor: Colors.brown[300],
         ),
         backgroundColor: Colors.orange[50],
+
         body: SingleChildScrollView(
         child: Column(
         children:<Widget>[
@@ -79,9 +80,20 @@ class _BrowseState extends State<Browse>{
                   controller: tc,
                 //controller: _controller,
                 decoration: InputDecoration(
+                  filled: true,
+                    fillColor: Colors.white,
+                  border: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 7,
+                        color: Colors.deepOrange,
+                      ),
+                  ),
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.deepOrange)),
                     labelText: 'Search',
                     //just make regular icon
                     suffixIcon: IconButton(
+                      color: Colors.deepOrange,
                       icon: customIcon, onPressed: () {
                         if (customIcon.icon == Icons.cancel){
                           //debugPrint("taps");
@@ -160,7 +172,7 @@ class _BrowseState extends State<Browse>{
           //end searchbar
         ],
       )
-      )
+      ),
     );
   }
 }

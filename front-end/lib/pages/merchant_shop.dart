@@ -107,6 +107,19 @@ class MerchantShop extends StatelessWidget{
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                Container(
+                    decoration: BoxDecoration(
+                        color: Colors.orange[60]
+                    ),
+                    padding: EdgeInsets.only(left : 40.0, top: 8.0),
+                    child: Align(alignment: Alignment.topLeft,
+                      child: Text("About the Baker", style: TextStyle(fontSize: 24), ), )
+                ),
+                Container(
+                    padding: EdgeInsets.only(left : 60.0, top: 8.0, bottom: 20.0),
+                    child: Align(alignment: Alignment.topLeft,
+                      child: Text("${merchantInfo["description"]}", style: TextStyle(fontSize: 16), ), )
+                ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 2,
                     child: Align(
@@ -151,19 +164,14 @@ class MerchantShop extends StatelessWidget{
               ],
             ),
             SizedBox(height: 5,),
-            Container(
-                padding: EdgeInsets.only(left : 40.0, top: 8.0),
-                child: Align(alignment: Alignment.topLeft,
-                  child: Text("About the Baker", style: TextStyle(fontSize: 24), ), )
-            ),
-            Container(
-              padding: EdgeInsets.only(left : 60.0, top: 8.0, bottom: 20.0),
-              child: Align(alignment: Alignment.topLeft,
-              child: Text("${merchantInfo["description"]}", style: TextStyle(fontSize: 16), ), )
-            ),
 
-            Text("${merchantInfo["shopName"]}'s Cakes",
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.orange[60]),
+            child: Text("${merchantInfo["shopName"]}'s Cakes",
               style: TextStyle(fontSize: 25),),
+          ),
+
             //this will display the cards
             ListView.builder(
                 scrollDirection: Axis.vertical,

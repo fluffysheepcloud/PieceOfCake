@@ -4,9 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:frontend/components/card.dart';
+import 'package:frontend/components/input_text_box.dart';
 import 'package:frontend/network/merchant_service.dart';
 import 'package:frontend/components/merchant_card.dart';
-import 'package:frontend/components/findBaker_textBox.dart';
 
 class FindBaker extends StatefulWidget{
 
@@ -57,8 +57,8 @@ class _FindBakerState extends State<FindBaker>{
     String zipReq = query[1];
     debugPrint(_items.length.toString());
     for (var item in _items){
-      if (item["shopName"].toLowerCase().contains(cityReq.toLowerCase())
-          || item["description"].toLowerCase().contains(query)){
+      if (item["city"].toLowerCase().equals(cityReq.toLowerCase())
+          || item["zip"].toLowerCase().equals(zipReq)){
         results.add(item);
         debugPrint(results.toString());
       }
@@ -77,39 +77,7 @@ class _FindBakerState extends State<FindBaker>{
         ),
 
         backgroundColor: Colors.orange[50],
-        body: SingleChildScrollView(
-            child: Column(
-
-              children:<Widget>[
-                Container(
-                  width: 400.0,
-                  height: 200.0,
-                  decoration: BoxDecoration(
-                    color: Colors.brown[100],
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))
-                  ),
-                  padding: EdgeInsets.all(10.0),
-                  margin: const EdgeInsets.all(10.0) ,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      findBaker_textBox("City", _city), //, textControl: ),
-                          SizedBox(
-                            height: 20.0,
-                            width: 20.0,
-                          ),
-                      findBaker_textBox("Zipcode", _zipcode)
-
-
-                    ],
-                  ),
-                ),
-
-
-                //end searchbar
-              ],
-            )
-        )
+        body: FindBakerForm(context),
     );
   }
 
@@ -120,27 +88,24 @@ class _FindBakerState extends State<FindBaker>{
         children: [
         Container(
         width: 400.0,
-        height: 300.0,
+        height: 272.0,
 
         decoration: BoxDecoration(
         color: Colors.brown[100],
-        borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(10.0),
-     bottomLeft: Radius.circular(10.0)
-     )
+        borderRadius: BorderRadius.all(Radius.circular(10.0))
      ),
      margin: const EdgeInsets.all(10.0) ,
      child: Column(
      mainAxisAlignment: MainAxisAlignment.center,
      children: [
-          findBaker_textBox("City", _city),
-          findBaker_textBox("Zipcode", _zipcode),
-          TextButton(
+          InputTextBox("City", "city", _city),
+          InputTextBox("Zipcode", "zipcode", _zipcode),
+       ElevatedButton(
             style: TextButton.styleFrom
               (backgroundColor: Colors.brown[700]),
             onPressed: _find,
             child: Text(
-              'Register',
+              'Find Baker',
               style: TextStyle(color: Colors.white, fontSize: 15),
             ),
           )

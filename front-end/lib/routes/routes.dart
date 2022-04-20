@@ -42,7 +42,7 @@ final routes = {
 
   // Merchant Profile Routes
   "/profile/merchant/merchant_all_orders": (context, {arguments}) => MerchantOrdersPage(arguments: arguments),
-  "/profile/merchant/cake_product": (context, {arguments}) => CakeProductPage(arguments: arguments),
+  "/profile/merchant/cake_product": (context, {arguments}) => CakeProductPage(),
   "/profile/merchant/merchant_reviews": (context, {arguments}) => MerchantReviewsPage(arguments: arguments),
   "/profile/merchant/merchant_settings": (context, {arguments}) => MerchantSettingsPage(arguments: arguments),
   "/profile/merchant/shop_manager": (context, {arguments}) => ShopManagerPage(arguments: arguments),
