@@ -7,35 +7,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:514433796390:android:21149a004b4357806459e7",
-        "android_client_info": {
-          "package_name": "com.csulb.cookie"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "514433796390-jkt5ciii0ge8t9lf96pmrdkp68j6r0js.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDF2jA-5p7RKQbhQKN3Kb0AalslKrHhE0A"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "514433796390-jkt5ciii0ge8t9lf96pmrdkp68j6r0js.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:514433796390:android:fa2528e31278067b6459e7",
         "android_client_info": {
           "package_name": "com.csulb.frontend"
@@ -58,6 +29,49 @@
             {
               "client_id": "514433796390-jkt5ciii0ge8t9lf96pmrdkp68j6r0js.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "514433796390-8f0g94i80gvpjbdo1qvrvrvu39fsl531.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.csulb.cookie"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514433796390:android:7ba3799ca91e04d56459e7",
+        "android_client_info": {
+          "package_name": "com.example.notifications"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514433796390-jkt5ciii0ge8t9lf96pmrdkp68j6r0js.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF2jA-5p7RKQbhQKN3Kb0AalslKrHhE0A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514433796390-jkt5ciii0ge8t9lf96pmrdkp68j6r0js.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "514433796390-8f0g94i80gvpjbdo1qvrvrvu39fsl531.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.csulb.cookie"
+              }
             }
           ]
         }
