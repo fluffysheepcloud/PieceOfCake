@@ -141,8 +141,12 @@ class _FindBakerState extends State<FindBaker>{
   }
 
   _find() async {
+
     if (_formKey.currentState!.validate()){
       List req = [ _city.text, _zipcode.text];
+      // debugPrint(_city.text);
+      // debugPrint(_zipcode.text);
+
       findBaker(req);
     }
 

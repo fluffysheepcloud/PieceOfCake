@@ -90,7 +90,7 @@ class _BrowseState extends State<Browse>{
                   ),
                     focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.deepOrange)),
-                    labelText: 'Search',
+                    hintText: 'Search',
                     //just make regular icon
                     suffixIcon: IconButton(
                       color: Colors.deepOrange,
@@ -142,14 +142,23 @@ class _BrowseState extends State<Browse>{
           //   color: Colors.orange
           // ),
           // child: Text("find baker")),
-
-          ElevatedButton(onPressed: (){
-            Navigator.push(
+          SizedBox(height: 15,),
+          TextButton(
+              onPressed: () {
+                Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => FindBaker() ,
                     ));
-          }, child: Text("Find a baker")),
+              },
+              child: Text(
+                "Find a Baker",
+                style: TextStyle(
+                  fontSize: 16.0,
+                ),
+              )
+          ),
+
           results.isNotEmpty
           ? ListView.builder(
               scrollDirection: Axis.vertical,
