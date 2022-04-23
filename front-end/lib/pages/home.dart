@@ -59,7 +59,12 @@ class _HomeState extends State<Home> {
 
   return Scaffold(
       appBar: AppBar(
-        title: Text("Welcome, " + customerName.toString(),
+        // If user is not logged in, the home page just says welcome
+        // but if user is logged in, the home page says welcome "user"
+        title: customerName != null
+          ? Text("Welcome, " + customerName.toString(),
+          style: TextStyle(fontSize: 25),)
+          : Text("Welcome",
           style: TextStyle(fontSize: 25),),
         titleTextStyle: TextStyle(
             color: Colors.white, fontWeight: FontWeight.bold),
