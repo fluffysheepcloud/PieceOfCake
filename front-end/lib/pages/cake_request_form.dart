@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:frontend/components/input_text_box.dart';
+import 'package:image_picker/image_picker.dart';
 
 void main() {
   runApp(new MaterialApp(
@@ -20,6 +22,11 @@ class _PurelyCustomizedCakeState extends State<PurelyCustomizedCake> {
   TextEditingController _email = TextEditingController();
   TextEditingController _address = TextEditingController();
   TextEditingController _description = TextEditingController();
+
+  // for selecting images
+  final ImagePicker _picker = ImagePicker();
+  File? image;
+  List<File> multipleImages = [];
 
   final _formKey = GlobalKey<FormState>();
 
@@ -113,6 +120,61 @@ class _PurelyCustomizedCakeState extends State<PurelyCustomizedCake> {
                         )
                     ),
                   ),
+
+                  // customer photo uploading
+                  Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Column(
+                          children: [
+                            Divider(thickness: 1, color: Colors.brown),
+                            Text("Upload up to 6 photos",
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, color: Colors.brown)),
+                            ElevatedButton(
+                                style: TextButton.styleFrom
+                                  (backgroundColor: Colors.brown[700]),
+                                onPressed: () async {
+                                  List<XFile>? picked = await _picker.pickMultiImage();
+                                  setState(() {
+                                    multipleImages = picked!.map((e) => File(e.path)).toList();
+                                  });
+                                },
+                                child: const Text("Select Photos",
+                                    style: TextStyle(color: Colors.white, fontSize: 15)
+                                )
+                            ),
+                          ]
+                      )
+
+                  ),
+                  Container (
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.brown,  // red as border color
+                      ),
+                    ),
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width * 0.85,
+                      child: Column(
+                        children: [
+                          //other widgets
+                          Expanded(
+                            child: GridView.builder(
+                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10),
+                                itemCount: multipleImages.length,
+                                itemBuilder: (context, index) {
+                                  return GridTile(child: Image.file(multipleImages[index]));
+                                }),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  // spacing
+                  SizedBox(height: 10),
+
                   TextButton(
                     style: TextButton.styleFrom
                       (backgroundColor: Colors.brown[700]),
