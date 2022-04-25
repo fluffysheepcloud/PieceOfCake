@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/components/card.dart';
 import 'package:frontend/network/merchant_service.dart';
+import 'package:frontend/network/prebuilt_cake_service.dart';
 import 'package:frontend/pages/cake_request_form.dart';
 import 'package:frontend/pages/profile/merchant/shop_manager/shop_manager.dart';
 import 'package:frontend/utils/shared_preferences.dart';
@@ -22,7 +23,8 @@ class MerchantShop extends StatelessWidget{
   final int _loginStat = SPUtil.loginStatus;
   int userId = 0;
 
-  //get cakes of merchant
+
+  // //get cakes of merchant
   final List _items = [
     {
       "id": 1,
@@ -40,6 +42,13 @@ class MerchantShop extends StatelessWidget{
       "description": "matcha cake with white chocolate frosting",
     },
   ];
+  // List _items = [];
+  // Future<List> _readCakes() async{
+  //   var c = await getMerchantPrebuildCakes(id);
+  //   _items.add(c["data"]);
+  //   debugPrint(_items.toString());
+  //   return _items;
+  // }
 
   Future<Map> _loadMerchantShop() async {
     var m1 = await getMerchantInfoById(id);
@@ -55,11 +64,13 @@ class MerchantShop extends StatelessWidget{
     return userId;
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: FutureBuilder(
-        future: Future.wait({_loadMerchantShop(), _loadId()}),
+        future: Future.wait({_loadMerchantShop(), _loadId(),}), // _readCakes()}),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasError) {
@@ -103,23 +114,27 @@ class MerchantShop extends StatelessWidget{
                   )
               ),
             ),
-            SizedBox(height: 20,),
+            Container(
+                decoration: BoxDecoration(
+                    color: Colors.orange[60]
+                ),
+                padding: EdgeInsets.only(left : 40.0, top: 8.0),
+                child: Align(alignment: Alignment.topLeft,
+                  child: Text("About the Baker", style: TextStyle(fontSize: 24), ), )
+            ),
+            Container(
+                padding: EdgeInsets.only(left : 60.0, top: 8.0, bottom: 20.0),
+                child: Align(alignment: Alignment.topLeft,
+                  child: Text("${merchantInfo["description"]}", style: TextStyle(fontSize: 16), ), )
+            ),
+            // ElevatedButton(onPressed: (){
+            //   showDumbInfo();
+            // }, child: Text("dsjlfkjsd")),
+            SizedBox(height: 10,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                    decoration: BoxDecoration(
-                        color: Colors.orange[60]
-                    ),
-                    padding: EdgeInsets.only(left : 40.0, top: 8.0),
-                    child: Align(alignment: Alignment.topLeft,
-                      child: Text("About the Baker", style: TextStyle(fontSize: 24), ), )
-                ),
-                Container(
-                    padding: EdgeInsets.only(left : 60.0, top: 8.0, bottom: 20.0),
-                    child: Align(alignment: Alignment.topLeft,
-                      child: Text("${merchantInfo["description"]}", style: TextStyle(fontSize: 16), ), )
-                ),
+
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 2,
                     child: Align(
@@ -187,5 +202,8 @@ class MerchantShop extends StatelessWidget{
       ),
     );
   }
+  // showDumbInfo(){
+  //   debugPrint(_items.toString());
+  // }
 }
 

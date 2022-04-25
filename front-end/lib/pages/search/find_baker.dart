@@ -36,6 +36,9 @@ class _FindBakerState extends State<FindBaker>{
     var m1 = await getMerchantInfoById(1);
     var m2 = await getMerchantInfoById(2);
     var m3 = await getMerchantInfoById(3);
+    var m4 = await getMerchantInfoById(4);
+    var m5 = await getMerchantInfoById(5);
+    var m6 = await getMerchantInfoById(6);
 
     //final String response = await rootBundle.loadString('assets/mock/sample.json');
     //final data = await json.decode(response);
@@ -43,6 +46,9 @@ class _FindBakerState extends State<FindBaker>{
       _items.add(m1["data"]);
       _items.add(m2["data"]);
       _items.add(m3["data"]);
+      _items.add(m4["data"]);
+      _items.add(m5["data"]);
+      _items.add(m6["data"]);
     });
     debugPrint(_items.toString());
   }
@@ -57,12 +63,14 @@ class _FindBakerState extends State<FindBaker>{
     String zipReq = query[1];
     debugPrint(_items.length.toString());
     for (var item in _items){
-      if (item["city"].toLowerCase().equals(cityReq.toLowerCase())
-          || item["zip"].toLowerCase().equals(zipReq)){
+      if (item["city"].toLowerCase()== cityReq.toLowerCase() || item["zip"] == zipReq) {
         results.add(item);
-        debugPrint(results.toString());
+        //
+        //&&
+        //         !results.contains(item["id"])
       }
     }
+    debugPrint(results.toString());
   }
   
   @override
@@ -77,7 +85,13 @@ class _FindBakerState extends State<FindBaker>{
         ),
 
         backgroundColor: Colors.orange[50],
-        body: FindBakerForm(context),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              FindBakerForm(context)
+            ],
+          ),
+        ),
     );
   }
 
@@ -100,10 +114,22 @@ class _FindBakerState extends State<FindBaker>{
      children: [
           InputTextBox("City", "city", _city),
           InputTextBox("Zipcode", "zipcode", _zipcode),
-       ElevatedButton(
+          ElevatedButton(
             style: TextButton.styleFrom
               (backgroundColor: Colors.brown[700]),
-            onPressed: _find,
+            onPressed: () => setState(() {
+
+              results.clear();
+              _find();
+              // List req = [ _city.text, _zipcode.text];
+              // findBaker(req);
+            }),
+            // onPressed:(){
+            //      if (_formKey.currentState!.validate()){
+            //          List req = [ _city.text, _zipcode.text];
+            //          findBaker(req);
+            //      }
+            // }, // _find,
             child: Text(
               'Find Baker',
               style: TextStyle(color: Colors.white, fontSize: 15),
@@ -136,12 +162,12 @@ class _FindBakerState extends State<FindBaker>{
 
       ),
 
-    );
+    )
 
+    ;
   }
 
-  _find() async {
-
+  _find() {
     if (_formKey.currentState!.validate()){
       List req = [ _city.text, _zipcode.text];
       // debugPrint(_city.text);

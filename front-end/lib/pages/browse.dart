@@ -134,14 +134,6 @@ class _BrowseState extends State<Browse>{
               ),
             //controller: fieldText,
           ),
-              //we must set the state, if results [ ] is empty, then we do not render
-              // after the search is queried, we must set the state/repaint the page
-          //use height/width constraints
-          // Container(height: 70, width: 200,
-          // decoration: BoxDecoration(
-          //   color: Colors.orange
-          // ),
-          // child: Text("find baker")),
           SizedBox(height: 15,),
           TextButton(
               onPressed: () {
