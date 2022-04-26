@@ -80,27 +80,28 @@ class _BrowseState extends State<Browse>{
                   controller: tc,
                 //controller: _controller,
                 decoration: InputDecoration(
+                  //just make regular icon
+                  suffixIcon: IconButton(
+                    color: Colors.brown,
+                    icon: customIcon, onPressed: () {
+                    if (customIcon.icon == Icons.cancel){
+                      //debugPrint("taps");
+                      tc.clear();
+                    }
+                  },
+                  ),
                   filled: true,
                     fillColor: Colors.white,
                   border: const OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 7,
-                        color: Colors.deepOrange,
+                        //color: Colors.brown,
                       ),
                   ),
                     focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.deepOrange)),
+                        borderSide: BorderSide(color: Colors.brown)),
                     hintText: 'Search',
-                    //just make regular icon
-                    suffixIcon: IconButton(
-                      color: Colors.deepOrange,
-                      icon: customIcon, onPressed: () {
-                        if (customIcon.icon == Icons.cancel){
-                          //debugPrint("taps");
-                          tc.clear();
-                        }
-                    },
-                    )
+
                 ),
 
                 //if textfield tapped then turn icon into cancel, if icon button tapped and it is a cancel, then cancel transaction

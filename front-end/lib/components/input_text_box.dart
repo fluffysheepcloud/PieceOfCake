@@ -55,7 +55,7 @@ class InputTextBox extends StatelessWidget {
         ),
         hintText: 'Enter ' + hintText,
         focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.deepOrange))
+            borderSide: BorderSide(color: Color(0xFFA16340)))
     );
   }
 

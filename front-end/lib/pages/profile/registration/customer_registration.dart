@@ -50,12 +50,12 @@ class _CreateCustomerAccountState extends State<CreateCustomerAccount> {
                 InputTextBox("Email", "Email", _email),
                 InputTextBox("Phone Number", "Phone Number", _phone),
                 TextButton(
-                  style: TextButton.styleFrom
-                    (backgroundColor: Colors.brown[700]),
+                  // style: TextButton.styleFrom
+                  //   (backgroundColor: Colors.brown[700]),
                   onPressed: _registration,
                   child: Text(
                     'Register',
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    //style: TextStyle(color: Colors.white, fontSize: 15),
                   ),
                 ),
               ]
@@ -83,6 +83,8 @@ class _CreateCustomerAccountState extends State<CreateCustomerAccount> {
             TextFormField(
               controller: _rePassword,
               decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
                   border: const OutlineInputBorder(
                     borderSide: BorderSide(
                       width: 7,

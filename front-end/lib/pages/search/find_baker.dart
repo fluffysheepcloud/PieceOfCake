@@ -113,10 +113,9 @@ class _FindBakerState extends State<FindBaker>{
           InputTextBox("City", "city", _city),
           InputTextBox("Zipcode", "zipcode", _zipcode),
           ElevatedButton(
-            style: TextButton.styleFrom
-              (backgroundColor: Colors.brown[700]),
+            //style: TextButton.styleFrom
+              //(backgroundColor: Colors.brown[700]),
             onPressed: () => setState(() {
-
               results.clear();
               _find();
             }),

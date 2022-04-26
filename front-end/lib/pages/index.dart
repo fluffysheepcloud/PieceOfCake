@@ -36,6 +36,9 @@ class _IndexState extends State<Index> {
     return Scaffold(
       body: _pageList[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xffab823c),
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.black26,
         type: BottomNavigationBarType.fixed,
         currentIndex: widget.arguments ?? _currentIndex,
         onTap: (int index) {
