@@ -65,8 +65,6 @@ class _FindBakerState extends State<FindBaker>{
     for (var item in _items){
       if (item["city"].toLowerCase()== cityReq.toLowerCase() || item["zip"] == zipReq) {
         results.add(item);
-        //
-        //&&
         //         !results.contains(item["id"])
       }
     }
@@ -121,15 +119,7 @@ class _FindBakerState extends State<FindBaker>{
 
               results.clear();
               _find();
-              // List req = [ _city.text, _zipcode.text];
-              // findBaker(req);
             }),
-            // onPressed:(){
-            //      if (_formKey.currentState!.validate()){
-            //          List req = [ _city.text, _zipcode.text];
-            //          findBaker(req);
-            //      }
-            // }, // _find,
             child: Text(
               'Find Baker',
               style: TextStyle(color: Colors.white, fontSize: 15),
@@ -172,7 +162,6 @@ class _FindBakerState extends State<FindBaker>{
       List req = [ _city.text, _zipcode.text];
       // debugPrint(_city.text);
       // debugPrint(_zipcode.text);
-
       findBaker(req);
     }
 

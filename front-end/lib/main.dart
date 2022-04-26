@@ -51,8 +51,18 @@ class MyApp extends StatelessWidget {
       title: "Chubby Cookie",
       initialRoute: "/",
       // routes: routes.routes,
-      theme: ThemeData.from(colorScheme: ColorScheme.light()),
+      theme: ThemeData(//0 x ab8967
+        //using primary color as container backgrounds
+        primaryColor: Color(0xFFd4c5b4),
+          //colorScheme: ColorScheme.fromSwatch(primarySwatch: Color(0xffe3d2bc)),
+        scaffoldBackgroundColor: Color(0xffe6d8c8),
+        appBarTheme: AppBarTheme(
+          color: Color(0xFF6e4f31)
+        )
+      ),//.from(colorScheme: ColorScheme.light()),
       onGenerateRoute: routes.onGeneratedRoute,
+      //theme
+
 
     );
   }

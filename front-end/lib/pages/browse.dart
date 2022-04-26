@@ -65,9 +65,9 @@ class _BrowseState extends State<Browse>{
           title: Text('Browse for Cakes'),
           titleTextStyle: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold),
-          backgroundColor: Colors.brown[300],
+          //backgroundColor: Colors.brown[300],
         ),
-        backgroundColor: Colors.orange[50],
+        //backgroundColor: Colors.orange[50],
 
         body: SingleChildScrollView(
         child: Column(
