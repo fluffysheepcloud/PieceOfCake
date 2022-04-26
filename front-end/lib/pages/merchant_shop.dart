@@ -92,12 +92,12 @@ class MerchantShop extends StatelessWidget{
   _pageBuilder(BuildContext context)  {
     return Scaffold(
       //display shop name
-      backgroundColor: Colors.orange[50],
+      //backgroundColor: Colors.orange[50],
       appBar: AppBar(
         centerTitle: true,
         //merchant name
         title: Text("${merchantInfo["shopName"]}'s shop"),
-        backgroundColor: Colors.brown[200],
+        //backgroundColor: Colors.brown[200],
         toolbarHeight: 50,
       ),
       body: SingleChildScrollView(

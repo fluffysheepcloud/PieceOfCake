@@ -30,7 +30,7 @@ class _CreateCustomerAccountState extends State<CreateCustomerAccount> {
           title: Text('Customer Registration'),
           titleTextStyle: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold),
-          backgroundColor: Colors.brown[700],
+          //backgroundColor: Colors.brown[700],
         ),
         body: customerRegisterForm(context)
     );
@@ -76,6 +76,7 @@ class _CreateCustomerAccountState extends State<CreateCustomerAccount> {
               textAlign: TextAlign.left,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
+
                   fontWeight: FontWeight.bold, color: Colors.brown),
             ),
             SizedBox(height: 10),

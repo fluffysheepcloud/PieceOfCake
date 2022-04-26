@@ -79,7 +79,7 @@ class _FindBakerState extends State<FindBaker>{
             style: TextStyle(fontSize: 25),),
           titleTextStyle: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold),
-          backgroundColor: Colors.brown[700],
+          //backgroundColor: Colors.brown[700],
         ),
 
         backgroundColor: Colors.orange[50],
@@ -103,7 +103,7 @@ class _FindBakerState extends State<FindBaker>{
         height: 272.0,
 
         decoration: BoxDecoration(
-        color: Colors.brown[100],
+        color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.all(Radius.circular(10.0))
      ),
      margin: const EdgeInsets.all(10.0) ,

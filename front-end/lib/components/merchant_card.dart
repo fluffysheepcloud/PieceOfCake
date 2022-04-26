@@ -30,7 +30,7 @@ class MerchantCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 margin: const EdgeInsets.all(10),
-                color: Colors.brown[200],
+                color: Theme.of(context).primaryColor,
                 child: InkWell(
                     splashColor: Colors.brown.withAlpha(70),
                     onTap: () {

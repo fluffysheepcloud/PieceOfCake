@@ -16,7 +16,7 @@ class AccountRegistrationScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Register for an Account'),
         titleTextStyle: const TextStyle(color: Colors.white),
-        backgroundColor: Colors.deepOrange[900],
+        //backgroundColor: Colors.deepOrange[900],
       ),
       body: Center(
           child: Column(
@@ -41,7 +41,7 @@ class AccountRegistrationScreen extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.deepOrange[900],
+                  //primary: Colors.deepOrange[900],
                   padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                     textStyle:
                     const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
@@ -60,7 +60,7 @@ class AccountRegistrationScreen extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.deepOrange[900],
+                  //primary: Colors.deepOrange[900],
                   padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                   textStyle:
                   const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),

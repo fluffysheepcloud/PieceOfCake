@@ -53,13 +53,28 @@ class MyApp extends StatelessWidget {
       // routes: routes.routes,
       theme: ThemeData(//0 x ab8967
         //using primary color as container backgrounds
-        primaryColor: Color(0xFFd4c5b4),
+          fontFamily: 'Solway',
+          primaryColor: Color(0xFFF2E1CE),
           //colorScheme: ColorScheme.fromSwatch(primarySwatch: Color(0xffe3d2bc)),
-        scaffoldBackgroundColor: Color(0xffe6d8c8),
+        scaffoldBackgroundColor: Color(0xffFAF3EA),
         appBarTheme: AppBarTheme(
-          color: Color(0xFF6e4f31)
-        )
-      ),//.from(colorScheme: ColorScheme.light()),
+          color: Color(0xFFA16340)
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+        onPrimary: Colors.white,
+        primary: Color(0xFF804E32)//s.blue[50],
+        ),
+    ),
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+              primary: Color(0xFF804E32),
+            ),
+
+          )
+
+      ),
+      //.from(colorScheme: ColorScheme.light()),
       onGenerateRoute: routes.onGeneratedRoute,
       //theme
 

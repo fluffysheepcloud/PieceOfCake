@@ -90,11 +90,11 @@ class _HomeState extends State<Home> {
           decoration: BoxDecoration(
             color: Theme.of(context).primaryColor//Colors.brown[200]
           ),
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(5.0),
             child: Align(
                 alignment: Alignment.topLeft,
                 child: Text("Recommendation for you",
-                  style: TextStyle(fontSize: 25),)
+                  style: TextStyle(fontSize: 20),)
             )
         ),
         //Just one card for the pick
@@ -118,11 +118,11 @@ class _HomeState extends State<Home> {
             decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor
             ),
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(5.0),
             child: Align(
                 alignment: Alignment.topLeft,
                 child: Text("Bakers Near you",
-                  style: TextStyle(fontSize: 25),)
+                  style: TextStyle(fontSize: 20),)
 
             )
         ),
