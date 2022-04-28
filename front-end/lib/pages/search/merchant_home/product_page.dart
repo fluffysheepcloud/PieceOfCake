@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 class ProductPage extends StatefulWidget {
 
-  final arguments;
-  final int id;
-  ProductPage({Key? key, this.arguments, required this.id}) : super(key: key);
+  var arguments;
+
+  ProductPage({this.arguments, Key? key}) : super(key: key);
 
   @override
   _ProductPageState createState() => _ProductPageState();
@@ -19,7 +19,7 @@ class _ProductPageState extends State<ProductPage> {
   String? _avatarURL;
   List<String>? _imageURLs;
   String? _cDescription;
-  int? _price;
+  double? _price;
 
   int _itemCount = 0;
   // List<String> imageURLs = [
@@ -35,7 +35,6 @@ class _ProductPageState extends State<ProductPage> {
   void initState() {
     if (widget.arguments != null) {
        Map data = Map.from(widget.arguments);
-       print(data);
        _merchantName = data["merchantName"];
        _avatarURL = data["avatarURL"];
        _imageURLs = data["cakeURLs"];
@@ -162,7 +161,19 @@ class _ProductPageState extends State<ProductPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 20),
-          Text("Item Details"),
+          Row(
+            children: [
+              Text("Item Details"),
+              SizedBox(width: 120),
+              InkWell(
+                onTap: () {
+                  print("demo");
+                },
+                child: Icon(Icons.favorite_border_outlined),
+              )
+            ],
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+          ),
           SizedBox(height: 15),
           Text(_cDescription ?? "Unknown description"),
           SizedBox(height: 20)

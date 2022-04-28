@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class FavCakesCard extends StatelessWidget {
 
   final String imageUrl;
-  final String cakeName;
-  final String price;
+  final Map cakeInfo;
+  final String merchantName;
 
-  const FavCakesCard(this.imageUrl, this.cakeName, this.price, {Key? key}) : super(key: key);
+  const FavCakesCard(this.imageUrl, this.cakeInfo, this.merchantName, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +14,19 @@ class FavCakesCard extends StatelessWidget {
       onTap: () {
         // TODO: navigate to product detail page
         print("Customer Fav Cake Tap...");
+        Navigator.pushNamed(context, "/product_page", arguments: {
+          "merchantName": merchantName,
+          "avatarURL": "assets/images/merchant_avatar.jpg",
+          "cakeURLs": [
+            "assets/images/cake.jpg",
+            "assets/images/cake_2.jpg",
+            "assets/images/cake_3.jpg",
+            "assets/images/cake_4.jpg",
+            "assets/images/cake_5.jpg"
+          ],
+          "description": "This is the description...",
+          "price": cakeInfo["price"]
+        });
       },
       child: Container(
         height: MediaQuery.of(context).size.height * 0.12,
@@ -33,11 +46,11 @@ class FavCakesCard extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(10, 15, 0, 0),
-                  child: Text(cakeName),
+                  child: Text(cakeInfo["cakeName"]),
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(180, 35, 0, 0),
-                  child: Text("Price: \$${price}"),
+                  child: Text("Price: \$${cakeInfo["price"].toString()}"),
                 ),
               ],
             )

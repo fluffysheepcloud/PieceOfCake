@@ -16,7 +16,8 @@ class FavCakesPage extends StatelessWidget {
       body: ListView.builder(
         itemCount: 5,
         itemBuilder: (context, index) {
-          return FavCakesCard("assets/images/cake_4.jpg", "Demo Cake", "${index * 20}");
+          // return FavCakesCard("assets/images/cake_4.jpg", "Demo Cake", "${index * 20}");
+          return Text("1231");
         }
       )
     );

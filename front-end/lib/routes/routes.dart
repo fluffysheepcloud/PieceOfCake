@@ -58,7 +58,7 @@ final routes = {
   "/shopping_cart": (context, {arguments}) => ShoppingCartPage(argumenets: arguments),
   "/shopping_cart/summary": (context, {arguments}) => Summary(argumenets: arguments),
   "/shopping_cart/payment": (context, {arguments}) => Payment(argumenets: arguments),
-  "/product_page": (context, {arguments}) => ProductPage(arguments: arguments, id: 1,),
+  "/product_page": (context, {arguments}) => ProductPage(arguments: arguments),
 };
 
 /* This function is similar to a callback function.

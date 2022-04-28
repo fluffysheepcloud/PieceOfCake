@@ -7,6 +7,7 @@ import 'package:frontend/components/card.dart';
 import 'package:frontend/network/merchant_service.dart';
 import 'package:frontend/network/prebuilt_cake_service.dart';
 import 'package:frontend/pages/cake_request_form.dart';
+import 'package:frontend/pages/profile/customer/fav_cakes/fav_cakes_card.dart';
 import 'package:frontend/pages/profile/merchant/shop_manager/shop_manager.dart';
 import 'package:frontend/utils/shared_preferences.dart';
 import 'dart:convert';
@@ -18,51 +19,20 @@ class MerchantShop extends StatelessWidget{
   final int id;
   MerchantShop(this.id, {Key? key}) : super(key: key);
 
-  // @override
-  Map<String, dynamic> merchantInfo = {};
-  final int _loginStat = SPUtil.loginStatus;
-  int userId = 0;
-
-
-  // //get cakes of merchant
-  final List _items = [
-    {
-      "id": 1,
-      "shopName": "Sunny's Sweets",
-      "description": "Rich chocolate cake with light vanilla frosting topped with coconut shavings",
-    },
-    {
-      "id": 2,
-      "shopName": "Sunny's Sweets",
-      "description": "Topped with fresh strawberries, vanilla layer cake base, strawberry slices in between each layer",
-    },
-    {
-      "id": 3,
-      "shopName": "Sunny's Sweets",
-      "description": "matcha cake with white chocolate frosting",
-    },
-  ];
-  // List _items = [];
-  // Future<List> _readCakes() async{
-  //   var c = await getMerchantPrebuildCakes(id);
-  //   _items.add(c["data"]);
-  //   debugPrint(_items.toString());
-  //   return _items;
-  // }
-
   Future<Map> _loadMerchantShop() async {
-    var m1 = await getMerchantInfoById(id);
-    debugPrint(m1.toString());
-    Map data = m1["data"];
-
+    Map data = {};
+    data["merchantInfo"] = (await getMerchantInfoById(id))["data"];
+    data["prebuildCake"] = (await getMerchantPrebuildCakes(id));
+    print(data["merchantInfo"]);
+    print(data["prebuildCake"]);
     return data;
   }
 
-  Future<int> _loadId() async {
-    //get stat and user info
-    int userId = (await SPUtil.getUserData())["id"];
-    return userId;
-  }
+  // Future<int> _loadId() async {
+  //   //get stat and user info
+  //   int userId = (await SPUtil.getUserData())["id"];
+  //   return userId;
+  // }
 
 
 
@@ -70,17 +40,13 @@ class MerchantShop extends StatelessWidget{
   Widget build(BuildContext context) {
     return Container(
       child: FutureBuilder(
-        future: Future.wait({_loadMerchantShop(), _loadId(),}), // _readCakes()}),
+        future: _loadMerchantShop(), // _readCakes()}),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasError) {
               return Text("Error: ${snapshot.error}");
             } else {
-              for (String key in snapshot.data[0].keys) {
-                merchantInfo[key] = snapshot.data[0][key] ?? "Unknown";
-                userId = snapshot.data[1];
-              }
-              return _pageBuilder(context);
+              return _pageBuilder(context, snapshot);
             }
           } else {
             return CircularProgressIndicator();
@@ -89,7 +55,11 @@ class MerchantShop extends StatelessWidget{
       ) ,
     );
   }
-  _pageBuilder(BuildContext context)  {
+  _pageBuilder(BuildContext context, AsyncSnapshot snapshot)  {
+
+    Map merchantInfo = snapshot.data["merchantInfo"];
+    Map prebuildCakes = snapshot.data["prebuildCake"];
+
     return Scaffold(
       //display shop name
       //backgroundColor: Colors.orange[50],
@@ -124,8 +94,10 @@ class MerchantShop extends StatelessWidget{
             ),
             Container(
                 padding: EdgeInsets.only(left : 60.0, top: 8.0, bottom: 20.0),
-                child: Align(alignment: Alignment.topLeft,
-                  child: Text("${merchantInfo["description"]}", style: TextStyle(fontSize: 16), ), )
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text("${merchantInfo["description"]}",
+                  style: TextStyle(fontSize: 16), ), )
             ),
             // ElevatedButton(onPressed: (){
             //   showDumbInfo();
@@ -134,7 +106,6 @@ class MerchantShop extends StatelessWidget{
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 2,
                     child: Align(
@@ -144,57 +115,63 @@ class MerchantShop extends StatelessWidget{
                           style: TextStyle(fontSize: 15),)
                     )
                 ),
-                if (_loginStat == 1 && id == userId)...[
-                    ElevatedButton(onPressed: (){
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ShopManagerPage()//ProductPage(id: id,),
-                          ));
-                    }, child: Text("Edit Shop"))
-                  ]
-                  else if (_loginStat == 0)...[
-                  Column(children: [
-                    ElevatedButton(onPressed: (){
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CustomCakePage()//ProductPage(id: id,),
-                          ));
-                    }, child: Text("Build a custom cake")),
-                    ElevatedButton(onPressed: (){
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PurelyCustomizedCake()//ProductPage(id: id,),
-                          ));
-                    }, child: Text("Request cake form"))
-                  ],)
-                ]
-                else ... [
-                    SizedBox(
-                      height: 50,
+                // if (_loginStat == 1 && id == userId)...[
+                //     ElevatedButton(onPressed: (){
+                //       Navigator.push(
+                //           context,
+                //           MaterialPageRoute(
+                //               builder: (context) => ShopManagerPage()//ProductPage(id: id,),
+                //           ));
+                //     }, child: Text("Edit Shop"))
+                //   ]
+                //   else if (_loginStat == 0)...[
+                Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => CustomCakePage()//ProductPage(id: id,),
+                        ));
+                      },
+                      child: Text("Build a custom cake")),
+                    ElevatedButton(
+                      onPressed: (){Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => PurelyCustomizedCake()));
+                      },
+                      child: Text("Request cake form")
                     )
-                ]
+                ])
+                // ]
+                // else ... [
+                //     SizedBox(
+                //       height: 50,
+                //     )
+                // ]
               ],
             ),
             SizedBox(height: 5,),
 
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.orange[60]),
-            child: Text("${merchantInfo["shopName"]}'s Cakes",
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.orange[60]
+              ),
+              child: Text("${merchantInfo["shopName"]}'s Cakes",
               style: TextStyle(fontSize: 25),),
-          ),
+            ),
 
             //this will display the cards
             ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: _items.length,
+                itemCount: prebuildCakes.length,
                 itemBuilder: (context, index){
-                  return InfoCard(_items[index]["shopName"], _items[index]["description"],  _items[index]["id"]);
+                  // return InfoCard(_items[index]["shopName"], _items[index]["description"],  _items[index]["id"]);
+                  return FavCakesCard(
+                    "assets/images/cake_4.jpg",
+                    prebuildCakes["data"][index],
+                    merchantInfo["shopName"]
+                  );
                 }
             ),
           ],
