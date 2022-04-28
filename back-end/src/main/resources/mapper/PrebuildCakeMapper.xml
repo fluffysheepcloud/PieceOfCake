@@ -65,7 +65,7 @@
     </select>
 
     <resultMap id="select_prebuild_cakes" type="com.csulb.cookie.bean.PrebuildCakeBean">
-        <id column="id" property="pId" jdbcType="INTEGER" />
+        <id column="id" property="id" jdbcType="INTEGER" />
         <result column="cake_name" property="cakeName" jdbcType="VARCHAR" />
         <result column="base_size" property="baseSize" jdbcType="INTEGER" />
         <result column="color" property="baseColor" jdbcType="VARCHAR" />

@@ -13,7 +13,8 @@ import java.util.ArrayList;
 @Data
 public class PrebuildCakeBean {
 
-    private Integer pId;
+    @TableField("id")
+    private Integer id;
 
     private String cakeName;
 
