@@ -21,7 +21,7 @@ class _SummaryCardState extends State<SummaryCard> {
             .of(context)
             .size
             .width * 0.85,
-        height: 200.0,
+        height: 240.0,
         child: Card(
           elevation: 5,
           color: Colors.grey[200],
