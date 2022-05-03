@@ -67,8 +67,8 @@ class _HomeState extends State<Home> {
           style: TextStyle(fontSize: 25),)
           : Text("Welcome",
           style: TextStyle(fontSize: 25),),
-        titleTextStyle: TextStyle(
-            color: Colors.white, fontWeight: FontWeight.bold),
+        // titleTextStyle: TextStyle(
+        //     color: Colors.white, fontWeight: FontWeight.bold),
         //backgroundColor: appBarTheme,
         //backgroundColor: Colors.brown[300],
       ),
