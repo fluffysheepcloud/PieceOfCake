@@ -21,7 +21,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
               .of(context)
               .size
               .width * 0.85,
-          height: 220.0,
+          height: 240.0,
           child: Card(
             elevation: 5,
             color: Colors.grey[200],

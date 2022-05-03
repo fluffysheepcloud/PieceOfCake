@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/routes/routes.dart' as routes;
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(//0 x ab8967
         //using primary color as container backgrounds
         //   fontFamily: 'Solway',
+        textTheme: GoogleFonts.spectralTextTheme(),
       textSelectionTheme: TextSelectionThemeData(
       cursorColor: Colors.brown),
 
@@ -61,7 +63,9 @@ class MyApp extends StatelessWidget {
           //colorScheme: ColorScheme.fromSwatch(primarySwatch: Color(0xffe3d2bc)),
         scaffoldBackgroundColor: Color(0xffFAF3EA),
         appBarTheme: AppBarTheme(
-          color: Color(0xFFA16340)
+          centerTitle: true,
+          titleTextStyle: GoogleFonts.getFont('Pacifico', fontSize: 25),
+          backgroundColor: Color(0xFFA16340)
         ),
 
         elevatedButtonTheme: ElevatedButtonThemeData(

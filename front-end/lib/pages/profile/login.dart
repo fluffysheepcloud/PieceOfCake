@@ -45,15 +45,15 @@ class _LoginState extends State<Login> {
                       Text(
                         _loginTitle,
                         style: TextStyle(
-                            fontSize: 32.0
+                            fontSize: 20.0
                         ),
                       ),
                       // Input username
-                      SizedBox(height: 20.0),
+                      SizedBox(height: 15.0),
                       InputTextBox("Username", "Username", _username),
                       // Input password
                       InputTextBox("Password", "Password", _password, obscure: true),
-                      SizedBox(height: 20),
+                      SizedBox(height: 15),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             minimumSize: Size(150, 50)
@@ -81,7 +81,7 @@ class _LoginState extends State<Login> {
                           },
                           child: Text(_loginOption)
                       ),
-                      SizedBox(height: 30),
+                      SizedBox(height: 25),
                       TextButton(
                           onPressed: () {
                             Navigator.pushNamed(context, "/profile/registration_options");
