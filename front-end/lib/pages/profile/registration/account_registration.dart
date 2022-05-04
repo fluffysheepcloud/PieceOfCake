@@ -15,7 +15,7 @@ class AccountRegistrationScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Register for an Account'),
-        titleTextStyle: const TextStyle(color: Colors.white),
+        //titleTextStyle: const TextStyle(color: Colors.white),
         //backgroundColor: Colors.deepOrange[900],
       ),
       body: Center(
@@ -40,12 +40,12 @@ class AccountRegistrationScreen extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => CreateCustomerAccount()),
                   );
                 },
-                style: ElevatedButton.styleFrom(
-                  //primary: Colors.deepOrange[900],
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                    textStyle:
-                    const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
+                // style: ElevatedButton.styleFrom(
+                //   //primary: Colors.deepOrange[900],
+                //   padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                //     textStyle:
+                //     const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                // ),
               ),
 
               // add spacing between the buttons
@@ -59,12 +59,12 @@ class AccountRegistrationScreen extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => CreateMerchantAccount()),
                   );
                 },
-                style: ElevatedButton.styleFrom(
-                  //primary: Colors.deepOrange[900],
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                  textStyle:
-                  const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
+                // style: ElevatedButton.styleFrom(
+                //   //primary: Colors.deepOrange[900],
+                //   padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                //   textStyle:
+                //   const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                // ),
               ),
             ],
           )),

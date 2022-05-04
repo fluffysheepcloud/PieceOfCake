@@ -3,16 +3,15 @@ import 'package:frontend/pages/merchant_shop.dart';
 import 'package:frontend/pages/search/merchant_home/product_page.dart';
 
 //TODO: Navigate to the cake prodcut page
-
+//takes in price, name, pic
 //this is like an object class
-class InfoCard extends StatelessWidget {
+class PrebuiltCard extends StatelessWidget {
   //infocard constructor of class
   //description, title, img url
-  //cake title, description, id (of cake), price
-  InfoCard(this.title, this.description, this.id); /*{Key? key,  required this.arguments}) : super(key: key*/
+  PrebuiltCard(this.title, this.price, this.id); /*{Key? key,  required this.arguments}) : super(key: key*/
   //these are its attributes, this.imgurl
   int id;
-  String description;
+  String price;
   String title;
   var arguments ; //var can be all types
   //{Key ? key, this.arguments} indicates that the arguments can be option/can be null
@@ -69,7 +68,7 @@ class InfoCard extends StatelessWidget {
                                 ),
                                 Container(
                                   padding: const EdgeInsets.all(8.0),
-                                  child:  Text(description), //arguments["description"]
+                                  child:  Text(price), //arguments["description"]
                                 ),
                               ],
                             )

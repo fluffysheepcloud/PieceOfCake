@@ -25,12 +25,10 @@ class _CreateCustomerAccountState extends State<CreateCustomerAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.orange[50],
         appBar: AppBar(
           title: Text('Customer Registration'),
           titleTextStyle: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold),
-          //backgroundColor: Colors.brown[700],
         ),
         body: customerRegisterForm(context)
     );
@@ -50,12 +48,9 @@ class _CreateCustomerAccountState extends State<CreateCustomerAccount> {
                 InputTextBox("Email", "Email", _email),
                 InputTextBox("Phone Number", "Phone Number", _phone),
                 TextButton(
-                  // style: TextButton.styleFrom
-                  //   (backgroundColor: Colors.brown[700]),
                   onPressed: _registration,
                   child: Text(
-                    'Register',
-                    //style: TextStyle(color: Colors.white, fontSize: 15),
+                    'Register'
                   ),
                 ),
               ]
@@ -76,7 +71,6 @@ class _CreateCustomerAccountState extends State<CreateCustomerAccount> {
               textAlign: TextAlign.left,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
-
                   fontWeight: FontWeight.bold, color: Colors.brown),
             ),
             SizedBox(height: 10),

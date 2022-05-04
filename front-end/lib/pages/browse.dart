@@ -27,12 +27,14 @@ class _BrowseState extends State<Browse>{
   TextEditingController tc = new TextEditingController();
 
    readJson() async {
+     //get all merchants(?), get cakes by merchantId -- but pass the cake id into card, retrieve cake details from merchants info
+     //what is merchant's JSON response, may need to call the getPrebuilt cakes or something passing in merchant id
+     //getMerchantPrebuildCakes(int id)
     var m1 = await getMerchantInfoById(1);
     var m2 = await getMerchantInfoById(2);
     var m3 = await getMerchantInfoById(3);
 
-    //final String response = await rootBundle.loadString('assets/mock/sample.json');
-    //final data = await json.decode(response);
+
     setState(() {
       _items.add(m1["data"]);
       _items.add(m2["data"]);
@@ -46,11 +48,9 @@ class _BrowseState extends State<Browse>{
   }
 
   void filterSearch(String query){
-    //debugPrint(_items.length.toString());
       for (var item in _items){
           if (item["shopName"].toLowerCase().contains(query.toLowerCase()) || item["description"].toLowerCase().contains(query.toLowerCase())){
             results.add(item);
-            //debugPrint(results.toString());
           }
       }
   }
@@ -63,11 +63,7 @@ class _BrowseState extends State<Browse>{
     return Scaffold(
         appBar: AppBar(
           title: Text('Browse for Cakes'),
-          titleTextStyle: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold),
-          //backgroundColor: Colors.brown[300],
         ),
-        //backgroundColor: Colors.orange[50],
 
         body: SingleChildScrollView(
         child: Column(
@@ -131,9 +127,7 @@ class _BrowseState extends State<Browse>{
                   results.clear();
                   filterSearch(val);
                 },
-                //controller: ec,
               ),
-            //controller: fieldText,
           ),
           SizedBox(height: 15,),
           TextButton(
@@ -146,9 +140,6 @@ class _BrowseState extends State<Browse>{
               },
               child: Text(
                 "Find a Baker",
-                style: TextStyle(
-                  fontSize: 16.0,
-                ),
               )
           ),
 
@@ -159,7 +150,8 @@ class _BrowseState extends State<Browse>{
               physics: const NeverScrollableScrollPhysics(),
               itemCount: results.length,
               itemBuilder: (context, index){
-                return InfoCard(results[index]["shopName"], results[index]["description"], results[index]["id"]);//new Text("hello");//InfoCard(_items[index number]);
+                // [cake name] , [description], [cake id], [price]
+                return InfoCard(results[index]["shopName"], results[index]["description"], results[index]["id"]);
               }
           )
               : ListView.builder(
@@ -168,7 +160,8 @@ class _BrowseState extends State<Browse>{
             physics: const NeverScrollableScrollPhysics(),
             itemCount: _items.length,
             itemBuilder: (context, index){
-              return InfoCard(_items[index]["shopName"], _items[index]["description"],  _items[index]["id"]);//new Text("hello");//InfoCard(_items[index number]);
+              // [cake name] , [description], [cake id], [price]
+              return InfoCard(_items[index]["shopName"], _items[index]["description"],  _items[index]["id"]);
             },
           )
           //end searchbar
