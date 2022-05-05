@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/merchant_shop.dart';
+import 'package:frontend/pages/profile/merchant/shop_manager/merchant_shop.dart';
 
 
 //this is like an object class

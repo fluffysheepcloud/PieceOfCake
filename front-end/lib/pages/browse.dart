@@ -62,7 +62,7 @@ class _BrowseState extends State<Browse>{
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Browse for Cakes'),
+          title: Text('Browse for Shops'),
         ),
 
         body: SingleChildScrollView(
@@ -139,7 +139,7 @@ class _BrowseState extends State<Browse>{
                     ));
               },
               child: Text(
-                "Find a Baker",
+                "Find a Baker Near You",
               )
           ),
 

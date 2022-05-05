@@ -1,9 +1,9 @@
 class Merchant {
   String username;
-  String shopname;
   String password;
   String email;
   String phone;
+  String shopName;
   String description;
   String businessHour;
   String street;
@@ -13,10 +13,10 @@ class Merchant {
 
   Merchant(
       this.username,
-      this.shopname,
       this.password,
       this.email,
       this.phone,
+      this.shopName,
       this.description,
       this.businessHour,
       this.street,
@@ -26,6 +26,7 @@ class Merchant {
 
   @override
   String toString() {
-    return 'Customer{username: $username, password: $password, email: $email, phone: $phone}';
+    return 'Merchant{username: $username, password: $password, email: $email, phone: $phone, shopName: $shopName, description: $description, '
+        'businessHour: $businessHour, street: $street, city: $city, state: $state, zip: ${zip.toString()}}';
   }
 }

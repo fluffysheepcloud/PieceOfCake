@@ -21,7 +21,7 @@ class _CreateMerchantAccount extends State<CreateMerchantAccount> {
   TextEditingController _phone = TextEditingController();
   TextEditingController _shopName = TextEditingController();
   TextEditingController _shopDescription = TextEditingController();
-  TextEditingController _address = TextEditingController();
+  TextEditingController _Street = TextEditingController();
   TextEditingController _city = TextEditingController();
   TextEditingController _state = TextEditingController();
   TextEditingController _zipcode = TextEditingController();
@@ -50,13 +50,13 @@ class _CreateMerchantAccount extends State<CreateMerchantAccount> {
         child: Column(children: <Widget>[
           InputTextBox("Username", "username", _username),
           InputTextBox("Password", "password", _password),
-         _reenterPassword(),
+          _reenterPassword(),
           InputTextBox("Email", "Email", _email),
           InputTextBox("Phone Number", "Phone Number", _phone),
-          InputTextBox("Shop Name", "Shop Name", _shopName),
+          InputTextBox("ShopName", "ShopName", _shopName),
           InputTextBox("Shop Description", "Shop Description", _shopDescription),
           InputTextBox("Business Hours", "Business Hours", _businessHour),
-          InputTextBox("Address", "Address", _address),
+          InputTextBox("Street", "Street", _Street),
           InputTextBox("City", "City", _city),
           InputTextBox("State", "State", _state),
           InputTextBox("Zip Code", "Zip Code", _zipcode),
@@ -129,11 +129,15 @@ class _CreateMerchantAccount extends State<CreateMerchantAccount> {
         const SnackBar(content: Text('Processing Data')),
       );
 
+
+      //zipcode having issues because it is an in
       Merchant m = Merchant(_username.text ,_password.text,
           _email.text, _phone.text, _shopName.text, _shopDescription.text,
-          _businessHour.text, _address.text, _city.text, _state.text, int.parse(_zipcode.text));
+          _businessHour.text, _Street.text, _city.text, _state.text, 9009 );
 
-      var res = await merchantRegister(m);
+
+      var res = await merchantRegister(m); //its this line
+      debugPrint("dslfkjsdlf");
 
       if (res["code"] == 200) {
         Navigator.pushNamed(context, "/profile/registration_success");

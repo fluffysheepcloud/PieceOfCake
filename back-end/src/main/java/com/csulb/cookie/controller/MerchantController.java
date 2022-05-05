@@ -27,7 +27,7 @@ public class MerchantController {
 
     @ResponseBody
     @RequestMapping(value = "/api/merchant/register", method = RequestMethod.POST)
-    public Map<String, Object> customerRegister(Merchant merchant) {
+    public Map<String, Object> merchantRegister(Merchant merchant) {
         return service.merchantRegister(merchant);
     }
 

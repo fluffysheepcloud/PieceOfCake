@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/merchant_shop.dart';
+import 'package:frontend/pages/profile/merchant/shop_manager/merchant_shop.dart';
 import 'package:frontend/pages/search/merchant_home/product_page.dart';
 
 //TODO: Navigate to the cake prodcut page
@@ -8,12 +8,13 @@ import 'package:frontend/pages/search/merchant_home/product_page.dart';
 class PrebuiltCard extends StatelessWidget {
   //infocard constructor of class
   //description, title, img url
-  PrebuiltCard(this.title, this.price, this.id); /*{Key? key,  required this.arguments}) : super(key: key*/
+  final String imageUrl;
+  final Map cakeInfo;
+  final String merchantName;
+  const PrebuiltCard(this.imageUrl, this.cakeInfo, this.merchantName, {Key? key}) : super(key: key); /*{Key? key,  required this.arguments}) : super(key: key*/
   //these are its attributes, this.imgurl
-  int id;
-  String price;
-  String title;
-  var arguments ; //var can be all types
+
+  //var arguments ; //var can be all types
   //{Key ? key, this.arguments} indicates that the arguments can be option/can be null
   //Scaffold is a whole page, Center is a container for elements
 
@@ -36,11 +37,20 @@ class PrebuiltCard extends StatelessWidget {
                     onTap: () {
                       debugPrint('Card tapped.');
                       //pass id into product page which gets the cakes details - talk to guanyu about this
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => MerchantShop(id)//ProductPage(id: id,),
-                          ));
+                      Navigator.pushNamed(
+                          context, "/product_page", arguments: {
+                        "merchantName": merchantName,
+                        "avatarURL": "assets/images/merchant_avatar.jpg",
+                        "cakeURLs": [
+                          "assets/images/cake.jpg",
+                          "assets/images/cake_2.jpg",
+                          "assets/images/cake_3.jpg",
+                          "assets/images/cake_4.jpg",
+                          "assets/images/cake_5.jpg"
+                        ],
+                        "description": "This is the description...",
+                        "price": cakeInfo["price"]
+                      });
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -64,11 +74,11 @@ class PrebuiltCard extends StatelessWidget {
                               children: [
                                 Container(
                                   padding: const EdgeInsets.all(8.0),
-                                  child:  Text(title),
+                                  child:  Text(merchantName),
                                 ),
                                 Container(
                                   padding: const EdgeInsets.all(8.0),
-                                  child:  Text(price), //arguments["description"]
+                                  child: Text("Price: \$${cakeInfo["price"].toString()}")
                                 ),
                               ],
                             )

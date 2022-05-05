@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:frontend/domain/merchant.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -21,22 +22,25 @@ merchantRegister(Merchant m) async {
   String path = "/register";
 
   var url = Uri.parse(baseURL + path);
+  debugPrint(m.shopName);
+
   var res = await http.post(url,
       body: {
         "username": m.username,
-        "shopname": m.shopname,
         "password": m.password,
         "email": m.email,
         "phone": m.phone,
+        "shopName": m.shopName,
         "description": m.description,
         "businessHour": m.businessHour,
         "street": m.street,
         "city": m.city,
         "state": m.state,
-        "zip": m.zip
+        "zip": m.zip.toString()
       }
   );
-
+  //debugPrint(m.email.runtimeType);
+  debugPrint(res.body);
   return json.decode(res.body);
 }
 

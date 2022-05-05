@@ -14,6 +14,7 @@ class Success extends StatelessWidget {
             Text("Success"),
             SizedBox(height: 100),
             ElevatedButton(
+              //navigate to merchant profile, get merchant info, send id, merchantprofile/{id}?
               onPressed: () { Navigator.popUntil(context, ModalRoute.withName("/")); },
               child: Text("Done"))
           ],
