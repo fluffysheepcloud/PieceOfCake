@@ -62,6 +62,12 @@ class Demo extends StatelessWidget {
                   Navigator.pushNamed(context, "/profile/merchant/shop_manager/create_cake");
                 },
                 child: Text("Add Prebuilt Cake")),
+            SizedBox(height: 20),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "/edit_cake_progress_tracker");
+                },
+                child: Text("Edit Cake Progress Tracker")),
           ],
         ),
       ),
