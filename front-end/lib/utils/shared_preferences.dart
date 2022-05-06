@@ -119,5 +119,21 @@ class SPUtil {
     await sp.setString("cake", encodeValue);
   }
 
+  static subtractCake(int id) async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    Map m = await getCakes();
+    m[id.toString()] -= 1;
+    String encodeValue  = json.encode(m);
+    await sp.setString("cake", encodeValue);
+  }
+
+  static incrementCake(int id) async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    Map m = await getCakes();
+    m[id.toString()] += 1;
+    String encodeValue  = json.encode(m);
+    await sp.setString("cake", encodeValue);
+  }
+
 
  }

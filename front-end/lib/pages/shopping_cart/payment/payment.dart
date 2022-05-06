@@ -22,7 +22,7 @@ class _PaymentState extends State<Payment> {
     super.initState();
     print("PaymentPaymentPaymentPaymentPayment");
     print(widget.argumenets);
-    PaymentService.init();
+    // PaymentService.init();
   }
 
   @override

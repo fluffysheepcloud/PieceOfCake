@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/utils/shared_preferences.dart';
 class ShoppingCartCard extends StatefulWidget {
 
   Map arguments;
@@ -125,27 +126,27 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
         shape: CircleBorder()
       ),
       child: Icon(Icons.add, color: Colors.black87),
-      onPressed: () {
-        setState(() {
-          widget.quantity[index]++;
-        });
+      onPressed: () async {
+        await SPUtil.incrementCake(widget.arguments["id"]);
+        widget.quantity[index]++;
+        setState(() {});
       },
     );
   }
 
-  Widget _decrementButton(int index) {
+  Widget _decrementButton(int index)  {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         primary: Colors.white,
         shape: CircleBorder()
       ),
 
-      onPressed: () {
-        setState(() {
-          if (widget.quantity[index] > 1) {
-            widget.quantity[index]--;
-          }
-        });
+      onPressed: () async {
+        await SPUtil.subtractCake(widget.arguments["id"]);
+        if (widget.quantity[index] > 1) {
+        widget.quantity[index]--;
+        }
+        setState(() {});
       },
       child: new Icon(Icons.remove, color: Colors.black87),
     );
