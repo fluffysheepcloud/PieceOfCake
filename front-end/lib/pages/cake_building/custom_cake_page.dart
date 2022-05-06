@@ -21,7 +21,9 @@ class CustomCakeBuilderBody extends State<CustomCakePage> {
 
   Future<Map> mockIngredients() async {
     final String res = await rootBundle.loadString('assets/mock/mock_ingredients.json');
+    // ingredient is a list of size 6 (call ingredient.length in ItemCount)
     var ingredients = json.decode(res)["data"];
+    debugPrint(ingredients);
     return ingredients;
   }
 
