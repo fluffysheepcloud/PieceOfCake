@@ -142,9 +142,8 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
 
       onPressed: () {
         setState(() {
-          widget.quantity[index]--;
-          if (widget.quantity[index] <= 0) {
-            widget.quantity[index] = 0;
+          if (widget.quantity[index] > 1) {
+            widget.quantity[index]--;
           }
         });
       },

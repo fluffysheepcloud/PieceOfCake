@@ -20,6 +20,7 @@ class _PaymentState extends State<Payment> {
   @override
   void initState() {
     super.initState();
+    print("PaymentPaymentPaymentPaymentPayment");
     print(widget.argumenets);
     PaymentService.init();
   }

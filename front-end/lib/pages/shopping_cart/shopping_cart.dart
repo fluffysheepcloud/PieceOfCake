@@ -23,10 +23,10 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
 
   Future<List> mockData() async {
     List data = [];
-    //
-    // SPUtil.addCake(1, 2);
-    // SPUtil.addCake(2, 5);
-
+    await SPUtil.updateLoginStatus();
+    if (SPUtil.loginStatus == -1) {
+      SPUtil.clearCakes();
+    }
 
     Map m = await SPUtil.getCakes();
 
