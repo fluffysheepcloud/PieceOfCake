@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/components/card.dart';
+import 'package:frontend/components/prebuilt_card.dart';
 import 'package:frontend/network/merchant_service.dart';
 import 'package:frontend/network/prebuilt_cake_service.dart';
 import 'package:frontend/pages/cake_request_form.dart';
@@ -12,26 +13,40 @@ import 'package:frontend/pages/profile/merchant/shop_manager/shop_manager.dart';
 import 'package:frontend/utils/shared_preferences.dart';
 import 'dart:convert';
 
-import 'cake_building/custom_cake_page.dart';
+import '../../../cake_building/custom_cake_page.dart';
 //when card clicked, pass id in to here, then retrieve data from that id using await getMerchantId(id passed in)
 
 class MerchantShop extends StatelessWidget{
   final int id;
   MerchantShop(this.id, {Key? key}) : super(key: key);
 
+  final int _loginStat = SPUtil.loginStatus;
+
+  int userId = 0;
+
   Future<Map> _loadMerchantShop() async {
     Map data = {};
     data["merchantInfo"] = (await getMerchantInfoById(id))["data"];
     data["prebuildCake"] = (await getMerchantPrebuildCakes(id));
-    print(data["merchantInfo"]);
-    print(data["prebuildCake"]);
+    int userId = (await SPUtil.getUserData())["id"];
+    data["userId"] = userId;
+    // print(data["merchantInfo"]);
+    // print(data["prebuildCake"]);
+    print(data);
     return data;
   }
 
-  // Future<int> _loadId() async {
+  //  Future <List> _loadId() async {
   //   //get stat and user info
+  //   debugPrint("sdfsdfsdf");
   //   int userId = (await SPUtil.getUserData())["id"];
   //   return userId;
+  // }
+
+  // void initState(){
+  //   _loadId();
+  //   debugPrint(userId.toString());
+  //
   // }
 
 
@@ -40,12 +55,17 @@ class MerchantShop extends StatelessWidget{
   Widget build(BuildContext context) {
     return Container(
       child: FutureBuilder(
-        future: _loadMerchantShop(), // _readCakes()}),
+        future: _loadMerchantShop(), //_loadId()}), // _readCakes()}),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasError) {
               return Text("Error: ${snapshot.error}");
             } else {
+
+              debugPrint("poo");
+              userId = snapshot.data["userId"];
+              // debugPrint("snapshopt:");
+              // debugPrint(snapshot.data[1]);
               return _pageBuilder(context, snapshot);
             }
           } else {
@@ -57,8 +77,11 @@ class MerchantShop extends StatelessWidget{
   }
   _pageBuilder(BuildContext context, AsyncSnapshot snapshot)  {
 
+
     Map merchantInfo = snapshot.data["merchantInfo"];
     Map prebuildCakes = snapshot.data["prebuildCake"];
+
+
 
     return Scaffold(
       //display shop name
@@ -115,16 +138,16 @@ class MerchantShop extends StatelessWidget{
                           style: TextStyle(fontSize: 15),)
                     )
                 ),
-                // if (_loginStat == 1 && id == userId)...[
-                //     ElevatedButton(onPressed: (){
-                //       Navigator.push(
-                //           context,
-                //           MaterialPageRoute(
-                //               builder: (context) => ShopManagerPage()//ProductPage(id: id,),
-                //           ));
-                //     }, child: Text("Edit Shop"))
-                //   ]
-                //   else if (_loginStat == 0)...[
+                if (_loginStat == 1 && id == userId)...[
+                    ElevatedButton(onPressed: (){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ShopManagerPage()//ProductPage(id: id,),
+                          ));
+                    }, child: Text("Edit Shop"))
+                  ]
+                  else if (_loginStat == 0)...[
                 Column(
                   children: [
                     ElevatedButton(
@@ -141,12 +164,12 @@ class MerchantShop extends StatelessWidget{
                       child: Text("Request cake form")
                     )
                 ])
-                // ]
-                // else ... [
-                //     SizedBox(
-                //       height: 50,
-                //     )
-                // ]
+                ]
+                else ... [
+                    SizedBox(
+                      height: 50,
+                    )
+                ]
               ],
             ),
             SizedBox(height: 5,),
@@ -160,20 +183,24 @@ class MerchantShop extends StatelessWidget{
             ),
 
             //this will display the cards
+            prebuildCakes["data"].isNotEmpty?
             ListView.builder(
                 scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                 itemCount: prebuildCakes.length,
                 itemBuilder: (context, index){
-                  // return InfoCard(_items[index]["shopName"], _items[index]["description"],  _items[index]["id"]);
-                  return FavCakesCard(
-                    "assets/images/cake_4.jpg",
-                    prebuildCakes["data"][index],
-                    merchantInfo["shopName"]
+                // return InfoCard(_items[index]["shopName"], _items[index]["description"],  _items[index]["id"]);
+                return PrebuiltCard(
+                  "assets/images/cake_4.jpg",
+                  prebuildCakes["data"][index],
+                  merchantInfo["shopName"]
                   );
                 }
-            ),
+            ):
+            SizedBox(height: 100,
+              child: Text("This shop currently does not have any cakes on display."),
+            )
           ],
         ),
       ),

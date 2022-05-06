@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_function_declarations_over_variables
 import 'package:flutter/material.dart';
 import 'package:frontend/pages/cake_building/custom_cake_page.dart';
+import 'package:frontend/pages/cake_progress_tracker.dart';
 import 'package:frontend/pages/canceled_order.dart';
+import 'package:frontend/pages/edit_cake_progress_tracker.dart';
 import 'package:frontend/pages/index.dart';
 import 'package:frontend/pages/profile/customer/fav_cakes/fav_cakes_page.dart';
 import 'package:frontend/pages/profile/customer/fav_merchants/fav_merchants.dart';
@@ -59,6 +61,7 @@ final routes = {
   "/shopping_cart/summary": (context, {arguments}) => Summary(argumenets: arguments),
   "/shopping_cart/payment": (context, {arguments}) => Payment(argumenets: arguments),
   "/product_page": (context, {arguments}) => ProductPage(arguments: arguments),
+  "/edit_cake_progress_tracker": (context, {arguments}) => EditCakeProgress(arguments: arguments),
 };
 
 /* This function is similar to a callback function.

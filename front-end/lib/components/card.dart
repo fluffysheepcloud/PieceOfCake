@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/merchant_shop.dart';
+import 'package:frontend/pages/profile/merchant/shop_manager/merchant_shop.dart';
 import 'package:frontend/pages/search/merchant_home/product_page.dart';
 
 //TODO: Navigate to the cake prodcut page
@@ -8,6 +8,7 @@ import 'package:frontend/pages/search/merchant_home/product_page.dart';
 class InfoCard extends StatelessWidget {
   //infocard constructor of class
   //description, title, img url
+  //cake title, description, id (of cake), price
   InfoCard(this.title, this.description, this.id); /*{Key? key,  required this.arguments}) : super(key: key*/
   //these are its attributes, this.imgurl
   int id;

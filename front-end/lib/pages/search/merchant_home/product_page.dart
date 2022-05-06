@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/utils/shared_preferences.dart';
 
 class ProductPage extends StatefulWidget {
 
@@ -16,6 +17,8 @@ class _ProductPageState extends State<ProductPage> {
   static const String notFoundImage = "assets/images/404.jpg";
 
   late String _merchantName;
+  late String _cakeName;
+  late int _cakeId;
   String? _avatarURL;
   List<String>? _imageURLs;
   String? _cDescription;
@@ -35,7 +38,9 @@ class _ProductPageState extends State<ProductPage> {
   void initState() {
     if (widget.arguments != null) {
        Map data = Map.from(widget.arguments);
+       _cakeId = data["prebuildCakeId"];
        _merchantName = data["merchantName"];
+       _cakeName = data["cakeName"];
        _avatarURL = data["avatarURL"];
        _imageURLs = data["cakeURLs"];
        _cDescription = data["description"];
@@ -59,7 +64,7 @@ class _ProductPageState extends State<ProductPage> {
               Padding(
                 padding: EdgeInsets.only(top: 8, bottom: 8),
                 child: Text(
-                  "Cake Name",
+                  "${_cakeName}",
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w400
@@ -222,7 +227,9 @@ class _ProductPageState extends State<ProductPage> {
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
               ),
-              onPressed: () {},
+              onPressed: _itemCount > 0 ? () {
+                SPUtil.addCake(_cakeId, _itemCount);
+              } : null,
               child: Text("Add to Cart")
           )
       )

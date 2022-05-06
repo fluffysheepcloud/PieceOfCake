@@ -14,10 +14,10 @@ public class Merchant implements Serializable {
     @TableId(type = IdType.AUTO)
     private Integer id;
     private String username;
-    private String shopName;
     private String password;
     private String email;
     private String phone;
+    private String shopName;
     private String description;
     private String businessHour;
 

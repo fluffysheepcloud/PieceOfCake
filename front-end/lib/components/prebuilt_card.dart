@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/pages/profile/merchant/shop_manager/merchant_shop.dart';
+import 'package:frontend/pages/search/merchant_home/product_page.dart';
 
-
+//TODO: Navigate to the cake prodcut page
+//takes in price, name, pic
 //this is like an object class
-class MerchantCard extends StatelessWidget {
-
-  MerchantCard(this.shopName, this.street, this.city, this.state, this.zip, this.id); /*{Key? key,  required this.arguments}) : super(key: key*/
+class PrebuiltCard extends StatelessWidget {
+  //infocard constructor of class
+  //description, title, img url
+  final String imageUrl;
+  final Map cakeInfo;
+  final String merchantName;
+  const PrebuiltCard(this.imageUrl, this.cakeInfo, this.merchantName, {Key? key}) : super(key: key); /*{Key? key,  required this.arguments}) : super(key: key*/
   //these are its attributes, this.imgurl
-  int id;
-  String street;
-  String city;
-  String state;
-  int zip;
-  String shopName;
 
-  var arguments ; //var can be all types
+  //var arguments ; //var can be all types
+  //{Key ? key, this.arguments} indicates that the arguments can be option/can be null
   //Scaffold is a whole page, Center is a container for elements
 
   @override
@@ -35,11 +36,22 @@ class MerchantCard extends StatelessWidget {
                     splashColor: Colors.brown.withAlpha(70),
                     onTap: () {
                       debugPrint('Card tapped.');
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => MerchantShop(id),
-                          ));
+                      //pass id into product page which gets the cakes details - talk to guanyu about this
+                      Navigator.pushNamed(context, "/product_page", arguments: {
+                        "prebuildCakeId": cakeInfo["id"],
+                        "merchantName": merchantName,
+                        "cakeName": cakeInfo["cakeName"],
+                        "avatarURL": "assets/images/merchant_avatar.jpg",
+                        "cakeURLs": [
+                          "assets/images/cake.jpg",
+                          "assets/images/cake_2.jpg",
+                          "assets/images/cake_3.jpg",
+                          "assets/images/cake_4.jpg",
+                          "assets/images/cake_5.jpg"
+                        ],
+                        "description": "This is the description...",
+                        "price": cakeInfo["price"]
+                      });
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -63,15 +75,12 @@ class MerchantCard extends StatelessWidget {
                               children: [
                                 Container(
                                   padding: const EdgeInsets.all(8.0),
-                                  child:  Text(shopName),
+                                  child:  Text(merchantName),
                                 ),
                                 Container(
                                   padding: const EdgeInsets.all(8.0),
-                                  child:  Text(street + "\n" + city + ", " + state + "\n " + zip.toString()),
+                                  child: Text("Price: \$${cakeInfo["price"].toString()}")
                                 ),
-                                // ElevatedButton(onPressed: (){
-                                //
-                                // }, child: Text("Go to shop"))
                               ],
                             )
                         )

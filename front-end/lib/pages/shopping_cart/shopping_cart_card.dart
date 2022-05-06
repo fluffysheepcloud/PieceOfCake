@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/utils/shared_preferences.dart';
 class ShoppingCartCard extends StatefulWidget {
 
-  Map areguments;
+  Map arguments;
   int index;
   List<int> quantity;
 
-  ShoppingCartCard(this.areguments, this.index, this.quantity, {Key? key}) : super(key: key);
+  ShoppingCartCard(this.arguments, this.index, this.quantity, {Key? key}) : super(key: key);
 
   @override
   _ShoppingCartCardState createState() => _ShoppingCartCardState();
@@ -31,7 +32,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 5, top: 5),
-                  child: Text("Cake ID: ${widget.areguments["orderCakeID"]}"),
+                  child: Text("Cake ID: ${widget.arguments["orderCakeID"]}"),
                 ),
                  _shoppingCartCardTitle(),
                 _pictureAndInfo(),
@@ -51,7 +52,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
             padding: EdgeInsets.only(
                 left: 8, top: 5),
             child: Text(
-              "Name: ${widget.areguments["cakeName"]}",
+              "Name: ${widget.arguments["cakeName"]}",
                 overflow: TextOverflow.ellipsis,
             )
         ),
@@ -70,7 +71,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
               width:120,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset(widget.areguments["imageURL"], fit: BoxFit.cover),
+                child: Image.asset(widget.arguments["imageURL"], fit: BoxFit.cover),
               )
           ),
         ),
@@ -79,8 +80,8 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
               padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
               child: Column(
                 children: [
-                  Text("${widget.areguments["cakeName"]}", overflow: TextOverflow.ellipsis, maxLines: 1),
-                  Text("Cake Size: ${widget.areguments["cakeSize"]}",overflow: TextOverflow.ellipsis, maxLines: 1,),
+                  Text("${widget.arguments["cakeName"]}", overflow: TextOverflow.ellipsis, maxLines: 1),
+                  Text("Cake Size: ${widget.arguments["baseSize"]}",overflow: TextOverflow.ellipsis, maxLines: 1,),
                 ],
         ),
             )
@@ -95,7 +96,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
         Padding(
           padding: EdgeInsets.only(left: 8, top: 0),
           child: Text(
-            "Unit Price: ${widget.areguments["price"]}"
+            "Unit Price: ${widget.arguments["price"]}"
           )
         ),
       ],
@@ -125,28 +126,27 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
         shape: CircleBorder()
       ),
       child: Icon(Icons.add, color: Colors.black87),
-      onPressed: () {
-        setState(() {
-          widget.quantity[index]++;
-        });
+      onPressed: () async {
+        await SPUtil.incrementCake(widget.arguments["id"]);
+        widget.quantity[index]++;
+        setState(() {});
       },
     );
   }
 
-  Widget _decrementButton(int index) {
+  Widget _decrementButton(int index)  {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         primary: Colors.white,
         shape: CircleBorder()
       ),
 
-      onPressed: () {
-        setState(() {
-          widget.quantity[index]--;
-          if (widget.quantity[index] <= 0) {
-            widget.quantity[index] = 0;
-          }
-        });
+      onPressed: () async {
+        await SPUtil.subtractCake(widget.arguments["id"]);
+        if (widget.quantity[index] > 1) {
+        widget.quantity[index]--;
+        }
+        setState(() {});
       },
       child: new Icon(Icons.remove, color: Colors.black87),
     );

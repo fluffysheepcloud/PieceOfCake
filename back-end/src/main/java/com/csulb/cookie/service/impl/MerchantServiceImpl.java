@@ -54,6 +54,9 @@ public class MerchantServiceImpl extends ServiceImpl<MerchantMapper, Merchant>  
 
     @Override
     public Map<String, Object> merchantRegister(Merchant merchant) {
+
+        System.out.println(merchant.toString());
+
     // make sure all attributes are not null
         if (merchant.getUsername() == null ||
                 merchant.getPassword() == null ||
@@ -67,7 +70,7 @@ public class MerchantServiceImpl extends ServiceImpl<MerchantMapper, Merchant>  
                 merchant.getState() == null ||
                 merchant.getZip() == null
         ) {
-            return new ControllerResult(ControllerResult.BAD_REQUEST, null, "bad request").toJsonMap();
+            return new ControllerResult(ControllerResult.BAD_REQUEST, null, "bad poop request").toJsonMap();
         }
 
         // Save merchant into database

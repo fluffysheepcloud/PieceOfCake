@@ -36,6 +36,7 @@ dependencies:
   firebase_auth: ^3.3.0
   firebase_storage: ^10.2.0
   cloud_firestore: ^3.1.0
+  flutter_braintree: ^2.3.1
 
   firebase_messaging_platform_interface: 3.1.6
   firebase_storage_platform_interface: 4.0.14

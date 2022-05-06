@@ -40,8 +40,6 @@ class _FindBakerState extends State<FindBaker>{
     var m5 = await getMerchantInfoById(5);
     var m6 = await getMerchantInfoById(6);
 
-    //final String response = await rootBundle.loadString('assets/mock/sample.json');
-    //final data = await json.decode(response);
     setState(() {
       _items.add(m1["data"]);
       _items.add(m2["data"]);
@@ -65,7 +63,6 @@ class _FindBakerState extends State<FindBaker>{
     for (var item in _items){
       if (item["city"].toLowerCase()== cityReq.toLowerCase() || item["zip"] == zipReq) {
         results.add(item);
-        //         !results.contains(item["id"])
       }
     }
     debugPrint(results.toString());
@@ -76,10 +73,7 @@ class _FindBakerState extends State<FindBaker>{
     return Scaffold(
         appBar: AppBar(
           title: Text("Find a Baker Near You",
-            style: TextStyle(fontSize: 25),),
-          titleTextStyle: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold),
-          //backgroundColor: Colors.brown[700],
+          ),
         ),
 
         backgroundColor: Colors.orange[50],
@@ -99,8 +93,6 @@ class _FindBakerState extends State<FindBaker>{
       child: Column(
         children: [
         Container(
-        width: 400.0,
-        height: 272.0,
 
         decoration: BoxDecoration(
         color: Theme.of(context).primaryColor,
@@ -113,15 +105,12 @@ class _FindBakerState extends State<FindBaker>{
           InputTextBox("City", "city", _city),
           InputTextBox("Zipcode", "zipcode", _zipcode),
           ElevatedButton(
-            //style: TextButton.styleFrom
-              //(backgroundColor: Colors.brown[700]),
             onPressed: () => setState(() {
               results.clear();
               _find();
             }),
             child: Text(
               'Find Baker',
-              style: TextStyle(color: Colors.white, fontSize: 15),
             ),
           )
      ]
@@ -159,8 +148,6 @@ class _FindBakerState extends State<FindBaker>{
   _find() {
     if (_formKey.currentState!.validate()){
       List req = [ _city.text, _zipcode.text];
-      // debugPrint(_city.text);
-      // debugPrint(_zipcode.text);
       findBaker(req);
     }
 

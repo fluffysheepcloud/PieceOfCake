@@ -64,20 +64,14 @@ class _HomeState extends State<Home> {
         // but if user is logged in, the home page says welcome "user"
         title: customerName != null
           ? Text("Welcome, " + customerName.toString(),
-          style: TextStyle(fontSize: 25),)
+        )
           : Text("Welcome",
-          style: TextStyle(fontSize: 25),),
-        // titleTextStyle: TextStyle(
-        //     color: Colors.white, fontWeight: FontWeight.bold),
-        //backgroundColor: appBarTheme,
-        //backgroundColor: Colors.brown[300],
+        ),
       ),
 
-    //backgroundColor: Theme.of(context).colorScheme.primary, //backgroundColor: ThemeData.p//Colors.orange[50],
     body: SingleChildScrollView(
       child:
       Container(
-       // color: Theme.of(context).colorScheme.primary,
       child: Column(
 
       mainAxisAlignment: MainAxisAlignment.center,

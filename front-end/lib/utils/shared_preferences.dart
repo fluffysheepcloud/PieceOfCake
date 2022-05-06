@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert' as convert;
 
 class SPUtil {
 
@@ -72,5 +73,67 @@ class SPUtil {
     SharedPreferences sp = await SharedPreferences.getInstance();
     sp.remove(key);
   }
+
+  static addCake(int cakeId, int quantity) async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+
+    if (sp.getString("cake") == null) {
+      Map m = {};
+      m[cakeId.toString()] = quantity;
+      String encodeValue  = json.encode(m);
+      await sp.setString("cake", encodeValue);
+      return;
+    }
+    String? string = sp.getString("cake");
+    if (string != null) {
+      Map m = json.decode(string);
+      m[cakeId.toString()] = quantity;
+      String encodeValue  = json.encode(m);
+      await sp.setString("cake", encodeValue);
+      return;
+    }
+  }
+
+  static Future<Map<dynamic, dynamic>> getCakes() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    if (sp.get("cake") == null) return {};
+
+    String? str = sp.getString("cake");
+    if (str != null) {
+      return json.decode(str) as Map;
+    }
+
+    return {};
+  }
+
+  static clearCakes() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    await sp.remove("cake");
+  }
+
+  static removeCake(int id) async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    Map m = await getCakes();
+    m.remove(id.toString());
+    String encodeValue  = json.encode(m);
+    await sp.setString("cake", encodeValue);
+  }
+
+  static subtractCake(int id) async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    Map m = await getCakes();
+    m[id.toString()] -= 1;
+    String encodeValue  = json.encode(m);
+    await sp.setString("cake", encodeValue);
+  }
+
+  static incrementCake(int id) async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    Map m = await getCakes();
+    m[id.toString()] += 1;
+    String encodeValue  = json.encode(m);
+    await sp.setString("cake", encodeValue);
+  }
+
 
  }

@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/components/input_text_box.dart';
+import 'package:frontend/pages/cake_progress_tracker.dart';
+import 'package:frontend/routes/routes.dart' as routes;
+
 
 void main() {
   runApp(MaterialApp(
     title: 'Edit Cake Progress',
     home: EditCakeProgress(),
+    onGenerateRoute: routes.onGeneratedRoute,
   ));
 }
 
 class EditCakeProgress extends StatefulWidget {
-  const EditCakeProgress() : super();
+  var arguments;
+
+  EditCakeProgress({Key? key, this.arguments}) : super(key: key);
 
   @override
   _EditCakeProgressState createState() => _EditCakeProgressState();
 }
 
 class _EditCakeProgressState extends State<EditCakeProgress> {
-  String orderStatus = 'Order Confirmed';
-  String orderNumber = '???';
+  String orderStatus = "Order Confirmed";
+  String orderNumber = "123";
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +49,7 @@ class _EditCakeProgressState extends State<EditCakeProgress> {
                 color: Colors.orange[50],
                 child: Center(
                   child: Text('Order Number: ' + orderNumber,
-                              textAlign: TextAlign.center,),
+                    textAlign: TextAlign.center,),
                 )),
           ),
           Padding(
@@ -55,7 +60,7 @@ class _EditCakeProgressState extends State<EditCakeProgress> {
                 color: Colors.orange[50],
                 child: Center(
                   child: Text('Current Order Status: ' + orderStatus,
-                              textAlign: TextAlign.center,),
+                    textAlign: TextAlign.center,),
                 )),
           ),
           TextButton(
@@ -91,7 +96,7 @@ class _EditCakeProgressState extends State<EditCakeProgress> {
               setState(() {
                 orderStatus = 'Cake Ready for Pickup';
               });
-              },
+            },
             child: Text(
               'Cake Ready for Pickup',
               style: TextStyle(color: Colors.white, fontSize: 15),
@@ -113,7 +118,9 @@ class _EditCakeProgressState extends State<EditCakeProgress> {
           TextButton(
             style: TextButton.styleFrom
               (backgroundColor: Colors.red[700]),
-            onPressed: () {},
+            onPressed: () {
+              _sentData(context);
+            },
             child: Text(
               'Submit',
               style: TextStyle(color: Colors.white, fontSize: 15),
@@ -122,4 +129,16 @@ class _EditCakeProgressState extends State<EditCakeProgress> {
         ]
     );
   }
+
+  Map<String, Object> _statusAsData(orderStatus, orderNumber) {
+    Map<String, Object> data = {"orderStatus": orderStatus, "orderNumber": orderNumber};
+
+    return data;
+  }
+
+  void _sentData(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CakeProgressTracker(orderNumber: orderNumber, orderStatus: orderStatus,)));
+//    Navigator.pushNamed(context, "/cake_progress_tracker", arguments: _statusAsData(orderStatus, orderNumber));
+  }
 }
+
