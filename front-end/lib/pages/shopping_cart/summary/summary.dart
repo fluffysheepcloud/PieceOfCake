@@ -15,14 +15,11 @@ class Summary extends StatefulWidget {
 class _SummaryState extends State<Summary> {
 
   Future<List> mockData() async {
-    final String res = await rootBundle.loadString('assets/mock/shopping_cart_mock.json');
-    var data = json.decode(res)["cart"] as List;
-    return data;
+    return widget.argumenets["data"];
   }
   @override
   void initState() {
     super.initState();
-    print(widget.argumenets);
   }
 
   @override
@@ -51,7 +48,6 @@ class _SummaryState extends State<Summary> {
   Widget _cardBuilder(AsyncSnapshot snapshot) {
 
     var itemList = _itemCarBuilder(snapshot);
-
     return Container(
         color: Color.fromARGB(255, 249, 243, 235),
         child: ListView(
@@ -62,26 +58,24 @@ class _SummaryState extends State<Summary> {
   }
 
   List<Widget> _itemCarBuilder(AsyncSnapshot snapshot){
-    List itemInfo = snapshot.data;
-    List summaryInfo = itemInfo;
-    List summaryQu = widget.argumenets;
+    List itemInfo = widget.argumenets["data"];
+    List summaryQu = widget.argumenets["quantity"];
 
     List<Widget> list = List.generate(
-      summaryInfo.length, (index) => SummaryCard(
+        itemInfo.length, (index) => SummaryCard(
         itemInfo[index],
         index,
-        widget.argumenets ?? [])
+        widget.argumenets["quantity"] ?? [])
 
     );
 
-    for (var i =0; i < summaryInfo.length; i++)
-      {
-
-        if (summaryQu[i] == 0)
-          {
-            list.removeAt(i);
-          }
-      }
+    for (var i =0; i < itemInfo.length; i++)
+    {
+      if (summaryQu[i] == 0)
+        {
+          list.removeAt(i);
+        }
+    }
 
       //
     /*List<Widget> list = List.generate(
@@ -101,8 +95,6 @@ class _SummaryState extends State<Summary> {
           child: ElevatedButton(
               onPressed: (){
                 Navigator.pushNamed(context, "/shopping_cart/payment",arguments: _getTotal(snapshot));
-                print(widget.argumenets.toString());
-                print(itemInfo[0]["price"].toString());
               },
               child: Text("Pay")
           ),
@@ -114,7 +106,7 @@ class _SummaryState extends State<Summary> {
   double? _getTotal(AsyncSnapshot snapshot){
     double? total=0;
     List itemInfo = snapshot.data;
-    List summaryQu = widget.argumenets;
+    List summaryQu = widget.argumenets["quantity"];
 
     for (var i =0; i < itemInfo.length; i++)
     {

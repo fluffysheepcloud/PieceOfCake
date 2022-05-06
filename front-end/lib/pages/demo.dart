@@ -41,12 +41,6 @@ class Demo extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, "/review");
-                },
-                child: Text("review")),
-            SizedBox(height: 20),
-            ElevatedButton(
-                onPressed: () {
                   Navigator.pushNamed(context, "/build_cake");
                 },
                 child: Text("Build Cake")),

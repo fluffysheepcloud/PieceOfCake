@@ -1,8 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:frontend/network/prebuilt_cake_service.dart';
 import 'package:frontend/pages/shopping_cart/shopping_cart_card.dart';
+import 'package:frontend/utils/shared_preferences.dart';
 
 class ShoppingCartPage extends StatefulWidget {
 
@@ -16,12 +19,31 @@ class ShoppingCartPage extends StatefulWidget {
 
 class _ShoppingCartPageState extends State<ShoppingCartPage> {
 
-  List<int>? quantity;
+  List<int> quantity = [];
 
   Future<List> mockData() async {
-    final String res = await rootBundle.loadString('assets/mock/shopping_cart_mock.json');
-    var data = json.decode(res)["cart"] as List;
-    quantity = List.generate(data.length, (index) => 1);
+    List data = [];
+    //
+    // SPUtil.addCake(1, 2);
+    // SPUtil.addCake(2, 5);
+
+
+    Map m = await SPUtil.getCakes();
+
+
+    List keys = m.keys.toList();
+    for (int i = 0; i < keys.length; i++) {
+      Map cake = (await getPrebuildCakeById(int.parse(keys[i])))["data"];
+      data.add(cake);
+    }
+
+    // quantity = List.generate(data.length, (index) => 1);
+    for (int i = 0; i < data.length; i++) {
+      int id = data[i]["id"];
+      data[i]["orderCakeID"] = id;
+      data[i]["imageURL"] = "assets/images/cake.jpg";
+      quantity.add(m[id.toString()]);
+    }
     return data;
   }
 
@@ -62,23 +84,36 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
   }
 
   List<Widget> _itemCarBuilder(AsyncSnapshot snapshot){
+
     List itemInfo = snapshot.data;
     List<Widget> list = List.generate(
       itemInfo.length,
       (index) => Dismissible(
         key: UniqueKey(),
         direction: DismissDirection.endToStart,
-        onDismissed: (direction) {
-          //quantity?.removeAt(index);
+        onDismissed: (direction) async {
+          // quantity?.removeAt(index);
           //widget.argumenets?.removeAt(index);
-          quantity?[index] = 0;
+
+          if (quantity.length == 1) {
+            quantity.removeAt(0);
+          }
+          else {
+            quantity.removeAt(index);
+          }
+          await SPUtil.removeCake(itemInfo[index]["id"]);
+
+          setState(() {
+
+          });
+
 
         },
 
         child: ShoppingCartCard(
           itemInfo[index],
           index,
-          quantity ?? []
+          quantity
         ),
       ),
     );
@@ -87,10 +122,12 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
       Padding(
         padding: EdgeInsets.only(bottom: 25, top: 10),
         child: ElevatedButton(
-          onPressed: (){
-             Navigator.of(context).pushNamed( "/shopping_cart/summary", arguments: quantity);
-             print(quantity);
-          },
+          onPressed: (snapshot.data.length > 0) ? (){
+             Navigator.of(context).pushNamed( "/shopping_cart/summary", arguments: {
+               "data": snapshot.data,
+               "quantity": quantity
+             });
+          } : null,
           child: Text("Proceed to checkout")
         ),
       )

@@ -15,7 +15,9 @@ class FavCakesCard extends StatelessWidget {
         // TODO: navigate to product detail page
         print("Customer Fav Cake Tap...");
         Navigator.pushNamed(context, "/product_page", arguments: {
+          "prebuildCakeId": cakeInfo["id"],
           "merchantName": merchantName,
+          "cakeName": cakeInfo["cakeName"],
           "avatarURL": "assets/images/merchant_avatar.jpg",
           "cakeURLs": [
             "assets/images/cake.jpg",

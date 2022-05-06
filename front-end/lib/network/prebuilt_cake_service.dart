@@ -31,3 +31,11 @@ addMerchantPrebuildCakes(PrebuildCake cake) async {
 
   return json.decode(res.body);
 }
+
+getPrebuildCakeById(int id) async {
+  String path = "http://10.0.2.2:8080/api/prebuild_cake/" + id.toString();
+  var url = Uri.parse(path);
+  var res = await http.get(url);
+
+  return json.decode(res.body);
+}

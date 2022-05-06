@@ -80,7 +80,7 @@ class _SummaryCardState extends State<SummaryCard> {
               child: Column(
                 children: [
                   Text("${widget.areguments["cakeName"]}", overflow: TextOverflow.ellipsis, maxLines: 1),
-                  Text("Cake Size: ${widget.areguments["cakeSize"]}",overflow: TextOverflow.ellipsis, maxLines: 1,),
+                  Text("Cake Size: ${widget.areguments["baseSize"]}",overflow: TextOverflow.ellipsis, maxLines: 1,),
                   Text("Base color: ${widget.areguments["baseColor"]}",overflow: TextOverflow.ellipsis, maxLines: 1,),
                   Text("Base flavor: ${widget.areguments["baseFlavor"]} ",overflow: TextOverflow.ellipsis, maxLines: 1,),
                   Text("Frosting Color:${widget.areguments["frostingColor"]} ",overflow: TextOverflow.ellipsis, maxLines: 1,),

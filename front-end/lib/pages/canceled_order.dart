@@ -16,101 +16,103 @@ class CanceledOrder extends StatelessWidget {
           titleTextStyle: const TextStyle (color: Colors.white, fontWeight: FontWeight.bold),
           backgroundColor: Colors.brown[700],
         ),
-        body: Column(
-            children: <Widget>[
-              Container(
-                color: Colors.orange[50],
-                child: Column(
-                    children: <Widget>[
-                      Container(
-                          color: Colors.red[200],
-                          width: 500,
-                          height: 200,
-                          margin: const EdgeInsets.all(10),
-                          alignment: Alignment.center,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
-                              Text("Sorry,",
+        body: SingleChildScrollView(
+          child: Column(
+              children: <Widget>[
+                Container(
+                  color: Colors.orange[50],
+                  child: Column(
+                      children: <Widget>[
+                        Container(
+                            color: Colors.red[200],
+                            width: 500,
+                            height: 200,
+                            margin: const EdgeInsets.all(10),
+                            alignment: Alignment.center,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const [
+                                Text("Sorry,",
                                   style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 40.0,
-                                      fontWeight: FontWeight.bold,),
+                                    color: Colors.white,
+                                    fontSize: 40.0,
+                                    fontWeight: FontWeight.bold,),
                                   textAlign: TextAlign.center,),
-                              SizedBox(height: 10,),
-                              Text("your order has been canceled.",
+                                SizedBox(height: 10,),
+                                Text("your order has been canceled.",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 30.0),
-                                textAlign: TextAlign.center,),
-                            ],
-                          )
-                      ),
-                      Container(
-                          margin: const EdgeInsets.all(5),
-                          child: Column(
-                            children: <Widget>[
-                              _orderDetails("Merchant Name", "???"),
-                              _orderDetails("Order Number", "???"),
-                              _orderDetails("Order Date", "???")
-                            ],
-                          )
-                      ),
-                      Container(
-                        margin: const EdgeInsets.all(5),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                _itemDetails("Vanilla Cake"),
-                                _itemDetails("Chocolate Cake"),
-                                _itemDetails("Subtotal:"),
-                                _itemDetails("Tax:"),
-                                _itemDetails("Total:")
+                                  textAlign: TextAlign.center,),
                               ],
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                _priceDetails("31.56"),
-                                _priceDetails("27.43"),
-                                _priceDetails("58.99"),
-                                _priceDetails("5.03"),
-                                _priceDetails("64.02")
-                              ],
-                            ),
-                          ],
+                            )
                         ),
+                        Container(
+                            margin: const EdgeInsets.all(5),
+                            child: Column(
+                              children: <Widget>[
+                                _orderDetails("Merchant Name", "???"),
+                                _orderDetails("Order Number", "???"),
+                                _orderDetails("Order Date", "???")
+                              ],
+                            )
+                        ),
+                        Container(
+                          margin: const EdgeInsets.all(5),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  _itemDetails("Vanilla Cake"),
+                                  _itemDetails("Chocolate Cake"),
+                                  _itemDetails("Subtotal:"),
+                                  _itemDetails("Tax:"),
+                                  _itemDetails("Total:")
+                                ],
+                              ),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  _priceDetails("31.56"),
+                                  _priceDetails("27.43"),
+                                  _priceDetails("58.99"),
+                                  _priceDetails("5.03"),
+                                  _priceDetails("64.02")
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]
+                  ),
+                ),
+                const SizedBox(height: 10,),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      TextButton(
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.brown[700],
+                            padding: EdgeInsets.all(15.0)),
+                        onPressed: (){
+                          //TODO ACCEPT MESSAGE
+                        },
+                        child: const Text('Confirm',
+                          style: TextStyle( color: Colors.white, fontSize: 25),
+                        ),
+
                       ),
                     ]
-                ),
-              ),
-              const SizedBox(height: 10,),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: Colors.brown[700],
-                          padding: EdgeInsets.all(15.0)),
-                      onPressed: (){
-                        //TODO ACCEPT MESSAGE
-                      },
-                      child: const Text('Confirm',
-                        style: TextStyle( color: Colors.white, fontSize: 25),
-                      ),
-
-                    ),
-                  ]
-              )
-            ]
+                )
+              ]
+          ),
         )
     );
   }

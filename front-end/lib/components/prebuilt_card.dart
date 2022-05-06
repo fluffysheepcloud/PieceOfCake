@@ -37,9 +37,10 @@ class PrebuiltCard extends StatelessWidget {
                     onTap: () {
                       debugPrint('Card tapped.');
                       //pass id into product page which gets the cakes details - talk to guanyu about this
-                      Navigator.pushNamed(
-                          context, "/product_page", arguments: {
+                      Navigator.pushNamed(context, "/product_page", arguments: {
+                        "prebuildCakeId": cakeInfo["id"],
                         "merchantName": merchantName,
+                        "cakeName": cakeInfo["cakeName"],
                         "avatarURL": "assets/images/merchant_avatar.jpg",
                         "cakeURLs": [
                           "assets/images/cake.jpg",
