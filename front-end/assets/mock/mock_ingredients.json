@@ -1,6 +1,7 @@
 {
   "data":
   {
+    "BASE SIZE": ["8", "10", "12"],
     "BASE FLAVOR": ["lemon", "chocolate", "vanilla", "red velvet", "strawberry", "confetti"],
     "BASE COLOR": ["white", "light brown", "light blue", "red", "yellow", "sea foam", "black"],
     "FROSTING TYPE": ["butter cream", "royal", "cream cheese", "glaze", "ganache", "meringue"],

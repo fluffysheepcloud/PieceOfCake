@@ -1,12 +1,16 @@
+import 'dart:convert';
+// import 'package:textfield_tags/textfield_tags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_multi_select_items/flutter_multi_select_items.dart';
 import 'package:frontend/components/input_text_box.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'dart:io';
 import 'dart:async';
 import 'package:image_picker/image_picker.dart';
-import 'package:textfield_tags/textfield_tags.dart';
 import 'package:path_provider/path_provider.dart';
+import 'ingredient_block.dart';
+
 
 // cake name, cake description, cake price, cake quantity, image upload, tags, on this page
 class AddPrebuiltCake extends StatefulWidget {
@@ -35,6 +39,8 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
   late final TextEditingController _cake_quantity;
 
   // specify the specifics
+  late List<MultiSelectController> controllers;
+
   late final TextEditingController _base_size;
   late final TextEditingController _base_flavor;
   late final TextEditingController _frosting_type;
@@ -92,8 +98,58 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
+  _initControllers(int length) {
+    controllers = List.generate(
+        length,
+            (index) => MultiSelectController()
+    );
+  }
+
+  Future<Map> mockIngredients() async {
+    final String res = await rootBundle.loadString('assets/mock/mock_ingredients.json');
+    var ingredients = json.decode(res)["data"];
+    return ingredients;
+  }
+
+  Widget _pageBuilder(AsyncSnapshot snapshot) {
+    Map ingredientMap = snapshot.data;
+    // init controllers based on the number of blocks
+    _initControllers(ingredientMap.length);
+
+    // build a list of block components
+    var blockList = _blockListBuilder(ingredientMap, controllers);
+    // add a button at the end of the list
+    // blockList.add(
+    //     Padding(
+    //       padding: EdgeInsets.only(bottom: 25, top: 10,
+    //           left: MediaQuery
+    //               .of(context)
+    //               .size
+    //               .width * 0.3,
+    //           right: MediaQuery
+    //               .of(context)
+    //               .size
+    //               .width * 0.3),
+    //       child: ElevatedButton(
+    //         style: ButtonStyle(
+    //             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+    //             backgroundColor: MaterialStateProperty.all<Color>(
+    //                 Colors.red.shade400),
+    //             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+    //                 RoundedRectangleBorder(
+    //                     borderRadius: BorderRadius.circular(18.0),
+    //                     side: BorderSide(color: Colors.red)
+    //                 )
+    //             )
+    //         ),
+    //         onPressed: () {
+    //
+    //         },
+    //         child: Text("Next"),
+    //       ),
+    //     )
+    // );
+
     return Scaffold(
         resizeToAvoidBottomInset : false,
         backgroundColor: Colors.white,
@@ -103,7 +159,140 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
               color: Colors.white, fontWeight: FontWeight.bold),
           backgroundColor: Colors.brown[700],
         ),
-        body: buildCake(context)
+        body:
+        LayoutBuilder(
+          builder: (context, constraint) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraint.maxHeight),
+                child: IntrinsicHeight(
+                  child: Column(
+                    children: <Widget>[
+                      buildCake(context),
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Container(
+                            padding: EdgeInsets.all(10.0),
+                            color: Colors.orange[50],
+                            child: Column (
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const [
+                                Divider(thickness: 1, color: Colors.brown),
+                                Text(
+                                  "Cake Specifications",
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold, color: Colors.brown),
+                                )
+                              ],
+                            ),
+                        ),
+                      ),
+                      Expanded(
+                        child: SizedBox(
+                          height: 400.0,
+                          child: ListView.builder(
+                            padding: EdgeInsets.fromLTRB(25, 5, 25, 0),
+                            scrollDirection: Axis.vertical,
+                            itemCount: blockList.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return blockList[index];
+                            },
+                          ),
+                        ),
+                      ),
+                      Padding(padding: EdgeInsets.all(10.0)),
+                      TextButton(
+                        style: TextButton.styleFrom
+                          (backgroundColor: Colors.brown[700]),
+                        // TODO: add this cake to the merchant's shop
+                        onPressed: () {
+                        },
+                        child: const Text('Add Cake',
+                          style: TextStyle(color: Colors.white, fontSize: 15)
+                        )
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        )
+
+          // SingleChildScrollView(
+          //   child: Column(
+          //     children: [
+          //       Container(
+          //         child: buildCake(context)
+          //       ),
+          //
+          //       Expanded(
+          //         child: SizedBox(
+          //           height: 200.0,
+          //           child: ListView.builder(
+          //             padding: EdgeInsets.fromLTRB(25, 5, 25, 0),
+          //             scrollDirection: Axis.vertical,
+          //             itemCount: blockList.length,
+          //             itemBuilder: (BuildContext context, int index) {
+          //               return blockList[index];
+          //             },
+          //           ),
+          //         ),
+          //       ),
+          //     ]
+          //     // children: [
+          //     //   // buildCake(context),
+          //     //   ListView(
+          //     //   padding: EdgeInsets.fromLTRB(25, 5, 25, 0),
+          //     //   children: blockList
+          //     //   ),
+          //     // ]
+          //   ),
+          // ),
+    );
+
+  }
+
+  List<Widget> _blockListBuilder(Map ingredientMap, List<MultiSelectController> controllers) {
+    // get all keys (flavor, color...)
+    List keyList = ingredientMap.keys.toList();
+    return List.generate(
+        ingredientMap.length,
+            (index) => IngredientBlock(
+          // pass the controller as argument
+            controller: controllers[index],
+            blockLabel: keyList[index],
+            // IMPORTANT: it check if the list is null by "??", and then re-create the list
+            // from List<dynamic> to List<String>
+            blockItems: List<String>.from(ingredientMap[keyList[index]] ?? [""]))
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<Map>(
+      future: mockIngredients(),
+      builder: (context, AsyncSnapshot snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshot.hasError) {
+            return Text("Error: ${snapshot.error}");
+          }
+          else {
+            // make sure the map is not null
+            if (snapshot.hasData) {
+              return _pageBuilder(snapshot);
+            }
+            else {
+              return Text("Error: fail to request data");
+            }
+          }
+        }
+        else {
+          return CircularProgressIndicator();
+        }
+      },
     );
   }
 
@@ -176,55 +365,55 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
               ),
 
               // ENTER THE SPECIFICS
-              Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Container(
-                    padding: EdgeInsets.all(10.0),
-                    color: Colors.orange[50],
-                    child: Column (
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Cake Specifications",
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold, color: Colors.brown),
-                        ),
-
-                        // base size
-                        Container(
-                            color: Colors.orange[50],
-                            child: InputTextBox("Base Size", "the size of your cake", _base_size)
-                        ),
-
-                        // base flavor
-                        Container(
-                            color: Colors.orange[50],
-                            child: InputTextBox("Base Flavor", "the flavor of your cake", _base_flavor)
-                        ),
-
-                        // frosting type
-                        Container(
-                            color: Colors.orange[50],
-                            child: InputTextBox("Frosting Type", "the frosting type for your cake", _frosting_type)
-                        ),
-
-                        // frosting color
-                        Container(
-                            color: Colors.orange[50],
-                            child: InputTextBox("Frosting Color", "the frosting color for your cake", _frosting_color)
-                        ),
-
-                        // toppings
-                        Container(
-                            color: Colors.orange[50],
-                            child: InputTextBox("Toppings", "the toppings for your cake", _toppings)
-                        ),
-                      ],
-                    )
-                ),
-              ),
+              // Padding(
+              //   padding: EdgeInsets.all(10.0),
+              //   child: Container(
+              //       padding: EdgeInsets.all(10.0),
+              //       color: Colors.orange[50],
+              //       child: Column (
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         children: const [
+              //           // Text(
+              //           //   "Cake Specifications",
+              //           //   overflow: TextOverflow.ellipsis,
+              //           //   style: TextStyle(
+              //           //       fontSize: 16,
+              //           //       fontWeight: FontWeight.bold, color: Colors.brown),
+              //           // ),
+              //
+              //           // // base size
+              //           // Container(
+              //           //     color: Colors.orange[50],
+              //           //     child: InputTextBox("Base Size", "the size of your cake", _base_size)
+              //           // ),
+              //           //
+              //           // // base flavor
+              //           // Container(
+              //           //     color: Colors.orange[50],
+              //           //     child: InputTextBox("Base Flavor", "the flavor of your cake", _base_flavor)
+              //           // ),
+              //           //
+              //           // // frosting type
+              //           // Container(
+              //           //     color: Colors.orange[50],
+              //           //     child: InputTextBox("Frosting Type", "the frosting type for your cake", _frosting_type)
+              //           // ),
+              //           //
+              //           // // frosting color
+              //           // Container(
+              //           //     color: Colors.orange[50],
+              //           //     child: InputTextBox("Frosting Color", "the frosting color for your cake", _frosting_color)
+              //           // ),
+              //           //
+              //           // // toppings
+              //           // Container(
+              //           //     color: Colors.orange[50],
+              //           //     child: InputTextBox("Toppings", "the toppings for your cake", _toppings)
+              //           // ),
+              //         ],
+              //       )
+              //   ),
+              // ),
 
               // enter cake price
               Padding(
@@ -253,34 +442,34 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
                 ),
               ),
 
-              // enter quantity of cakes
-              Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Container(
-                    padding: EdgeInsets.all(10.0),
-                    color: Colors.orange[50],
-                    child: Column (
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Cake Quantity",
-                          textAlign: TextAlign.left,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.brown),
-                        ),
-
-                        TextField(
-                          controller: _cake_quantity,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: <TextInputFormatter>[
-                            FilteringTextInputFormatter.digitsOnly
-                          ], // Only numbers can be entered
-                        ),
-                      ],
-                    )
-                ),
-              ),
+              // // enter quantity of cakes
+              // Padding(
+              //   padding: EdgeInsets.all(10.0),
+              //   child: Container(
+              //       padding: EdgeInsets.all(10.0),
+              //       color: Colors.orange[50],
+              //       child: Column (
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: [
+              //           Text(
+              //             "Cake Quantity",
+              //             textAlign: TextAlign.left,
+              //             overflow: TextOverflow.ellipsis,
+              //             style: const TextStyle(
+              //                 fontWeight: FontWeight.bold, color: Colors.brown),
+              //           ),
+              //
+              //           TextField(
+              //             controller: _cake_quantity,
+              //             keyboardType: TextInputType.number,
+              //             inputFormatters: <TextInputFormatter>[
+              //               FilteringTextInputFormatter.digitsOnly
+              //             ], // Only numbers can be entered
+              //           ),
+              //         ],
+              //       )
+              //   ),
+              // ),
 
               Padding(
                 padding: EdgeInsets.all(10.0),
@@ -397,38 +586,38 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
               //       },
               //     ),
 
-                  TextButton(
-                    style: TextButton.styleFrom
-                      (backgroundColor: Colors.brown[700]),
-                    // TODO: add this cake to the merchant's shop
-                    onPressed: () {
-                      // FocusScopeNode currentFocus = FocusScope.of(context);
-                      //
-                      // if (!currentFocus.hasPrimaryFocus) {
-                      //   currentFocus.unfocus();
-                      // }
-                      //
-                      // // //Clear the textfield and tags
-                      // _textFieldTagsController.clearTextFieldTags();
-                      // //
-                      // // //Set a new custom error
-                      // _textFieldTagsController.showError(
-                      //   "Clear?",
-                      //   errorStyle: const TextStyle(color: Colors.purple),
-                      // );
-                      // //
-                      // // //Set the focus of the textfield if you choose
-                      // TextFieldTagsController.getFocusNode.unfocus();
-                      //
-                      // //set all tags
-                      // _tags = _textFieldTagsController.getAllTags;
-                      //
-                      // //Submit form
-                    },
-                    child: const Text('Add Cake',
-                      style: TextStyle(color: Colors.white, fontSize: 15))
-                // ],
-              ),
+              //     TextButton(
+              //       style: TextButton.styleFrom
+              //         (backgroundColor: Colors.brown[700]),
+              //       // TODO: add this cake to the merchant's shop
+              //       onPressed: () {
+              //         // FocusScopeNode currentFocus = FocusScope.of(context);
+              //         //
+              //         // if (!currentFocus.hasPrimaryFocus) {
+              //         //   currentFocus.unfocus();
+              //         // }
+              //         //
+              //         // // //Clear the textfield and tags
+              //         // _textFieldTagsController.clearTextFieldTags();
+              //         // //
+              //         // // //Set a new custom error
+              //         // _textFieldTagsController.showError(
+              //         //   "Clear?",
+              //         //   errorStyle: const TextStyle(color: Colors.purple),
+              //         // );
+              //         // //
+              //         // // //Set the focus of the textfield if you choose
+              //         // TextFieldTagsController.getFocusNode.unfocus();
+              //         //
+              //         // //set all tags
+              //         // _tags = _textFieldTagsController.getAllTags;
+              //         //
+              //         // //Submit form
+              //       },
+              //       child: const Text('Add Cake',
+              //         style: TextStyle(color: Colors.white, fontSize: 15))
+              //   // ],
+              // ),
             ],
           ),
         ),
