@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_multi_select_items/flutter_multi_select_items.dart';
-import 'package:frontend/pages/cake_building/ingredient_block.dart';
+import 'package:frontend/pages/profile/merchant/shop_manager/create_cake/ingredient_block.dart';
 import 'cake_builder_confirmation.dart';
 
 class CustomCakePage extends StatefulWidget {
@@ -138,7 +138,8 @@ class CustomCakeBuilderBody extends State<CustomCakePage> {
         blockLabel: keyList[index],
         // IMPORTANT: it check if the list is null by "??", and then re-create the list
         // from List<dynamic> to List<String>
-        blockItems: List<String>.from(ingredientMap[keyList[index]] ?? [""]))
+        blockItems: List<Map>.from(ingredientMap[keyList[index]] ?? [""]),
+        maxLimit: index == 5 ? 4 : 1)
     );
   }
 }

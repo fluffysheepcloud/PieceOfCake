@@ -47,6 +47,12 @@ public class CustomerController {
         return service.getUnreviewedOrders(id);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/api/customer/add_fav_cake", method = RequestMethod.POST)
+    public Map<String, Object> addFavoriteCake(Integer cId, Integer pId) {
+        return null;
+    }
+
 
     @Autowired
     public void setService(CustomerService service) { this.service = service; }

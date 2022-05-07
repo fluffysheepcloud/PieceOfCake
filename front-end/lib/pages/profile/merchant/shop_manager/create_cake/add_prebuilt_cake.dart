@@ -46,11 +46,6 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
   // specify the specifics
   late List<MultiSelectController> controllers;
 
-  // late final TextEditingController _base_size;
-  // late final TextEditingController _base_flavor;
-  // late final TextEditingController _frosting_type;
-  // late final TextEditingController _frosting_color;
-  // late final TextEditingController _toppings;
 
   // for selecting images
   final ImagePicker _picker = ImagePicker();
@@ -137,14 +132,21 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
   _initControllers(int length) {
     controllers = List.generate(
         length,
-            (index) => MultiSelectController()
+        (index) => MultiSelectController()
     );
   }
 
   Future<Map> mockIngredients() async {
-    final String res = await rootBundle.loadString('assets/mock/mock_ingredients.json');
-    var ingredients = json.decode(res)["data"];
-    return ingredients;
+    // final String res = await rootBundle.loadString('assets/mock/mock_ingredients.json');
+    // var ingredients = json.decode(res)["data"];
+
+    int id = (await SPUtil.getUserData())["id"];
+
+    Map data = (await getMerchantCapability(id))["data"];
+
+
+
+    return data;
   }
 
   Widget _pageBuilder(AsyncSnapshot snapshot) {
@@ -244,7 +246,36 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
                         style: TextButton.styleFrom
                           (backgroundColor: Colors.brown[700]),
                         // TODO: add this cake to the merchant's shop
-                        onPressed: () {
+                        onPressed: () async {
+
+                          int merchantId = (await SPUtil.getUserData())["id"];
+                          String cakeName = _cake_name.text.toString();
+                          int baseSizeId = int.parse(controllers[0].getSelectedItems()[0].toString());
+                          int baseColorId = int.parse(controllers[1].getSelectedItems()[0].toString());
+                          int baseFlavorId = int.parse(controllers[2].getSelectedItems()[0].toString());
+                          int frostingColorId = int.parse(controllers[3].getSelectedItems()[0].toString());
+                          int frostingFlavorId = int.parse(controllers[4].getSelectedItems()[0].toString());
+                          double price = double.parse(_cake_price.getUnformattedValue().toString());
+
+                          List<int> toppingIds = List<int>.generate(controllers[5].getSelectedItems().length,
+                                  (index) => int.parse(controllers[5].getSelectedItems()[index].toString())
+                          );
+
+                          PrebuildCake cake = PrebuildCake(merchantId,
+                              cakeName, baseSizeId, baseFlavorId,
+                              baseColorId, frostingColorId,
+                              frostingFlavorId, price, toppingIds);
+
+                          var res = await addMerchantPrebuildCakes(cake);
+
+                          if (res != null && res["code"] == 200) {
+                            ToastUtil.showToast("Success");
+                            Navigator.pop(context);
+                          }
+                          else {
+                            ToastUtil.showToast("Error");
+                          }
+
                         },
                         child: const Text('Add Cake',
                           style: TextStyle(color: Colors.white, fontSize: 15)
@@ -295,16 +326,24 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
   List<Widget> _blockListBuilder(Map ingredientMap, List<MultiSelectController> controllers) {
     // get all keys (flavor, color...)
     List keyList = ingredientMap.keys.toList();
+    print(keyList);
+    print(ingredientMap);
+
+
+
     return List.generate(
         ingredientMap.length,
             (index) => IngredientBlock(
-          // pass the controller as argument
-            controller: controllers[index],
-            blockLabel: keyList[index],
-            // IMPORTANT: it check if the list is null by "??", and then re-create the list
-            // from List<dynamic> to List<String>
-            blockItems: List<String>.from(ingredientMap[keyList[index]] ?? [""]))
-    );
+              // pass the controller as argument
+              controller: controllers[index],
+              blockLabel: keyList[index],
+              // IMPORTANT: it check if the list is null by "??", and then re-create the list
+              // from List<dynamic> to List<String>
+              blockItems: List<Map>.from(ingredientMap[keyList[index]] ?? [""]),
+              maxLimit: index == 5 ? 4 : 1,
+            ),
+
+        );
   }
 
   @override
@@ -389,9 +428,9 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
                               ),
                               obscureText: false,
                               validator: (value) {
-                                if (value != null) {
-                                  return value.trim().isNotEmpty ? null : "${"Cake Description"} cannot be empty!";
-                                }
+                                // if (value != null) {
+                                //   return value.trim().isNotEmpty ? null : "${"Cake Description"} cannot be empty!";
+                                // }
                               },
                             )
                           ],
@@ -533,31 +572,33 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
                 )
 
               ),
-              Container (
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.brown,  // red as border color
-                  ),
-                ),
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width * 0.85,
-                  child: Column(
-                    children: [
-                      //other widgets
-                      Expanded(
-                        child: GridView.builder(
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10),
-                            itemCount: multipleImages.length,
-                            itemBuilder: (context, index) {
-                              return GridTile(child: Image.file(multipleImages[index]));
-                            }),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
 
+              ////////////////////////////////////////////////////////////
+              // Container (
+              //   decoration: BoxDecoration(
+              //     border: Border.all(
+              //       color: Colors.brown,  // red as border color
+              //     ),
+              //   ),
+              //   child: SizedBox(
+              //     height: MediaQuery.of(context).size.height,
+              //     width: MediaQuery.of(context).size.width * 0.85,
+              //     child: Column(
+              //       children: [
+              //         //other widgets
+              //         Expanded(
+              //           child: GridView.builder(
+              //               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10),
+              //               itemCount: multipleImages.length,
+              //               itemBuilder: (context, index) {
+              //                 return GridTile(child: Image.file(multipleImages[index]));
+              //               }),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              ////////////////////////////////////////////////////////////
               // spacing
               SizedBox(height: 10),
 

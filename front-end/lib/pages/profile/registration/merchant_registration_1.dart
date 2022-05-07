@@ -124,7 +124,8 @@ class _CreateMerchantAccount extends State<CreateMerchantAccount> {
 
       Merchant m = Merchant(_username.text ,_password.text,
           _email.text, _phone.text, _shopName.text, _shopDescription.text,
-          _businessHour.text, _Street.text, _city.text, _state.text, int.parse(_zipcode.text) );
+          _businessHour.text, _Street.text, _city.text, _state.text, int.parse(_zipcode.text));
+
 
       var res = await merchantRegister(m); //its this line
       debugPrint("dslfkjsdlf");

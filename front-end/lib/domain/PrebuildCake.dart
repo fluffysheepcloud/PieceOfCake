@@ -1,6 +1,6 @@
 class PrebuildCake {
 
-  int id;
+
   int merchantId;
   String cakeName;
   int baseSizeId;
@@ -12,7 +12,7 @@ class PrebuildCake {
   List<int> toppingIds;
 
   PrebuildCake(
-      this.id,
+
       this.merchantId,
       this.cakeName,
       this.baseSizeId,

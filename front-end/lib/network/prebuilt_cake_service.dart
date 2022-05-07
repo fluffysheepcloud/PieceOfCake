@@ -14,10 +14,10 @@ getMerchantPrebuildCakes(int id) async {
 }
 
 addMerchantPrebuildCakes(PrebuildCake cake) async {
-  String path = "/prebuild_cake";
-  var url = Uri.parse(baseURL + path);
-  var res = await http.post(url, body: {
-    "id": cake.id,
+  String path = "http://10.0.2.2:8080/api/prebuild_cake";
+  var url = Uri.parse(path);
+
+  var data = {
     "merchantId": cake.merchantId,
     "cakeName": cake.cakeName,
     "baseSizeId": cake.baseSizeId,
@@ -27,7 +27,12 @@ addMerchantPrebuildCakes(PrebuildCake cake) async {
     "frostingFlavorId": cake.frostingFlavorId,
     "price": cake.price,
     "toppingIds": cake.toppingIds
-  });
+  };
+
+  var res = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: utf8.encode(json.encode(data)));
 
   return json.decode(res.body);
 }

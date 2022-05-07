@@ -2,9 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/pages/cake_building/custom_cake_page.dart';
 import 'package:frontend/pages/cake_progress_tracker.dart';
+import 'package:frontend/pages/cake_request_form.dart';
 import 'package:frontend/pages/canceled_order.dart';
 import 'package:frontend/pages/edit_cake_progress_tracker.dart';
 import 'package:frontend/pages/index.dart';
+import 'package:frontend/pages/pickup_appointment.dart';
 import 'package:frontend/pages/profile/customer/fav_cakes/fav_cakes_page.dart';
 import 'package:frontend/pages/profile/customer/fav_merchants/fav_merchants.dart';
 import 'package:frontend/pages/profile/customer/orders/orders.dart';
@@ -62,6 +64,8 @@ final routes = {
   "/shopping_cart/payment": (context, {arguments}) => Payment(argumenets: arguments),
   "/product_page": (context, {arguments}) => ProductPage(arguments: arguments),
   "/edit_cake_progress_tracker": (context, {arguments}) => EditCakeProgress(arguments: arguments),
+  "/pickup_appointment": (context, {arguments}) => PickupAppointment(arguments: arguments),
+  "/cake_request_form": (context, {arguments}) => PurelyCustomizedCake(arguments: arguments),
 };
 
 /* This function is similar to a callback function.

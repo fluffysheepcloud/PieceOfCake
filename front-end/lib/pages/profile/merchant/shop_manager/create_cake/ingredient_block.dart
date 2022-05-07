@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_select_items/flutter_multi_select_items.dart';
+import 'package:frontend/utils/toast.dart';
 
 /* this class is the block component
 * a block contains multiple items that
@@ -11,16 +12,18 @@ class IngredientBlock extends StatefulWidget {
   // it shows what type of items, e.g layers
   String blockLabel;
   // the list that contains the items(in String format)
-  List<String> blockItems;
+  List<Map> blockItems;
   // controller used to get the selected items
   MultiSelectController controller;
   // this is a list of cards that contain the info of each items
+  int maxLimit;
   late List<MultiSelectCard> _itemsCards;
 
   IngredientBlock({
     required this.controller,
     required this.blockLabel,
     required this.blockItems,
+    required this.maxLimit,
     Key? key
   }) : super(key: key);
 
@@ -54,12 +57,16 @@ class _IngredientBlockState extends State<IngredientBlock> {
             Divider(color: Colors.brown),
             // the widget to show items
             MultiSelectContainer(
+              maxSelectableCount: widget.maxLimit,
               // bind controller
               controller: widget.controller,
               itemsDecoration: _blockDecoration(),
               // items requires a list of MultiSelectCard
               items: widget._itemsCards,
               onChange: (List<Object?> selectedItems, Object? selectedItem) {},
+              onMaximumSelected: (allSelectedItems, selectedItem) {
+                ToastUtil.showToast('The limit has been reached');
+              },
             )
           ],
         ),
@@ -74,8 +81,8 @@ class _IngredientBlockState extends State<IngredientBlock> {
     widget._itemsCards = widget.blockItems.map(
       (item) => MultiSelectCard(
         margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-        value: item,
-        label: item,
+        value: item["id"],
+        label: item["name"].toString(),
       )
     ).toList();
   }

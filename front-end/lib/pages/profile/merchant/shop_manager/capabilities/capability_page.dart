@@ -51,6 +51,7 @@ class _CapabilityPageState extends State<CapabilityPage> {
   Future<Map> getData() async {
     int id = (await SPUtil.getUserData())["id"];
     var res = (await getMerchantCapability(id))["data"];
+    debugPrint(res.toString());
     return res;
   }
 
