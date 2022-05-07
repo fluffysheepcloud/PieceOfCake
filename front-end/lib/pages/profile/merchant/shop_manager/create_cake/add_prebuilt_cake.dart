@@ -5,11 +5,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_multi_select_items/flutter_multi_select_items.dart';
 import 'package:frontend/components/input_text_box.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import 'package:frontend/utils/shared_preferences.dart';
+import 'package:frontend/utils/toast.dart';
 import 'dart:io';
 import 'dart:async';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'ingredient_block.dart';
+import 'package:frontend/network/prebuilt_cake_service.dart';
+import 'package:frontend/domain/PrebuildCake.dart';
 
 
 // cake name, cake description, cake price, cake quantity, image upload, tags, on this page
@@ -41,11 +45,11 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
   // specify the specifics
   late List<MultiSelectController> controllers;
 
-  late final TextEditingController _base_size;
-  late final TextEditingController _base_flavor;
-  late final TextEditingController _frosting_type;
-  late final TextEditingController _frosting_color;
-  late final TextEditingController _toppings;
+  // late final TextEditingController _base_size;
+  // late final TextEditingController _base_flavor;
+  // late final TextEditingController _frosting_type;
+  // late final TextEditingController _frosting_color;
+  // late final TextEditingController _toppings;
 
   // for selecting images
   final ImagePicker _picker = ImagePicker();
@@ -59,6 +63,36 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
 
   final _formKey = GlobalKey<FormState>();
 
+  // _addCake() async {
+  //   if (_formKey.currentState!.validate()) {
+  //     // If the form is valid, display a snackbar. In the real world,
+  //     // you'd often call a server or save the information in a database.
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text('Processing Data')),
+  //     );
+  //
+  //     Map merchant = await SPUtil.getUserData();
+  //
+  //     PrebuildCake cake = PrebuildCake();
+  //
+  //     var res = await addMerchantPrebuildCakes(cake);
+  //
+  //     if (res["code"] == 200) {
+  //       //Navigator.pushNamed(context, "/profile/registration_success");
+  //     }
+  //     else {
+  //       String message = res["message"];
+  //       if (message.contains("MySQLIntegrityConstraintViolationException")) {
+  //         ToastUtil.showToast("The cake already exists");
+  //       }
+  //       else {
+  //         ToastUtil.showToast("Unknown Error");
+  //       }
+  //     }
+  //
+  //   }
+  // }
+
   @override
   void initState() {
     _cake_name = TextEditingController();
@@ -67,11 +101,11 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
     _cake_quantity = TextEditingController();
 
     // specify the specifics
-    _base_size = TextEditingController();
-    _base_flavor = TextEditingController();
-    _frosting_type = TextEditingController();
-    _frosting_color = TextEditingController();
-    _toppings = TextEditingController();
+    // _base_size = TextEditingController();
+    // _base_flavor = TextEditingController();
+    // _frosting_type = TextEditingController();
+    // _frosting_color = TextEditingController();
+    // _toppings = TextEditingController();
 
 
     // // //listen for everything being entered here if you want suggestions
@@ -90,11 +124,11 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
     _cake_quantity.dispose();
 
     // specify the specifics
-    _base_size.dispose();
-    _base_flavor.dispose();
-    _frosting_type.dispose();
-    _frosting_color.dispose();
-    _toppings.dispose();
+    // _base_size.dispose();
+    // _base_flavor.dispose();
+    // _frosting_type.dispose();
+    // _frosting_color.dispose();
+    // _toppings.dispose();
     super.dispose();
   }
 

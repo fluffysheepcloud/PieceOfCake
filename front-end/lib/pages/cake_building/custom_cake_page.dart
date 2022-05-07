@@ -22,8 +22,7 @@ class CustomCakeBuilderBody extends State<CustomCakePage> {
   Future<Map> mockIngredients() async {
     final String res = await rootBundle.loadString('assets/mock/mock_ingredients.json');
     // ingredient is a list of size 6 (call ingredient.length in ItemCount)
-    var ingredients = json.decode(res)["data"];
-    debugPrint(ingredients);
+    var ingredients = json.decode(res)['data'];
     return ingredients;
   }
 
@@ -67,11 +66,13 @@ class CustomCakeBuilderBody extends State<CustomCakePage> {
     //   print(items);
     // });
     var route = MaterialPageRoute(builder: (BuildContext context) =>
-        CakeBuilderConfirmation(baseFlavor: List<String>.from(controllers[0].getSelectedItems()),
-              baseColor: List<String>.from(controllers[1].getSelectedItems()),
-              frostingType: List<String>.from(controllers[2].getSelectedItems()),
-              frostingColor: List<String>.from(controllers[3].getSelectedItems()),
-              toppings: List<String>.from(controllers[4].getSelectedItems())));
+        CakeBuilderConfirmation(
+            baseSize: List<String>.from(controllers[0].getSelectedItems()),
+            baseFlavor: List<String>.from(controllers[1].getSelectedItems()),
+            baseColor: List<String>.from(controllers[2].getSelectedItems()),
+            frostingType: List<String>.from(controllers[3].getSelectedItems()),
+            frostingColor: List<String>.from(controllers[4].getSelectedItems()),
+            toppings: List<String>.from(controllers[5].getSelectedItems())));
 
     Navigator.of(context).push(route);
 
@@ -112,9 +113,9 @@ class CustomCakeBuilderBody extends State<CustomCakePage> {
         appBar: AppBar(
           centerTitle: true,
           title: const Text('Build Your Cake'),
-          foregroundColor: Colors.red[900],
-          backgroundColor: Colors.red[100],
-          toolbarHeight: 50,
+          // foregroundColor: Colors.red[900],
+          // backgroundColor: Colors.red[100],
+          // toolbarHeight: 50,
         ),
       body: Container(
         color: Color.fromARGB(255, 249, 243, 235),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CakeBuilderConfirmation extends StatefulWidget {
+  final List<String> baseSize;
   final List<String> baseFlavor;
   final List<String> baseColor;
   final List<String> frostingType;
@@ -8,8 +9,9 @@ class CakeBuilderConfirmation extends StatefulWidget {
   final List<String> toppings;
 
   const CakeBuilderConfirmation({Key? key,
+    required this.baseSize,
     required this.baseFlavor, required this.baseColor, required this.frostingType,
-    required this.frostingColor, required this.toppings
+    required this.frostingColor, required this.toppings,
   }) : super(key: key);
 
   @override
@@ -25,9 +27,9 @@ class CakeBuilderConfirmationBody extends State<CakeBuilderConfirmation> {
       appBar: AppBar(
           centerTitle: true,
           title: Text("Confirm Your Cake"),
-          foregroundColor: Colors.red[900],
-          backgroundColor: Colors.red[100],
-          toolbarHeight: 50,
+          // foregroundColor: Colors.red[900],
+          // backgroundColor: Colors.red[100],
+          // toolbarHeight: 50,
       ),
 
       body:
@@ -39,6 +41,20 @@ class CakeBuilderConfirmationBody extends State<CakeBuilderConfirmation> {
         child: Center (
           child: Column(
             children: [
+                Text("BASE SIZE", style: _labelTextStyle()),
+                SizedBox(height: 10),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    if (widget.baseSize.isEmpty)
+                      Text("Any Size", style: TextStyle(fontSize: 22)),
+                    for (int i = 0; i < widget.baseSize.length; i++)
+                      Text(widget.baseSize[i], style: TextStyle(fontSize: 22)),
+                  ],
+                ),
+                SizedBox(height: 10),
+
                 Text("BASE FLAVOR", style: _labelTextStyle()),
                 SizedBox(height: 10),
                 Column(

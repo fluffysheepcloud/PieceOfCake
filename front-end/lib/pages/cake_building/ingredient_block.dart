@@ -37,7 +37,7 @@ class _IngredientBlockState extends State<IngredientBlock> {
       padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.red.shade200.withOpacity(0.7),
+          color: Colors.orange[50],
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         // this padding is used to control the distance between items and
@@ -51,7 +51,7 @@ class _IngredientBlockState extends State<IngredientBlock> {
               widget.blockLabel,
               style: _labelTextStyle(),
             ),
-            Divider(color: Colors.red.shade900),
+            Divider(color: Colors.brown),
             // the widget to show items
             MultiSelectContainer(
               // bind controller
@@ -84,11 +84,11 @@ class _IngredientBlockState extends State<IngredientBlock> {
     // test decoration for label of the block
     return TextStyle(
       fontWeight: FontWeight.w600,
-      color: Colors.red.shade900,
+      color: Colors.brown,
       letterSpacing: 3.5,
       shadows: [
         Shadow(
-          color: Colors.red.shade500.withOpacity(0.4),
+          color: Colors.brown.withOpacity(0.4),
           offset: Offset(0, 3),
         )
       ]
