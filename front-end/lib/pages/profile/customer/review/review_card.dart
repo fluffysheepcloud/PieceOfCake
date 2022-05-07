@@ -20,7 +20,7 @@ class ReviewCard extends StatelessWidget {
         height: 160.0,
         child: Card(
           elevation: 5,
-          color: Colors.grey[200],
+          color: Theme.of(context).primaryColor,
           shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(5.0)),
           child: InkWell(
             onTap: () {

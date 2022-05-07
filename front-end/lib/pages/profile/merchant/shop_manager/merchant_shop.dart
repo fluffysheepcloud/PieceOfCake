@@ -199,7 +199,6 @@ class MerchantShop extends StatelessWidget{
                     physics: const NeverScrollableScrollPhysics(),
                 itemCount: prebuildCakes.length,
                 itemBuilder: (context, index){
-                // return InfoCard(_items[index]["shopName"], _items[index]["description"],  _items[index]["id"]);
                 return PrebuiltCard(
                   "assets/images/cake_4.jpg",
                   prebuildCakes["data"][index],

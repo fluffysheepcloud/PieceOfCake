@@ -25,7 +25,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
           height: 240.0,
           child: Card(
             elevation: 5,
-            color: Colors.grey[200],
+            color: Theme.of(context).primaryColor,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,9 +110,10 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
         children: <Widget>[
           SizedBox(width: 150),
           _decrementButton(dataIndex),
+
           Text(
             '${ widget.quantity[dataIndex]}',
-            style: TextStyle(fontSize: 18.0),
+            //style: TextStyle(fontSize: 18.0),
           ),
           _incrementButton(dataIndex)
         ],
@@ -122,7 +123,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
   Widget _incrementButton(int index) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Colors.white,
+        primary: Theme.of(context).secondaryHeaderColor,
         shape: CircleBorder()
       ),
       child: Icon(Icons.add, color: Colors.black87),
@@ -137,7 +138,7 @@ class _ShoppingCartCardState extends State<ShoppingCartCard> {
   Widget _decrementButton(int index)  {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Colors.white,
+       primary: Theme.of(context).secondaryHeaderColor,
         shape: CircleBorder()
       ),
 

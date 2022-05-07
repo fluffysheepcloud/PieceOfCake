@@ -35,12 +35,10 @@ class _PurelyCustomizedCakeState extends State<PurelyCustomizedCake> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+
         appBar: AppBar(
           title: Text('Completely Personalized Cake Request'),
-          titleTextStyle: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold),
-          backgroundColor: Colors.brown[700],
+
         ),
         body: customerRegisterForm(context)
     );
@@ -61,25 +59,25 @@ class _PurelyCustomizedCakeState extends State<PurelyCustomizedCake> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
-                        color: Colors.orange[50],
+                        color: Theme.of(context).primaryColor,
                         child: InputTextBox("Name", "Name", _name)),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
-                        color: Colors.orange[50],
+                        color: Theme.of(context).primaryColor,
                         child: InputTextBox("Email", "Email", _email,)),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
-                        color: Colors.orange[50],
+                        color: Theme.of(context).primaryColor,
                         child: InputTextBox("Address", "Address", _address)),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
-                        color: Colors.orange[50],
+                        color: Theme.of(context).primaryColor,
                         child: Padding(
                           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                           child: SizedBox(
@@ -99,6 +97,8 @@ class _PurelyCustomizedCakeState extends State<PurelyCustomizedCake> {
                                   maxLines: null,
                                   controller: _description,
                                   decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
                                       border: const OutlineInputBorder(
                                         borderSide: BorderSide(
                                           width: 7,

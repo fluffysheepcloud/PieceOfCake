@@ -60,6 +60,7 @@ class MyApp extends StatelessWidget {
       cursorColor: Colors.brown),
 
         primaryColor: Color(0xFFF2E1CE),
+          secondaryHeaderColor:Color(0xFFf5ece4),
           //colorScheme: ColorScheme.fromSwatch(primarySwatch: Color(0xffe3d2bc)),
         scaffoldBackgroundColor: Color(0xffFAF3EA),
         appBarTheme: AppBarTheme(

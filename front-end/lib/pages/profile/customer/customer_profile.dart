@@ -61,11 +61,11 @@ class _CustomerProfileState extends State<CustomerProfile> {
 
   _pageBuilder(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber[100],
+      //backgroundColor: Colors.amber[100],
       appBar: AppBar(
         centerTitle: true,
         title: Text("${customerInfo["nickName"]}'s Profile"),
-        backgroundColor: Colors.red[100],
+        //backgroundColor: Colors.red[100],
         toolbarHeight: 50,
       ),
       body: SingleChildScrollView(
