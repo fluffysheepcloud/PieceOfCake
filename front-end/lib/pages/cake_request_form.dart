@@ -11,7 +11,9 @@ void main() {
 }
 
 class PurelyCustomizedCake extends StatefulWidget {
-  const PurelyCustomizedCake() : super();
+  var arguments;
+
+  PurelyCustomizedCake({Key? key, this.arguments}) : super(key: key);
 
   @override
   _PurelyCustomizedCakeState createState() => _PurelyCustomizedCakeState();

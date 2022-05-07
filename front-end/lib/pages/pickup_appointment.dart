@@ -17,7 +17,10 @@ class MyApp extends StatelessWidget {
 }
 
 class PickupAppointment extends StatefulWidget {
-  const PickupAppointment({Key? key}) : super(key: key);
+
+  var arguments;
+
+  PickupAppointment({this.arguments, Key? key}) : super(key: key);
 
   @override
   _PickupAppointmentState createState()

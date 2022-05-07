@@ -59,9 +59,21 @@ class Demo extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
                 onPressed: () {
+                  Navigator.pushNamed(context, "/cake_request_form");
+                },
+                child: Text("Purely Customized Cake Form")),
+            SizedBox(height: 20),
+            ElevatedButton(
+                onPressed: () {
                   Navigator.pushNamed(context, "/edit_cake_progress_tracker");
                 },
                 child: Text("Edit Cake Progress Tracker")),
+            SizedBox(height: 20),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "/pickup_appointment");
+                },
+                child: Text("Pickup Appointment")),
           ],
         ),
       ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:frontend/pages/cake_progress_tracker.dart';
 import 'package:frontend/routes/routes.dart' as routes;
 
-
 void main() {
   runApp(MaterialApp(
     title: 'Edit Cake Progress',
