@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_multi_select_items/flutter_multi_select_items.dart';
+import 'package:frontend/network/merchant_service.dart';
 import 'package:frontend/pages/profile/merchant/shop_manager/create_cake/ingredient_block.dart';
+import 'package:frontend/utils/shared_preferences.dart';
 import 'cake_builder_confirmation.dart';
 
 class CustomCakePage extends StatefulWidget {
@@ -20,9 +22,10 @@ class CustomCakeBuilderBody extends State<CustomCakePage> {
   late List<MultiSelectController> controllers;
 
   Future<Map> mockIngredients() async {
-    final String res = await rootBundle.loadString('assets/mock/mock_ingredients.json');
-    // ingredient is a list of size 6 (call ingredient.length in ItemCount)
-    var ingredients = json.decode(res)['data'];
+    // final String res = await rootBundle.loadString('assets/mock/mock_ingredients.json');
+    // // ingredient is a list of size 6 (call ingredient.length in ItemCount)
+    // var ingredients = json.decode(res)['data']
+    Map ingredients = (await getMerchantCapability(1))["data"];
     return ingredients;
   }
 
