@@ -133,7 +133,7 @@ class _CreateMerchantAccount extends State<CreateMerchantAccount> {
       //zipcode having issues because it is an in
       Merchant m = Merchant(_username.text ,_password.text,
           _email.text, _phone.text, _shopName.text, _shopDescription.text,
-          _businessHour.text, _Street.text, _city.text, _state.text, 9009 );
+          _businessHour.text, _Street.text, _city.text, _state.text, int.parse(_zipcode.text));
 
 
       var res = await merchantRegister(m); //its this line

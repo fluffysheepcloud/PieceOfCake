@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/index.dart';
 class Success extends StatelessWidget {
   var arguments;
 
@@ -15,7 +16,9 @@ class Success extends StatelessWidget {
             SizedBox(height: 100),
             ElevatedButton(
               //navigate to merchant profile, get merchant info, send id, merchantprofile/{id}?
-              onPressed: () { Navigator.popUntil(context, ModalRoute.withName("/")); },
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute<void>(builder: (BuildContext context) => const Index()), ModalRoute.withName('/'));
+              },
               child: Text("Done"))
           ],
         ),
