@@ -13,6 +13,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'ingredient_block.dart';
 import 'package:frontend/network/prebuilt_cake_service.dart';
+import 'package:frontend/network/merchant_service.dart';
 import 'package:frontend/domain/PrebuildCake.dart';
 
 
@@ -40,7 +41,7 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
   late final TextEditingController _cake_name;
   late final TextEditingController _cake_description;
   late final CurrencyTextInputFormatter _cake_price;
-  late final TextEditingController _cake_quantity;
+  // late final TextEditingController _cake_quantity;
 
   // specify the specifics
   late List<MultiSelectController> controllers;
@@ -71,9 +72,10 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
   //       const SnackBar(content: Text('Processing Data')),
   //     );
   //
-  //     Map merchant = await SPUtil.getUserData();
+  //     // get merchant ID
+  //     int userId = (await SPUtil.getUserData())["id"];
   //
-  //     PrebuildCake cake = PrebuildCake();
+  //     PrebuildCake cake = PrebuildCake(, userId, );
   //
   //     var res = await addMerchantPrebuildCakes(cake);
   //
@@ -98,7 +100,7 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
     _cake_name = TextEditingController();
     _cake_description = TextEditingController();
     _cake_price = CurrencyTextInputFormatter();
-    _cake_quantity = TextEditingController();
+    // _cake_quantity = TextEditingController();
 
     // specify the specifics
     // _base_size = TextEditingController();
@@ -121,7 +123,7 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
   void dispose() {
     _cake_name.dispose();
     _cake_description.dispose();
-    _cake_quantity.dispose();
+    // _cake_quantity.dispose();
 
     // specify the specifics
     // _base_size.dispose();
@@ -188,10 +190,10 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
         resizeToAvoidBottomInset : false,
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text('Add a New Prebuilt Cake'),
-          titleTextStyle: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold),
-          backgroundColor: Colors.brown[700],
+          title: Text('Add a New Cake'),
+          // titleTextStyle: TextStyle(
+          //     color: Colors.white, fontWeight: FontWeight.bold),
+          // backgroundColor: Colors.brown[700],
         ),
         body:
         LayoutBuilder(
@@ -225,8 +227,9 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
                       ),
                       Expanded(
                         child: SizedBox(
-                          height: 400.0,
+                          height: 950,
                           child: ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
                             padding: EdgeInsets.fromLTRB(25, 5, 25, 0),
                             scrollDirection: Axis.vertical,
                             itemCount: blockList.length,
