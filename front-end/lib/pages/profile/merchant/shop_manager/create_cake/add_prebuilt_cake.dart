@@ -144,6 +144,7 @@ class _AddPrebuiltCakeState extends State<AddPrebuiltCake> {
   Future<Map> mockIngredients() async {
     final String res = await rootBundle.loadString('assets/mock/mock_ingredients.json');
     var ingredients = json.decode(res)["data"];
+    debugPrint(ingredients.toString());
     return ingredients;
   }
 
