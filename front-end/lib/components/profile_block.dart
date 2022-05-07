@@ -26,7 +26,7 @@ class ProfileBlock extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.92,
             height: 100,
             decoration: BoxDecoration(
-                color: Colors.grey[400],
+                color: Color(0xfffaebd7),
                 borderRadius: BorderRadius.circular(10)
             ),
 

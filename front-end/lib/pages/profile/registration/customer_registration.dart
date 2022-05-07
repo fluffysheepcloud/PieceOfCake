@@ -27,8 +27,7 @@ class _CreateCustomerAccountState extends State<CreateCustomerAccount> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Customer Registration'),
-          titleTextStyle: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold),
+
         ),
         body: customerRegisterForm(context)
     );

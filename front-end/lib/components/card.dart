@@ -36,6 +36,7 @@ class InfoCard extends StatelessWidget {
                     splashColor: Colors.brown.withAlpha(70),
                     onTap: () {
                       debugPrint('Card tapped.');
+                      debugPrint(id.toString());
                       //pass id into product page which gets the cakes details - talk to guanyu about this
                       Navigator.push(
                           context,

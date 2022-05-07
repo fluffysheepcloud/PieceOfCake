@@ -26,7 +26,6 @@ class _IndexState extends State<Index> {
     ShoppingCartPage(),
     Profile(),
     Browse(),
-    //MerchantShop(),
     Demo(),
 
   ];
@@ -67,17 +66,11 @@ class _IndexState extends State<Index> {
               label: "Browse",
               activeIcon: Icon(Icons.search)
           ),
-          // BottomNavigationBarItem(
-          //     icon: Icon(Icons.home_outlined),
-          //     label: "Shop-Temp",
-          //     activeIcon: Icon(Icons.search)
-          // ),
           BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
               label: "Demo",
               activeIcon: Icon(Icons.home)
           ),
-
         ],
       ),
     );

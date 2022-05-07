@@ -20,7 +20,9 @@ class MerchantShop extends StatelessWidget{
   final int id;
   MerchantShop(this.id, {Key? key}) : super(key: key);
 
+
   final int _loginStat = SPUtil.loginStatus;
+
 
   int userId = 0;
 
@@ -28,8 +30,15 @@ class MerchantShop extends StatelessWidget{
     Map data = {};
     data["merchantInfo"] = (await getMerchantInfoById(id))["data"];
     data["prebuildCake"] = (await getMerchantPrebuildCakes(id));
-    int userId = (await SPUtil.getUserData())["id"];
+    Map res = (await SPUtil.getUserData());
+    if (res.isNotEmpty){
+      userId = (await SPUtil.getUserData())["id"];
+
+    }
+
     data["userId"] = userId;
+
+
     // print(data["merchantInfo"]);
     // print(data["prebuildCake"]);
     print(data);

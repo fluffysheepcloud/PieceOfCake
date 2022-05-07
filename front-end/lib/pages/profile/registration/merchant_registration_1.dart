@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/components/input_text_box.dart';
 import 'package:frontend/domain/merchant.dart';
-import 'package:frontend/pages/profile/registration/merchant_registration_2.dart';
 
 import '../../../network/merchant_service.dart';
 import '../../../utils/toast.dart';
@@ -34,7 +33,6 @@ class _CreateMerchantAccount extends State<CreateMerchantAccount> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Merchant Registration'),
-
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -49,7 +47,7 @@ class _CreateMerchantAccount extends State<CreateMerchantAccount> {
         key: _formKey,
         child: Column(children: <Widget>[
           InputTextBox("Username", "username", _username),
-          InputTextBox("Password", "password", _password),
+          InputTextBox("Password", "password", _password, obscure: true,),
           _reenterPassword(),
           InputTextBox("Email", "Email", _email),
           InputTextBox("Phone Number", "Phone Number", _phone),
@@ -66,10 +64,6 @@ class _CreateMerchantAccount extends State<CreateMerchantAccount> {
             ),
             onPressed: () {
               _registerMerchant();
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => const ContinueAccount()),
-              // );
             },
           ),
         ]
@@ -123,18 +117,14 @@ class _CreateMerchantAccount extends State<CreateMerchantAccount> {
 
   _registerMerchant() async{
     if (_formKey.currentState!.validate()) {
-      // If the form is valid, display a snackbar. In the real world,
-      // you'd often call a server or save the information in a database.
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Processing Data')),
       );
 
-
-      //zipcode having issues because it is an in
       Merchant m = Merchant(_username.text ,_password.text,
           _email.text, _phone.text, _shopName.text, _shopDescription.text,
-          _businessHour.text, _Street.text, _city.text, _state.text, 9009 );
-
+          _businessHour.text, _Street.text, _city.text, _state.text, int.parse(_zipcode.text) );
 
       var res = await merchantRegister(m); //its this line
       debugPrint("dslfkjsdlf");

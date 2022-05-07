@@ -40,12 +40,12 @@ class CakeProducts extends State<CakeProductPage> {
       appBar: AppBar(
         title: Text("Your Cakes",
           style: TextStyle(fontSize: 25)),
-        titleTextStyle: TextStyle(
-            color: Colors.white, fontWeight: FontWeight.bold),
-        backgroundColor: Colors.brown[700],
+        // titleTextStyle: TextStyle(
+        //     color: Colors.white, fontWeight: FontWeight.bold),
+        //backgroundColor: Colors.brown[700],
       ),
 
-      backgroundColor: Colors.orange[50],
+     // backgroundColor: Colors.orange[50],
       body: _cakePage()
     );
   }
@@ -58,17 +58,17 @@ class CakeProducts extends State<CakeProductPage> {
             SizedBox(
               height: 10
             ),
-            TextButton(
-              style: TextButton.styleFrom
-                (backgroundColor: Colors.brown[700]),
+            ElevatedButton(
+              // style: TextButton.styleFrom
+              //   (backgroundColor: Colors.brown[700]),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => AddPrebuiltCake()),
                 );
               },
-                child: const Text('Add a New Cake',
-                    style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold))
+                child: const Text('Add a New Cake',)
+                   // style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold))
             ),
             ListView.builder(
                 scrollDirection: Axis.vertical,

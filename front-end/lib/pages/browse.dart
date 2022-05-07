@@ -16,10 +16,6 @@ class Browse extends StatefulWidget{
   _BrowseState createState() => _BrowseState();
 }
 
-//read in json array
-//copy array into _items
-//if query not empty and _items.contains(query) --> add
-
 class _BrowseState extends State<Browse>{
   List  _items = [];
   List results = [];
@@ -27,9 +23,6 @@ class _BrowseState extends State<Browse>{
   TextEditingController tc = new TextEditingController();
 
   readJson() async {
-    //get all merchants(?), get cakes by merchantId -- but pass the cake id into card, retrieve cake details from merchants info
-    //what is merchant's JSON response, may need to call the getPrebuilt cakes or something passing in merchant id
-    //getMerchantPrebuildCakes(int id)
     var m1 = await getMerchantInfoById(1);
     var m2 = await getMerchantInfoById(2);
     var m3 = await getMerchantInfoById(3);
@@ -58,7 +51,6 @@ class _BrowseState extends State<Browse>{
   Widget customSearchBar = const Text('Search');
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Browse for Shops'),
@@ -90,13 +82,11 @@ class _BrowseState extends State<Browse>{
                     border: const OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 7,
-                        //color: Colors.brown,
                       ),
                     ),
                     focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.brown)),
                     hintText: 'Search',
-
                   ),
 
                   //if textfield tapped then turn icon into cancel, if icon button tapped and it is a cancel, then cancel transaction
@@ -131,7 +121,7 @@ class _BrowseState extends State<Browse>{
 
               SizedBox(height: 15,),
               Container(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(5),
                   child: Column(
                     children: [
                       Row(
@@ -148,7 +138,7 @@ class _BrowseState extends State<Browse>{
                                 "        # Honney   ",
                                 style: TextStyle(
                                   fontSize: 16.0,
-                                  color: Colors.blueAccent,
+                                  color: Colors.brown,
                                 ),
                               )
                           ),
@@ -164,7 +154,7 @@ class _BrowseState extends State<Browse>{
                                 "# Cake   ",
                                 style: TextStyle(
                                   fontSize: 16.0,
-                                  color: Colors.blueAccent,
+                                  color: Colors.brown,
                                 ),
                               )
                           ),
@@ -180,7 +170,7 @@ class _BrowseState extends State<Browse>{
                                 "# Sweet   ",
                                 style: TextStyle(
                                   fontSize: 16.0,
-                                  color: Colors.blueAccent,
+                                  color: Colors.brown,
                                 ),
                               )
                           ),
@@ -190,7 +180,7 @@ class _BrowseState extends State<Browse>{
                   )
               ),
 
-              SizedBox(height: 15,),
+              //SizedBox(height: 10,),
               TextButton(
                   onPressed: () {
                     Navigator.push(

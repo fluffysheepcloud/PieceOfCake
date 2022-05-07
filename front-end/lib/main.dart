@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
         elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
         onPrimary: Colors.white,
-        primary: Color(0xFF804E32)//s.blue[50],
+        primary: Color(0xFF804E32)//
         ),
     ),
           textButtonTheme: TextButtonThemeData(

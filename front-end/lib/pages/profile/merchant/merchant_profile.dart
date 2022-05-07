@@ -68,11 +68,11 @@ class _MerchantProfileState extends State<MerchantProfile> {
 
   _pageBuilder(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber[50],
+      //backgroundColor: Colors.amber[50],
       appBar: AppBar(
         centerTitle: true,
         title: Text("${merchantInfo["shopName"]}'s Profile"),
-        backgroundColor: Colors.red[100],
+        //backgroundColor: Colors.red[100],
         toolbarHeight: 50,
       ),
       body: SingleChildScrollView(
