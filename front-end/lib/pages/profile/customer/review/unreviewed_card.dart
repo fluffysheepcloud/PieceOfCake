@@ -34,7 +34,7 @@ class _UnreviewedCardState extends State<UnreviewedCard> {
         padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
         child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.85,
-            height: 250.0,
+            height: 285.0,
             child: Card(
               elevation: 5,
               color: Theme.of(context).primaryColor,
