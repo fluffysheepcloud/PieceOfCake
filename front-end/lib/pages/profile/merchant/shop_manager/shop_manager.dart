@@ -76,10 +76,7 @@ class _ShopManagerPageState extends State<ShopManagerPage> {
       return () => { Navigator.pushNamed(context, "/profile/merchant/shop_manager/modify_capability") };
     }
     else if (index == 4){
-      return () => {};
-    }
-    else if (index == 5){
-      return () => {};
+      return () => { Navigator.pushNamed(context, "/profile/merchant/cake_product") };
     }
     else {
       return () => {};
