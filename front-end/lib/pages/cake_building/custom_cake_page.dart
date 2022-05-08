@@ -68,14 +68,16 @@ class CustomCakeBuilderBody extends State<CustomCakePage> {
     //   var items = List<String>.from(element.getSelectedItems());
     //   print(items);
     // });
+    print(controllers[0].getSelectedItems().toString());
     var route = MaterialPageRoute(builder: (BuildContext context) =>
         CakeBuilderConfirmation(
-            baseSize: List<String>.from(controllers[0].getSelectedItems()),
-            baseFlavor: List<String>.from(controllers[1].getSelectedItems()),
-            baseColor: List<String>.from(controllers[2].getSelectedItems()),
-            frostingType: List<String>.from(controllers[3].getSelectedItems()),
-            frostingColor: List<String>.from(controllers[4].getSelectedItems()),
-            toppings: List<String>.from(controllers[5].getSelectedItems())));
+            baseSize: (controllers[0].getSelectedItems()[0].toString()),
+            baseFlavor: (controllers[1].getSelectedItems()[0].toString()),
+            baseColor: (controllers[2].getSelectedItems()[0].toString()),
+            frostingType: (controllers[3].getSelectedItems()[0].toString()),
+            frostingColor: (controllers[4].getSelectedItems()[0].toString()),
+            toppings: List<String>.generate(controllers[5].getSelectedItems().length,
+                    (index) => (controllers[5].getSelectedItems()[index].toString()))));
 
     Navigator.of(context).push(route);
 

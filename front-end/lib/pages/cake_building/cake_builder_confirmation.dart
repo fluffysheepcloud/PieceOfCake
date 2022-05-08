@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CakeBuilderConfirmation extends StatefulWidget {
-  final List<String> baseSize;
-  final List<String> baseFlavor;
-  final List<String> baseColor;
-  final List<String> frostingType;
-  final List<String> frostingColor;
+  final String baseSize;
+  final String baseFlavor;
+  final String baseColor;
+  final String frostingType;
+  final String frostingColor;
   final List<String> toppings;
 
   const CakeBuilderConfirmation({Key? key,
@@ -33,7 +33,8 @@ class CakeBuilderConfirmationBody extends State<CakeBuilderConfirmation> {
       ),
 
       body:
-      Container(
+      SingleChildScrollView(
+       child: Container(
         color: Color.fromARGB(255, 249, 243, 235),
 
         padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
@@ -50,7 +51,7 @@ class CakeBuilderConfirmationBody extends State<CakeBuilderConfirmation> {
                     if (widget.baseSize.isEmpty)
                       Text("Any Size", style: TextStyle(fontSize: 22)),
                     for (int i = 0; i < widget.baseSize.length; i++)
-                      Text(widget.baseSize[i], style: TextStyle(fontSize: 22)),
+                      Text(widget.baseSize[i].toString(), style: TextStyle(fontSize: 22)),
                   ],
                 ),
                 SizedBox(height: 10),
@@ -64,7 +65,7 @@ class CakeBuilderConfirmationBody extends State<CakeBuilderConfirmation> {
                     if (widget.baseFlavor.isEmpty)
                       Text("Any Flavor", style: TextStyle(fontSize: 22)),
                     for (int i = 0; i < widget.baseFlavor.length; i++)
-                    Text(widget.baseFlavor[i], style: TextStyle(fontSize: 22)),
+                    Text(widget.baseFlavor[i].toString(), style: TextStyle(fontSize: 22)),
                   ],
                 ),
 
@@ -78,7 +79,7 @@ class CakeBuilderConfirmationBody extends State<CakeBuilderConfirmation> {
                     if (widget.baseColor.isEmpty)
                       Text("Any Color", style: TextStyle(fontSize: 22)),
                     for (int i = 0; i < widget.baseColor.length; i++)
-                      Text(widget.baseColor[i], style: TextStyle(fontSize: 22)),
+                      Text(widget.baseColor[i].toString(), style: TextStyle(fontSize: 22)),
                   ],
                 ),
 
@@ -92,7 +93,7 @@ class CakeBuilderConfirmationBody extends State<CakeBuilderConfirmation> {
                     if (widget.frostingType.isEmpty)
                       Text("Any Type", style: TextStyle(fontSize: 22)),
                     for (int i = 0; i < widget.frostingType.length; i++)
-                      Text(widget.frostingType[i], style: TextStyle(fontSize: 22)),
+                      Text(widget.frostingType[i].toString(), style: TextStyle(fontSize: 22)),
                   ],
                 ),
 
@@ -106,7 +107,7 @@ class CakeBuilderConfirmationBody extends State<CakeBuilderConfirmation> {
                     if (widget.frostingColor.isEmpty)
                       Text("Any Color", style: TextStyle(fontSize: 22)),
                     for (int i = 0; i < widget.frostingColor.length; i++)
-                      Text(widget.frostingColor[i], style: TextStyle(fontSize: 22)),
+                      Text(widget.frostingColor[i].toString(), style: TextStyle(fontSize: 22)),
                   ],
                 ),
 
@@ -120,7 +121,7 @@ class CakeBuilderConfirmationBody extends State<CakeBuilderConfirmation> {
                     if (widget.toppings.isEmpty)
                       Text("None", style: TextStyle(fontSize: 22)),
                     for (int i = 0; i < widget.toppings.length; i++)
-                      Text(widget.toppings[i], style: TextStyle(fontSize: 22)),
+                      Text(widget.toppings[i].toString(), style: TextStyle(fontSize: 22)),
                   ],
                 ),
 
@@ -140,10 +141,11 @@ class CakeBuilderConfirmationBody extends State<CakeBuilderConfirmation> {
                   onPressed: () {},
                   child: Text("ADD TO CART", style: TextStyle(fontSize: 22)),
                 )
-            ],
+              ],
+            ),
           ),
         ),
-      ),
+      )
     );
   }
 
