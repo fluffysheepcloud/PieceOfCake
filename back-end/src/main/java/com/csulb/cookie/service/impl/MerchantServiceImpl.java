@@ -70,7 +70,7 @@ public class MerchantServiceImpl extends ServiceImpl<MerchantMapper, Merchant>  
                 merchant.getState() == null ||
                 merchant.getZip() == null
         ) {
-            return new ControllerResult(ControllerResult.BAD_REQUEST, null, "bad poop request").toJsonMap();
+            return new ControllerResult(ControllerResult.BAD_REQUEST, null, "bad request").toJsonMap();
         }
 
         // Save merchant into database

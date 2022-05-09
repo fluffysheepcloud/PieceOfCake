@@ -1,17 +1,11 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:frontend/components/card.dart';
 import 'package:frontend/components/prebuilt_card.dart';
 import 'package:frontend/network/merchant_service.dart';
 import 'package:frontend/network/prebuilt_cake_service.dart';
 import 'package:frontend/pages/cake_request_form.dart';
-import 'package:frontend/pages/profile/customer/fav_cakes/fav_cakes_card.dart';
 import 'package:frontend/pages/profile/merchant/shop_manager/shop_manager.dart';
 import 'package:frontend/utils/shared_preferences.dart';
-import 'dart:convert';
 
 import '../../../cake_building/custom_cake_page.dart';
 //when card clicked, pass id in to here, then retrieve data from that id using await getMerchantId(id passed in)
@@ -37,44 +31,20 @@ class MerchantShop extends StatelessWidget{
     }
 
     data["userId"] = userId;
-
-
-    // print(data["merchantInfo"]);
-    // print(data["prebuildCake"]);
     print(data);
     return data;
   }
-
-  //  Future <List> _loadId() async {
-  //   //get stat and user info
-  //   debugPrint("sdfsdfsdf");
-  //   int userId = (await SPUtil.getUserData())["id"];
-  //   return userId;
-  // }
-
-  // void initState(){
-  //   _loadId();
-  //   debugPrint(userId.toString());
-  //
-  // }
-
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
       child: FutureBuilder(
-        future: _loadMerchantShop(), //_loadId()}), // _readCakes()}),
+        future: _loadMerchantShop(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasError) {
               return Text("Error: ${snapshot.error}");
             } else {
-
-              debugPrint("poo");
               userId = snapshot.data["userId"];
-              // debugPrint("snapshopt:");
-              // debugPrint(snapshot.data[1]);
               return _pageBuilder(context, snapshot);
             }
           } else {
@@ -131,9 +101,6 @@ class MerchantShop extends StatelessWidget{
                   child: Text("${merchantInfo["description"]}",
                   style: TextStyle(fontSize: 16), ), )
             ),
-            // ElevatedButton(onPressed: (){
-            //   showDumbInfo();
-            // }, child: Text("dsjlfkjsd")),
             SizedBox(height: 10,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -214,8 +181,6 @@ class MerchantShop extends StatelessWidget{
       ),
     );
   }
-  // showDumbInfo(){
-  //   debugPrint(_items.toString());
-  // }
+
 }
 
